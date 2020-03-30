@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Login_View extends Basic_View<Login_Model> {
+public class Login_View extends ClientView<Login_Model> {
 
     Label lblLogIn;
     Label lblName;

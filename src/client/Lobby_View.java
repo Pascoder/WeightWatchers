@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Lobby_View extends Basic_View<Chatroom_Model> {
+public class Lobby_View extends ClientView<Chatroom_Model> {
 
     private Label lblRoom;
     public ListView<String> roomList;
