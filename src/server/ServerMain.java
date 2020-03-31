@@ -6,12 +6,13 @@ import java.net.Socket;
 
 public class ServerMain {
 	private static int client_id = 0;
+	private final static int port = 9998;
 
 	public static void main(String[] args)throws IOException {
 		System.out.println("Server gestartet...");
 		
 	
-		try (ServerSocket serverSocket = new ServerSocket (9998)){
+		try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
 		
 		while (true) {
 			Socket socket = serverSocket.accept();
@@ -24,6 +25,8 @@ public class ServerMain {
 		
 			} 
 			
+		} catch (Exception e) {
+			System.err.println(e);
 		}
 	
 	}
