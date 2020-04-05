@@ -1,16 +1,16 @@
 package client;
 
-import chatroom.olmoClient.ServiceLocator;
-import chatroom.olmoClient.Translator;
-import chatroom.olmoClient.Model.Basic_Model;
+
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public abstract class ClientView<M extends Basic_Model> {
+public class ClientView {
 
     public Stage stage;
     protected Scene scene;
-    protected M model;
+    protected ClientModel clientModel;
     protected ServiceLocator_JC sl;
     protected Translator_JC t;
 
@@ -20,19 +20,33 @@ public abstract class ClientView<M extends Basic_Model> {
      * @param stage
      * @param model
      */
-    protected ClientView(Stage stage, M model) {
+    protected ClientView(Stage stage, ClientModel clientModel) {
 	this.stage = stage;
-	this.model = model;
+	this.clientModel = clientModel;
 	sl = ServiceLocator_JC.getServiceLocator();
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
-
-	scene = create_GUI(); // Create all controls within "root"
-	stage.setScene(scene);
+	// Leon ab hier kommt die Gestaltung der 
+	createGUI();
+	
+	
+	
     }
 
-    protected abstract Scene create_GUI();
+   
 
-    /**
+    private void createGUI() {
+    	//Nur für Testzwecke ob MVC funktioniert
+    	GridPane root = new GridPane();
+    	Label l1 = new Label("test");
+    	root.add(l1, 0, 0);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		
+	}
+
+
+
+	/**
      * Display the view
      */
     public void start() {
