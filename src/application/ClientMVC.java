@@ -16,6 +16,7 @@ public class ClientMVC extends Application{
 
 	}
 	public void start (Stage stage) throws Exception{
+		initialize();
 		this.clientModel = new ClientModel();
 		this.clientView = new ClientView(stage, clientModel);
 		this.clientController = new ClientController(clientModel, clientView);
@@ -24,6 +25,9 @@ public class ClientMVC extends Application{
 	}
 	public void stop () {
 		clientView.stop();
+	}
+	public void initialize() {
+		/* Hier wird Configuration, ServiceLocator, und Verbindung zu Server hergestellt*/
 	}
 
 }

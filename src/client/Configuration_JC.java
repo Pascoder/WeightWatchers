@@ -15,10 +15,10 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import chatroom.olmoClient.Model.Message;
+
 
 public class Configuration_JC {
-    ServiceLocator sl = ServiceLocator.getServiceLocator(); // for easy reference
+    ServiceLocator_JC sl = ServiceLocator_JC.getServiceLocator(); // for easy reference
     Logger logger = sl.getLogger(); // for easy reference
 
     private Properties defaultOptions;
