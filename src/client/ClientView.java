@@ -26,7 +26,7 @@ public class ClientView {
 	sl = ServiceLocator_JC.getServiceLocator();
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	// Leon ab hier kommt die Gestaltung der 
-	createGUI();
+	createGUI(); 
 	
 	
 	
