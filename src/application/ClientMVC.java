@@ -1,5 +1,8 @@
-package client;
+package application;
 
+import client.ClientController;
+import client.ClientModel;
+import client.ClientView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

@@ -20,7 +20,7 @@ public class ClientView {
      * @param stage
      * @param model
      */
-    protected ClientView(Stage stage, ClientModel clientModel) {
+    public ClientView(Stage stage, ClientModel clientModel) {
 	this.stage = stage;
 	this.clientModel = clientModel;
 	sl = ServiceLocator_JC.getServiceLocator();
