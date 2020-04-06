@@ -6,36 +6,55 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.logging.Logger;
+
+
 
 public class ClientModel {
-	int ClientNr;
 	
-	public static void main(String[]args) {
-		System.out.println("Client gestartet");
-	
-		try ( Socket client = new Socket ("127.0.0.1", 9998);
-				
-				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-				PrintWriter out = new PrintWriter(client.getOutputStream(), true);) {
-				
-				Scanner scan = new Scanner(System.in);
-				String msg = "";
-				while(!msg.equals("exit")) {
-				msg = scan.nextLine();
-				out.write(msg);
-				out.flush();
-			
-				}
-					
-					in.close();
-					out.close();
+		private int ClientNr = 0;
+		private final String ipAdress = "localhost";
+		private final int port = 9998;
+		private Logger logger;
 		
-		} catch (IOException e) {
-			System.err.println(e.getMessage());
-		}
-	
-	
+		
+	public ClientModel() {
+		logger = ServiceLocator_JC.getServiceLocator().getLogger();
+		connect(ipAdress, port);
 	}
+	
+	public void connect(String ipAddress, int Port) {
+	
+	
+	try {
+		Socket socket = new Socket(ipAddress, Port);
+
+		// Create thread to read incoming messages
+		Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						Message msg = (Message) Message.receive(socket);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+						
+						
+				}
+			}
+		};
+		Thread t = new Thread(r);
+		t.start();
+
+		// Send join message to the server
+		Message msg = new Message_HELLO();
+		msg.send(socket);
+	} catch (Exception e) {
+		logger.warning(e.toString());
+	}
+}
 	
 
 }

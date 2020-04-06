@@ -106,7 +106,7 @@ import java.util.Iterator;
 	        try { // Ignore IO errors
 	        	OutputStreamWriter out = new OutputStreamWriter(s.getOutputStream());
 	            out.write(message);
-	            out.write("\n"); // tmpty line to end message
+	            out.write("\n"); // empty line to end message
 	            out.flush();
 	            s.shutdownOutput(); // ends output without closing socket
 	        } catch (Exception e) {

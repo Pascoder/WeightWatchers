@@ -3,13 +3,19 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Logger;
+
+import client.ServiceLocator_JC;
 
 public class ServerMain {
 	private static int client_id = 0;
 	private final static int port = 9998;
+	
 
 	public static void main(String[] args)throws IOException {
-		System.out.println("Server gestartet...");
+		
+		
+		System.out.println("Server started and listening on port 9998");
 		
 	
 		try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
@@ -21,7 +27,6 @@ public class ServerMain {
 			
 			ClientThread ct = new ClientThread (client_id, socket);
 			ct.start();
-			System.out.println("Client Thread erstellt");
 		
 			} 
 			

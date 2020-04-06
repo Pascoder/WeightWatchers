@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-//TODO in der initialize Methode Klasse zur Verbindungsaufbau aufruffen
+//TODO in der initialize Methode Klasse zur Verbindungsaufbau aufrufen
 
 public class ClientMVC extends Application{
 	private ClientModel clientModel;
@@ -37,6 +37,7 @@ public class ClientMVC extends Application{
 		sl.setConfiguration(new Configuration_JC());
 		String language = sl.getConfiguration().getOption("Language");
 		sl.setTranslator(new Translator_JC(language));
+		
 		//Hier fehlt noch Verbindung zu Server herstellen
 	}
 	private Logger configureLogger() {
