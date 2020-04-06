@@ -29,7 +29,7 @@ public class Lobby_View extends ClientView<Chatroom_Model> {
    
     
 
-    public Lobby_View(Stage stage, Chatroom_Model model ) {
+    public Lobby_View(Stage stage, Chatroom_Model model) {
 	super(stage, model);
 	sl.getLogger().info("Chatroom_View initialized");
 
@@ -43,7 +43,7 @@ public class Lobby_View extends ClientView<Chatroom_Model> {
 	messageList.setItems(messages);
 	}
     public void setChatter(ObservableList<String> chatter) {	
-	chatterList.setItems(chatter);
+	chatterList.setItems(chatter );
 	}
 
     @Override
