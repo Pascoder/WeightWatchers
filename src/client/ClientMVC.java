@@ -1,16 +1,10 @@
-package application;
+package client;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import client.ClientController;
-import client.ClientModel;
-import client.ClientView;
-import client.Configuration_JC;
-import client.ServiceLocator_JC;
-import client.Translator_JC;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
