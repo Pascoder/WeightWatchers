@@ -9,7 +9,7 @@ Schellen ("Schellen","Hearts");
 private String swissCards;
 private String frenchCards;
 
-
+//Es ist somit möglich mit einer Karte die Französische und Schweizer Version zu haben
 private CardColor(String swissCards, String frenchCards) {
 	this.swissCards = swissCards;
 	this.frenchCards = frenchCards;
