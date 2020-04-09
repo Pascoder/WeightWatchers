@@ -12,18 +12,18 @@ Diamonds,
 Clubs;*/
 
 public String toString() {
-    String suit = "";
+    String cardColor = "";
     switch (this) {
    /* case Clubs: suit = "clubs"; break;
     case Diamonds: suit = "diamonds"; break;
     case Hearts: suit = "hearts"; break;
     case Spades: suit = "spades"; break;*/
-    case Rose: suit = "rose"; break;
-    case Eichel: suit = "eichel"; break;
-    case Schilten: suit = "schilten"; break;
-    case Schellen: suit = "schellen"; break;
+    case Rose: cardColor = "rose"; break;
+    case Eichel: cardColor = "eichel"; break;
+    case Schilten: cardColor = "schilten"; break;
+    case Schellen: cardColor = "schellen"; break;
     }
-    return suit;
+    return cardColor;
 }
 
 }
