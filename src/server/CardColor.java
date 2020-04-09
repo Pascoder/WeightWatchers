@@ -4,7 +4,11 @@ public enum CardColor {
 Rose,
 Eichel,
 Schilten,
-Schellen;
+Schellen,
+Clubs,
+Diamonds,
+Hearts,
+Spades;
 
 
 public String toString() {
@@ -14,6 +18,10 @@ public String toString() {
     case Eichel: cardColor = "eichel"; break;
     case Schilten: cardColor = "schilten"; break;
     case Schellen: cardColor = "schellen"; break;
+    case Clubs: cardColor = "clubs"; break;
+    case Diamonds: cardColor = "diamonds"; break;
+    case Hearts: cardColor = "hearts"; break;
+    case Spades: cardColor = "spades"; break;
     }
     return cardColor;
 }
