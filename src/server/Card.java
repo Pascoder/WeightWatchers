@@ -14,6 +14,7 @@ public class Card implements Comparable<Card> {
         return cardColor;
     }
 
+    
     public CardRank getCardRank() {
         return cardRank;
     }
@@ -24,7 +25,7 @@ public class Card implements Comparable<Card> {
     
     @Override
     public String toString() {
-        return cardRank.ordinal()+"/" + cardRank.toString() + cardColor.toString();
+        return cardRank.toString() + cardColor.toString();
     }
     
     @Override
