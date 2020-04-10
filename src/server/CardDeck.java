@@ -18,7 +18,7 @@ public CardDeck() {
 
 
 private void shuffle() {
-	cards.clear();
+	cards.clear(); 
 	
 	for(int a = 0; a < colors.length;a++){
 		for(int b = 0; b < ranks.length;b++) {
