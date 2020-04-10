@@ -32,4 +32,19 @@ private void shuffle() {
 public ArrayList <Card> getDeck(){
 	return this.cards;
 }
+public void setDeckLanguage(String language) {
+
+	for(int i = 0; i< cards.size();i++) {
+		cards.get(i).getCardColor().setLanguage(language);
+	}
+	
+		
+}
+public String toString() {
+	String tostring = "";
+	for(int i = 0; i<cards.size(); i++) {
+		tostring+="\n"+this.cards.get(i)+"";
+	}
+	return tostring;
+}
 }
