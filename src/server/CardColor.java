@@ -1,28 +1,49 @@
 package server;
 
 public enum CardColor {
-Rose,
-Eichel,
-Schilten,
-Schellen,
-Clubs,
-Diamonds,
-Hearts,
-Spades;
+Rose ("Rose","Spades"),
+Eichel ("Eichel","Diamonds"),
+Schilten ("Schilten","Clubs"),
+Schellen ("Schellen","Hearts");
 
+private String swissCards;
+private String frenchCards;
+private String language = "CH";
+
+//Es ist somit möglich mit einer Karte die Französische und Schweizer Version zu haben
+private CardColor(String swissCards, String frenchCards) {
+	this.swissCards = swissCards;
+	this.frenchCards = frenchCards;
+	
+}
+
+public String getSwissCards() {
+	return swissCards;
+}
+public String getFrenchCards() {
+	return frenchCards;
+}
+public void setLanguage(String language) {
+	this.language = language;
+}
 
 public String toString() {
-    String cardColor = "";
+	String cardColor = "";
+	if(this.language.equals("CH")) {
     switch (this) {
-    case Rose: cardColor = "rose"; break;
-    case Eichel: cardColor = "eichel"; break;
-    case Schilten: cardColor = "schilten"; break;
-    case Schellen: cardColor = "schellen"; break;
-    case Clubs: cardColor = "clubs"; break;
-    case Diamonds: cardColor = "diamonds"; break;
-    case Hearts: cardColor = "hearts"; break;
-    case Spades: cardColor = "spades"; break;
+    case Rose: cardColor = "Rose"; break;
+    case Eichel: cardColor = "Eichel"; break;
+    case Schilten: cardColor = "Schilten"; break;
+    case Schellen: cardColor = "Schellen"; break;
     }
+	}else {
+	switch (this) {
+	case Rose: cardColor = "Spades"; break;
+	case Eichel: cardColor = "Diamonds"; break;
+	case Schilten: cardColor = "Clubs"; break;
+	case Schellen: cardColor = "Hearts"; break;
+	    }
+	}
     return cardColor;
 }
 
