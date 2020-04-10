@@ -18,7 +18,7 @@ private CardColor(String swissCards, String frenchCards) {
 }
 
 public String getSwissCards() {
-	return swissCards;
+	return swissCards; 
 }
 public String getFrenchCards() {
 	return frenchCards;
