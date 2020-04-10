@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class ClientModel {
 	
-		private int ClientNr = 0;
+		private static int ClientNr = 0;
 		private final String ipAdress = "localhost";
 		private final int port = 9998;
 		private Logger logger;
@@ -50,11 +50,27 @@ public class ClientModel {
 
 		// Send join message to the server
 		Message msg = new Message_HELLO();
+		ClientNr++;
 		msg.send(socket);
-	} catch (Exception e) {
-		logger.warning(e.toString());
+		
+		} catch (Exception e) {
+			logger.warning(e.toString());
 	}
 }
+
+	public static int getClientID() {
+		return ClientNr ++;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }
