@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Message_HELLO extends Message {
 	
-	public Message_HELLO(int clientNr) {
-		this.setClient(clientNr +"");
+	public Message_HELLO() {
+		
 		
 	}
 

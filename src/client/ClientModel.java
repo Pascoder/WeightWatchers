@@ -16,6 +16,8 @@ public class ClientModel {
 		private final String ipAdress = "localhost";
 		private final int port = 9998;
 		private Logger logger;
+		private String clientName = "testClient";
+		private Socket socket;
 		
 		
 	public ClientModel() {
@@ -27,7 +29,7 @@ public class ClientModel {
 	
 	
 	try {
-		Socket socket = new Socket(ipAddress, Port);
+		socket = new Socket(ipAddress, Port);
 
 		// Create thread to read incoming messages
 		Runnable r = new Runnable() {
@@ -35,7 +37,7 @@ public class ClientModel {
 			public void run() {
 				while (true) {
 					try {
-						Message msg = (Message) Message.receive(socket);
+						Message msgIn = (Message) Message.receive(socket);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -49,14 +51,35 @@ public class ClientModel {
 		t.start();
 
 		// Send join message to the server
-		Message msg = new Message_HELLO();
-		ClientNr++;
-		msg.send(socket);
+		sayHello(clientName);
+		
+		
 		
 		} catch (Exception e) {
 			logger.warning(e.toString());
 	}
 }
+
+	public String sayHello(String clientName) {
+		String result = null;
+		
+		if (socket != null) {
+			Message msgOut = new Message_HELLO();
+			msgOut.setClient(clientName);
+			
+			try {
+				msgOut.send(socket);
+//				System.out.println("Client sagt dem Server hallo. nachricht: "+ msgOut);
+				Message msgIn = Message.receive(socket);
+				result = msgIn.toString();
+				System.out.println("Server antwortet: " + result);
+			} catch (Exception e) {
+				result = e.toString();
+			}
+				try { if (socket != null) socket.close(); } catch (IOException e) {}
+		}
+		return result;
+	}
 
 	public static int getClientID() {
 		return ClientNr ++;

@@ -108,7 +108,7 @@ import java.util.Iterator;
 	            out.write(message);
 	            out.write("\n"); // empty line to end message
 	            out.flush();
-	            s.shutdownOutput(); // ends output without closing socket
+//	            s.shutdownOutput(); // ends output without closing socket --> Gibt Fehler?!
 	        } catch (Exception e) {
 	        }
 	    }    
