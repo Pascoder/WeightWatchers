@@ -23,11 +23,47 @@ public class ClientModel {
 	public ClientModel() {
 		logger = ServiceLocator_JC.getServiceLocator().getLogger();
 		connect(ipAdress, port);
+		// Send join message to the server
+//		sayHello(clientName);
+		String answer = testLogin();
+		System.out.println(answer);
 	}
 	
+	
+	
+	
+	private String testLogin() {
+		
+		String result = null;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Geben Sie einen Usernamen ein!");
+		String username = scan.nextLine();
+		System.out.println("Geben Sie ein Passwort ein!");
+		String password = scan.nextLine();
+		scan.close();
+		Message_LOGIN testMsg = new Message_LOGIN();
+		testMsg.setUsername(username);
+		testMsg.setPassword(password);
+		
+		testMsg.send(socket);
+		Message msgIn;
+		try {
+			msgIn = Message.receive(socket);
+			result = msgIn.toString();
+			System.out.println(result);
+		} catch (Exception e) {
+			result = e.toString();
+		}
+		
+		
+		return result;
+		
+	}
+
+
+
+
 	public void connect(String ipAddress, int Port) {
-	
-	
 	try {
 		socket = new Socket(ipAddress, Port);
 
@@ -41,33 +77,28 @@ public class ClientModel {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
-						
-						
+					}		
 				}
 			}
 		};
 		Thread t = new Thread(r);
 		t.start();
 
-		// Send join message to the server
-		sayHello(clientName);
-		
-		
 		
 		} catch (Exception e) {
 			logger.warning(e.toString());
 	}
 }
 
+
 	public String sayHello(String clientName) {
 		String result = null;
-		
 		if (socket != null) {
 			Message msgOut = new Message_HELLO();
 			msgOut.setClient(clientName);
 			
 			try {
+				
 				msgOut.send(socket);
 //				System.out.println("Client sagt dem Server hallo. nachricht: "+ msgOut);
 				Message msgIn = Message.receive(socket);
@@ -76,7 +107,7 @@ public class ClientModel {
 			} catch (Exception e) {
 				result = e.toString();
 			}
-				try { if (socket != null) socket.close(); } catch (IOException e) {}
+//				try { if (socket != null) socket.close(); } catch (IOException e) {} Braucht es nicht?!
 		}
 		return result;
 	}

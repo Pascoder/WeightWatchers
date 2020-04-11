@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Message_HELLO extends Message {
 	
 	public Message_HELLO() {
-		
+		super();
 		
 	}
 
