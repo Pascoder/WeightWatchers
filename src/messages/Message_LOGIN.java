@@ -1,4 +1,4 @@
-package client;
+package messages;
 
 import java.util.ArrayList;
 
@@ -8,10 +8,10 @@ public class Message_LOGIN extends Message {
 	private static final String ELEMENT_USERNAME = "username";
 	private static final String ELEMENT_PASSWORD = "password";
 	
-	private String username;
 	
-
+	private String username;
 	private String password;
+	
 
 	public Message_LOGIN() {
 		super();

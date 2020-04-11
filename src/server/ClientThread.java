@@ -7,11 +7,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-import client.Message;
-import client.MessageType;
-import client.Message_ERROR;
-import client.Message_HELLO;
 import client.ServiceLocator_JC;
+import messages.Message;
+import messages.MessageType;
+import messages.Message_ERROR;
+import messages.Message_HELLO;
+import messages.Message_LOGIN;
 
 
 //aka Server Model
@@ -34,12 +35,13 @@ public class ClientThread extends Thread {
 	}
 	
 	public void run() {
+		
+		
 		try { 
-			
-			String inputLine;
-			while ((inputLine = in.readLine()) != null) {
+			//EVTL FEHLER HIER! Kann sein, dass die While Schleife falsch ist??
+			//			while ((inputLine = in.readLine()) != null) {
 				try {
-					
+								
 					Message msgIn = Message.receive(clientSocket);
 					System.out.println("Nachricht vom Client erhalten: " + msgIn);
 					Message msgOut = processMessage(msgIn);
@@ -52,10 +54,10 @@ public class ClientThread extends Thread {
 				
 
 				
-			}
 			
 			
-		} catch (IOException e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	
@@ -66,13 +68,20 @@ public class ClientThread extends Thread {
 	
 
 	private Message processMessage(Message msgIn) {
-		logger.info("Message received from client: " + msgIn.toString());
-		String clientName = msgIn.getClient();
 		
+		String clientName = msgIn.getClient();
 		Message msgOut = null;
+		
 		switch (MessageType.getType(msgIn)) {
 			case HELLO:
 				msgOut = new Message_HELLO();
+				break;
+				
+			case LOGIN:
+				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
+				//Methode um Login zu prüfen und ggf. zu aktzeptieren
+				msgOut = new Message_LOGIN();
+				msgOut.setClient(lg_msg.getClient());
 				break;
 				
 			default:

@@ -1,4 +1,4 @@
-package client;
+package messages;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

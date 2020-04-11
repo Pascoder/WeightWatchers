@@ -8,6 +8,10 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import messages.Message;
+import messages.Message_HELLO;
+import messages.Message_LOGIN;
+
 
 
 public class ClientModel {
@@ -16,17 +20,20 @@ public class ClientModel {
 		private final String ipAdress = "localhost";
 		private final int port = 9998;
 		private Logger logger;
-		private String clientName = "testClient";
+		private String clientName = "";
 		private Socket socket;
 		
 		
 	public ClientModel() {
 		logger = ServiceLocator_JC.getServiceLocator().getLogger();
 		connect(ipAdress, port);
+		System.out.println("namen eingeben: ");
+		Scanner scan = new Scanner (System.in);
+		clientName = scan.nextLine();
 		// Send join message to the server
-//		sayHello(clientName);
+		sayHello(clientName);
 		String answer = testLogin();
-		System.out.println(answer);
+//		System.out.println(answer);
 	}
 	
 	
@@ -40,10 +47,11 @@ public class ClientModel {
 		String username = scan.nextLine();
 		System.out.println("Geben Sie ein Passwort ein!");
 		String password = scan.nextLine();
-		scan.close();
 		Message_LOGIN testMsg = new Message_LOGIN();
 		testMsg.setUsername(username);
 		testMsg.setPassword(password);
+		testMsg.setId(1);
+
 		
 		testMsg.send(socket);
 		Message msgIn;
