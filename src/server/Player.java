@@ -9,9 +9,12 @@ private ArrayList <Card> hand = new ArrayList <>();
 private String name;
 private boolean onMove;
 
+
 public Player(int player_id, String name) {
+	
 	this.player_id = player_id;
 	this.name = name;
+	
 }
 
 public int getPlayer_id() {
@@ -43,7 +46,7 @@ public String toString() {
 	for(int i = 0; i< hand.size();i++) {
 		cards+="\n"+hand.get(i);
 	}
-	return "Player_id: "+this.player_id+"\n"+"Name: "+this.name+"\n"+"onMove: "+this.onMove+"\n+"+"Cards: "+cards;
+	return "Player_id: "+this.player_id+"\n"+"Name: "+this.name+"\n"+"onMove: "+this.onMove+"\n"+"Cards: "+cards;
 }
 
 }
