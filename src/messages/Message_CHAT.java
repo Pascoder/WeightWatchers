@@ -1,8 +1,8 @@
-package client;
+package messages;
 
 import java.util.ArrayList;
 
-public class Message_GOODBYE extends Message {
+public class Message_CHAT extends Message{
 
 	@Override
 	protected void receiveAttributes(ArrayList<NameValue> attributes) {

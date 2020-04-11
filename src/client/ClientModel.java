@@ -8,6 +8,10 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import messages.Message;
+import messages.Message_HELLO;
+import messages.Message_LOGIN;
+
 
 
 public class ClientModel {

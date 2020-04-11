@@ -7,12 +7,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-import client.Message;
-import client.MessageType;
-import client.Message_ERROR;
-import client.Message_HELLO;
-import client.Message_LOGIN;
 import client.ServiceLocator_JC;
+import messages.Message;
+import messages.MessageType;
+import messages.Message_ERROR;
+import messages.Message_HELLO;
+import messages.Message_LOGIN;
 
 
 //aka Server Model

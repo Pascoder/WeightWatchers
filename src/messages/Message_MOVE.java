@@ -1,10 +1,8 @@
-package client;
+package messages;
 
 import java.util.ArrayList;
 
-public class Message_CREATEUSER extends Message{
-	private static final String ELEMENT_USERNAME = "name";
-	private static final String ELEMENT_PASSWORD = "password";
+public class Message_MOVE extends Message{
 
 	@Override
 	protected void receiveAttributes(ArrayList<NameValue> attributes) {
