@@ -8,6 +8,7 @@ private int player_id;
 private ArrayList <Card> hand = new ArrayList <>();
 private String name;
 private boolean onMove;
+private Weis weis;
 
 
 public Player(int player_id, String name) {
@@ -40,13 +41,19 @@ public void setHand(ArrayList <Card> hand) {
 public void setonMove(boolean onMove) {
 	this.onMove = onMove;
 }
+public void setWeis(Weis weis) {
+	this.weis = weis;
+}
+public Weis getWeis() {
+	return this.weis;
+}
 
 public String toString() {
 	String cards = "";
 	for(int i = 0; i< hand.size();i++) {
 		cards+="\n"+hand.get(i);
 	}
-	return "Player_id: "+this.player_id+"\n"+"Name: "+this.name+"\n"+"onMove: "+this.onMove+"\n"+"Cards: "+cards;
+	return "Player_id: "+this.player_id+"\n"+"Name: "+this.name+"\n"+"onMove: "+this.onMove+"\n"+"Cards: "+cards+"\n"+"Weis: "+this.weis;
 }
 
 }
