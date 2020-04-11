@@ -36,7 +36,7 @@ public boolean getonMove() {
 
 public void setHand(ArrayList <Card> hand) {
 	this.hand = hand;
-}
+} 
 
 public void setonMove(boolean onMove) {
 	this.onMove = onMove;
