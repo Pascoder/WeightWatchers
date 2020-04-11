@@ -13,8 +13,8 @@ public class Game {
     private int gameID;
     
     
-    Game(){
-	
+    Game(int gameID){
+	this.gameID = gameID;
     }
     
     private void startGame() {
@@ -35,5 +35,11 @@ public class Game {
     
     private void setTrumpf() {
 	
+    }
+    public String toString() {
+    	return this.gameID+"";
+    }
+    public int getGameID() {
+    	return this.gameID;
     }
 }

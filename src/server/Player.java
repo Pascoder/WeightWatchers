@@ -53,7 +53,7 @@ public String toString() {
 	for(int i = 0; i< hand.size();i++) {
 		cards+="\n"+hand.get(i);
 	}
-	return "Player_id: "+this.player_id+"\n"+"Name: "+this.name+"\n"+"onMove: "+this.onMove+"\n"+"Cards: "+cards+"\n"+"Weis: "+this.weis;
+	return "Player_id: "+this.player_id+"\n"+"Name: "+this.name+"\n"+"onMove: "+this.onMove+"\n"+"Cards: "+cards+"\n"+"Weis: "+this.weis+"\n";
 }
 
 }
