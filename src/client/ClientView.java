@@ -26,24 +26,29 @@ public class ClientView {
 	sl = ServiceLocator_JC.getServiceLocator();
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	// Leon ab hier kommt die Gestaltung der 
-	createGUI(); 
+	switchView(1);
 	
-	
+	 
+
 	
     }
 
-   
+   public void switchView (int viewNumber) {
+	   if(viewNumber == 1) {
+		   //LoginView
+		   Login_View view = new Login_View(this.stage, this.clientModel);
+	   }else {
+		if(viewNumber == 2) {
+			//LobbyView
+			//Lobby_View lobbyview = new Lobby_View(this.stage, this.clientModel);
+		}else {
+		//GameView
+			//Game_View gameView = new Game_View(this.stage, this.clientModel);		}
+		}
+	   }
+   }
 
-    private void createGUI() {
-    	//Nur für Testzwecke ob MVC funktioniert
-    	GridPane root = new GridPane();
-    	Label l1 = new Label("test");
-    	root.add(l1, 0, 0);
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		
-	}
-
+  
 
 
 	/**
@@ -66,4 +71,6 @@ public class ClientView {
     public Stage getStage() {
 	return stage;
     }
+
+
 }
