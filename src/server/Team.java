@@ -17,8 +17,8 @@ public Team (int team_id,Player player1, Player player2) {
 		this.points = 0;
 		this.wins = 0;
 	}
-	
 }
+
 public int getTeam_id() {
 	return this.team_id;
 }
