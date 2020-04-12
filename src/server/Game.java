@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Game { 
     
     private ArrayList<Team> teams;
-    //Wird in Player verlegt Spieler erhält eine variable mit Game_id bzw. null wenn nicht im Spiel
-    private ArrayList<Player> joinedGame = new ArrayList<>();
+   
     private CardDeck cardDeck;
     private ArrayList<Card> cardsOnTable;
     private CardColor trumpf;
@@ -40,13 +39,9 @@ public class Game {
     private void setTrumpf() {
 	
     }
-    //Wird benötigt, wenn Spieler in der Lobby sich für ein Game entscheiden, jedoch noch kein Team besitzen
-    public void joinGame(int gameID, Player p1) {
-    	if(this.gameID == gameID) {
-    		this.joinedGame.add(p1); 
-    	}
+   
     	
-    }
+    
     public String toString() {
     	return this.gameID+"";
     }

@@ -16,14 +16,6 @@ Game game = new Game(counterGames, name);
 games.add(game);
 }
 
-//In der Lobby werden erstmals die Spieler erstellt und in der Liste OnlinePlayers hinzugefügt
-//TODO braucht es hier nicht wird mit dem Login gemacht.
-public void createPlayer(String name) {
-this.counterPlayers++;
-Player player = new Player(counterPlayers, name);
-playersOnline.add(player);
-}
-
 public void removeGame(int gameID) {
 	for(int i=0; i<games.size();i++) {
 		if(games.get(i).getGameID()==gameID) {
@@ -32,32 +24,23 @@ public void removeGame(int gameID) {
 	}
 }
 
-public void removePlayer(int playerID) {
-	for(int i = 0; i<playersOnline.size();i++) {
-		if(playersOnline.get(i).getPlayer_id()==playerID) {
-			playersOnline.remove(i);
-		}
-	}
-}
-
 public ArrayList <Game> getGames(){
 	return this.games;
 }
 
-public ArrayList <Player> getPlayers(){
+public ArrayList <Player> getPlayersOnline(){
 	return this.playersOnline;
 }
 
-//Spieler zu einem Game hinzufügen
-public void JoinGame(int game_id, Player p1) {
-	for(int i = 0; i< games.size();i++) {
-		if(this.games.get(i).getGameID()==game_id) {
-			this.games.get(i).joinGame(game_id, p1);
-		}
-	}
-	
+//Nach dem Login muss diese Methode aufgeruffen werden um den erstellten Player in die Online Liste zu setzen
+public void setPlayersOnline(Player player) {
+this.playersOnline.add(player);
 }
 
+//In Spieler aktuelles Spiel schreiben sobald er einem Spiel in der Lobby beitretet
+public void JoinGame(int game_id, Player player) {
+	player.setActualGame(game_id); 
+	}
 
 
 }

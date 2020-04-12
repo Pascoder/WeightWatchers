@@ -9,8 +9,9 @@ private ArrayList <Card> hand = new ArrayList <>();
 private String name;
 private boolean onMove;
 private Weis weis;
+private int actualGame;
 
-
+//Player wird durch Login erstellt und enthält die Client_id
 public Player(int player_id, String name) {
 	
 	this.player_id = player_id;
@@ -48,6 +49,15 @@ public Weis getWeis() {
 	return this.weis;
 }
 
+//Aktuelles Spiel in dem sich der Spieler befindet
+public void setActualGame(int gameID) {
+	this.actualGame = gameID;
+}
+
+public int getActualGame() {
+	return this.actualGame;
+}
+
 public String toString() {
 	String cards = "";
 	for(int i = 0; i< hand.size();i++) {
@@ -55,5 +65,7 @@ public String toString() {
 	}
 	return "Player_id: "+this.player_id+"\n"+"Name: "+this.name+"\n"+"onMove: "+this.onMove+"\n"+"Cards: "+cards+"\n"+"Weis: "+this.weis+"\n";
 }
+
+
 
 }
