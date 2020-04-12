@@ -2,7 +2,7 @@ package server;
 
 import java.util.ArrayList;
 
-public class Game {
+public class Game { 
     
     private ArrayList<Team> teams;
     private ArrayList<Player> joinedGame = new ArrayList<>();
