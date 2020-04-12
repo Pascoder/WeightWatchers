@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Game { 
     
     private ArrayList<Team> teams;
+    //Wird in Player verlegt Spieler erhält eine variable mit Game_id bzw. null wenn nicht im Spiel
     private ArrayList<Player> joinedGame = new ArrayList<>();
     private CardDeck cardDeck;
     private ArrayList<Card> cardsOnTable;

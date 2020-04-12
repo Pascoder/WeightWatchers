@@ -2,8 +2,8 @@ package server;
 
 public class Card implements Comparable<Card> {
    
-    private final CardColor cardColor;
-    private final CardRank cardRank;
+    private final  CardColor cardColor;
+    private final  CardRank cardRank;
     
     public Card(CardColor cardColor, CardRank cardRank) {
         this.cardColor = cardColor;

@@ -17,6 +17,7 @@ games.add(game);
 }
 
 //In der Lobby werden erstmals die Spieler erstellt und in der Liste OnlinePlayers hinzugefügt
+//TODO braucht es hier nicht wird mit dem Login gemacht.
 public void createPlayer(String name) {
 this.counterPlayers++;
 Player player = new Player(counterPlayers, name);

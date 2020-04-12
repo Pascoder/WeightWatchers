@@ -8,21 +8,18 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class CardDeck {
 
 private final ArrayList <Card> cards = new ArrayList<>();
-private static CardRank[] ranks = CardRank.values();
-private static CardColor[] colors = CardColor.values();
 
 
 public CardDeck() {
 	shuffle();
+	
 }
-
 
 private void shuffle() {
 	cards.clear(); 
-	
-	for(int a = 0; a < colors.length;a++){
-		for(int b = 0; b < ranks.length;b++) {
-			Card card = new Card(colors[a],ranks[b]);
+	for(CardColor color: CardColor.values()){
+		for(CardRank rank: CardRank.values()) {
+			Card card = new Card(color,rank);//colors[a],ranks[b]
 			cards.add(card);
 		}
 	}
