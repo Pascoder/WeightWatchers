@@ -9,6 +9,8 @@ private ArrayList <Player> members = new ArrayList<>();
 private int points;
 private int wins;
 
+
+//Konstruktior ist zugleich Create_Team();
 public Team (int team_id,Player player1, Player player2) {
 	this.team_id = team_id;
 	if(members.size()==0) {
@@ -37,6 +39,22 @@ public void setTeamPoints(int points) {
 public void setTeamWins(int wins) {
 	this.wins = wins;
 }
+//Falls Team neu zusammengestellt werden soll können TeamMembers entfernt werden
+public void removeTeamMember(int person_id) {
+for(int i = 0; i<members.size();i++) {
+	if(members.get(i).getPlayer_id() == person_id) {
+		members.remove(i);
+	}
+}
+}
+
+//Falls bereits ein TeamMember entfernt wurde könnnen neue hinzugefügt werden
+public void addTeamMember(Player p1) {
+	if(members.size()<2) {
+		members.add(p1);
+	}
+}
+
 public String toString() {
 	String members = "";
 	for(int i = 0; i< this.members.size();i++) {
