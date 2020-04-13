@@ -16,60 +16,21 @@ import messages.Message_LOGIN;
 
 public class ClientModel {
 	
-		private static int ClientNr = 0;
-		private final String ipAdress = "localhost";
-		private final int port = 9998;
+		private static int 				client_id;
+		private final String ipAdress 		= "localhost";
+		private final int port 				= 9998;
 		private Logger logger;
-		private String clientName = "";
 		private Socket socket;
 		
 		
 	public ClientModel() {
 		logger = ServiceLocator_JC.getServiceLocator().getLogger();
 		connect(ipAdress, port);
-		System.out.println("namen eingeben: ");
-		Scanner scan = new Scanner (System.in);
-		clientName = scan.nextLine();
 		// Send join message to the server
-		sayHello(clientName);
-		String answer = testLogin();
-//		System.out.println(answer);
+		sayHello();
+		testLogin();
 	}
 	
-	
-	
-	
-	private String testLogin() {
-		
-		String result = null;
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Geben Sie einen Usernamen ein!");
-		String username = scan.nextLine();
-		System.out.println("Geben Sie ein Passwort ein!");
-		String password = scan.nextLine();
-		Message_LOGIN testMsg = new Message_LOGIN();
-		testMsg.setUsername(username);
-		testMsg.setPassword(password);
-		testMsg.setId(1);
-
-		
-		testMsg.send(socket);
-		Message msgIn;
-		try {
-			msgIn = Message.receive(socket);
-			result = msgIn.toString();
-			System.out.println(result);
-		} catch (Exception e) {
-			result = e.toString();
-		}
-		
-		
-		return result;
-		
-	}
-
-
-
 
 	public void connect(String ipAddress, int Port) {
 	try {
@@ -82,6 +43,9 @@ public class ClientModel {
 				while (true) {
 					try {
 						Message msgIn = (Message) Message.receive(socket);
+						process(msgIn);
+						System.out.println("Nachricht vom Server erhalten: ");
+						System.out.println(msgIn.toString());
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -98,31 +62,69 @@ public class ClientModel {
 	}
 }
 
+	protected void process(Message msgIn) {
+			
+	}
 
-	public String sayHello(String clientName) {
+	public String sayHello() {
 		String result = null;
 		if (socket != null) {
 			Message msgOut = new Message_HELLO();
-			msgOut.setClient(clientName);
+			msgOut.setClient(client_id);
 			
 			try {
-				
 				msgOut.send(socket);
-//				System.out.println("Client sagt dem Server hallo. nachricht: "+ msgOut);
-				Message msgIn = Message.receive(socket);
-				result = msgIn.toString();
-				System.out.println("Server antwortet: " + result);
 			} catch (Exception e) {
 				result = e.toString();
 			}
-//				try { if (socket != null) socket.close(); } catch (IOException e) {} Braucht es nicht?!
+
 		}
 		return result;
 	}
-
-	public static int getClientID() {
-		return ClientNr ++;
+	
+private String testLogin() {
+		
+		String result = null;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Geben Sie einen Usernamen ein!");
+		String username = scan.nextLine();
+		System.out.println("Geben Sie ein Passwort ein!");
+		String password = scan.nextLine();
+		Message_LOGIN msgOut = new Message_LOGIN();
+		msgOut.setUsername(username);
+		msgOut.setPassword(password);
+		if(socket != null) {
+		try {
+			msgOut.send(socket);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		Message msgIn;
+//		try {
+//			msgIn = Message.receive(socket);
+//			result = msgIn.toString();
+//			System.out.println(result);
+//		} catch (Exception e) {
+//			result = e.toString();
+//		}
+		}
+		
+		return result;
+		
 	}
+
+
+public static String getClient_id() {
+	return client_id;
+}
+
+
+public static void setClient_id(String client_id) {
+	ClientModel.client_id = client_id;
+}
+
+	
 	
 	
 	
