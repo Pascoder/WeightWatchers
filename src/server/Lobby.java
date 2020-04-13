@@ -10,7 +10,7 @@ private int counterGames = 0;
 private int counterPlayers = 0;
 
 public void createGame(String name) {
-//Muss noch ergänzt werden wenn Oli Klasse Game erstellt hat
+//Muss noch ergï¿½nzt werden wenn Oli Klasse Game erstellt hat
 this.counterGames++;
 Game game = new Game(counterGames, name);
 games.add(game);
@@ -24,6 +24,7 @@ public void removeGame(int gameID) {
 	}
 }
 
+//
 public ArrayList <Game> getGames(){
 	return this.games;
 }
