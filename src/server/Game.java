@@ -8,6 +8,7 @@ public class Game {
    
     private CardDeck cardDeck;
     private ArrayList<Card> cardsOnTable;
+    private ArrayList<Player> players;
     private CardColor trumpf;
     private int countTeam;
     private int countPlayer;
@@ -28,7 +29,14 @@ public class Game {
     // In der Lobby wählt ein Spieler ein Game aus und wird danach automatisch einem Team hinzugefügt. 
     //1. und 2. Spieler dem Team 1 und 3. und 4 Spieler Team2.  
     private void generateTeams() {
-	this.
+	
+    }
+    
+    public void addPlayer(Player player) {
+    	boolean ok = false;
+    	if(players.size()<4) {
+    		this.players.add(player);
+    	}
     }
     
     
