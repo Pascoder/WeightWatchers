@@ -28,7 +28,7 @@ public class ServerMain {
 			client_id++;
 			System.out.println(client_id + ". Client hinzügefügt");
 			
-			ClientThread ct = new ClientThread (Integer.toString(client_id), socket);
+			ClientThread ct = new ClientThread (socket);
 			ct.start();
 		
 			} 

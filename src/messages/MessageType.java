@@ -6,6 +6,8 @@ public enum MessageType {
 	HELLO,
 	CREATEUSER,
 	LOGIN,
+	LOGINOK,
+	LOGINNOTOK,
 	LOBBY,
 	GAME,
 	CHAT,
@@ -31,6 +33,8 @@ public enum MessageType {
     	if (msg instanceof Message_HELLO) type = HELLO;
     	else if (msg instanceof Message_CREATEUSER) type = CREATEUSER;
     	else if (msg instanceof Message_LOGIN) type = LOGIN;
+    	else if (msg instanceof Message_LOGINOK) type = LOGINOK;
+    	else if (msg instanceof Message_LOGINOK) type = LOGINNOTOK;
     	else if (msg instanceof Message_GAME) type = GAME;
     	else if (msg instanceof Message_CHAT) type = CHAT;
     	else if (msg instanceof Message_GOODBYE) type = GOODBYE;
