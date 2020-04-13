@@ -19,7 +19,7 @@ private void shuffle() {
 	cards.clear(); 
 	for(CardColor color: CardColor.values()){
 		for(CardRank rank: CardRank.values()) {
-			Card card = new Card(color,rank);//colors[a],ranks[b]
+			Card card = new Card(color,rank);
 			cards.add(card);
 		}
 	}

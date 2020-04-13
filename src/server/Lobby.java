@@ -39,7 +39,12 @@ this.playersOnline.add(player);
 
 //In Spieler aktuelles Spiel schreiben sobald er einem Spiel in der Lobby beitretet
 public void JoinGame(int game_id, Player player) {
-	player.setActualGame(game_id); 
+	player.setActualGame(game_id);
+	for(int i = 0; i<games.size();i++) {
+		if(games.get(i).getGameID()==game_id) {
+			games.get(i).addPlayer(player);
+		}
+	}
 	}
 
 
