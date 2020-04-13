@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import client.ServiceLocator_JC;
 
 public class ServerMain {
-	private static int client_id = -1;
+	private static int client_id = 0;
 	private final static int port = 9998;
 	
 	//Diese Klasse wartet bis sich ein Client verbindet um dann einen Socket abzuspalten und diesen 

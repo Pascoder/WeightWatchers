@@ -96,7 +96,7 @@ public class ClientModel {
 		
 	}
 	
-	private void Login(String username, String password) {
+	public void login(String username, String password) {
 
 		Message_LOGIN msgOut = new Message_LOGIN();
 		msgOut.setUsername(username);

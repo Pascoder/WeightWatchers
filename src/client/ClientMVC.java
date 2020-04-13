@@ -15,6 +15,9 @@ public class ClientMVC extends Application{
 	private ClientView clientView;
 	private ClientController clientController;
 	private ServiceLocator_JC sl;
+	//nicht beachten, zu Testzwecken
+//	private Test_Controller tc;
+//	private Test_View tv;
 
 	public static void main(String[] args){
 		launch(args);
@@ -25,7 +28,12 @@ public class ClientMVC extends Application{
 		this.clientModel = new ClientModel();
 		this.clientView = new ClientView(stage, clientModel);
 		this.clientController = new ClientController(clientModel, clientView);
+		//nicht beachten, zu Testzwecken
+//		this.tc = new Test_Controller(clientModel, tv);
+		//Test fertig
+		
 		clientView.start();
+		
 		
 	}
 	public void stop () {
