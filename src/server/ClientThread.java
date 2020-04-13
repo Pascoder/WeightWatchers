@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Logger;
 
+import client.ClientModel;
 import client.ServiceLocator_JC;
 import messages.Message;
 import messages.MessageType;
@@ -22,13 +23,14 @@ public class ClientThread extends Thread {
 	private Socket clientSocket;
 	private BufferedReader in;
 	private PrintWriter out;
-	private int id = 0;
+	private String client_id;
 	private Logger logger;
 	
-	public ClientThread(int id, Socket clientSocket) throws IOException {
-		logger = ServiceLocator_JC.getServiceLocator().getLogger();
+	public ClientThread(String client_id, Socket clientSocket) throws IOException {
+		this.logger = ServiceLocator_JC.getServiceLocator().getLogger();
 		this.clientSocket = clientSocket;
-		this.id = id;
+		this.client_id = client_id;
+		ClientModel.setClient_id(client_id);
 		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 		out = new PrintWriter(clientSocket.getOutputStream());
 		
@@ -38,7 +40,7 @@ public class ClientThread extends Thread {
 		
 		
 		try { 
-			//EVTL FEHLER HIER! Kann sein, dass die While Schleife falsch ist??
+			
 			//			while ((inputLine = in.readLine()) != null) {
 				try {
 								
@@ -46,6 +48,7 @@ public class ClientThread extends Thread {
 					System.out.println("Nachricht vom Client erhalten: " + msgIn);
 					Message msgOut = processMessage(msgIn);
 					System.out.println("Antwort dem Client gesendet: "+ msgOut);
+					msgOut.setClient(client_id);
 					msgOut.send(clientSocket);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

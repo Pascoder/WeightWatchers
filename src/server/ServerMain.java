@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import client.ServiceLocator_JC;
 
 public class ServerMain {
-	private static int client_id = 0;
+	private static int client_id = -1;
 	private final static int port = 9998;
 	
 	//Diese Klasse wartet bis sich ein Client verbindet um dann einen Socket abzuspalten und diesen 
@@ -28,7 +28,7 @@ public class ServerMain {
 			client_id++;
 			System.out.println(client_id + ". Client hinzügefügt");
 			
-			ClientThread ct = new ClientThread (client_id, socket);
+			ClientThread ct = new ClientThread (Integer.toString(client_id), socket);
 			ct.start();
 		
 			} 
