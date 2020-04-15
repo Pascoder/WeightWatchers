@@ -14,6 +14,8 @@ import messages.MessageType;
 import messages.Message_ERROR;
 import messages.Message_HELLO;
 import messages.Message_LOGIN;
+import messages.Message_LOGINNOTOK;
+import messages.Message_LOGINOK;
 
 
 //aka Server Model
@@ -23,14 +25,12 @@ public class ClientThread extends Thread {
 	private Socket clientSocket;
 	private BufferedReader in;
 	private PrintWriter out;
-	private String client_id;
 	private Logger logger;
 	
-	public ClientThread(String client_id, Socket clientSocket) throws IOException {
+	public ClientThread(Socket clientSocket) throws IOException {
 		this.logger = ServiceLocator_JC.getServiceLocator().getLogger();
 		this.clientSocket = clientSocket;
-		this.client_id = client_id;
-		ClientModel.setClient_id(client_id);
+		
 		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 		out = new PrintWriter(clientSocket.getOutputStream());
 		
@@ -48,7 +48,6 @@ public class ClientThread extends Thread {
 					System.out.println("Nachricht vom Client erhalten: " + msgIn);
 					Message msgOut = processMessage(msgIn);
 					System.out.println("Antwort dem Client gesendet: "+ msgOut);
-					msgOut.setClient(client_id);
 					msgOut.send(clientSocket);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -81,10 +80,15 @@ public class ClientThread extends Thread {
 				break;
 				
 			case LOGIN:
+				//Ueberprueft ob Login korrekt ist und sendet dann die entsprechende Nachricht
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
-				//Methode um Login zu prüfen und ggf. zu aktzeptieren
-				msgOut = new Message_LOGIN();
-				msgOut.setClient(lg_msg.getClient());
+				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
+					msgOut = new Message_LOGINOK();
+				} else  { 
+					msgOut = new Message_LOGINNOTOK();
+					
+				
+				}
 				break;
 				
 			default:

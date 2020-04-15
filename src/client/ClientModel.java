@@ -1,14 +1,11 @@
 package client;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 import messages.Message;
+import messages.MessageType;
+import messages.Message_ERROR;
 import messages.Message_HELLO;
 import messages.Message_LOGIN;
 
@@ -16,7 +13,6 @@ import messages.Message_LOGIN;
 
 public class ClientModel {
 	
-		private static int 				client_id;
 		private final String ipAdress 		= "localhost";
 		private final int port 				= 9998;
 		private Logger logger;
@@ -26,15 +22,13 @@ public class ClientModel {
 	public ClientModel() {
 		logger = ServiceLocator_JC.getServiceLocator().getLogger();
 		connect(ipAdress, port);
-		// Send join message to the server
-		sayHello();
-		testLogin();
 	}
 	
 
 	public void connect(String ipAddress, int Port) {
 	try {
 		socket = new Socket(ipAddress, Port);
+		logger.info("Connected to server");
 
 		// Create thread to read incoming messages
 		Runnable r = new Runnable() {
@@ -43,12 +37,15 @@ public class ClientModel {
 				while (true) {
 					try {
 						Message msgIn = (Message) Message.receive(socket);
-						process(msgIn);
-						System.out.println("Nachricht vom Server erhalten: ");
-						System.out.println(msgIn.toString());
+						logger.info("Nachricht vom Server erhalten: ");
+						logger.info(msgIn.toString());
+						Message msgOut = process(msgIn);
+						msgOut.send(socket);
+						logger.info("Nachricht dem Server gesendet: ");
+						logger.info(msgOut.toString());
+						
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.warning(e.toString());
 					}		
 				}
 			}
@@ -59,82 +56,57 @@ public class ClientModel {
 		
 		} catch (Exception e) {
 			logger.warning(e.toString());
+		}
 	}
-}
 
-	protected void process(Message msgIn) {
+	protected Message process(Message msgIn) {
+		String clientName = msgIn.getClient();
+		Message msgOut = null;
+		
+		switch (MessageType.getType(msgIn)) {
+		
+		case HELLO:
+			logger.info(msgIn.getClient() + " erfolgreich beim Server angemeldet");
 			
+		case LOGINOK:
+			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
+			//TODO Methode um Lobby beizutreten und View zu wechseln auf LobbyView
+		case LOGINNOTOK:
+			logger.info(msgIn.getClient() + " Login Daten nicht korrekt");
+			//TODO Update View, Login nicht korrekt
+		
+		default:
+			msgOut = new Message_ERROR();
+		}
+		msgOut.setClient(clientName);
+		return msgOut;
 	}
 
-	public String sayHello() {
-		String result = null;
+	public void sayHello(String clientName) {
+		
 		if (socket != null) {
 			Message msgOut = new Message_HELLO();
-			msgOut.setClient(client_id);
-			
+			msgOut.setClient(clientName);
 			try {
 				msgOut.send(socket);
 			} catch (Exception e) {
-				result = e.toString();
+				logger.info(e.toString()); 
 			}
-
 		}
-		return result;
+		
 	}
 	
-private String testLogin() {
-		
-		String result = null;
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Geben Sie einen Usernamen ein!");
-		String username = scan.nextLine();
-		System.out.println("Geben Sie ein Passwort ein!");
-		String password = scan.nextLine();
+	public void login(String username, String password) {
+
 		Message_LOGIN msgOut = new Message_LOGIN();
 		msgOut.setUsername(username);
 		msgOut.setPassword(password);
 		if(socket != null) {
 		try {
-			msgOut.send(socket);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				msgOut.send(socket);
+			} catch (Exception e) {
+				logger.warning(e.toString());
+				}
+			}	
 		}
-//		Message msgIn;
-//		try {
-//			msgIn = Message.receive(socket);
-//			result = msgIn.toString();
-//			System.out.println(result);
-//		} catch (Exception e) {
-//			result = e.toString();
-//		}
-		}
-		
-		return result;
-		
 	}
-
-
-public static String getClient_id() {
-	return client_id;
-}
-
-
-public static void setClient_id(String client_id) {
-	ClientModel.client_id = client_id;
-}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-}

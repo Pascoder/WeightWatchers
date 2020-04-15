@@ -26,7 +26,7 @@ public class ClientView {
 	sl = ServiceLocator_JC.getServiceLocator();
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	// Leon ab hier kommt die Gestaltung der 
-	switchView(1);
+	switchView(3);
 	
 	 
 
@@ -37,14 +37,20 @@ public class ClientView {
 	   if(viewNumber == 1) {
 		   //LoginView
 		   Login_View view = new Login_View(this.stage, this.clientModel);
-	   }else {
-		if(viewNumber == 2) {
+//	   }else {
+//		if(viewNumber == 2) {
 			//LobbyView
 			//Lobby_View lobbyview = new Lobby_View(this.stage, this.clientModel);
-		}else {
+//		}else {
 		//GameView
 			//Game_View gameView = new Game_View(this.stage, this.clientModel);		}
-		}
+//		} 
+		   
+		   //Nicht beachten, reiner Test
+	   } else { 
+			if (viewNumber == 3) {
+				Test_View tv = new Test_View (this.stage, this.clientModel); 
+			}
 	   }
    }
 
