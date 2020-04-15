@@ -15,7 +15,7 @@ public class Login_View extends Application {
 		
 		Scene scene = new Scene(root, 300, 300);
 		
-		primaryStage.setTitle("Tree Manager");
+		primaryStage.setTitle("Jass Game");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
