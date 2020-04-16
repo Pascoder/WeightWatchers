@@ -26,17 +26,28 @@ public class ClientView {
 	sl = ServiceLocator_JC.getServiceLocator();
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	// Leon ab hier kommt die Gestaltung der 
-	switchView(3);
-	
-	 
-
+	switchView(1);
 	
     }
 
    public void switchView (int viewNumber) {
 	   if(viewNumber == 1) {
 		   //LoginView
-		   Login_View view = new Login_View(this.stage, this.clientModel);
+		  	   Login_View view = new Login_View(this.stage, this.clientModel);
+		  	 public void start(Stage stage){
+		 		
+		 		RootPane root = new RootPane();
+		 		
+		 		Scene scene = new Scene(root, 300, 300);
+		 		
+		 		this.stage.setTitle("Jass Game");
+		 		this.stage.setScene(scene);
+		 		this.stage.show();
+		 	} 
+		  	public static void main(String[]args) {
+		  		launch(args);
+		  	}
+	   }
 //	   }else {
 //		if(viewNumber == 2) {
 			//LobbyView
@@ -47,16 +58,17 @@ public class ClientView {
 //		} 
 		   
 		   //Nicht beachten, reiner Test
-	   } else { 
-			if (viewNumber == 3) {
-				Test_View tv = new Test_View (this.stage, this.clientModel); 
-			}
+//	   } else { 
+//			if (viewNumber == 3) {
+//				Test_View tv = new Test_View (this.stage, this.clientModel); 
+//			}
 	   }
-   }
+   
 
-  
-
-
+   private void launch(String[] args) {
+	// TODO Auto-generated method stub
+	
+}
 	/**
      * Display the view
      */
@@ -77,6 +89,7 @@ public class ClientView {
     public Stage getStage() {
 	return stage;
     }
-
+		   
 
 }
+
