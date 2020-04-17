@@ -48,9 +48,9 @@ public class ClientView {
 		   
 		   //Nicht beachten, reiner Test
 //	   } else { 
-//			if (viewNumber == 3) {
-//				Test_View tv = new Test_View (this.stage, this.clientModel); 
-//			}
+		if (viewNumber == 3) {
+		Test_View tv = new Test_View (this.stage, this.clientModel); 
+		}
 	   }
    
 	/**

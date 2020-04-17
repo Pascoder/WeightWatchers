@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Test_View {
+public class Test_View extends GridPane{
 
 	private Stage stage;
 	private ClientModel model;
@@ -31,16 +31,16 @@ public class Test_View {
 	txtf_password = new TextField("(Password)");
 
 
-	GridPane root = new GridPane();
+	
 	Label l1 = new Label("Login_View");
-	root.add(l1, 0, 0);
+	this.add(l1, 0, 0);
 	
-	root.add(btn_login, 1, 0);
-	root.add(btn_sayHello, 1, 1);
-	root.add(txtf_username, 2, 0);
+	this.add(btn_login, 1, 0);
+	this.add(btn_sayHello, 1, 1);
+	this.add(txtf_username, 2, 0);
 	
-	root.add(txtf_password, 3, 0);
-	Scene scene = new Scene(root);
+	this.add(txtf_password, 3, 0);
+	Scene scene = new Scene(this);
 	stage.setScene(scene);
 	
 	
