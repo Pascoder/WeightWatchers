@@ -24,7 +24,7 @@ public class Lobby_View{
     public ListView<String> selectedGameList;
     private Stage stage;
 	private ClientModel model;
-    public Menu_Start_View chatroomMenu; 
+    public Menu_Lobby_View lobbyMenu; 
     public ControlBar_Lobby_View controls;
     public Label lblMainRoom;
     public Label lblMainRoom1;
