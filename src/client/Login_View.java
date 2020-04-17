@@ -32,6 +32,7 @@ public class Login_View extends GridPane {
 	private Stage stage;
 	private ClientModel model;
 	private Label registerLabel;
+
 	
 	
 	public Login_View(Stage stage, ClientModel model ) {
@@ -86,7 +87,7 @@ public class Login_View extends GridPane {
 		
 		
 		
-		this.setStyle("-fx-background-color: ##D8D8D8");
+		this.setStyle("-fx-background-color: #D8D8D8");
 		this.setAlignment(Pos.CENTER);
 		this.setHgap(20);
 		this.setVgap(10);
