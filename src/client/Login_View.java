@@ -24,13 +24,10 @@ import javafx.stage.Stage;
 public class Login_View extends GridPane {
 	
 	
-<<<<<<< HEAD
-	private TextField usernameField, passwordField; 
-	private Button loginButton, registerButton;
-=======
+
+	
 	private TextField usernameField, passwordField, registerField; 
 	private Button loginButton, registerButton; 
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 	private ChoiceBox Language;
 	private Stage stage;
 	private ClientModel model;
@@ -68,11 +65,11 @@ public class Login_View extends GridPane {
         this.loginButton = new Button("Login");
 		this.add(loginButton, 3, 10);
 		
-<<<<<<< HEAD
+
 		
 		
 		this.setStyle("-fx-background-color: lightgreen");
-=======
+
 		Label registerLabel = new Label("Nicht registiert?");
 		this.add(registerLabel, 3, 11);
        
@@ -88,7 +85,6 @@ public class Login_View extends GridPane {
 		
 		
 		this.setStyle("-fx-background-color: ##D8D8D8");
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 		this.setAlignment(Pos.CENTER);
 		this.setHgap(20);
 		this.setVgap(10);
