@@ -12,14 +12,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class PrivateChat_View extends Basic_View {
+public class Game_View extends Basic_View {
 
     
     ListView messageList;
 
     
 
-    public PrivateChat_View(Stage stage, Basic_Model model) { // Model model
+    public Game_View(Stage stage, Basic_Model model) { // Model model
 	super(stage, model);
 	this.model = model;
 
