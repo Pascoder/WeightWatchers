@@ -23,7 +23,7 @@ public class Lobby_View{
 
     
     Menu_Chatroom_View chatroomMenu;
-    public ControlBar_Chatroom_View controls;
+    public ControlBar_Lobby_View controls;
     public Label lblMainRoom;
     public Label lblMainRoom1;
    
@@ -80,7 +80,7 @@ public class Lobby_View{
 	chatroomMenu = new Menu_Chatroom_View();
 
 	// ControlBar
-	controls = new ControlBar_Chatroom_View();
+	controls = new ControlBar_Lobby_View();
 	controls.getStyleClass().add("controls");
 	controls.setId("controls");
 	
