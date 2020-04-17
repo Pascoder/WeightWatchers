@@ -14,64 +14,62 @@ import javafx.stage.Stage;
 
 public class Lobby_View{
 
-    private Label lblRoom;
-    public ListView<String> roomList;
-    private Label lblMsg;
-    public ListView<String> messageList;
-    private Label lblChatter;
-    public ListView<String> chatterList;
+    private Label lblGames;
+    public ListView<String> gamesList;
+    private Label lblChat;
+    public ListView<String> chatList;
+    private Label lblPlayerOn;
+    public ListView<String> playerOnList;
+    private Label lblSelectedGame;
+    public ListView<String> selectedGameList;
+    private Stage stage;
+	private ClientModel model;
 
-    
-    Menu_Chatroom_View chatroomMenu;
-    public ControlBar_Chatroom_View controls;
-    public Label lblMainRoom;
-    public Label lblMainRoom1;
-   
-    
-
-    public Lobby_View(Stage stage, Chatroom_Model model) {
-	super(stage, model);
-	sl.getLogger().info("Chatroom_View initialized");
-
+    public Lobby_View(Stage stage, ClientModel model ) {
+		this.stage = stage;
+		this.model = model;
+//    Menu_Chatroom_View chatroomMenu;
+//    public ControlBar_Chatroom_View controls;
+//    public Label lblMainRoom;
+//    public Label lblMainRoom1;
+//   
     }
     
 
-    public void setRoom(ObservableList<String> rooms) {	
-	roomList.setItems(rooms);
+    public void setGame(ObservableList<String> games) {	
+	gamesList.setItems(games);
 	}
-    public void setMessages(ObservableList<String> messages) {	
-	messageList.setItems(messages);
+    public void setChat(ObservableList<String> chat) {	
+	chatList.setItems(chat);
 	}
-    public void setChatter(ObservableList<String> chatter) {	
-	chatterList.setItems(chatter );
+    public void setPlayerOn(ObservableList<String> playerOn) {	
+    playerOnList.setItems(playerOn);
 	}
-
-    @Override
-    protected Scene create_GUI() {
-	t = ServiceLocator_JC.getServiceLocator().getTranslator();
-	sl = ServiceLocator_JC.getServiceLocator();
+    public void setSelectedGame(ObservableList<String> selectedGame) {	
+    selectedGameList.setItems(selectedGame);
+    }
+    
+	// LeftTop: Chatrooms	
+	lblGames = new Label(t.getString(""));
+	gamesList = new ListView<String>();
+	gamesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	
-	// Left: Chatrooms	
-	lblRoom = new Label(t.getString("chatroom.lblRooms"));
-	roomList = new ListView<String>();
-	roomList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-	
-	VBox roomBox = new VBox();
-	roomBox.getChildren().addAll(lblRoom, roomList);
+	VBox gamesBox = new VBox();
+	gamesBox.getChildren().addAll(lblGames, gamesList);
 
 
-	// Center: actual Chatroom Messages
-	lblMsg = new Label(t.getString("chatroom.lblMsg"));
-	messageList = new ListView<String>();
+	// LeftBottom: actual Chatroom Messages
+	lblChat = new Label(t.getString(""));
+	chatList = new ListView<String>();
 	
-
-	VBox msgBox = new VBox();
-	msgBox.getChildren().addAll(lblMsg, messageList);
+	VBox chatBox = new VBox();
+	chatBox.getChildren().addAll(lblChat, chatList);
 	
-	// Right: Chatrom Members
-	lblChatter = new Label(t.getString("chatroom.lblChatter"));
-	chatterList = new ListView<String>();
-	roomList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+	
+	// RightTop: Chatrom Members
+	lblPlayerOn = new Label(t.getString(""));
+	playerOnList = new ListView<String>();
+	playerOnList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	
 	VBox chatterBox = new VBox();
 	chatterBox.getChildren().addAll(lblChatter, chatterList);
@@ -86,7 +84,7 @@ public class Lobby_View{
 	
 	VBox footerBox = new VBox();
 	HBox labelBox = new HBox();
-	lblMainRoom1 = new Label(t.getString("chatroom.lblMainRoom1"));
+	lblMainRoom1 = new Label(t.getString("lobby.lblGames"));
 	lblMainRoom = new Label("--");
 	labelBox.getChildren().addAll(lblMainRoom1, lblMainRoom);
 	footerBox.getChildren().addAll(labelBox, controls);
@@ -105,8 +103,8 @@ public class Lobby_View{
 
 	//scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setTitle(t.getString("program.name"));
-
-	return scene;
     
+	return scene;
+    }
     }
 }
