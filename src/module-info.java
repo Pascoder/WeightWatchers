@@ -8,6 +8,7 @@
 module WeightWatchers {
 	exports server;
 	exports client;
+	exports messages;
 
 	requires java.logging;
 	requires javafx.base;

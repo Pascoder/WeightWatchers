@@ -22,6 +22,7 @@ public class ClientModel {
 	public ClientModel() {
 		logger = ServiceLocator_JC.getServiceLocator().getLogger();
 		connect(ipAdress, port);
+		
 	}
 	
 
@@ -37,15 +38,15 @@ public class ClientModel {
 				while (true) {
 					try {
 						Message msgIn = (Message) Message.receive(socket);
-						logger.info("Nachricht vom Server erhalten: ");
-						logger.info(msgIn.toString());
+//						logger.info("Nachricht vom Server erhalten: ");
+//						logger.info(msgIn.toString());
 						Message msgOut = process(msgIn);
 						msgOut.send(socket);
-						logger.info("Nachricht dem Server gesendet: ");
-						logger.info(msgOut.toString());
+//						logger.info("Nachricht dem Server gesendet: ");
+//						logger.info(msgOut.toString());
 						
 					} catch (Exception e) {
-						logger.warning(e.toString());
+						logger.warning(e.getMessage());
 					}		
 				}
 			}
@@ -67,13 +68,16 @@ public class ClientModel {
 		
 		case HELLO:
 			logger.info(msgIn.getClient() + " erfolgreich beim Server angemeldet");
+			break;
 			
 		case LOGINOK:
 			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
 			//TODO Methode um Lobby beizutreten und View zu wechseln auf LobbyView
+			break;
 		case LOGINNOTOK:
 			logger.info(msgIn.getClient() + " Login Daten nicht korrekt");
 			//TODO Update View, Login nicht korrekt
+			break;
 		
 		default:
 			msgOut = new Message_ERROR();
@@ -97,7 +101,8 @@ public class ClientModel {
 	}
 	
 	public void login(String username, String password) {
-
+		
+		sayHello(username);
 		Message_LOGIN msgOut = new Message_LOGIN();
 		msgOut.setUsername(username);
 		msgOut.setPassword(password);

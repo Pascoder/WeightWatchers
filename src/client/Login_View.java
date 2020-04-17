@@ -20,7 +20,7 @@ public class Login_View extends GridPane {
 	
 	
 	private TextField usernameField, passwordField; 
-	private Button loginButton, registerButton; 
+	private Button loginButton, registerButton;
 	private ChoiceBox Language;
 	private Stage stage;
 	private ClientModel model;
@@ -62,6 +62,8 @@ public class Login_View extends GridPane {
 		this.registerButton = new Button("Register");
 		this.add(registerButton, 3, 15);
 		
+		
+		
 		this.setStyle("-fx-background-color: lightgreen");
 		this.setAlignment(Pos.CENTER);
 		this.setHgap(20);
@@ -71,6 +73,40 @@ public class Login_View extends GridPane {
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
+
+	public TextField getUsernameField() {
+		return usernameField;
+	}
+
+	public void setUsernameField(TextField usernameField) {
+		this.usernameField = usernameField;
+	}
+
+	public TextField getPasswordField() {
+		return passwordField;
+	}
+
+	public void setPasswordField(TextField passwordField) {
+		this.passwordField = passwordField;
+	}
+
+	public Button getLoginButton() {
+		return loginButton;
+	}
+
+	public void setLoginButton(Button loginButton) {
+		this.loginButton = loginButton;
+	}
+
+	public Button getRegisterButton() {
+		return registerButton;
+	}
+
+	public void setRegisterButton(Button registerButton) {
+		this.registerButton = registerButton;
+	}
+
+	
 		
 	}
 

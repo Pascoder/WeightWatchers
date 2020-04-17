@@ -13,6 +13,8 @@ public class ClientView {
     protected ClientModel clientModel;
     protected ServiceLocator_JC sl;
     protected Translator_JC t;
+    
+    private Login_View loginView;
 
     /**
      * Set any options for the stage in the subclass constructor
@@ -33,25 +35,18 @@ public class ClientView {
    public void switchView (int viewNumber) {
 	   if(viewNumber == 1) {
 		   //LoginView
-		  	   Login_View view = new Login_View(this.stage, this.clientModel);
-
-		
-	   }
-//	   }else {
-//		if(viewNumber == 2) {
+		   loginView = new Login_View(this.stage, this.clientModel);
+	   }else {
+		if(viewNumber == 2) {
 			//LobbyView
-			//Lobby_View lobbyview = new Lobby_View(this.stage, this.clientModel);
-//		}else {
+//			Lobby_View lobbyview = new Lobby_View(this.stage, this.clientModel);
+		}else {
 		//GameView
-			//Game_View gameView = new Game_View(this.stage, this.clientModel);		}
-//		} 
-		   
-		   //Nicht beachten, reiner Test
-//	   } else { 
-		if (viewNumber == 3) {
-		Test_View tv = new Test_View (this.stage, this.clientModel); 
+//			Game_View gameView = new Game_View(this.stage, this.clientModel);		}
+			}
 		}
-	   }
+	   
+	  }
    
 	/**
      * Display the view
@@ -73,6 +68,12 @@ public class ClientView {
     public Stage getStage() {
 	return stage;
     }
+
+	public Login_View getLoginView() {
+		return loginView;
+	}
+
+	
 		   
 
 }
