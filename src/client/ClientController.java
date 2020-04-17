@@ -32,6 +32,7 @@ private static ClientView clientView;
 	
 }
 
+///
 
 // Vorlage Lobby Controller muss noch angepasst werden
 import chatroom.olmoClient.ServiceLocator;
