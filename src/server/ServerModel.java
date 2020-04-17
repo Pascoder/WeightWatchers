@@ -11,6 +11,23 @@ public class ServerModel {
 		
 		return loginOK;
 	}
+
+	public static void joinLobby() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void createUser(String username, String password) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static boolean checkUserExisting(String username) {
+		// TODO return false if no User with this name exists
+		return false;
+	}
+
+	
 	
 	
 
