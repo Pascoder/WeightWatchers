@@ -34,19 +34,8 @@ public class ClientView {
 	   if(viewNumber == 1) {
 		   //LoginView
 		  	   Login_View view = new Login_View(this.stage, this.clientModel);
-		  	 public void start(Stage stage){
-		 		
-		 		RootPane root = new RootPane();
-		 		
-		 		Scene scene = new Scene(root, 300, 300);
-		 		
-		 		this.stage.setTitle("Jass Game");
-		 		this.stage.setScene(scene);
-		 		this.stage.show();
-		 	} 
-		  	public static void main(String[]args) {
-		  		launch(args);
-		  	}
+
+		
 	   }
 //	   }else {
 //		if(viewNumber == 2) {
@@ -64,11 +53,6 @@ public class ClientView {
 //			}
 	   }
    
-
-   private void launch(String[] args) {
-	// TODO Auto-generated method stub
-	
-}
 	/**
      * Display the view
      */

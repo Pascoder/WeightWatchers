@@ -22,8 +22,13 @@ public class Login_View extends GridPane {
 	private TextField usernameField, passwordField; 
 	private Button loginButton, registerButton; 
 	private ChoiceBox Language;
+	private Stage stage;
+	private ClientModel model;
 	
-	public Login_View() {
+	public Login_View(Stage stage, ClientModel model ) {
+		this.stage = stage;
+		this.model = model;
+		this.stage.setTitle("Login");
 		Text title = new Text("Welcome to Jassen");
 		this.add(title, 3, 0);
 		
@@ -61,6 +66,10 @@ public class Login_View extends GridPane {
 		this.setAlignment(Pos.CENTER);
 		this.setHgap(20);
 		this.setVgap(10);
+		
+		Scene scene = new Scene(this,300,300);
+		this.stage.setScene(scene);
+		this.stage.show();
 	}
 		
 	}
