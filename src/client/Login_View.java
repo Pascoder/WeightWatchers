@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,7 +24,8 @@ import javafx.stage.Stage;
 
 public class Login_View extends GridPane {
 	
-	private TextField usernameField, passwordField, registerField; 
+	private TextField usernameField, registerField; 
+	private PasswordField passwordField;
 	private Button loginButton, registerButton; 
 	private ChoiceBox Language;
 	private Stage stage;
@@ -31,10 +33,15 @@ public class Login_View extends GridPane {
 	private Label registerLabel, usernameLabel, passwordLabel;
 	private Menu_Login_View MenuLgVi;
 	private Image image;
+	private Translator_JC t;
+    private ServiceLocator_JC sl;
 	
 	public Login_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
 		this.model = model;
+		this.sl = ServiceLocator_JC.getServiceLocator();
+		this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
+		
 		this.stage.setTitle("Login Jass Game");
 		Text title = new Text("Welcome to Jassen");
 		this.add(title, 3, 0);
@@ -49,7 +56,7 @@ public class Login_View extends GridPane {
         
         this.passwordLabel = new Label("Password");
         this.add(passwordLabel, 2, 8);
-        this.passwordField = new TextField();
+        this.passwordField = new PasswordField();
         this.add(this.passwordField, 3, 8);
         
         this.loginButton = new Button("Login");
@@ -89,11 +96,11 @@ public class Login_View extends GridPane {
 		this.usernameField = usernameField;
 	}
 
-	public TextField getPasswordField() {
+	public PasswordField getPasswordField() {
 		return passwordField;
 	}
 
-	public void setPasswordField(TextField passwordField) {
+	public void setPasswordField(PasswordField passwordField) {
 		this.passwordField = passwordField;
 	}
 
