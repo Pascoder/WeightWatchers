@@ -23,17 +23,14 @@ import javafx.stage.Stage;
 
 public class Login_View extends GridPane {
 	
-	
-
-	
 	private TextField usernameField, passwordField, registerField; 
 	private Button loginButton, registerButton; 
 	private ChoiceBox Language;
 	private Stage stage;
 	private ClientModel model;
-	private Label registerLabel;
-
-	
+	private Label registerLabel, usernameLabel, passwordLabel;
+	private Menu_Login_View MenuLgVi;
+	private Image image;
 	
 	public Login_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
@@ -42,34 +39,21 @@ public class Login_View extends GridPane {
 		Text title = new Text("Welcome to Jassen");
 		this.add(title, 3, 0);
 		
-		Language english = new Language("En", "English");
-	    Language german = new Language("DE", "Deutsch");
-		FlowPane rootFlow = new FlowPane();
-		ObservableList<Language> languages = FXCollections.observableArrayList(english, german);
-		Label languageLabel = new Label ("Select Language");
-	    ChoiceBox<Language> choiceBox = new ChoiceBox<Language>(languages);
-	    rootFlow.setPadding(new Insets(10));
-        rootFlow.getChildren().addAll(languageLabel, choiceBox);
-        rootFlow.setPadding(new Insets(10));
-        rootFlow.setHgap(10);
-        this.add(choiceBox, 3, 1);
-        this.add(languageLabel, 3, 2);
-        
-        Label usernameLabel = new Label("Username");
+		this.MenuLgVi = new Menu_Login_View();
+		this.add(MenuLgVi, 0, 0, 1, 4);
+		
+        this.usernameLabel = new Label("Username");
         this.add(usernameLabel, 2, 6);
         this.usernameField = new TextField();
         this.add(this.usernameField, 3, 6);
         
-        Label passwordLabel = new Label("Password");
+        this.passwordLabel = new Label("Password");
         this.add(passwordLabel, 2, 8);
         this.passwordField = new TextField();
         this.add(this.passwordField, 3, 8);
         
         this.loginButton = new Button("Login");
 		this.add(loginButton, 3, 10);
-		
-
-		
 		
 		this.setStyle("-fx-background-color: lightgreen");
 
@@ -79,7 +63,7 @@ public class Login_View extends GridPane {
 		this.registerButton = new Button("Register");
 		this.add(registerButton, 3, 12);
 		
-		Image image = new Image("file:///Users/leonxhinovci/Desktop/Schweizer_Jasskarten.jpg");
+		this.image = new Image(this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg"));
 		ImageView imageView = new ImageView(image);
 		imageView.setFitHeight(250);
 		imageView.setFitWidth(250);

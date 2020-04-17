@@ -95,7 +95,7 @@ public class Lobby_View{
 		footerBox.getChildren().addAll(labelBox, controls);
 	    
 		// BorderPane
-		GridPane root = new GridPane();
+		BorderPane root = new BorderPane();
 		root.getStyleClass().add("root"); // Class for styling
 		root.setTop(lobbyMenu);
 		root.setLeft(leftBox);
