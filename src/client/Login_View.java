@@ -1,6 +1,8 @@
 package client;
 
 
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,7 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -19,8 +24,13 @@ import javafx.stage.Stage;
 public class Login_View extends GridPane {
 	
 	
+<<<<<<< HEAD
 	private TextField usernameField, passwordField; 
 	private Button loginButton, registerButton;
+=======
+	private TextField usernameField, passwordField, registerField; 
+	private Button loginButton, registerButton; 
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 	private ChoiceBox Language;
 	private Stage stage;
 	private ClientModel model;
@@ -28,7 +38,7 @@ public class Login_View extends GridPane {
 	public Login_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
 		this.model = model;
-		this.stage.setTitle("Login");
+		this.stage.setTitle("Login Jass Game");
 		Text title = new Text("Welcome to Jassen");
 		this.add(title, 3, 0);
 		
@@ -56,20 +66,34 @@ public class Login_View extends GridPane {
         this.add(this.passwordField, 3, 8);
         
         this.loginButton = new Button("Login");
-		this.add(loginButton, 3, 12);
-        
-
-		this.registerButton = new Button("Register");
-		this.add(registerButton, 3, 15);
+		this.add(loginButton, 3, 10);
 		
+<<<<<<< HEAD
 		
 		
 		this.setStyle("-fx-background-color: lightgreen");
+=======
+		Label registerLabel = new Label("Nicht registiert?");
+		this.add(registerLabel, 3, 11);
+       
+		this.registerButton = new Button("Register");
+		this.add(registerButton, 3, 12);
+		
+		Image image = new Image("file:///Users/leonxhinovci/Desktop/Schweizer_Jasskarten.jpg");
+		ImageView imageView = new ImageView(image);
+		imageView.setFitHeight(250);
+		imageView.setFitWidth(250);
+		this.add(imageView, 3, 15);
+		
+		
+		
+		this.setStyle("-fx-background-color: ##D8D8D8");
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 		this.setAlignment(Pos.CENTER);
 		this.setHgap(20);
 		this.setVgap(10);
 		
-		Scene scene = new Scene(this,300,300);
+		Scene scene = new Scene(this,650,600);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
