@@ -3,6 +3,10 @@ package messages;
 import java.util.ArrayList;
 
 public class Message_LOGINNOTOK extends Message{
+	
+	public Message_LOGINNOTOK(){
+		super();
+	}
 
 	@Override
 	protected void receiveAttributes(ArrayList<NameValue> attributes) {

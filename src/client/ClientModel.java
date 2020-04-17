@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import messages.Message;
 import messages.MessageType;
+import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
 import messages.Message_HELLO;
 import messages.Message_LOGIN;
@@ -76,7 +77,7 @@ public class ClientModel {
 			break;
 		case LOGINNOTOK:
 			logger.info(msgIn.getClient() + " Login Daten nicht korrekt");
-			//TODO Update View, Login nicht korrekt
+			ClientController.updateLoginInfoLabel("Login Daten nicht korrekt");
 			break;
 		
 		default:
@@ -102,8 +103,9 @@ public class ClientModel {
 	
 	public void login(String username, String password) {
 		
-		sayHello(username);
+//		sayHello(username);
 		Message_LOGIN msgOut = new Message_LOGIN();
+		msgOut.setClient(username);
 		msgOut.setUsername(username);
 		msgOut.setPassword(password);
 		if(socket != null) {
@@ -114,4 +116,41 @@ public class ClientModel {
 				}
 			}	
 		}
+
+
+	public void register(String username, String password) {
+		
+		Message_CREATEUSER msgOut = new Message_CREATEUSER();
+		msgOut.setUsername(username);
+		msgOut.setPassword(password);
+		
+		if(socket != null) {
+			try {
+					msgOut.send(socket);
+				} catch (Exception e) {
+					logger.warning(e.toString());
+					}
+				}	
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}

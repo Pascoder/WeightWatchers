@@ -41,7 +41,7 @@ public class ClientThread extends Thread {
 		
 		try { 
 			
-			//			while ((inputLine = in.readLine()) != null) {
+//						while ((in.readLine()) != null) {
 				try {
 								
 					Message msgIn = Message.receive(clientSocket);
@@ -55,7 +55,7 @@ public class ClientThread extends Thread {
 				}
 				
 
-				
+						
 			
 			
 			
@@ -84,11 +84,11 @@ public class ClientThread extends Thread {
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
 				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
 					msgOut = new Message_LOGINOK();
-				} else  { 
+				} else  { System.out.println("Entered Else Part");
 					msgOut = new Message_LOGINNOTOK();
-					
 				
 				}
+				
 				break;
 				
 			default:

@@ -31,6 +31,8 @@ public class Login_View extends GridPane {
 	private ChoiceBox Language;
 	private Stage stage;
 	private ClientModel model;
+	private Label registerLabel;
+	
 	
 	public Login_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
@@ -70,7 +72,7 @@ public class Login_View extends GridPane {
 		
 		this.setStyle("-fx-background-color: lightgreen");
 
-		Label registerLabel = new Label("Nicht registiert?");
+		registerLabel = new Label("Nicht registiert?");
 		this.add(registerLabel, 3, 11);
        
 		this.registerButton = new Button("Register");
@@ -124,6 +126,22 @@ public class Login_View extends GridPane {
 
 	public void setRegisterButton(Button registerButton) {
 		this.registerButton = registerButton;
+	}
+
+	public TextField getRegisterField() {
+		return registerField;
+	}
+
+	public void setRegisterField(TextField registerField) {
+		this.registerField = registerField;
+	}
+
+	public Label getRegisterLabel() {
+		return registerLabel;
+	}
+
+	public void setRegisterLabel(Label registerLabel) {
+		this.registerLabel = registerLabel;
 	}
 
 	
