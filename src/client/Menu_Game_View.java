@@ -2,8 +2,8 @@ package client;
 
 import java.util.Locale;
 
-import chatroom.olmoClient.Chatroom_olmo;
-import chatroom.olmoClient.Translator;
+
+import client.Translator_JC;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
@@ -11,7 +11,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Menu_Start_View extends Menu_Basic_View {
+public class Menu_Game_View extends Menu_Basic_View {
 
     Menu menu1;
     Menu menu2;
@@ -23,7 +23,7 @@ public class Menu_Start_View extends Menu_Basic_View {
     MenuItem menuItem22 = new MenuItem("item22");
     MenuItem menuItem23 = new MenuItem("item23");
 
-    public Menu_Start_View() {
+    public Menu_Game_View() {
 	super();
 	
 	menu1 = new Menu();

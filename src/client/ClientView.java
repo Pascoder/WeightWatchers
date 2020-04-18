@@ -15,6 +15,7 @@ public class ClientView {
     protected Translator_JC t;
     
     private Login_View loginView;
+    private Lobby_View lobbyView;
 
     /**
      * Set any options for the stage in the subclass constructor
@@ -27,7 +28,7 @@ public class ClientView {
 	this.clientModel = clientModel;
 	sl = ServiceLocator_JC.getServiceLocator();
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
-	// Leon ab hier kommt die Gestaltung der 
+	 
 	switchView(1);
 	
     }
@@ -39,14 +40,15 @@ public class ClientView {
 	   }else {
 		if(viewNumber == 2) {
 			//LobbyView
-//			Lobby_View lobbyview = new Lobby_View(this.stage, this.clientModel);
+			lobbyView = new Lobby_View(this.stage, this.clientModel);
+		
 		}else {
 		//GameView
-//			Game_View gameView = new Game_View(this.stage, this.clientModel);		}
+			Game_View gameView = new Game_View(this.stage, this.clientModel);
 			}
-		}
-	   
-	  }
+	   }
+   }
+	
    
 	/**
      * Display the view
