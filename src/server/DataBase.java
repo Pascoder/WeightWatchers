@@ -23,7 +23,7 @@ public class DataBase {
 public static DataBase getDataBase() {
         if (db == null)
             db = new DataBase();
-        return db;
+        return db; 
     }
 	
 	

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import client.ClientModel;
@@ -59,7 +60,7 @@ public class ClientThread extends Thread {
 	
 	
 
-	private Message processMessage(Message msgIn) {
+	private Message processMessage(Message msgIn) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		
 		String clientName = msgIn.getClient();
 		Message msgOut = null;
