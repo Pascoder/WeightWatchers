@@ -1,8 +1,10 @@
 package server;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 public class ServerModel {
 
 	private static int player_id = 1;
-
+	private static ArrayList<String> playerList = new ArrayList<>();
 
 		//Methode um die Login Credentials auf der Datenbank zu kontrollieren, true wenn Korrekt
 	
@@ -31,7 +33,7 @@ public class ServerModel {
 				Player player = new Player(Integer.parseInt(id),username);
 				Lobby.getLobby().setPlayersOnline(player);
 			}*/
-			ArrayList<String> playerList = new ArrayList<>();
+			
 			String key = username+password;
 			
 			 //this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg")
@@ -51,6 +53,7 @@ public class ServerModel {
 			
 			for(int i = 0; i<playerList.size();i++) {
 				if(playerList.get(i).equals(key)) {
+					Player player = new Player();
 					loginOK = true;
 				}
 			}
@@ -61,14 +64,20 @@ public class ServerModel {
 
 
 
-		public static boolean createUser(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		public static boolean createUser(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
 			//DataBase.getDataBase().executeUpdate("INSERT INTO it_db1.player (name,password,onMove,fk_team) VALUES ('"+username+"','"+password+"',0,null);");
-		
+			playerList.add(username+""+password);
+		try(BufferedWriter out = new BufferedWriter(new FileWriter("src/PlayerFile.txt"))){
+		for(int i = 0; i<playerList.size();i++) {
+		out.write(playerList.get(i)+"\n");
+		}
+		out.flush();
+		}
 		//Muss im Textfile gespeichert werden	
 			
-		Player player = new Player(player_id,username,password);
+		/*Player player = new Player(player_id,username,password);
 		Lobby.getLobby().setPlayersOnline(player);
-		player_id++;
+		player_id++;*/
 		
 		return false;
 		}

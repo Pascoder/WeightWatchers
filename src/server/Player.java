@@ -12,13 +12,12 @@ private boolean onMove;
 private Weis weis;
 private int actualGame;
 
-<<<<<<< HEAD
-//Player wird durch Login erstellt und enthï¿½lt die Client_id
-public Player(int player_id, String name) {
-=======
+
+
+
 //Player wird durch Login erstellt und enthält die Client_id
 public Player(int player_id, String name, String password) {
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
+
 	
 	this.player_id = player_id;
 	this.name = name;
