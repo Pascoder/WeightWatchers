@@ -34,6 +34,18 @@ ServiceLocator_JC serviceLocator;
 			}
 		});
 	}
+	
+	
+	public static void switchview(int view) {
+		Platform.runLater(new Runnable(){
+
+			@Override
+			public void run() {
+				clientView.switchView(view);
+			}
+		});
+		
+	}
 
 	
 }

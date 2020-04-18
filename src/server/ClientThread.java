@@ -77,7 +77,6 @@ public class ClientThread extends Thread {
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
 				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
 					msgOut = new Message_LOGINOK();
-					ServerModel.joinLobby();
 				} else  { 
 					msgOut = new Message_LOGINNOTOK();
 				}
@@ -85,7 +84,9 @@ public class ClientThread extends Thread {
 				
 			case CREATEUSER:
 				Message_CREATEUSER cu_msg = (Message_CREATEUSER) msgIn;
-				if (ServerModel.checkUserExisting(cu_msg.getUsername())) {
+				
+				if (false) {
+					//ServerModel.createUser(username, password);
 					msgOut = new Message_USERNAMETAKEN();
 					
 				} else {

@@ -84,7 +84,7 @@ public class ClientModel {
 		case LOGINOK:
 			msgOut = new Message_LOGINOK();
 			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
-			//TODO View  wechseln auf LobbyView
+			ClientController.switchview(2);
 			break;
 		case LOGINNOTOK:
 			msgOut = new Message_LOGINNOTOK();

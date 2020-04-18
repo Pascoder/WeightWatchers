@@ -8,7 +8,7 @@ public class ServerModel {
 private static int player_id = 1;
 	//Methode um die Login Credentials auf der Datenbank zu kontrollieren, true wenn Korrekt
 	public static boolean CheckLogin(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		boolean loginOK = false;
+		boolean loginOK = true;
 		
 		//Erweiterung DB
 		
