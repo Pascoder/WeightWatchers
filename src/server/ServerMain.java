@@ -12,7 +12,7 @@ public class ServerMain {
 	private final static int port = 9998;
 	//Diese Klasse wartet bis sich ein Client verbindet um dann einen Socket abzuspalten und diesen 
 	//dem ClientThread mitzugeben
-	
+//	
 
 	public static void main(String[] args)throws IOException {
 		
