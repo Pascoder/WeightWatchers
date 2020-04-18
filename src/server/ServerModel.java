@@ -3,7 +3,7 @@ package server;
 import java.sql.SQLException;
 
 public class ServerModel {
-//!!Datenbank muss Momentan noch bei jedem individuell eingerichtet werden bitte mit mir absprechen Gruss Frank!!
+
 	
 	//Methode um die Login Credentials auf der Datenbank zu kontrollieren, true wenn Korrekt
 	public static boolean CheckLogin(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
@@ -12,6 +12,8 @@ public class ServerModel {
 		if(result.length()>0) {
 			loginOK = true;
 		}*/
+		
+	
 		return loginOK;
 	}
 
