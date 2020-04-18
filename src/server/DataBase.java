@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
+import client.ServiceLocator_JC;
+
 public class DataBase {
+	private static DataBase db;
 	static Connection connection = null;
 	static String databaseName = "it_db1";
 	static String url = "jdbc:mysql://localhost:3306/" +databaseName;
@@ -17,7 +20,11 @@ public class DataBase {
 	
 	
 	
-	
+public static DataBase getDataBase() {
+        if (db == null)
+            db = new DataBase();
+        return db;
+    }
 	
 	
 //Für Update, Insert, Drop...	
