@@ -8,6 +8,9 @@ public class ServerModel {
 	//Methode um die Login Credentials auf der Datenbank zu kontrollieren, true wenn Korrekt
 	public static boolean CheckLogin(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		boolean loginOK = false;
+		
+		//Erweiterung DB
+		
 		/*String result = DataBase.getDataBase().executeQuery("SELECT * FROM it_db1.player WHERE name ='"+username+"'AND password ='"+password+"';");
 		if(result.length()>0) {
 			loginOK = true;

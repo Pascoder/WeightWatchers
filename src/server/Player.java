@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Player {
 
 private int player_id;
+private String password; //kommt nachher eventuell in DB
 private ArrayList <Card> hand = new ArrayList <>();
 private String name;
 private boolean onMove;
@@ -12,15 +13,20 @@ private Weis weis;
 private int actualGame;
 
 //Player wird durch Login erstellt und enthält die Client_id
-public Player(int player_id, String name) {
+public Player(int player_id, String name, String password) {
 	
 	this.player_id = player_id;
 	this.name = name;
+	this.password = password;
 	
 }
 
 public int getPlayer_id() {
 	return this.player_id;
+}
+
+public String getPassword() {
+	return this.password;
 }
 
 public ArrayList <Card> getHand() {
