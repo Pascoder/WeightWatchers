@@ -23,9 +23,11 @@ public class Game {
 	this.sl = ServiceLocator.getServiceLocator();
 	this.l = sl.getLogger();
 	this.playersOnGame= new ArrayList<>();
+	this.cardsOnTable = new ArrayList<>();
 	this.moveOrder = new int[4];
 	this.gameID = gameID;
 	this.name = name;
+	this.round = 0;
 	this.move = 0;
     }
     
@@ -52,10 +54,12 @@ public class Game {
     
     //Sucht den Spieler nach ID
     public Player searchPlayer(int person_id) {
+	Player player = null;
 	for(Player p :playersOnGame) {
 		if(p.getPlayer_id() == person_id) 
-			return (p);
-		} 
+			player = p;
+		}
+	return (player);
 	}
     //Erstellt die Reihenfolge der Spieler/Tischordnung mittels PlayerID
     //Ergänzung mittels Shuffle als Option
@@ -69,14 +73,21 @@ public class Game {
     private void startGame() {	
 	generateMoveOrder();
 	generateTeams();
-	//show Table
-	
+	updateClients();
     }
-    
-   
+     
     
     //Kartenverteilen: Nach dem Mischen der Karten müssen diese auf die Spieler verteilt werden.
     private void spreadCards() {
+	//TODO
+    }
+    
+    //Starten nächste Runde sobald ein Spieler auf start next Round klickt
+    public void nextRound() {
+	if(this.move == 0) {
+	    this.cardsOnTable.clear();
+	    setPlayerOnMove();
+	}
 	
     }
     
@@ -88,12 +99,20 @@ public class Game {
     //Erster Spieler der am Zug ist muss Trumpf definieren.
     private void setTrumpf() {
 	
+	updateClients();
     }
     
     //Spieler spielt eine Karte
-    public void playCard(Message) {
-	//Message
-	countMove();
+    public void playCard(int Game_ID, int Player_ID, Card card) {
+	if(Game_ID == this.gameID) {
+	    if(this.move < 4) {
+		searchPlayer(Player_ID).removeCardFromHand(card);
+		this.cardsOnTable.add(card);
+		countMove();
+		setPlayerOnMove();
+		updateClients();
+	    }
+	}
     }
     
     //Zählt die Züge einer Runde
@@ -106,6 +125,10 @@ public class Game {
 	}
     }
    
+    //Erzwingt Update der Spieleransichten/Table
+    private void updateClients() {
+	//TODO Table Objekt an alle Clients verteilen
+    }
     	
   
     public String toString() {
