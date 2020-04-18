@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ServerModel {
-private static ArrayList <Player> players = new ArrayList<Player>();
+
 private static int player_id = 1;
 	//Methode um die Login Credentials auf der Datenbank zu kontrollieren, true wenn Korrekt
 	public static boolean CheckLogin(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
@@ -35,7 +35,7 @@ private static int player_id = 1;
 	public static void createUser(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		//DataBase.getDataBase().executeUpdate("INSERT INTO it_db1.player (name,password,onMove,fk_team) VALUES ('"+username+"','"+password+"',0,null);");
 	Player player = new Player(player_id,username,password);
-	players.add(player);
+	Lobby.getLobby().setPlayersOnline(player);
 	player_id++;
 	}
 
