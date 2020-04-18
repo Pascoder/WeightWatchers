@@ -1,9 +1,11 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Game { 
-    
+    private ServiceLocator sl;
+    private Logger l;
     private CardDeck cardDeck;
     private ArrayList<Card> cardsOnTable;
     private ArrayList<Player> playersOnGame;
@@ -18,6 +20,8 @@ public class Game {
     
     //Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
     Game(int gameID, String name){
+	this.sl = ServiceLocator.getServiceLocator();
+	this.l = sl.getLogger();
 	this.playersOnGame= new ArrayList<>();
 	this.moveOrder = new int[4];
 	this.gameID = gameID;
