@@ -70,7 +70,10 @@ public class Login_View extends GridPane {
 		this.registerButton = new Button("Register");
 		this.add(registerButton, 3, 12);
 		
-		this.image = new Image(this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg"));
+		// olmo: Auskommentiert, weil Fehler beim Laden Image
+		//this.image = new Image(this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg"));
+
+		
 		ImageView imageView = new ImageView(image);
 		imageView.setFitHeight(250);
 		imageView.setFitWidth(250);
