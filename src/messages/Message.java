@@ -122,13 +122,18 @@ import java.util.Iterator;
 	     */
 	    public static Message receive(Socket socket) throws Exception {
 	    	// Read message until newline
+//	    	boolean ok = false;
+	    	Message newMessage = null;
 	    	BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	    	StringBuffer buf = new StringBuffer();
 	    	String msgIn = in.readLine();
 	    	while (msgIn != null && msgIn.length() > 0) {
+//	    		ok = true;
 	    		buf.append(msgIn + "\n");
 	    		msgIn = in.readLine();
 	    	}
+//	    	if(ok)
+	    	{
 	    	msgIn = buf.toString();
 	    	
 	    	// Parse into name/value pairs, then parse the pairs
@@ -144,7 +149,7 @@ import java.util.Iterator;
 
 	        // Get the message type
 	    	NameValue messageType = pairs.remove(0); // Type must be first attribute
-	        Message newMessage = null;
+	       
 	    	boolean allOk = messageType.name.equals(ATTR_TYPE);
 	    	if (allOk) {
 		        MessageType type = MessageType.parseType(messageType.value);
@@ -176,7 +181,8 @@ import java.util.Iterator;
 	        
 	        // Let the subclass read its additional attributes from the document
 	        newMessage.receiveAttributes(pairs);
-	        
+	    	}
+//	    	ok=false;
 	        return newMessage;
 	    }
 	    

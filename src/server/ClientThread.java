@@ -43,6 +43,7 @@ public class ClientThread extends Thread {
 		logger.info("Request from client " + clientSocket.getInetAddress().toString()
                 + " for server " + clientSocket.getLocalAddress().toString());
 				
+				while(true)
 				try {
 					//Read Message from the Client
 					Message msgIn = Message.receive(clientSocket);
@@ -52,10 +53,11 @@ public class ClientThread extends Thread {
 					msgOut.send(clientSocket);
 				} catch (Exception e) {
 					logger.severe(e.toString());;
-				} finally {
-					try { if ( clientSocket != null) clientSocket.close(); 
-					} catch (IOException e) {}
-				}
+				} 
+//					finally {
+//					try { if ( clientSocket != null) clientSocket.close(); 
+//					} catch (IOException e) {}
+//				}
 			}
 	
 	
