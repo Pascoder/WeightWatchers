@@ -164,6 +164,7 @@ import java.util.Iterator;
 		        else if (type == MessageType.GOODBYE) newMessage = new Message_GOODBYE();
 		        else if (type == MessageType.JOINGAME) newMessage = new Message_JOINGAME();
 		        else if (type == MessageType.MOVE) newMessage = new Message_MOVE();
+		        else if (type == MessageType.LOBBYUPDATE) newMessage = new Message_LOBBYUPDATE();
 		        else if (type == MessageType.ERROR) newMessage = new Message_ERROR();
 		        
 		        

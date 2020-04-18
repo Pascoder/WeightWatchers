@@ -15,6 +15,7 @@ public enum MessageType {
 	GOODBYE,
 	JOINGAME,
 	MOVE,
+	LOBBYUPDATE,
 	ERROR;
 	
 	
@@ -42,6 +43,7 @@ public enum MessageType {
     	else if (msg instanceof Message_GOODBYE) type = GOODBYE;
     	else if (msg instanceof Message_JOINGAME) type = JOINGAME;
     	else if (msg instanceof Message_MOVE) type = MOVE;
+    	else if (msg instanceof Message_LOBBYUPDATE) type = LOBBYUPDATE;
     	else if (msg instanceof Message_ERROR) type = ERROR;
     	return type;
     }	
