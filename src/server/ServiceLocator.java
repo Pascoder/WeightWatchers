@@ -22,6 +22,8 @@ public class ServiceLocator {
     private ServiceLocator() {
     }
 
+    //
+    
     private Logger configureLogger() {
 	Logger rootLogger = Logger.getLogger("");
     rootLogger.setLevel(Level.FINEST);
