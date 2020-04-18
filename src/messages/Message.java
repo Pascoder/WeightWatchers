@@ -150,6 +150,7 @@ import java.util.Iterator;
 		        MessageType type = MessageType.parseType(messageType.value);
 		        if (type == MessageType.HELLO) newMessage = new Message_HELLO();
 		        else if (type == MessageType.CREATEUSER) newMessage = new Message_CREATEUSER();
+		        else if (type == MessageType.USERNAMETAKEN) newMessage = new Message_USERNAMETAKEN();
 		        else if (type == MessageType.LOGIN) newMessage = new Message_LOGIN();
 		        else if (type == MessageType.LOGINOK) newMessage = new Message_LOGINOK();
 		        else if (type == MessageType.LOGINNOTOK) newMessage = new Message_LOGINNOTOK();

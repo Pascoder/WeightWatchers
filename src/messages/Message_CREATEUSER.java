@@ -4,13 +4,19 @@ import java.util.ArrayList;
 
 import messages.Message.NameValue;
 
+
 public class Message_CREATEUSER extends Message{
 	private static final String ELEMENT_USERNAME = "username";
 	private static final String ELEMENT_PASSWORD = "password";
 	
 	private String username;
 	private String password;
-
+	
+	
+	public Message_CREATEUSER() {
+		super();
+	}
+	
 	@Override
 	protected void receiveAttributes(ArrayList<NameValue> pairs) {
 		this.username = findAttribute(pairs, ELEMENT_USERNAME);

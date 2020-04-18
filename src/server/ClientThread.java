@@ -11,11 +11,13 @@ import client.ClientModel;
 import client.ServiceLocator_JC;
 import messages.Message;
 import messages.MessageType;
+import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
 import messages.Message_HELLO;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
+import messages.Message_USERNAMETAKEN;
 
 
 //aka Server Model
@@ -25,10 +27,10 @@ public class ClientThread extends Thread {
 	private Socket clientSocket;
 	private BufferedReader in;
 	private PrintWriter out;
-	private Logger logger;
+	private final Logger logger = Logger.getLogger("");
 	
 	public ClientThread(Socket clientSocket) throws IOException {
-		this.logger = ServiceLocator_JC.getServiceLocator().getLogger();
+		
 		this.clientSocket = clientSocket;
 		
 		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -37,36 +39,24 @@ public class ClientThread extends Thread {
 	}
 	
 	public void run() {
-		
-		
-		try { 
-			
-//						while ((in.readLine()) != null) {
+		logger.info("Request from client " + clientSocket.getInetAddress().toString()
+                + " for server " + clientSocket.getLocalAddress().toString());
+				
 				try {
-								
+					//Read Message from the Client
 					Message msgIn = Message.receive(clientSocket);
 					System.out.println("Nachricht vom Client erhalten: " + msgIn);
 					Message msgOut = processMessage(msgIn);
 					System.out.println("Antwort dem Client gesendet: "+ msgOut);
 					msgOut.send(clientSocket);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.severe(e.toString());;
+				} finally {
+					try { if ( clientSocket != null) clientSocket.close(); 
+					} catch (IOException e) {}
 				}
-				
-
-						
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			}
 	
-	}
-	
-	
-
 	
 
 	private Message processMessage(Message msgIn) {
@@ -84,15 +74,26 @@ public class ClientThread extends Thread {
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
 				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
 					msgOut = new Message_LOGINOK();
-				} else  { System.out.println("Entered Else Part");
+					ServerModel.joinLobby();
+				} else  { 
 					msgOut = new Message_LOGINNOTOK();
-				
 				}
+				break;
 				
+			case CREATEUSER:
+				Message_CREATEUSER cu_msg = (Message_CREATEUSER) msgIn;
+				if (ServerModel.checkUserExisting(cu_msg.getUsername())) {
+					msgOut = new Message_USERNAMETAKEN();
+					
+				} else {
+					msgOut= new Message_CREATEUSER();
+					ServerModel.createUser(cu_msg.getUsername(), cu_msg.getPassword());
+				}
 				break;
 				
 			default:
 				msgOut = new Message_ERROR();
+				
 		}
 		msgOut.setClient(clientName);
 		return msgOut;
