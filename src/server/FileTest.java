@@ -8,9 +8,8 @@ public class FileTest {
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
 		// TODO Auto-generated metho stub
  ServerModel model = new ServerModel();
- model.createUser("mitch", "cde");
- model.createUser("bitch", "abcd");
- model.createUser("pascal", "def");
+ model.createUser("franky", "123");
+
 	}
 
 }
