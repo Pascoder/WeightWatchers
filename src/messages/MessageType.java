@@ -5,6 +5,7 @@ package messages;
 public enum MessageType {
 	HELLO,
 	CREATEUSER,
+	USERNAMETAKEN,
 	LOGIN,
 	LOGINOK,
 	LOGINNOTOK,
@@ -32,6 +33,7 @@ public enum MessageType {
     	MessageType type = MessageType.ERROR;
     	if (msg instanceof Message_HELLO) type = HELLO;
     	else if (msg instanceof Message_CREATEUSER) type = CREATEUSER;
+    	else if (msg instanceof Message_USERNAMETAKEN) type = USERNAMETAKEN;
     	else if (msg instanceof Message_LOGIN) type = LOGIN;
     	else if (msg instanceof Message_LOGINOK) type = LOGINOK;
     	else if (msg instanceof Message_LOGINNOTOK) type = LOGINNOTOK;

@@ -27,7 +27,7 @@ public class ServerModel {
 
 	public static boolean checkUserExisting(String username) {
 		// TODO return false if no User with this name exists
-		return false;
+		return true;
 	}
 
 	
