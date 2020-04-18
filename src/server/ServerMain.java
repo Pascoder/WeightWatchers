@@ -16,17 +16,17 @@ public class ServerMain {
 
 	public static void main(String[] args)throws IOException {
 		
-	    ServiceLocator sl = ServiceLocator.getServiceLocator();
+//	    ServiceLocator sl = ServiceLocator.getServiceLocator();
 		System.out.println("Server started and listening on port 9998");
-		sl.getLogger().info("Server started and listening on port "+port);
+//		sl.getLogger().info("Server started and listening on port "+port);
 	
 		try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
 		
 		while (true) {
 			Socket socket = serverSocket.accept();
 			client_id++;
-			//System.out.println(client_id + ". Client hinzügefügt");
-			sl.getLogger().info(client_id + ". Client hinzügefügt");
+			System.out.println(client_id + ". Client hinzügefügt");
+//			sl.getLogger().info(client_id + ". Client hinzügefügt");
 			
 			ClientThread ct = new ClientThread (socket);
 			ct.start();
