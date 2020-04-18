@@ -114,13 +114,13 @@ public class Lobby_View{
 		VBox rightBox = new VBox (playerOnBox,selectedGameBox);
 
 		// TOP --> Menu
-		lobbyMenu = new Menu_Lobby_View();
+		this.lobbyMenu = new Menu_Lobby_View();
 
 	
 		// BorderPane
 		BorderPane root = new BorderPane();
 		root.getStyleClass().add("root"); // Class for styling
-		root.setTop(lobbyMenu);
+		root.setTop(this.lobbyMenu);
 		root.setLeft(leftBox);
 		root.setRight(rightBox);
 		

@@ -30,7 +30,7 @@ public class Login_View extends GridPane {
 	private ChoiceBox Language;
 	private Stage stage;
 	private ClientModel model;
-	private Label registerLabel, usernameLabel, passwordLabel;
+	private Label registerLabel, usernameLabel, passwordLabel, lblTitle;
 	private Menu_Login_View MenuLgVi;
 	private Image image;
 	private Translator_JC t;
@@ -43,42 +43,40 @@ public class Login_View extends GridPane {
 		this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
 		
 		this.stage.setTitle("Login Jass Game");
-		Text title = new Text("Welcome to Jassen");
-		this.add(title, 3, 0);
+		this.lblTitle = new Label(t.getString("login.lblTitle"));
+		this.add(this.lblTitle, 3, 0);
 		
 		this.MenuLgVi = new Menu_Login_View();
 		this.add(MenuLgVi, 0, 0, 1, 4);
 		
-        this.usernameLabel = new Label("Username");
+        this.usernameLabel = new Label(t.getString("login.lblUsername"));
         this.add(usernameLabel, 2, 6);
         this.usernameField = new TextField();
         this.add(this.usernameField, 3, 6);
         
-        this.passwordLabel = new Label("Password");
+        this.passwordLabel = new Label(t.getString("login.lblPassword"));
         this.add(passwordLabel, 2, 8);
         this.passwordField = new PasswordField();
         this.add(this.passwordField, 3, 8);
         
-        this.loginButton = new Button("Login");
+        this.loginButton = new Button(t.getString("login.btnLogin"));
 		this.add(loginButton, 3, 10);
 		
-		this.setStyle("-fx-background-color: lightgreen");
 
-		registerLabel = new Label("Nicht registiert?");
+		registerLabel = new Label(t.getString("login.lblNotRegistert"));
 		this.add(registerLabel, 3, 11);
        
-		this.registerButton = new Button("Register");
+		this.registerButton = new Button(t.getString("login.btnRegister"));
 		this.add(registerButton, 3, 12);
 		
-		//_olmo: Auskommentiert, weil Fehler beim Laden Image
-		//this.image = new Image(this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg"));
+//		_olmo: Auskommentiert, weil Fehler beim Laden Image
+		this.image = new Image(this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg"));
 
 		
 		ImageView imageView = new ImageView(image);
 		imageView.setFitHeight(250);
 		imageView.setFitWidth(250);
 		this.add(imageView, 3, 15);
-		
 		
 		
 		this.setStyle("-fx-background-color: #D8D8D8");
