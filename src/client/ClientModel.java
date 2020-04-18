@@ -39,12 +39,8 @@ public class ClientModel {
 				while (true) {
 					try {
 						Message msgIn = (Message) Message.receive(socket);
-//						logger.info("Nachricht vom Server erhalten: ");
-//						logger.info(msgIn.toString());
-						Message msgOut = process(msgIn);
-						msgOut.send(socket);
-//						logger.info("Nachricht dem Server gesendet: ");
-//						logger.info(msgOut.toString());
+						process(msgIn);
+//						msgOut.send(socket);
 						
 					} catch (Exception e) {
 						logger.warning(e.getMessage());
@@ -61,7 +57,7 @@ public class ClientModel {
 		}
 	}
 
-	protected Message process(Message msgIn) {
+	protected void process(Message msgIn) {
 		String clientName = msgIn.getClient();
 		Message msgOut = null;
 		
@@ -73,18 +69,22 @@ public class ClientModel {
 			
 		case LOGINOK:
 			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
-			//TODO Methode um Lobby beizutreten und View zu wechseln auf LobbyView
+			//TODO View  wechseln auf LobbyView
 			break;
 		case LOGINNOTOK:
 			logger.info(msgIn.getClient() + " Login Daten nicht korrekt");
 			ClientController.updateLoginInfoLabel("Login Daten nicht korrekt");
 			break;
+		case CREATEUSER:
+			logger.info(msgIn.getClient() + "User erfolgreich registriert");
+			ClientController.updateLoginInfoLabel("User erfolgreich registriert");
+			break;
 		
 		default:
 			msgOut = new Message_ERROR();
 		}
-		msgOut.setClient(clientName);
-		return msgOut;
+//		msgOut.setClient(clientName);
+//		return msgOut;
 	}
 
 	public void sayHello(String clientName) {
@@ -131,8 +131,6 @@ public class ClientModel {
 					logger.warning(e.toString());
 					}
 				}	
-		
-		
 	}
 	
 	
