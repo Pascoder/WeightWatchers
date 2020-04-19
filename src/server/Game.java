@@ -13,6 +13,8 @@ public class Game {
     private Team team2;
     private int[] moveOrder;
     private CardColor trumpf;
+    private CardColor actualColor;
+    private CardRank actualRank;
     private int round;
     private int move;
     private int gameID;
@@ -111,11 +113,14 @@ public class Game {
 	    if(this.move < 4) {
 		searchPlayer(Player_ID).removeCardFromHand(card);
 		this.cardsOnTable.add(card);
+		this.actualColor = card.getCardColor();
+		this.actualRank = card.getCardRank();
 		countMove();
 		setPlayerOnMove();
 		updateClients();
 	    }
 	}
+	
     }
     
     //Zählt die Züge einer Runde
@@ -125,9 +130,43 @@ public class Game {
 	}
 	else {
 	    this.move = 0;
+	    evaluateRundWinner();
 	}
     }
+   private void evaluateRundWinner() {
+	// TODO Auto-generated method stub
+	
    
+       //
+       
+       //höchste Karte suchen
+       cardsOnTable.stream()
+       		.filter(card -> card.getCardColor() == this.trumpf)
+       		.mapToInt(card -> card.getOrdinal())
+       		.max();
+       
+    }
+
+   //Spielbare Karten für Spieler definieren
+   public void playableCards(int player_ID) {
+       ArrayList<Card> hand =  searchPlayer(player_ID).getHand();     
+       hand.stream()
+       	.anyMatch(card -> card.getCardColor() == this.actualColor)
+       	.forEach(card -> card.setPlayable(true));
+       	  searchPlayer(player_ID).setHand(hand);
+       
+   }
+
+   public Card getLastCard() {
+       return cardsOnTable.get(cardsOnTable.size()-1);
+   }
+   public CardColor getLastColor() {
+       return getLastCard().getCardColor();
+   }
+   public CardRank getLastRank() {
+       return getLastCard().getCardRank();
+   }
+    
     //Erzwingt Update der Spieleransichten/Table
     private void updateClients() {
 	//TODO Table Objekt an alle Clients verteilen
