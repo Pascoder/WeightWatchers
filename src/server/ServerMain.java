@@ -30,10 +30,7 @@ public class ServerMain extends Application{
 			System.out.println("Server started and listening on port 9998");
 //			sl.getLogger().info("Server started and listening on port "+port);
 			
-			//Simulation View Frank
-			//view = new GameView(primaryStage);
-			//controller = new ServerController();
-			//view.start();
+			
 			
 			try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
 				
@@ -51,6 +48,13 @@ public class ServerMain extends Application{
 				} catch (Exception e) {
 					System.err.println(e);
 				}
+			
+			//Simulation View Frank
+			//view = new GameView(primaryStage);
+			//controller = new ServerController();
+			//view.start();
+			
+			
 	}
 			
 //	   
