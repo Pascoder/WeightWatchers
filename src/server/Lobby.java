@@ -59,4 +59,38 @@ public void JoinGame(int game_id, Player player) {
 	}
 
 
+public String OnlinePlayersAsString() {
+	
+	String result = "";
+	
+	for(Player p : playersOnline) {
+		result += p.toString() + "|";
+	}
+	
+	return result;
+		
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
