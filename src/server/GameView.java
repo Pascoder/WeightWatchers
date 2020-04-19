@@ -98,6 +98,11 @@ public GameView(Stage primaryStage) {
 	
 	Scene scene = new Scene(this,1000,800);
 	stage.setScene(scene);
+	
+}
+
+public void start() {
 	stage.show();
+	
 }
 }

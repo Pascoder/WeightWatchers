@@ -33,7 +33,7 @@ public class ServerMain extends Application{
 			//Simulation View Frank
 			view = new GameView(primaryStage);
 			controller = new ServerController();
-			
+			view.start();
 			
 			try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
 			
