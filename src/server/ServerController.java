@@ -11,7 +11,7 @@ public ServerController(Game game, GameView view) {
 	this.view = view;
 	this.game = game;
 	
-	//Karte Spielen
+	//Karte Spielen 
 	this.view.deal.setOnAction(c->{
 		Card correctCard = null;
 		String karte = view.txtDealCard.getText();
