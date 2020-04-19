@@ -4,10 +4,13 @@ public class Card implements Comparable<Card> {
    
     private final  CardColor cardColor;
     private final  CardRank cardRank;
+    private boolean cardPlayable;
     
     public Card(CardColor cardColor, CardRank cardRank) {
         this.cardColor = cardColor;
         this.cardRank = cardRank;
+        this.cardPlayable = false;
+        
     }
 
     public CardColor getCardColor() {
@@ -23,9 +26,16 @@ public class Card implements Comparable<Card> {
 	return cardRank.ordinal();
     }
     
+    public void setPlayable(boolean playable) {
+	this.cardPlayable = playable;
+    }
+    public boolean getPlayable() {
+	return this.cardPlayable;
+    }
+    
     @Override
     public String toString() {
-        return  cardColor.name()+ cardRank.name();
+        return  cardColor.name()+ cardRank.name()+ cardPlayable;
     }
     
     @Override

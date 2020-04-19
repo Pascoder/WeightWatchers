@@ -77,14 +77,14 @@ public class Game {
     private void startGame() {	
 	generateMoveOrder();
 	generateTeams();
-	updateClients();
 	sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "+this.gameID +"|Name: "+this.name);
     }
      
     
     //Kartenverteilen: Nach dem Mischen der Karten müssen diese auf die Spieler verteilt werden.
     private void spreadCards() {
-	//TODO
+	this.cardDeck = new CardDeck();
+	
     }
     
     //Starten nächste Runde sobald ein Spieler auf start next Round klickt
@@ -151,6 +151,7 @@ public class Game {
 
    //Spielbare Karten für Spieler definieren
    public void playableCards(int player_ID) {
+       if(player_ID != this.a
        ArrayList<Card> hand =  searchPlayer(player_ID).getHand();     
        hand.stream()
        	.anyMatch(card -> card.getCardColor() == this.actualColor)

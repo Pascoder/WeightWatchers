@@ -56,12 +56,21 @@ public void removeCardFromHand(Card card) {
 
 public void setonMove(boolean onMove) {
 	this.onMove = onMove;
+	if(this.onMove == false) {
+	    setCardsToUnPlay();
+	}
 }
 public void setWeis(Weis weis) {
 	this.weis = weis;
 }
 public Weis getWeis() {
 	return this.weis;
+}
+
+private void setCardsToUnPlay() {
+    for(int i = 0; i > hand.size(); i++) {
+	hand.get(i).setPlayable(false);
+    }
 }
 
 //Aktuelles Spiel in dem sich der Spieler befindet
