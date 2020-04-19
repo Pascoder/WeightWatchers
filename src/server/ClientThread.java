@@ -62,7 +62,7 @@ public class ClientThread extends Thread {
 	
 	
 
-	private Message processMessage(Message msgIn) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
+	Message processMessage(Message msgIn) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
 		
 		String clientName = msgIn.getClient();
 		Message msgOut = null;
