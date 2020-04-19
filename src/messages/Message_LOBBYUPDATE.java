@@ -2,6 +2,8 @@ package messages;
 
 import java.util.ArrayList;
 
+import messages.Message.NameValue;
+
 public class Message_LOBBYUPDATE extends Message{
 	private static final String ELEMENT_PLAYERSONLINE = "playersonline";
 	private static final String ELEMENT_GAMES = "games";
@@ -24,8 +26,8 @@ public class Message_LOBBYUPDATE extends Message{
 
 	@Override
 	protected void sendAttributes(ArrayList<NameValue> pairs) {
-		this.playersonline = findAttribute(pairs, ELEMENT_PLAYERSONLINE);
-		this.games = findAttribute(pairs, ELEMENT_GAMES);
+		pairs.add(new NameValue(ELEMENT_PLAYERSONLINE, this.playersonline));
+		pairs.add(new NameValue(ELEMENT_GAMES, this.games));
 
 		
 		

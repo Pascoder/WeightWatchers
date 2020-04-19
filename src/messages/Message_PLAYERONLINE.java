@@ -2,6 +2,8 @@ package messages;
 
 import java.util.ArrayList;
 
+import messages.Message.NameValue;
+
 public class Message_PLAYERONLINE extends Message{
 	private static final String ELEMENT_NAME = "name";
 	
@@ -19,7 +21,8 @@ public class Message_PLAYERONLINE extends Message{
 
 	@Override
 	protected void sendAttributes(ArrayList<NameValue> pairs) {
-		this.name = findAttribute(pairs, ELEMENT_NAME);
+		pairs.add(new NameValue(ELEMENT_NAME, this.name));
+
 		
 	}
 

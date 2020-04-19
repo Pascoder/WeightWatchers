@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import messages.Message;
+import messages.Message_GAMEUPDATE;
 import messages.Message_LOBBYUPDATE;
 
 public class ServerModel {
@@ -118,24 +119,39 @@ public class ServerModel {
 
 
 		
-		public static void updateClients(int option) {
+		public static void updateClients(int option, String client) {
 			//option = 1 Update Lobby / option = 2 Update Game
 			
 			
 			switch(option) {
 			
 				case 1: 
-				Message_LOBBYUPDATE msgOut = new Message_LOBBYUPDATE();
-				msgOut.setPlayersonline(Lobby.getLobby().OnlinePlayersAsString());
-				msgOut.setGames(Lobby.getLobby().GamesAsString());
+				Message_LOBBYUPDATE msgOutLobby = new Message_LOBBYUPDATE();
+				msgOutLobby.setPlayersonline(Lobby.getLobby().OnlinePlayersAsString());
+				msgOutLobby.setGames(Lobby.getLobby().GamesAsString());
 				
 				for(ClientThread cT : clientList) {
-					msgOut.send(cT.getClientSocket());
+					msgOutLobby.send(cT.getClientSocket());
 				}
 				
 				case 2:
+				Message_GAMEUPDATE msgOutGame = new Message_GAMEUPDATE();
+				msgOutGame.setGameid(Lobby.getLobby().getGameIDofPlayersGame(client));
+				//TODO setplayers, Nachricht senden
 				
-			
+				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 			}
 			
 			
