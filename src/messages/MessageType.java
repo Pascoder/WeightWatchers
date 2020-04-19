@@ -8,9 +8,10 @@ public enum MessageType {
 	USERNAMETAKEN,
 	LOGIN,
 	LOGINOK,
+	LOBBYUPDATE,
 	LOGINNOTOK,
 	PLAYERONLINE,
-	GAME,
+	GAMEUPDATE,
 	CHAT,
 	GOODBYE,
 	JOINGAME,
@@ -38,7 +39,8 @@ public enum MessageType {
     	else if (msg instanceof Message_LOGINOK) type = LOGINOK;
     	else if (msg instanceof Message_LOGINNOTOK) type = LOGINNOTOK;
     	else if (msg instanceof Message_PLAYERONLINE) type = PLAYERONLINE;
-    	else if (msg instanceof Message_GAME) type = GAME;
+    	else if (msg instanceof Message_LOBBYUPDATE) type = LOBBYUPDATE;
+    	else if (msg instanceof Message_GAMEUPDATE) type = GAMEUPDATE;
     	else if (msg instanceof Message_CHAT) type = CHAT;
     	else if (msg instanceof Message_GOODBYE) type = GOODBYE;
     	else if (msg instanceof Message_JOINGAME) type = JOINGAME;

@@ -139,4 +139,9 @@ public class Game {
     public int getGameID() {
     	return this.gameID;
     }
+
+
+	public String getName() {
+		return name;
+	}
 }

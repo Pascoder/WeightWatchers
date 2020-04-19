@@ -64,7 +64,7 @@ public String OnlinePlayersAsString() {
 	String result = "";
 	
 	for(Player p : playersOnline) {
-		result += p.toString() + "|";
+		result += p.getName() + "|";
 	}
 	
 	return result;
@@ -73,7 +73,18 @@ public String OnlinePlayersAsString() {
 	}
 
 
-
+public String GamesAsString() {
+	
+	String result = "";
+	
+	for(Game g : actualgames) {
+		result += g.getGameID() + " "+ g.getName() + "|";
+	}
+	
+	return result;
+		
+	
+	}
 
 
 

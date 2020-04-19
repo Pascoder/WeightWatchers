@@ -77,6 +77,7 @@ public class ClientThread extends Thread {
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
 				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
 					msgOut = new Message_LOGINOK();
+					ServerModel.updateClients(1);//1=Lobby Update
 				} else  { 
 					msgOut = new Message_LOGINNOTOK();
 				}
@@ -95,7 +96,7 @@ public class ClientThread extends Thread {
 				}
 			
 				break;
-				
+			
 				
 				//case MOVE: Methode Game.PlayCard(gameID, PlayerID, Card (int)? ), 
 				
@@ -106,6 +107,12 @@ public class ClientThread extends Thread {
 		msgOut.setClient(clientName);
 		return msgOut;
 	}
+
+	public Socket getClientSocket() {
+		return clientSocket;
+	}
+
+	
 	
 
 }

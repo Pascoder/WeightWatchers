@@ -43,6 +43,7 @@ public class ServerMain extends Application{
 					
 					ClientThread ct = new ClientThread (socket);
 					ct.start();
+					ServerModel.addClientToList(ct);
 					
 					} 
 					
