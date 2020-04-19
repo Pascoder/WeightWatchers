@@ -16,7 +16,7 @@ private HBox topBox, bottomBox ;
 private VBox leftBox, rightBox, subleftBox1, subleftBox2,subrightBox1, subrightBox2;
 //Buttons....
 protected Label round, gametype,trumpf,player1,player2,card1,card2,card3,card4,player3,player4,turnof,pointsof,dealCard;
-protected Button deal;
+protected Button deal, startgame, settrumpf;
 protected TextField txtDealCard;
 private Stage stage;
 private Game game;
@@ -81,8 +81,10 @@ public GameView(Stage primaryStage, Game game) {
 	//BottomBox
 	bottomBox = new HBox();
 	this.setBottom(bottomBox);
-	bottomBox.setSpacing(100);
+	bottomBox.setSpacing(60);
 	this.bottomBox.setPadding(new Insets(10,10,10,10));
+	this.startgame = new Button("StartGame");
+	bottomBox.getChildren().add(startgame);
 	this.turnof = new Label("Spieler 1");
 	this.bottomBox.getChildren().add(turnof);
 	this.pointsof = new Label("Punkte von Spieler 1: 0");
@@ -93,6 +95,8 @@ public GameView(Stage primaryStage, Game game) {
 	this.bottomBox.getChildren().add(txtDealCard);
 	this.deal = new Button ("Deal");
 	this.bottomBox.getChildren().add(deal);
+	this.settrumpf = new Button ("Trumpf");
+	this.bottomBox.getChildren().add(settrumpf);
 	
 	
 	

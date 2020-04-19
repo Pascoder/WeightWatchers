@@ -25,8 +25,20 @@ public ServerController(Game game, GameView view) {
 		}
 		//GameID wird aus dem Game geholt, playerID aus dem Spieler der am Zug ist
 		game.playCard(game.getGameID(), pID, correctCard);
+	});
+	
+	
+	
+	//Dieser Button soll das Deck mischen und die Karten den Spielern verteilen
+	this.view.startgame.setOnAction(c->{
 		
+	});
+	
+	//Dieser Button setzt den Trumpf durch eingabe ins TextFeld
+	this.view.settrumpf.setOnAction(c->{
+		String trumpf = view.txtDealCard.getText();
 		
+		view.trumpf.setText("Trumpf: "+trumpf);
 	});
 }
 	
