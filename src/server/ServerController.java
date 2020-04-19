@@ -19,7 +19,7 @@ public ServerController(Game game, GameView view) {
 		int pID = Integer.parseInt(playerID);
 		ArrayList<Card> cards =deck.getDeck();
 		for(int i = 0; i< cards.size();i++) {
-			if(karte.equals(cards.get(i))) {
+			if(karte == cards.get(i).toString()) { //Bin mir nicht sicher ob das so läuft
 				correctCard = cards.get(i);
 			}
 		}
