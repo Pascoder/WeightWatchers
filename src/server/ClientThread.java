@@ -96,6 +96,9 @@ public class ClientThread extends Thread {
 			
 				break;
 				
+				
+				//case MOVE: Methode Game.PlayCard(gameID, PlayerID, Card (int)? ), 
+				
 			default:
 				msgOut = new Message_ERROR();
 				
