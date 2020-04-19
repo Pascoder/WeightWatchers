@@ -29,6 +29,7 @@ public class Game {
 	this.name = name;
 	this.round = 0;
 	this.move = 0;
+	sl.getLogger().info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name: "+this.name);	
     }
     
     
@@ -38,6 +39,7 @@ public class Game {
     		this.playersOnGame.add(player);
     		if(playersOnGame.size()==3) { //bei 4 Spielern wird das Game gestartet
     		    startGame();
+    		    sl.getLogger().info("4 Spieler vorhanden, game wird gestartet|Game_ID: "+this.gameID +"|Name: "+this.name);
     		}
     	}
     }
@@ -74,6 +76,7 @@ public class Game {
 	generateMoveOrder();
 	generateTeams();
 	updateClients();
+	sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "+this.gameID +"|Name: "+this.name);
     }
      
     
