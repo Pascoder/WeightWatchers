@@ -19,9 +19,9 @@ public class Menu_Game_View extends Menu_Basic_View {
     ToggleGroup tg1;
 
     // MenuItems menu2
-    MenuItem menuItem21 = new MenuItem("item21");
-    MenuItem menuItem22 = new MenuItem("item22");
-    MenuItem menuItem23 = new MenuItem("item23");
+//    MenuItem menuItem21 = new MenuItem("item21");
+//    MenuItem menuItem22 = new MenuItem("item22");
+//    MenuItem menuItem23 = new MenuItem("item23");
 
     public Menu_Game_View() {
 	super();
@@ -61,9 +61,9 @@ public class Menu_Game_View extends Menu_Basic_View {
 	menu1.setGraphic(icon1);
 	menu1.setText(t.getString("program.menu.language"));
 
-	menu2.getItems().addAll(menuItem21, menuItem22, menuItem23);
+//	menu2.getItems().addAll(menuItem21, menuItem22, menuItem23);
 
-	this.getMenus().addAll(menu1, menu2);
+	this.getMenus().addAll(menu1);
 
 	this.getStylesheets().add(getClass().getResource("menuBarStyle.css").toExternalForm());
 

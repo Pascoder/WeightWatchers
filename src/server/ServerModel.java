@@ -9,11 +9,21 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import messages.Message;
+import messages.Message_LOBBYUPDATE;
+
 public class ServerModel {
 
 	private static int player_id = 1;
 	private static ArrayList<String> accounts = new ArrayList<>();
 	private static boolean accountsloaded = false;
+	private static ArrayList<ClientThread> clientList;
+	
+	
+	
+	public ServerModel() {
+		clientList = new ArrayList <ClientThread>();
+	}
 
 
 //Methode um Loggin zu prï¿½fen, wenn ok Lobby wird Player als Online hinzugefï¿½gt	
@@ -73,11 +83,11 @@ public class ServerModel {
 		public static boolean createUser(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
 			//DataBase.getDataBase().executeUpdate("INSERT INTO it_db1.player (name,password,onMove,fk_team) VALUES ('"+username+"','"+password+"',0,null);");
 			
-			//Prüfen ob Accounts bereits geladen wurden
+			//Prï¿½fen ob Accounts bereits geladen wurden
 			if(accountsloaded == false) {
 				loadaccounts();
 			}
-			//Prüfen ob User bereits existiert
+			//Prï¿½fen ob User bereits existiert
 			boolean userNotExist = true;
 			for(int i = 0; i<accounts.size();i++) {
 				if(accounts.get(i).equals(username+""+password)) {
@@ -108,9 +118,50 @@ public class ServerModel {
 
 
 		
-		
+		public static void updateClients(int option) {
+			//option = 1 Update Lobby / option = 2 Update Game
+			
+			
+			switch(option) {
+			
+				case 1: 
+				Message_LOBBYUPDATE msgOut = new Message_LOBBYUPDATE();
+				msgOut.setPlayersonline(Lobby.getLobby().OnlinePlayersAsString());
+				msgOut.setGames(Lobby.getLobby().GamesAsString());
+				
+				for(ClientThread cT : clientList) {
+					msgOut.send(cT.getClientSocket());
+				}
+				
+				case 2:
+				
+			
+			}
+			
+			
+		}
+
+
+		public static void addClientToList(ClientThread ct) {
+			clientList.add(ct);
+			
+		}
 
 	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 

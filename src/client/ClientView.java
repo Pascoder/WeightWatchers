@@ -16,7 +16,7 @@ public class ClientView {
     
     private Login_View loginView;
     private Lobby_View lobbyView;
-
+    private Game_View gameView;
     /**
      * Set any options for the stage in the subclass constructor
      * 
@@ -44,7 +44,7 @@ public class ClientView {
 		
 		}else {
 		//GameView
-			Game_View gameView = new Game_View(this.stage, this.clientModel);
+			gameView = new Game_View(this.stage, this.clientModel);
 			}
 	   }
    }

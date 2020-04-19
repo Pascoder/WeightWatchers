@@ -11,6 +11,7 @@ public class ServerMain extends Application{
 	private static int client_id = 0;
 	private final static int port = 9998;
 	
+	private static Game game;
 	private static GameView view;
 	private static ServerController controller;
 	
@@ -42,6 +43,7 @@ public class ServerMain extends Application{
 					
 					ClientThread ct = new ClientThread (socket);
 					ct.start();
+					ServerModel.addClientToList(ct);
 					
 					} 
 					
@@ -50,9 +52,9 @@ public class ServerMain extends Application{
 				}
 			
 			//Simulation View Frank
-			//view = new GameView(primaryStage);
-			//controller = new ServerController();
-			//view.start();
+			view = new GameView(primaryStage, game);
+			controller = new ServerController(game, view);
+			view.start();
 			
 			
 	}
