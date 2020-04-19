@@ -15,5 +15,5 @@ module WeightWatchers {
 	requires javafx.controls;
 	requires javafx.graphics;
 	requires java.sql;
-	requires junit;
+	
 }
