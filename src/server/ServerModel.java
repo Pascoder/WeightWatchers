@@ -16,21 +16,10 @@ public class ServerModel {
 	private static boolean accountsloaded = false;
 
 
-//Methode um Loggin zu prüfen, wenn ok Lobby wird Player als Online hinzugefügt	
+//Methode um Loggin zu prï¿½fen, wenn ok Lobby wird Player als Online hinzugefï¿½gt	
 		public static boolean CheckLogin(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 			if(accountsloaded == false) {
-				try(BufferedReader in = new BufferedReader(new FileReader("src/PlayerFile.txt"))){
-					String s = in.readLine();
-					
-					while(s!=null) {
-						accounts.add(s);
-						s = in.readLine();
-					}	
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			accountsloaded = true;
+				loadaccounts();
 			}
 			boolean loginOK = false;
 			String key = username+password;
@@ -44,9 +33,9 @@ public class ServerModel {
 						loginOK = true;
 					}
 				}
-				
-				
+
 				return loginOK;
+
 			 //this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg")
 			//Hier wird methode newPlayer erstellt und somit Login erstellt
 			
@@ -63,55 +52,58 @@ public class ServerModel {
 
 
 
+		private static void loadaccounts() {
+			try(BufferedReader in = new BufferedReader(new FileReader("src/PlayerFile.txt"))){
+				String s = in.readLine();
+				
+				while(s!=null) {
+					accounts.add(s);
+					s = in.readLine();
+				}	
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		accountsloaded = true;
+			
+		}
+
+
+
 		public static boolean createUser(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
 			//DataBase.getDataBase().executeUpdate("INSERT INTO it_db1.player (name,password,onMove,fk_team) VALUES ('"+username+"','"+password+"',0,null);");
+			
+			//Prüfen ob Accounts bereits geladen wurden
 			if(accountsloaded == false) {
-				try(BufferedReader in = new BufferedReader(new FileReader("src/PlayerFile.txt"))){
-					String s = in.readLine();
-					
-					while(s!=null) {
-						accounts.add(s);
-						s = in.readLine();
-					}	
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			accountsloaded = true;
+				loadaccounts();
 			}
-			boolean createdUser = false;
+			//Prüfen ob User bereits existiert
+			boolean userNotExist = true;
 			for(int i = 0; i<accounts.size();i++) {
-				if(accounts.get(i)==username+""+password) {
-					createdUser = false;
+				if(accounts.get(i).equals(username+""+password)) {
 					
-					
-				}else {
-					if(accounts.size()>1) {
-						accounts.add(username+""+password);
-						try(BufferedWriter out = new BufferedWriter(new FileWriter("src/PlayerFile.txt"))){
-							for(int b = 0; b<accounts.size();b++) {
-							out.write(accounts.get(b)+"\n");
-							}
-							out.flush();
-							}
-					}else {
-						accounts.add(username+""+password);
-						try(BufferedWriter out = new BufferedWriter(new FileWriter("src/PlayerFile.txt"))){
-							
-							out.write(username+""+password);
-							
-							out.flush();
-							}
-					}
-					
+					userNotExist = false;
 				}
 			}
+			//Wenn User nicht existiert wird Accounts Liste updated
+				if(userNotExist == true) {
+				accounts.add(username+""+password);
+				saveAccounts();
+				}
 			
-		/*Player player = new Player(player_id,username,password);
-		Lobby.getLobby().setPlayersOnline(player);
-		player_id++;*/
-		
-		return false;
+		return userNotExist;
+		}
+
+
+
+		private static void saveAccounts() throws IOException {
+			try(BufferedWriter out = new BufferedWriter(new FileWriter("src/PlayerFile.txt"))){
+				for(int b = 0; b<accounts.size();b++) {
+				out.write(accounts.get(b)+"\n");
+				}
+				out.flush();			
+					}
+			
 		}
 
 

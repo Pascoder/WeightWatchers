@@ -159,6 +159,7 @@ import java.util.Iterator;
 		        else if (type == MessageType.LOGIN) newMessage = new Message_LOGIN();
 		        else if (type == MessageType.LOGINOK) newMessage = new Message_LOGINOK();
 		        else if (type == MessageType.LOGINNOTOK) newMessage = new Message_LOGINNOTOK();
+		        else if (type == MessageType.PLAYERONLINE) newMessage = new Message_PLAYERONLINE();
 		        else if (type == MessageType.CHAT) newMessage = new Message_CHAT();
 		        else if (type == MessageType.GAME) newMessage = new Message_GAME();
 		        else if (type == MessageType.GOODBYE) newMessage = new Message_GOODBYE();

@@ -3,6 +3,7 @@ package messages;
 import java.util.ArrayList;
 
 public class Message_MOVE extends Message{
+	
 
 	@Override
 	protected void receiveAttributes(ArrayList<NameValue> attributes) {

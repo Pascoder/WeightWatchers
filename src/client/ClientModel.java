@@ -12,6 +12,7 @@ import messages.Message_HELLO;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
+import messages.Message_USERNAMETAKEN;
 
 
 
@@ -96,7 +97,12 @@ public class ClientModel {
 			logger.info(msgIn.getClient() + "User erfolgreich registriert");
 			ClientController.updateLoginInfoLabel("User erfolgreich registriert");
 			break;
-		
+		case USERNAMETAKEN:
+			msgOut = new Message_USERNAMETAKEN();
+			logger.info("Username vergeben");
+			ClientController.updateLoginInfoLabel("Der Username: *" + msgIn.getClient() + "* ist bereits vergeben");
+			break;
+			
 		default:
 			msgOut = new Message_ERROR();
 		}

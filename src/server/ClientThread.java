@@ -62,7 +62,7 @@ public class ClientThread extends Thread {
 	
 	
 
-	private Message processMessage(Message msgIn) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	Message processMessage(Message msgIn) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
 		
 		String clientName = msgIn.getClient();
 		Message msgOut = null;
@@ -84,16 +84,20 @@ public class ClientThread extends Thread {
 				
 			case CREATEUSER:
 				Message_CREATEUSER cu_msg = (Message_CREATEUSER) msgIn;
-				
-				if (false) {
-					//ServerModel.createUser(username, password);
+				//Wenn true, dann ist der Username vergeben, false ist er frei
+			
+				if (ServerModel.createUser(cu_msg.getUsername(), cu_msg.getPassword())) {
+					
 					msgOut = new Message_USERNAMETAKEN();
 					
 				} else {
 					msgOut= new Message_CREATEUSER();
-					ServerModel.createUser(cu_msg.getUsername(), cu_msg.getPassword());
 				}
+			
 				break;
+				
+				
+				//case MOVE: Methode Game.PlayCard(gameID, PlayerID, Card (int)? ), 
 				
 			default:
 				msgOut = new Message_ERROR();

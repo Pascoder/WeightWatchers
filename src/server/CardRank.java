@@ -14,7 +14,7 @@ Ace;
 
 public String toString() {
 		/*Alle Karten mit einem Zahlenwert werden mit Integer.toString in einen String wert umgewandelt
-		 * Six wäre also ordinal 0, also +6 = String -->6
+		 * Six wï¿½re also ordinal 0, also +6 = String -->6
 		 */
 	    String cardRank = "Ace";
 	    int ordinal = this.ordinal();

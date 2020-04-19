@@ -25,18 +25,11 @@ private void shuffle() {
 	}
 	Collections.shuffle(cards);
 }
-//Kartendeck wird zurückgegeben mit Französichen und Schweizer Karten
+//Kartendeck wird zurï¿½ckgegeben mit Franzï¿½sichen und Schweizer Karten
 public ArrayList <Card> getDeck(){
 	return this.cards;
 }
-public void setDeckLanguage(String language) {
 
-	for(int i = 0; i< cards.size();i++) {
-		cards.get(i).getCardColor().setLanguage(language);
-	}
-	
-		
-}
 public String toString() {
 	String tostring = "";
 	for(int i = 0; i<cards.size(); i++) {
