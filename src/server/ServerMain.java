@@ -51,6 +51,8 @@ public class ServerMain extends Application{
 				} catch (Exception e) {
 					System.err.println(e);
 				}
+			
+			
 	}
 			
 //	   
