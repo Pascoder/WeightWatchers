@@ -20,18 +20,7 @@ public class ServerMain extends Application{
 
 	public static void main(String[] args)throws IOException {
 		launch(args);
-	}
-	public void start(Stage primaryStage) { 
-		 ServiceLocator sl = ServiceLocator.getServiceLocator();
-			System.out.println("Server started and listening on port 9998");
-//			sl.getLogger().info("Server started and listening on port "+port);
-			
-			//Simulation View Frank
-			view = new GameView(primaryStage);
-			controller = new ServerController();
-			view.start();
-			
-			try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
+try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
 			
 			while (true) {
 				Socket socket = serverSocket.accept();
@@ -41,14 +30,26 @@ public class ServerMain extends Application{
 				
 				ClientThread ct = new ClientThread (socket);
 				ct.start();
-			
+				
 				} 
 				
 			} catch (Exception e) {
 				System.err.println(e);
 			}
 		
+}
+	
+	public void start(Stage primaryStage) { 
+		 ServiceLocator sl = ServiceLocator.getServiceLocator();
+			System.out.println("Server started and listening on port 9998");
+//			sl.getLogger().info("Server started and listening on port "+port);
+			
+			//Simulation View Frank
+			view = new GameView(primaryStage);
+			controller = new ServerController();
+			view.start();
 	}
+			
 //	   
 	
 
