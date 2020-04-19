@@ -16,7 +16,7 @@ public class ServerModel {
 	private static boolean accountsloaded = false;
 
 
-//Methode um Loggin zu prüfen, wenn ok Lobby wird Player als Online hinzugefügt	
+//Methode um Loggin zu prï¿½fen, wenn ok Lobby wird Player als Online hinzugefï¿½gt	
 		public static boolean CheckLogin(String username, String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 			if(accountsloaded == false) {
 				loadaccounts();
@@ -33,7 +33,13 @@ public class ServerModel {
 						loginOK = true;
 					}
 				}
+<<<<<<< HEAD
 				return loginOK;
+=======
+				
+				//fuer testphase von lobby/game, login immer true
+				return loginOK = true;
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers
 			 //this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg")
 			//Hier wird methode newPlayer erstellt und somit Login erstellt
 			
