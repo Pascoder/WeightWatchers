@@ -20,22 +20,8 @@ public class ServerMain extends Application{
 
 	public static void main(String[] args)throws IOException {
 		launch(args);
-try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
-			
-			while (true) {
-				Socket socket = serverSocket.accept();
-				client_id++;
-				System.out.println(client_id + ". Client hinzügefügt");
-//				sl.getLogger().info(client_id + ". Client hinzügefügt");
-				
-				ClientThread ct = new ClientThread (socket);
-				ct.start();
-				
-				} 
-				
-			} catch (Exception e) {
-				System.err.println(e);
-			}
+		
+
 		
 }
 	
@@ -45,9 +31,26 @@ try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
 //			sl.getLogger().info("Server started and listening on port "+port);
 			
 			//Simulation View Frank
-			view = new GameView(primaryStage);
-			controller = new ServerController();
-			view.start();
+			//view = new GameView(primaryStage);
+			//controller = new ServerController();
+			//view.start();
+			
+			try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
+				
+				while (true) {
+					Socket socket = serverSocket.accept();
+					client_id++;
+					System.out.println(client_id + ". Client hinzügefügt");
+//					sl.getLogger().info(client_id + ". Client hinzügefügt");
+					
+					ClientThread ct = new ClientThread (socket);
+					ct.start();
+					
+					} 
+					
+				} catch (Exception e) {
+					System.err.println(e);
+				}
 	}
 			
 //	   
