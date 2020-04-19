@@ -13,9 +13,7 @@ private Weis weis;
 private int actualGame;
 
 
-
-
-//Player wird durch Login erstellt und enthält die Client_id
+//Player wird durch Login erstellt und enthï¿½lt die Client_id
 public Player(int player_id, String name, String password) {
 
 	
