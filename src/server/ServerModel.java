@@ -33,13 +33,9 @@ public class ServerModel {
 						loginOK = true;
 					}
 				}
-<<<<<<< HEAD
+
 				return loginOK;
-=======
-				
-				//fuer testphase von lobby/game, login immer true
-				return loginOK = true;
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers
+
 			 //this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg")
 			//Hier wird methode newPlayer erstellt und somit Login erstellt
 			
