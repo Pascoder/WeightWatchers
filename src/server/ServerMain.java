@@ -23,7 +23,7 @@ public class ServerMain extends Application{
 	public static void main(String[] args)throws IOException {
 		launch(args);
 	}
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) { 
 		 ServiceLocator sl = ServiceLocator.getServiceLocator();
 			System.out.println("Server started and listening on port 9998");
 //			sl.getLogger().info("Server started and listening on port "+port);
