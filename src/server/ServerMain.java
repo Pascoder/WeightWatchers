@@ -1,13 +1,15 @@
 package server;
 
+
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import server.ServiceLocator;
+
+
 
 public class ServerMain extends Application{
 	private static int client_id = 0;
