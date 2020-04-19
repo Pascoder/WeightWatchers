@@ -87,7 +87,6 @@ public class Game_View {
 		VBox oppTeamBox = new VBox();
 		oppTeamBox.getChildren().addAll(this.player3, this.player4, this.lblPointsOppenent);
 		
-		
 		VBox teamsBox = new VBox();
 		teamsBox.getChildren().addAll(ourTeamBox,oppTeamBox);
 		
