@@ -36,7 +36,7 @@ public class ServerMain {
 				
 				ClientThread ct = new ClientThread (socket);
 				ct.start();
-				ServerModel.addClientToList(ct);
+//				ServerModel.addClientToList(ct);
 				
 				} 
 				

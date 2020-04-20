@@ -70,7 +70,7 @@ public class Login_View extends GridPane {
 		this.add(registerButton, 3, 12);
 		
 //		_olmo: Auskommentiert, weil Fehler beim Laden Image
-		this.image = new Image(this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg"));
+//		this.image = new Image(this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg"));
 
 		
 		ImageView imageView = new ImageView(image);
