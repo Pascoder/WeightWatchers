@@ -7,7 +7,7 @@ import java.net.Socket;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class ServerMain extends Application{
+public class ServerMain {
 	private static int client_id = 0;
 	private final static int port = 9998;
 	
@@ -20,44 +20,34 @@ public class ServerMain extends Application{
 //	
 
 	public static void main(String[] args)throws IOException {
-		launch(args);
+		ServiceLocator sl = ServiceLocator.getServiceLocator();
+		System.out.println("Server started and listening on port 9998");
+//		sl.getLogger().info("Server started and listening on port "+port);
 		
+		
+		
+		try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
+			
+			while (true) {
+				Socket socket = serverSocket.accept();
+				client_id++;
+				System.out.println(client_id + ". Client hinzügefügt");
+//				sl.getLogger().info(client_id + ". Client hinzügefügt");
+				
+				ClientThread ct = new ClientThread (socket);
+				ct.start();
+				ServerModel.addClientToList(ct);
+				
+				} 
+				
+			} catch (Exception e) {
+				System.err.println(e);
+			}
 
 		
 }
 	
-	public void start(Stage primaryStage) { 
-		 ServiceLocator sl = ServiceLocator.getServiceLocator();
-			System.out.println("Server started and listening on port 9998");
-//			sl.getLogger().info("Server started and listening on port "+port);
-			
-			
-			
-			try (ServerSocket serverSocket = new ServerSocket (port, 10, null)){
-				
-				while (true) {
-					Socket socket = serverSocket.accept();
-					client_id++;
-					System.out.println(client_id + ". Client hinzügefügt");
-//					sl.getLogger().info(client_id + ". Client hinzügefügt");
-					
-					ClientThread ct = new ClientThread (socket);
-					ct.start();
-					ServerModel.addClientToList(ct);
-					
-					} 
-					
-				} catch (Exception e) {
-					System.err.println(e);
-				}
-			
-			//Simulation View Frank
-			/*view = new GameView(primaryStage, game);
-			controller = new ServerController(game, view);
-			view.start();*/
-			
-			
-	}
+
 			
 //	   
 	
