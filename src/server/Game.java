@@ -84,7 +84,14 @@ public class Game {
     //Kartenverteilen: Nach dem Mischen der Karten müssen diese auf die Spieler verteilt werden.
     private void spreadCards() {
 	this.cardDeck = new CardDeck();
-	
+	ArrayList<E> hands = new ArrayList<>();
+	ArrayList<Card> hand2 = new ArrayList<>();
+	ArrayList<Card> hand3 = new ArrayList<>();
+	ArrayList<Card> hand4 = new ArrayList<>();
+	for(Card card : cardDeck.getDeck()) {
+	      for(int p = 1; p < 5; p ++)
+		  hand[]
+	}
     }
     
     //Starten nächste Runde sobald ein Spieler auf start next Round klickt
