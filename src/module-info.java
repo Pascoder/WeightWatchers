@@ -15,9 +15,5 @@ module WeightWatchers {
 	requires javafx.controls;
 	requires javafx.graphics;
 	requires java.sql;
-<<<<<<< HEAD
-	//requires junit;
-=======
-	
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
+
 }
