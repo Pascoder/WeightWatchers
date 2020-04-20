@@ -52,9 +52,9 @@ public class ServerMain extends Application{
 				}
 			
 			//Simulation View Frank
-			view = new GameView(primaryStage, game);
+			/*view = new GameView(primaryStage, game);
 			controller = new ServerController(game, view);
-			view.start();
+			view.start();*/
 			
 			
 	}
