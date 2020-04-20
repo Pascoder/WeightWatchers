@@ -18,6 +18,7 @@ import messages.Message_HELLO;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
+import messages.Message_MOVE;
 import messages.Message_USERNAMETAKEN;
 
 
@@ -77,7 +78,7 @@ public class ClientThread extends Thread {
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
 				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
 					msgOut = new Message_LOGINOK();
-					ServerModel.updateClients(1);//1=Lobby Update
+					ServerModel.updateClients(1, lg_msg.getClient());//1=Lobby Update
 				} else  { 
 					msgOut = new Message_LOGINNOTOK();
 				}
@@ -97,9 +98,12 @@ public class ClientThread extends Thread {
 			
 				break;
 			
+			case MOVE:
+				Message_MOVE mo_msg = (Message_MOVE) msgIn;
+				ServerModel.updateClients(2, mo_msg.getClient());
 				
 				//case MOVE: Methode Game.PlayCard(gameID, PlayerID, Card (int)? ), 
-				
+				break;
 			default:
 				msgOut = new Message_ERROR();
 				

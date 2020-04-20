@@ -85,8 +85,13 @@ public String GamesAsString() {
 		
 	
 	}
-
-
+//TODO Diese Methode durchsucht alle Games nach Spieler mit gesuchten Namen und gibt GameID zurück
+public String getGameIDofPlayersGame(String client){
+	String ID = "";
+	
+	
+	return ID;
+}
 
 
 

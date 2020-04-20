@@ -109,9 +109,9 @@ public class Game_View {
 	// BorderPane
 	GridPane root = new GridPane();
 	root.add(this.gameMenu, 0, 0);
-	root.add(playerGrid, 0, 1, 20, 20);
-	root.add(rightBox, 4, 1, 20, 20);
-	root.add(controls, 0, 15);
+	root.add(playerGrid, 0, 1, 10, 10);
+	root.add(rightBox, 4, 1, 10, 5);
+	root.add(controls, 0, 10);
 	
 //	root.getStyleClass().add("root"); // Class for styling
 	
