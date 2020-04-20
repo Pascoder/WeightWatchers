@@ -7,7 +7,7 @@ public class Message_GAMEUPDATE extends Message{
 	private static final String ELEMENT_GAMEID = "gameid";
 	private static final String ELEMENT_PLAYERS = "players";
 
-//	String Player1 = String name + ":" boolean onMove + ":" + String Hand
+//	String Player1 = String name + ":" boolean onMove + ":" + String Hand + Trumpf + Cards on Table
 	
 	
 	private String gameid;
