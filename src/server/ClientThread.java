@@ -30,6 +30,7 @@ public class ClientThread extends Thread {
 	private BufferedReader in;
 	private PrintWriter out;
 	private final Logger logger = Logger.getLogger("");
+	private String name = null;
 	
 	public ClientThread(Socket clientSocket) throws IOException {
 		
@@ -78,6 +79,7 @@ public class ClientThread extends Thread {
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
 				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
 					msgOut = new Message_LOGINOK();
+					this.name = lg_msg.getUsername();
 					ServerModel.updateClients(1, lg_msg.getClient());//1=Lobby Update
 				} else  { 
 					msgOut = new Message_LOGINNOTOK();
@@ -91,9 +93,11 @@ public class ClientThread extends Thread {
 				if (ServerModel.createUser(cu_msg.getUsername(), cu_msg.getPassword())) {
 					
 					msgOut = new Message_USERNAMETAKEN();
+					logger.info("Server an Client: Username vergeben");
 					
 				} else {
 					msgOut= new Message_CREATEUSER();
+					logger.info("Server an Client: Username erfolgreich registriert");
 				}
 			
 				break;

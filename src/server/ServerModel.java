@@ -130,9 +130,9 @@ public class ServerModel {
 				msgOutLobby.setPlayersonline(Lobby.getLobby().OnlinePlayersAsString());
 				msgOutLobby.setGames(Lobby.getLobby().GamesAsString());
 				
-				for(ClientThread cT : clientList) {
-					msgOutLobby.send(cT.getClientSocket());
-				}
+//				for(ClientThread cT : clientList) {
+//					msgOutLobby.send(cT.getClientSocket());
+//				}
 				
 				case 2:
 				Message_GAMEUPDATE msgOutGame = new Message_GAMEUPDATE();
