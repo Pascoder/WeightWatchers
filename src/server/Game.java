@@ -74,7 +74,6 @@ public class Game {
 	for (int i = 0; i < 4; i++) {
 	    moveOrder[i] = this.playersOnGame.get(i).getPlayer_id();
 	}
-	System.out.println("MoveOrder:" + this.moveOrder);
     }
 
     // Sobald 2 Teams/4Spieler im Spiel vorhanden sind, wird das Spiel vorbereitet
@@ -83,6 +82,7 @@ public class Game {
 	generateMoveOrder();
 	generateTeams();
 	spreadCards();
+	setPlayerOnMove();
 	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
 	// + this.gameID + "|Name: " + this.name);
     }
@@ -111,11 +111,6 @@ public class Game {
 	playersOnGame.get(1).setHand(hand2);
 	playersOnGame.get(2).setHand(hand3);
 	playersOnGame.get(3).setHand(hand4);
-
-	System.out.println(hand1);
-	System.out.println(hand2);
-	System.out.println(hand3);
-	System.out.println(hand4);
     }
 
     // Starten nächste Runde sobald ein Spieler auf start next Round klickt
@@ -131,6 +126,9 @@ public class Game {
 
     // Setzt den Spieler der an der Reihe ist auf true.
     private void setPlayerOnMove() {
+	for(int i = 0; i < 4; i++) {
+	    searchPlayer(moveOrder[i]).setonMove(false);
+	}
 	searchPlayer(moveOrder[this.move]).setonMove(true);
     }
 
@@ -204,7 +202,10 @@ public class Game {
        	  searchPlayer(player_ID).setHand(hand);
        
    }
-
+   public ArrayList getCardsOnTable() {
+       return this.cardsOnTable;
+   }
+   
     public Card getLastCard() {
 	return cardsOnTable.get(cardsOnTable.size() - 1);
     }

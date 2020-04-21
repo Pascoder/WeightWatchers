@@ -47,7 +47,7 @@ public void setHand(ArrayList <Card> hand) {
 	this.hand = hand;
 }
 public void removeCardFromHand(Card card) {
-    for(int i = 0; i > hand.size(); i++) {
+    for(int i = 0; i < hand.size(); i++) {
 	if(hand.get(i) == card) {
 	    hand.remove(i);
 	}
@@ -85,9 +85,9 @@ public int getActualGame() {
 public String toString() {
 	String cards = "";
 	for(int i = 0; i< hand.size();i++) {
-		cards+="\n"+hand.get(i);
+		cards+="|"+hand.get(i);
 	}
-	return "Player_id: "+this.player_id+"\n"+"Name: "+this.name+"\n"+"onMove: "+this.onMove+"\n"+"Cards: "+cards+"\n"+"Weis: "+this.weis+"\n";
+	return "Player_id: "+this.player_id+"|"+"Name: "+this.name+"|"+"onMove: "+this.onMove+"|"+"Cards: "+cards+"|"+"Weis: "+this.weis+"|";
 }
 
 
