@@ -102,7 +102,7 @@ public class ServerModel {
 				saveAccounts();
 				}
 			
-		return userNotExist;
+		return !userNotExist;
 		}
 
 
