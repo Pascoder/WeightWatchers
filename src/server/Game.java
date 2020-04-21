@@ -172,6 +172,7 @@ public class Game {
 		setPlayerOnMove();
 	    }
 	}
+	
     }
 
     // Zählt die Züge einer Runde
