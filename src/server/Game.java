@@ -209,6 +209,32 @@ public class Game {
        	  searchPlayer(player_ID).setHand(hand);
        
    }
+   
+   
+   
+   	//Methode benötigt für Message_GAMEUPDATE
+ 	public String GameAsString() {
+ 		String gameString = null;
+ 			
+ 		for(Player p : playersOnGame) {
+ 			gameString += p.toString() + "|";
+ 		}
+ 			
+ 			
+ 			
+ 		return gameString;
+ 	}
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    public ArrayList getCardsOnTable() {
        return this.cardsOnTable;
    }

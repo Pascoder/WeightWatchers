@@ -36,16 +36,26 @@ public void removeGame(int gameID) {
 
 //
 public ArrayList <Game> getGames(){
-	return this.actualgames;
+	return Lobby.actualgames;
 }
 
 public ArrayList <Player> getPlayersOnline(){
-	return this.playersOnline;
+	return Lobby.playersOnline;
 }
 
 //Nach dem Login muss diese Methode aufgeruffen werden um den erstellten Player in die Online Liste zu setzen
 public void setPlayersOnline(Player player) {
-this.playersOnline.add(player);
+	
+	boolean playerExists = false;
+	
+	for(Player p : playersOnline) {
+		if(p.equals(player)) {
+			playerExists = true;
+		}
+	}
+if (!playerExists) {
+	Lobby.playersOnline.add(player);
+}
 }
 
 //In Spieler aktuelles Spiel schreiben sobald er einem Spiel in der Lobby beitretet
@@ -85,12 +95,30 @@ public String GamesAsString() {
 		
 	
 	}
-//TODO Diese Methode durchsucht alle Games nach Spieler mit gesuchten Namen und gibt GameID zurück= Player.actualGame
+// Diese Methode durchsucht alle Games nach Spieler mit gesuchten Namen und gibt GameID zurück= Player.actualGame
 public String getGameIDofPlayersGame(String client){
-	String ID = "";
+	int id = 0;
+	for (Player p : playersOnline) {
+		if (p.getName().equals(client)) {
+			id = p.getActualGame();
+		}
+	}
+	return Integer.toString(id);
+}
+
+public String getPlayersOfCertainGame(String gameID) {
+	Game game;
+	String result = null;
+	for (Game g : actualgames) {
+		if(Integer.toString(g.getGameID()) == gameID) {
+			game = g;
+		}
+	}
 	
 	
-	return ID;
+	
+	
+	return result;
 }
 
 

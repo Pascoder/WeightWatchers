@@ -132,17 +132,17 @@ public class ServerModel {
 				msgOutLobby.setPlayersonline(Lobby.getLobby().OnlinePlayersAsString());
 				msgOutLobby.setGames(Lobby.getLobby().GamesAsString());
 				
-				
-				
 				for(ClientThread cT : clientList) {
 					msgOutLobby.send(cT.getClientSocket());
 					System.out.println("Update an Client: " + cT.getClientName() + " gesendet");
 				}
 				break;
+				
 				case 2:
 				Message_GAMEUPDATE msgOutGame = new Message_GAMEUPDATE();
 				msgOutGame.setClient(clientName);
 				msgOutGame.setGameid(Lobby.getLobby().getGameIDofPlayersGame(client));
+				msgOutGame.setPlayers(Lobby.getLobby().getPlayersOfCertainGame(Lobby.getLobby().getGameIDofPlayersGame(client)));
 				//TODO setplayers, Nachricht senden
 				
 				
@@ -159,7 +159,6 @@ public class ServerModel {
 
 
 		
-
 	
 		
 		
