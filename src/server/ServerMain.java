@@ -14,6 +14,7 @@ public class ServerMain {
 	private static Game game;
 	private static GameView view;
 	private static ServerController controller;
+	private static ServerModel model;
 	
 	//Diese Klasse wartet bis sich ein Client verbindet um dann einen Socket abzuspalten und diesen 
 	//dem ClientThread mitzugeben
@@ -21,6 +22,7 @@ public class ServerMain {
 
 	public static void main(String[] args)throws IOException {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
+		model = new ServerModel();
 		System.out.println("Server started and listening on port 9998");
 //		sl.getLogger().info("Server started and listening on port "+port);
 		
@@ -36,12 +38,11 @@ public class ServerMain {
 				
 				ClientThread ct = new ClientThread (socket);
 				ct.start();
-//				ServerModel.addClientToList(ct);
 				
 				} 
 				
 			} catch (Exception e) {
-				System.err.println(e);
+				System.err.println(e.getMessage());
 			}
 
 		

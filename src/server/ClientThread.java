@@ -29,21 +29,20 @@ public class ClientThread extends Thread {
 	private Socket clientSocket;
 	private BufferedReader in;
 	private PrintWriter out;
-	private final Logger logger = Logger.getLogger("");
-	private String name = null;
+//	private final Logger logger = Logger.getLogger("");
+	private String clientName = null;
 	
 	public ClientThread(Socket clientSocket) throws IOException {
 		
 		this.clientSocket = clientSocket;
-		
 		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 		out = new PrintWriter(clientSocket.getOutputStream());
-		
+		ServerModel.addClientThreadToList(this);
 	}
 	
 	public void run() {
-		logger.info("Request from client " + clientSocket.getInetAddress().toString()
-                + " for server " + clientSocket.getLocalAddress().toString());
+		Logger.getLogger(("Request from client " + clientSocket.getInetAddress().toString()
+                + " for server " + clientSocket.getLocalAddress().toString()));
 				
 				while(true)
 				try {
@@ -54,7 +53,7 @@ public class ClientThread extends Thread {
 					System.out.println("Antwort dem Client gesendet: "+ msgOut);
 					msgOut.send(clientSocket);
 				} catch (Exception e) {
-					logger.severe(e.toString());;
+					Logger.getLogger(e.getMessage());
 				} 
 //					finally {
 //					try { if ( clientSocket != null) clientSocket.close(); 
@@ -79,7 +78,8 @@ public class ClientThread extends Thread {
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
 				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
 					msgOut = new Message_LOGINOK();
-					this.name = lg_msg.getUsername();
+					this.clientName = lg_msg.getUsername();
+					lg_msg.setClient(clientName);
 					ServerModel.updateClients(1, lg_msg.getClient());//1=Lobby Update
 				} else  { 
 					msgOut = new Message_LOGINNOTOK();
@@ -93,11 +93,11 @@ public class ClientThread extends Thread {
 				if (ServerModel.createUser(cu_msg.getUsername(), cu_msg.getPassword())) {
 					
 					msgOut = new Message_USERNAMETAKEN();
-					logger.info("Server an Client: Username vergeben");
+//					logger.info("Server an Client: Username vergeben");
 					
 				} else {
 					msgOut= new Message_CREATEUSER();
-					logger.info("Server an Client: Username erfolgreich registriert");
+//					logger.info("Server an Client: Username erfolgreich registriert");
 				}
 			
 				break;
@@ -118,6 +118,10 @@ public class ClientThread extends Thread {
 
 	public Socket getClientSocket() {
 		return clientSocket;
+	}
+
+	public String getClientName() {
+		return clientName;
 	}
 
 	
