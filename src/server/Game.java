@@ -81,7 +81,7 @@ public class Game {
     private void startGame() {
 	generateMoveOrder();
 	generateTeams();
-	spreadCards();
+	//spreadCards(); Brauchts nur, wenn der Spieler vor dem ersten Zug nicht auf Nächste Runde Spielen soll.
 	setPlayerOnMove();
 	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
 	// + this.gameID + "|Name: " + this.name);
@@ -118,6 +118,9 @@ public class Game {
 	if (this.move == 0){
 	    this.cardsOnTable.clear();
 	    setPlayerOnMove();
+		}if (this.round == 0) {
+		    spreadCards();
+	    
 	}
     }
     
@@ -150,23 +153,22 @@ public class Game {
 		setPlayerOnMove();
 	    }
 	}
-
     }
 
     // Zählt die Züge einer Runde
     private void countMove() {
-	if (this.move < 4) {
+	if (this.move < 3) {
 	    this.move++;
 	} else {
 	    this.move = 0;
 	    evaluateRundWinner();
-	    this.round++;
+	    countRound();
 	}
-
+	System.out.println(move);
     }
  // Zählt die Runden
     private void countRound() {
-	if (this.round < 9) {
+	if (this.round < 8) {
 	    this.round++;
 	} else {
 	    this.round = 0;
@@ -177,6 +179,8 @@ public class Game {
 
     private void evaluateStapleWinner() {
 	// TODO Auto-generated method stub
+	
+	System.out.println("Stichgewinner:");
 	
     }
 
@@ -189,6 +193,9 @@ public class Game {
 	// höchste Karte suchen
 	cardsOnTable.stream().filter(card -> card.getCardColor() == this.trumpf).mapToInt(card -> card.getOrdinal())
 		.max();
+	System.out.println("Höchste Karte der Runde:");
+	
+	
 
     }
 
