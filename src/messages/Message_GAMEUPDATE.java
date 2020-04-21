@@ -2,6 +2,8 @@ package messages;
 
 import java.util.ArrayList;
 
+import messages.Message.NameValue;
+
 public class Message_GAMEUPDATE extends Message{
 	
 	private static final String ELEMENT_GAMEID = "gameid";
@@ -25,8 +27,9 @@ public class Message_GAMEUPDATE extends Message{
 	}
 
 	@Override
-	protected void sendAttributes(ArrayList<NameValue> attributes) {
-		// TODO Auto-generated method stub
+	protected void sendAttributes(ArrayList<NameValue> pairs) {
+		pairs.add(new NameValue(ELEMENT_GAMEID, this.gameid));
+		pairs.add(new NameValue(ELEMENT_PLAYERS, this.players));
 		
 	}
 

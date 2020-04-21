@@ -104,10 +104,25 @@ public class ClientThread extends Thread {
 			
 			case MOVE:
 				Message_MOVE mo_msg = (Message_MOVE) msgIn;
-				ServerModel.updateClients(2, mo_msg.getClient());
 				
-				//case MOVE: Methode Game.PlayCard(gameID, PlayerID, Card (int)? ), 
+				int Game_ID = Integer.parseInt(mo_msg.getGameid());
+				int Player_ID = Integer.parseInt(mo_msg.getPlayerid());
+				String Card = mo_msg.getCard();
+				
+				for(Game g : Lobby.getLobby().getGames()) {
+					if(g.getGameID() == Game_ID) {
+						g.playCard(Game_ID, Player_ID, null);//TODO send Card as String
+					}
+				}
+				
+				ServerModel.updateClients(2, mo_msg.getClient());
+				 
 				break;
+				
+				
+				
+				
+				
 			default:
 				msgOut = new Message_ERROR();
 				

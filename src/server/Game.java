@@ -142,6 +142,7 @@ public class Game {
     }
 
     // Spieler spielt eine Karte
+    //TODO @Oli playerCard(int, int, String)
     public void playCard(int Game_ID, int Player_ID, Card card) {
 	if (Game_ID == this.gameID) {
 	    if (this.move < 4) {
