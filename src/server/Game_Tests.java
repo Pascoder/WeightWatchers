@@ -45,7 +45,9 @@ public static void main(String[] args) {
     System.out.println(game.searchPlayer(3));
     System.out.println(game.searchPlayer(45));
     System.out.println("-----");
-    game.playCard(1, 1, game.searchPlayer(1).getHand().get(2));
+    String card = game.searchPlayer(1).getHand().get(2).toString();
+    System.out.println("String Karte:_"+card);
+    game.playCard(1, 1, game.stringToCard(card));
     System.out.println("CardsOnTAble:"+game.getCardsOnTable());
     
     

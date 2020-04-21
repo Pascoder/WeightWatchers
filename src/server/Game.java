@@ -2,6 +2,7 @@ package server;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
+import java.util.stream.*;
 
 public class Game {
     private ServiceLocator sl;
@@ -140,11 +141,28 @@ public class Game {
 
 	
     }
-
+      
+    // String Aufschlüsselung in Karte   
+    public Card stringToCard(String crd) {
+	String[] strCrd = crd.split("\\|");
+	Card card = new Card(CardColor.valueOf(strCrd[0].substring(0,1)), CardRank.valueOf(strCrd[0].substring(1)));
+	card.setPlayable(Boolean.parseBoolean(strCrd[1]));
+	return card;
+    }
+    
+    // Wandelt kompletten String in int und Card um
+    public void playedCardfromClient(String Game_ID, String Player_ID, String card) {
+	int game_ID = Integer.parseInt(Game_ID);
+	int player_ID = Integer.parseInt(Player_ID);
+	Card card2 = stringToCard(card);
+	playCard(game_ID, player_ID, card2);	
+    }
+    
+    
     // Spieler spielt eine Karte
     public void playCard(int Game_ID, int Player_ID, Card card) {
 	if (Game_ID == this.gameID) {
-	    if (this.move < 4) {
+	    if (this.move < 4) {	
 		searchPlayer(Player_ID).removeCardFromHand(card);
 		this.cardsOnTable.add(card);
 		this.actualColor = card.getCardColor();
