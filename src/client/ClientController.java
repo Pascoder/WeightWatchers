@@ -18,7 +18,7 @@ ServiceLocator_JC serviceLocator;
 
 	public ClientController(ClientModel clientModel, ClientView clientView) {
 		this.clientModel = clientModel;
-		ClientController.clientView = clientView;
+		this.clientView = clientView;
 		Login_View view = clientView.getLoginView();
 		
 		

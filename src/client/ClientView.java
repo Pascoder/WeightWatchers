@@ -44,7 +44,7 @@ public class ClientView {
 		
 		}else {
 		//GameView
-			gameView = new Game_View(this.stage, this.clientModel);
+			gameView = new Game_View(this.stage/*, this.clientModel*/);
 			}
 	   }
    }
