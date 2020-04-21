@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import messages.Message;
 import messages.Message_GAMEUPDATE;
@@ -102,7 +103,7 @@ public class ServerModel {
 				saveAccounts();
 				}
 			
-		return userNotExist;
+		return !userNotExist;
 		}
 
 
@@ -121,36 +122,30 @@ public class ServerModel {
 		
 		public static void updateClients(int option, String client) {
 			//option = 1 Update Lobby / option = 2 Update Game
-			
+			String clientName = client;
 			
 			switch(option) {
 			
 				case 1: 
 				Message_LOBBYUPDATE msgOutLobby = new Message_LOBBYUPDATE();
+				msgOutLobby.setClient(clientName);
 				msgOutLobby.setPlayersonline(Lobby.getLobby().OnlinePlayersAsString());
 				msgOutLobby.setGames(Lobby.getLobby().GamesAsString());
 				
+				
+				
 				for(ClientThread cT : clientList) {
 					msgOutLobby.send(cT.getClientSocket());
+					System.out.println("Update an Client: " + cT.getClientName() + " gesendet");
 				}
-				
+				break;
 				case 2:
 				Message_GAMEUPDATE msgOutGame = new Message_GAMEUPDATE();
+				msgOutGame.setClient(clientName);
 				msgOutGame.setGameid(Lobby.getLobby().getGameIDofPlayersGame(client));
 				//TODO setplayers, Nachricht senden
 				
 				
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 					
 			}
 			
@@ -158,10 +153,12 @@ public class ServerModel {
 		}
 
 
-		public static void addClientToList(ClientThread ct) {
-			clientList.add(ct);
-			
+		public static void addClientThreadToList(ClientThread clientThread) {
+			clientList.add(clientThread);
 		}
+
+
+		
 
 	
 		

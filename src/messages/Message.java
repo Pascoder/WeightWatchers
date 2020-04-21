@@ -158,6 +158,7 @@ import java.util.Iterator;
 		        else if (type == MessageType.USERNAMETAKEN) newMessage = new Message_USERNAMETAKEN();
 		        else if (type == MessageType.LOGIN) newMessage = new Message_LOGIN();
 		        else if (type == MessageType.LOGINOK) newMessage = new Message_LOGINOK();
+		        else if (type == MessageType.LOBBYUPDATE) newMessage = new Message_LOBBYUPDATE();
 		        else if (type == MessageType.LOGINNOTOK) newMessage = new Message_LOGINNOTOK();
 		        else if (type == MessageType.PLAYERONLINE) newMessage = new Message_PLAYERONLINE();
 		        else if (type == MessageType.CHAT) newMessage = new Message_CHAT();

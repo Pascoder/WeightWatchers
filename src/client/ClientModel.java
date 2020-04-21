@@ -9,6 +9,7 @@ import messages.MessageType;
 import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
 import messages.Message_HELLO;
+import messages.Message_LOBBYUPDATE;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
@@ -87,20 +88,29 @@ public class ClientModel {
 			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
 			ClientController.switchview(2);
 			break;
+			
 		case LOGINNOTOK:
 			msgOut = new Message_LOGINNOTOK();
 			logger.info(msgIn.getClient() + " Login Daten nicht korrekt");
 			ClientController.updateLoginInfoLabel("Login Daten nicht korrekt");
 			break;
+			
 		case CREATEUSER:
 			msgOut= new Message_CREATEUSER();
 			logger.info(msgIn.getClient() + "User erfolgreich registriert");
 			ClientController.updateLoginInfoLabel("User erfolgreich registriert");
 			break;
+			
 		case USERNAMETAKEN:
 			msgOut = new Message_USERNAMETAKEN();
 			logger.info("Username vergeben");
 			ClientController.updateLoginInfoLabel("Der Username: *" + msgIn.getClient() + "* ist bereits vergeben");
+			break;
+			
+		case LOBBYUPDATE:
+			msgOut = new Message_LOBBYUPDATE();
+			logger.info("Lobby Update erhalten");
+			System.out.println(msgIn.toString());
 			break;
 			
 		default:

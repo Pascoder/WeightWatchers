@@ -4,6 +4,12 @@ fasdfdas
 
 LeonXhinovciTest1234
 fdadsfafdasfas
+<<<<<<< HEAD
 Test1234
 Testarfg1234
 adfasd1234
+=======
+Pascal1234
+hello1234
+test123testtest
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
