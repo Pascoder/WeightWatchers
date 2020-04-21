@@ -106,18 +106,14 @@ public String getGameIDofPlayersGame(String client){
 	return Integer.toString(id);
 }
 
-public String getPlayersOfCertainGame(String gameID) {
-	Game game;
-	String result = null;
+public String getStringOfCertainGame(String gameID) {
+	
+	String result = "";
 	for (Game g : actualgames) {
 		if(Integer.toString(g.getGameID()) == gameID) {
-			game = g;
+			result = g.GameAsString();
 		}
 	}
-	
-	
-	
-	
 	return result;
 }
 

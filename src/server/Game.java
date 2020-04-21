@@ -269,4 +269,8 @@ public class Game {
 	return name;
     }
 
+	public ArrayList<Player> getPlayersOnGame() {
+		return playersOnGame;
+	}
+
 }
