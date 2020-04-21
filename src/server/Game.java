@@ -158,7 +158,12 @@ public class Game {
 	playCard(game_ID, player_ID, card2);	
     }
     
-    
+    // Wandelt  nur KartenString um
+    public void playedCardfromClient_2(int Game_ID, int Player_ID, String card) {
+	Card card2 = stringToCard(card);
+	playCard(Game_ID, Player_ID, card2);	
+    }
+     
     // Spieler spielt eine Karte
     //TODO @Oli playerCard(int, int, String)
     public void playCard(int Game_ID, int Player_ID, Card card) {
@@ -221,7 +226,7 @@ public class Game {
 
     // Spielbare Karten für Spieler definieren
    public void playableCards(int player_ID) {
-       if(player_ID != this.a
+       if(player_ID != this.player_ID)
        ArrayList<Card> hand =  searchPlayer(player_ID).getHand();     
        hand.stream()
        	.anyMatch(card -> card.getCardColor() == this.actualColor)
