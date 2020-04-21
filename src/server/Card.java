@@ -35,7 +35,7 @@ public class Card implements Comparable<Card> {
     
     @Override
     public String toString() {
-        return  cardColor.name()+ cardRank.name()+ cardPlayable;
+        return  cardColor.name()+ cardRank.name()+ "|"+cardPlayable;
     }
     
     @Override
