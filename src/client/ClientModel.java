@@ -8,6 +8,7 @@ import messages.Message;
 import messages.MessageType;
 import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
+import messages.Message_GAMEUPDATE;
 import messages.Message_HELLO;
 import messages.Message_LOBBYUPDATE;
 import messages.Message_LOGIN;
@@ -109,8 +110,16 @@ public class ClientModel {
 			
 		case LOBBYUPDATE:
 			msgOut = new Message_LOBBYUPDATE();
-			logger.info("Lobby Update erhalten");
+			logger.info("Lobby Update erhalten:");
 			System.out.println(msgIn.toString());
+			//TODO Verbindung zu Controller um ViewUpdate zu machen
+			break;
+			
+		case GAMEUPDATE:
+			msgOut = new Message_GAMEUPDATE();
+			logger.info("Game Update erhalten:");
+			System.out.println(msgIn.toString());
+			//TODO Verbindung zu Controller um ViewUpdate zu machen
 			break;
 			
 		default:
