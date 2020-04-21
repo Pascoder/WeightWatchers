@@ -3,10 +3,10 @@ package server;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-public class Game { 
+public class Game {
     private ServiceLocator sl;
     private Logger l;
-    private CardDeck cardDeck;
+    // private CardDeck cardDeck;
     private ArrayList<Card> cardsOnTable;
     private ArrayList<Player> playersOnGame;
     private Team team1;
@@ -19,144 +19,181 @@ public class Game {
     private int move;
     private int gameID;
     private String name;
-    
-    //Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
-    Game(int gameID, String name){
+
+    // Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
+    Game(int gameID, String name) {
 	this.sl = ServiceLocator.getServiceLocator();
 	this.l = sl.getLogger();
-	this.playersOnGame= new ArrayList<>();
+	this.playersOnGame = new ArrayList<>();
 	this.cardsOnTable = new ArrayList<>();
 	this.moveOrder = new int[4];
 	this.gameID = gameID;
 	this.name = name;
 	this.round = 0;
 	this.move = 0;
-	sl.getLogger().info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name: "+this.name);	
+	// sl.getLogger().info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name:
+	// "+this.name);
     }
-    
-    
-    //Wählt ein Spieler in der Lobby ein Spiel aus, wird er dem Game hinzugefügt.
+
+    // Wählt ein Spieler in der Lobby ein Spiel aus, wird er dem Game hinzugefügt.
     public void addPlayer(Player player) {
-    	if(playersOnGame.size()<4) {
-    		this.playersOnGame.add(player);
-    		if(playersOnGame.size()==3) { //bei 4 Spielern wird das Game gestartet
-    		    startGame();
-    		    sl.getLogger().info("4 Spieler vorhanden, game wird gestartet|Game_ID: "+this.gameID +"|Name: "+this.name);
-    		}
-    	}
+	if (playersOnGame.size() < 4) {
+	    this.playersOnGame.add(player);
+	    if (playersOnGame.size() == 4) { // bei 4 Spielern wird das Game gestartet
+		startGame();
+		// sl.getLogger().info(
+		// "4 Spieler vorhanden, game wird gestartet|Game_ID: " + this.gameID + "|Name:
+		// " + this.name);
+	    }
+	}
     }
-    
-    //Hinzufügen 1. und 2. Spieler dem Team 1 und 3. und 4. Spieler Team2.  
+
+    // Hinzufügen 1. und 2. Spieler dem Team 1 und 3. und 4. Spieler Team2.
     private void generateTeams() {
 	this.team1 = new Team(this.gameID, 1);
 	this.team1.addTeamMember(searchPlayer(moveOrder[0]));
 	this.team1.addTeamMember(searchPlayer(moveOrder[2]));
 	this.team2 = new Team(this.gameID, 2);
 	this.team2.addTeamMember(searchPlayer(moveOrder[1]));
-	this.team2.addTeamMember(searchPlayer(moveOrder[3]));	
+	this.team2.addTeamMember(searchPlayer(moveOrder[3]));
     }
-    
-    //Sucht den Spieler nach ID
+
+    // Sucht den Spieler nach ID
     public Player searchPlayer(int person_id) {
 	Player player = null;
-	for(Player p :playersOnGame) {
-		if(p.getPlayer_id() == person_id) 
-			player = p;
-		}
-	return (player);
+	for (Player p : playersOnGame) {
+	    if (p.getPlayer_id() == person_id)
+		player = p;
 	}
-    //Erstellt die Reihenfolge der Spieler/Tischordnung mittels PlayerID
-    //Ergänzung mittels Shuffle als Option
+	return (player);
+    }
+
+    // Erstellt die Reihenfolge der Spieler/Tischordnung mittels PlayerID
+    // Ergänzung mittels Shuffle als Option
     private void generateMoveOrder() {
-	for(int i = 0; i<4; i++) {
+	for (int i = 0; i < 4; i++) {
 	    moveOrder[i] = this.playersOnGame.get(i).getPlayer_id();
 	}
+	System.out.println("MoveOrder:" + this.moveOrder);
     }
-      
-    //Sobald 2 Teams/4Spieler im Spiel vorhanden sind, wird das Spiel vorbereitet und gestartet.
-    private void startGame() {	
+
+    // Sobald 2 Teams/4Spieler im Spiel vorhanden sind, wird das Spiel vorbereitet
+    // und gestartet.
+    private void startGame() {
 	generateMoveOrder();
 	generateTeams();
-	sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "+this.gameID +"|Name: "+this.name);
+	spreadCards();
+	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
+	// + this.gameID + "|Name: " + this.name);
     }
-     
-    
-    //Kartenverteilen: Nach dem Mischen der Karten müssen diese auf die Spieler verteilt werden.
-    private void spreadCards() {
-	this.cardDeck = new CardDeck();
-	ArrayList<E> hands = new ArrayList<>();
+
+    // Kartenverteilen: Nach dem Mischen der Karten müssen diese auf die Spieler
+    // verteilt werden.
+    void spreadCards() {
+	CardDeck deck = new CardDeck();
+	ArrayList<Card> hand1 = new ArrayList<>();
 	ArrayList<Card> hand2 = new ArrayList<>();
 	ArrayList<Card> hand3 = new ArrayList<>();
 	ArrayList<Card> hand4 = new ArrayList<>();
-	for(Card card : cardDeck.getDeck()) {
-	      for(int p = 1; p < 5; p ++)
-		  hand[]
+	for (int p = 0; p < 9; p++) {
+	    hand1.add(deck.getDeck().get(p));
 	}
+	for (int p = 9; p < 18; p++) {
+	    hand2.add(deck.getDeck().get(p));
+	}
+	for (int p = 18; p < 27; p++) {
+	    hand3.add(deck.getDeck().get(p));
+	}
+	for (int p = 27; p < 36; p++) {
+	    hand4.add(deck.getDeck().get(p));
+	}
+	playersOnGame.get(0).setHand(hand1);
+	playersOnGame.get(1).setHand(hand2);
+	playersOnGame.get(2).setHand(hand3);
+	playersOnGame.get(3).setHand(hand4);
+
+	System.out.println(hand1);
+	System.out.println(hand2);
+	System.out.println(hand3);
+	System.out.println(hand4);
     }
-    
-    //Starten nächste Runde sobald ein Spieler auf start next Round klickt
+
+    // Starten nächste Runde sobald ein Spieler auf start next Round klickt
     public void nextRound() {
-	if(this.move == 0) {
+	if (this.move == 0){
 	    this.cardsOnTable.clear();
 	    setPlayerOnMove();
 	}
-	
     }
     
-    //Setzt den Spieler der an der Reihe ist auf true.
+    // ) Runden gespielt, alle Karten gespielt
+    
+
+    // Setzt den Spieler der an der Reihe ist auf true.
     private void setPlayerOnMove() {
 	searchPlayer(moveOrder[this.move]).setonMove(true);
     }
-    
-    //Erster Spieler der am Zug ist muss Trumpf definieren.
+
+    // Erster Spieler der am Zug ist muss Trumpf definieren.
     private void setTrumpf() {
+
 	
-	updateClients();
     }
-    
-    //Spieler spielt eine Karte
+
+    // Spieler spielt eine Karte
     public void playCard(int Game_ID, int Player_ID, Card card) {
-	if(Game_ID == this.gameID) {
-	    if(this.move < 4) {
+	if (Game_ID == this.gameID) {
+	    if (this.move < 4) {
 		searchPlayer(Player_ID).removeCardFromHand(card);
 		this.cardsOnTable.add(card);
 		this.actualColor = card.getCardColor();
 		this.actualRank = card.getCardRank();
 		countMove();
 		setPlayerOnMove();
-		updateClients();
 	    }
 	}
-	
-    }
-    
-    //Zählt die Züge einer Runde
-    private void countMove() {
-	if (this.move<4){
-	    this.move++;
-	}
-	else {
-	    this.move = 0;
-	    evaluateRundWinner();
-	}
-	
-	
-    }
-   private void evaluateRundWinner() {
-	// TODO Auto-generated method stub
-	
-   
-       //
-       
-       //höchste Karte suchen
-       cardsOnTable.stream()
-       		.filter(card -> card.getCardColor() == this.trumpf)
-       		.mapToInt(card -> card.getOrdinal())
-       		.max();
-       
+
     }
 
-   //Spielbare Karten für Spieler definieren
+    // Zählt die Züge einer Runde
+    private void countMove() {
+	if (this.move < 4) {
+	    this.move++;
+	} else {
+	    this.move = 0;
+	    evaluateRundWinner();
+	    this.round++;
+	}
+
+    }
+ // Zählt die Runden
+    private void countRound() {
+	if (this.round < 9) {
+	    this.round++;
+	} else {
+	    this.round = 0;
+	    evaluateStapleWinner();
+	}
+
+    }
+
+    private void evaluateStapleWinner() {
+	// TODO Auto-generated method stub
+	
+    }
+
+    private void evaluateRundWinner() {
+	// TODO Auto-generated method stub
+
+	//
+
+	// höchste Karte suchen
+	cardsOnTable.stream().filter(card -> card.getCardColor() == this.trumpf).mapToInt(card -> card.getOrdinal())
+		.max();
+
+    }
+
+    // Spielbare Karten für Spieler definieren
    public void playableCards(int player_ID) {
        if(player_ID != this.a
        ArrayList<Card> hand =  searchPlayer(player_ID).getHand();     
@@ -167,44 +204,34 @@ public class Game {
        
    }
 
-   public Card getLastCard() {
-       return cardsOnTable.get(cardsOnTable.size()-1);
-   }
-   public CardColor getLastColor() {
-       return getLastCard().getCardColor();
-   }
-   public CardRank getLastRank() {
-       return getLastCard().getCardRank();
-   }
-    
-    //Erzwingt Update der Spieleransichten/Table
+    public Card getLastCard() {
+	return cardsOnTable.get(cardsOnTable.size() - 1);
+    }
+
+    public CardColor getLastColor() {
+	return getLastCard().getCardColor();
+    }
+
+    public CardRank getLastRank() {
+	return getLastCard().getCardRank();
+    }
+
+    // Erzwingt Update der Spieleransichten/Table
     private void updateClients() {
-	//TODO Table Objekt an alle Clients verteilen
+	// TODO Table Objekt an alle Clients verteilen
     }
-    	
-  
+
     public String toString() {
-    	return this.gameID+"";
+	return this.gameID + "";
     }
-    
-    //Getter
+
+    // Getter
     public int getGameID() {
-    	return this.gameID;
+	return this.gameID;
     }
 
+    public String getName() {
+	return name;
+    }
 
-	public String getName() {
-		return name;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
