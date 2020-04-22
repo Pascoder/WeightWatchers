@@ -12,8 +12,6 @@ public class ServerMain {
 	private final static int port = 9998;
 	
 	private static Game game;
-	private static GameView view;
-	private static ServerController controller;
 	private static ServerModel model;
 	
 	//Diese Klasse wartet bis sich ein Client verbindet um dann einen Socket abzuspalten und diesen 
