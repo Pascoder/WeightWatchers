@@ -27,7 +27,6 @@ public class Login_View extends GridPane {
 	private TextField usernameField, registerField; 
 	private PasswordField passwordField;
 	private Button loginButton, registerButton; 
-	private ChoiceBox Language;
 	private Stage stage;
 	private ClientModel model;
 	private Label registerLabel, usernameLabel, passwordLabel, lblTitle;

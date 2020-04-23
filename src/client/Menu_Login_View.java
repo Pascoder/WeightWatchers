@@ -4,6 +4,7 @@ import java.util.Locale;
 
 
 import client.Translator_JC;
+import javafx.application.Platform;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
@@ -47,10 +48,13 @@ public class Menu_Login_View extends Menu_Basic_View {
 	    }
 
 	    itemLang.setOnAction(event -> {
-		sl.getConfiguration().setLocalOption("Language", locale.getLanguage());
-		sl.setTranslator(new Translator_JC(locale.getLanguage()));
-		JassClient.changeLocales();
-
+	    	Platform.runLater(new Runnable(){
+				@Override
+				public void run() {
+					sl.getConfiguration().setLocalOption("Language", locale.getLanguage());
+					sl.setTranslator(new Translator_JC(locale.getLanguage()));	
+				}
+			});
 	    });
 
 	}
