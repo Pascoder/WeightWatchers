@@ -79,7 +79,7 @@ public class Configuration_JC {
     public void save() {
 	FileOutputStream propFile = null;
 	try {
-	    propFile = new FileOutputStream(sl.getAPP_NAME() + ".cfg");
+	    propFile = new FileOutputStream(sl.getAPP_NAME() + "Defaults.cfg");
 	    localOptions.store(propFile, null);
 	    logger.config("Local configuration file saved");
 	} catch (Exception e) {
