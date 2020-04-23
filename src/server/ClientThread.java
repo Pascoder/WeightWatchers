@@ -15,12 +15,14 @@ import messages.MessageType;
 import messages.Message_CREATEGAME;
 import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
+import messages.Message_GOODBYE;
 import messages.Message_HELLO;
 import messages.Message_JOINGAME;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
 import messages.Message_MOVE;
+import messages.Message_NEXTROUND;
 import messages.Message_USERNAMETAKEN;
 
 
@@ -124,6 +126,18 @@ public class ClientThread extends Thread {
 //				Lobby.getLobby().JoinGame(jg_msg.getGamename(), getClientName());//TODO Uncomment when method ready
 				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
 				break;
+				
+			case NEXTROUND:
+				Message_NEXTROUND nr_msg = (Message_NEXTROUND) msgIn;
+				Lobby.getLobby().startNextRound(nr_msg.getGamename());
+				break;
+				
+			case GOODBYE:
+				Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;
+				//TODO @Oli Methode in Lobby die ein Spieler löscht und alle seine aktiven Spiele beendet
+				ServerModel.updateClients(1, getClientName());
+				break;
+
 				
 			default:
 				msgOut = new Message_ERROR();

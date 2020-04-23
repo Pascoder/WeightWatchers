@@ -69,6 +69,14 @@ public void JoinGame(int game_id, Player player) {
 	}
 	}
 
+public void startNextRound(String gamename) {
+	for(Game g: actualgames) {
+		if(g.getName().equals(gamename)) {
+			g.nextRound();
+		}
+	}
+}
+
 
 public String OnlinePlayersAsString() {
 	

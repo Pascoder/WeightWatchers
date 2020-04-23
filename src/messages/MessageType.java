@@ -17,6 +17,7 @@ public enum MessageType {
 	JOINGAME,
 	CREATEGAME,
 	STARTGAME,
+	NEXTROUND,
 	MOVE,
 	ERROR;
 	
@@ -48,6 +49,7 @@ public enum MessageType {
     	else if (msg instanceof Message_JOINGAME) type = 		JOINGAME;
     	else if (msg instanceof Message_CREATEGAME) type = 		CREATEGAME;
     	else if (msg instanceof Message_STARTGAME) type = 		STARTGAME;
+    	else if (msg instanceof Message_NEXTROUND) type = 		NEXTROUND;
     	else if (msg instanceof Message_MOVE) type = 			MOVE;
     	else if (msg instanceof Message_ERROR) type = 			ERROR;
     	return type;
