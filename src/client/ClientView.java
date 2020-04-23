@@ -74,6 +74,14 @@ public class ClientView {
 	public Login_View getLoginView() {
 		return loginView;
 	}
+	
+	public Lobby_View getLobbyView() {
+		return lobbyView;
+	}
+	
+	public Game_View getGameView() {
+		return gameView;
+	}
 
 	
 		   
