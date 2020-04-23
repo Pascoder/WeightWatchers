@@ -13,7 +13,7 @@ public class ServiceLocator_JC {
 
     // Application-global constants
     final private Class<?> APP_CLASS = JassClient.class;
-    final private String APP_NAME = "Jass WeightWatchers";
+    final private String APP_NAME = "JassClient";
     
     // Supported locales (for translations)
     final private Locale[] locales = new Locale[] { new Locale("en"), new Locale("de") };
