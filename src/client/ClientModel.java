@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import messages.Message;
 import messages.MessageType;
+import messages.Message_CREATEGAME;
 import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
 import messages.Message_GAMEUPDATE;
@@ -25,11 +26,11 @@ public class ClientModel {
 		private final int port 				= 9998;
 		private Logger logger = ServiceLocator_JC.getServiceLocator().getLogger();;
 		private Socket socket;
+		private String clientName;
 		
 		
 	public ClientModel() {
-		
-		
+		clientName = "none";
 		connect(ipAdress, port);
 		
 	}
@@ -86,6 +87,7 @@ public class ClientModel {
 			
 		case LOGINOK:
 			msgOut = new Message_LOGINOK();
+			clientName = msgIn.getClient();
 			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
 			ClientController.switchview(2);
 			break;
@@ -143,7 +145,7 @@ public class ClientModel {
 		
 	}
 	
-	public void login(String username, String password) {
+	public void sayLogin(String username, String password) {
 		
 //		sayHello(username);
 		Message_LOGIN msgOut = new Message_LOGIN();
@@ -160,9 +162,10 @@ public class ClientModel {
 		}
 
 
-	public void register(String username, String password) {
+	public void sayRegister(String username, String password) {
 		
 		Message_CREATEUSER msgOut = new Message_CREATEUSER();
+		msgOut.setClient(username);
 		msgOut.setUsername(username);
 		msgOut.setPassword(password);
 		
@@ -176,7 +179,22 @@ public class ClientModel {
 	}
 	
 	
-	
+	public void sayCreateGame(String gamename) {
+		
+		Message_CREATEGAME msgOut = new Message_CREATEGAME();
+		msgOut.setClient(clientName);
+		msgOut.setGamename(gamename);
+		
+		if(socket != null) {
+			try {
+					msgOut.send(socket);
+				} catch (Exception e) {
+					logger.warning(e.toString());
+					}
+				}	
+		
+		
+	}
 	
 	
 	

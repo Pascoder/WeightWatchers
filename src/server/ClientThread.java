@@ -12,9 +12,11 @@ import client.ClientModel;
 import client.ServiceLocator_JC;
 import messages.Message;
 import messages.MessageType;
+import messages.Message_CREATEGAME;
 import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
 import messages.Message_HELLO;
+import messages.Message_JOINGAME;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
@@ -54,11 +56,7 @@ public class ClientThread extends Thread {
 					msgOut.send(clientSocket);
 				} catch (Exception e) {
 					Logger.getLogger(e.getMessage());
-				} 
-//					finally {
-//					try { if ( clientSocket != null) clientSocket.close(); 
-//					} catch (IOException e) {}
-//				}
+				} 				
 			}
 	
 	
@@ -69,6 +67,7 @@ public class ClientThread extends Thread {
 		Message msgOut = null;
 		
 		switch (MessageType.getType(msgIn)) {
+		
 			case HELLO:
 				msgOut = new Message_HELLO();
 				break;
@@ -80,7 +79,7 @@ public class ClientThread extends Thread {
 					msgOut = new Message_LOGINOK();
 					this.clientName = lg_msg.getUsername();
 					lg_msg.setClient(clientName);
-					ServerModel.updateClients(1, lg_msg.getClient());//1=Lobby Update
+					ServerModel.updateClients(1, getClientName());//1 = Lobby Update TODO ENUM machen!
 				} else  { 
 					msgOut = new Message_LOGINNOTOK();
 				}
@@ -93,13 +92,10 @@ public class ClientThread extends Thread {
 				if (ServerModel.createUser(cu_msg.getUsername(), cu_msg.getPassword())) {
 					
 					msgOut = new Message_USERNAMETAKEN();
-//					logger.info("Server an Client: Username vergeben");
 					
 				} else {
 					msgOut= new Message_CREATEUSER();
-//					logger.info("Server an Client: Username erfolgreich registriert");
 				}
-			
 				break;
 			
 			case MOVE:
@@ -111,17 +107,23 @@ public class ClientThread extends Thread {
 				
 				for(Game g : Lobby.getLobby().getGames()) {
 					if(g.getGameID() == Game_ID) {
-						g.playCard(Game_ID, Player_ID, null);//TODO send Card as String
+						g.playedCardfromClient_2(Game_ID, Player_ID, Card);
 					}
 				}
-				
-				ServerModel.updateClients(2, mo_msg.getClient());
-				 
+				ServerModel.updateClients(2, getClientName());//2 = Game Update
 				break;
 				
+			case CREATEGAME:
+				Message_CREATEGAME cg_msg = (Message_CREATEGAME) msgIn;
+				Lobby.getLobby().createGame(cg_msg.getGamename());
+				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
+				break;
 				
-				
-				
+			case JOINGAME:
+				Message_JOINGAME jg_msg = (Message_JOINGAME) msgIn;
+//				Lobby.getLobby().JoinGame(jg_msg.getGamename(), getClientName());//TODO Uncomment when method ready
+				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
+				break;
 				
 			default:
 				msgOut = new Message_ERROR();

@@ -59,6 +59,7 @@ if (!playerExists) {
 }
 
 //In Spieler aktuelles Spiel schreiben sobald er einem Spiel in der Lobby beitretet
+//TODO @Oli diese Methode soll zwei Strings entgegennehmen, thanks!!
 public void JoinGame(int game_id, Player player) {
 	player.setActualGame(game_id);
 	for(int i = 0; i<actualgames.size();i++) {

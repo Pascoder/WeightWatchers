@@ -2,25 +2,21 @@ package messages;
 
 import java.util.ArrayList;
 
-import messages.Message.NameValue;
 
-public class Message_JOINGAME extends Message{
+
+public class Message_STARTGAME extends Message{
 	
 	private static final String ELEMENT_GAMENAME = "gamename";
 	
 	private String gamename;
-
 	
-	public Message_JOINGAME() {
+	public Message_STARTGAME() {
 		super();
 	}
 
 	@Override
 	protected void receiveAttributes(ArrayList<NameValue> pairs) {
 		this.gamename = findAttribute(pairs, ELEMENT_GAMENAME);
-
-		
-		
 		
 	}
 

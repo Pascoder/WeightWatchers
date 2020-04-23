@@ -37,6 +37,8 @@ public class Game {
     }
 
     // Wählt ein Spieler in der Lobby ein Spiel aus, wird er dem Game hinzugefügt.
+    
+    
     public void addPlayer(Player player) {
 	if (playersOnGame.size() < 4) {
 	    this.playersOnGame.add(player);
@@ -86,6 +88,15 @@ public class Game {
 	setPlayerOnMove();
 	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
 	// + this.gameID + "|Name: " + this.name);
+	
+	//Allen Clients im Game eine Message_STARTGAME senden um View auf Client zu wechseln, GameUpdate senden im GameView zu laden
+	for(Player p : playersOnGame) {
+		ServerModel.sayGameStarted(getName(), p.getName());
+		ServerModel.updateClients(2, p.getName());
+	}
+	
+	
+		
     }
 
     // Kartenverteilen: Nach dem Mischen der Karten müssen diese auf die Spieler

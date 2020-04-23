@@ -22,8 +22,8 @@ ServiceLocator_JC serviceLocator;
 		Login_View view = clientView.getLoginView();
 		
 		
-		view.getLoginButton().setOnAction(e -> clientModel.login(view.getUsernameField().getText(), view.getPasswordField().getText()));
-		view.getRegisterButton().setOnAction(e -> clientModel.register(view.getUsernameField().getText(),view.getPasswordField().getText()));
+		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
+		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
 	}
 	
 	public static void updateLoginInfoLabel(String info) {

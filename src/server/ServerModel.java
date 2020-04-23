@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import messages.Message;
 import messages.Message_GAMEUPDATE;
 import messages.Message_LOBBYUPDATE;
+import messages.Message_STARTGAME;
 
 public class ServerModel {
 
@@ -167,12 +168,34 @@ public class ServerModel {
 					}
 				}
 				break;
-					
+				
 			}
 			
 			
 		}
-
+		
+		//Sendet GameStart Message an den Client im Game
+		public static void sayGameStarted(String gamename, String client) {
+			Message_STARTGAME msgOutstart = new Message_STARTGAME();
+			
+			msgOutstart.setClient(client);
+			msgOutstart.setGamename(gamename);
+			
+			for(ClientThread ct : clientList) {
+				if(ct.getClientName().equals(client)) {
+					msgOutstart.send(ct.getClientSocket());
+				}
+			}
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
 
 		public static void addClientThreadToList(ClientThread clientThread) {
 			clientList.add(clientThread);
