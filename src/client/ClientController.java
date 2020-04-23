@@ -24,6 +24,7 @@ ServiceLocator_JC serviceLocator;
 		
 		view.getLoginButton().setOnAction(e -> clientModel.login(view.getUsernameField().getText(), view.getPasswordField().getText()));
 		view.getRegisterButton().setOnAction(e -> clientModel.register(view.getUsernameField().getText(),view.getPasswordField().getText()));
+		
 	}
 	
 	public static void updateLoginInfoLabel(String info) {
@@ -34,6 +35,8 @@ ServiceLocator_JC serviceLocator;
 			}
 		});
 	}
+	
+	
 	
 	
 	public static void switchview(int view) {
