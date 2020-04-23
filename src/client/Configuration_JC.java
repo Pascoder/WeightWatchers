@@ -38,7 +38,7 @@ public class Configuration_JC {
     public Configuration_JC() {
 	// Load default properties from wherever the code is
 	defaultOptions = new Properties();
-	String defaultFilename = sl.getAPP_NAME() + "_defaults.cfg";
+	String defaultFilename = sl.getAPP_NAME() + "Defaults.cfg";
 	InputStream inStream = sl.getAPP_CLASS().getResourceAsStream(defaultFilename);
 	try {
 	    defaultOptions.load(inStream);

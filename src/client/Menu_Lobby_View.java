@@ -47,7 +47,7 @@ public class Menu_Lobby_View extends Menu_Basic_View {
 	    itemLang.setOnAction(event -> {
 		sl.getConfiguration().setLocalOption("Language", locale.getLanguage());
 		sl.setTranslator(new Translator_JC(locale.getLanguage()));
-		JassClient.changeLocales();
+		
 
 	    });
 

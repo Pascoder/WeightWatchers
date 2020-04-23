@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 //TODO in der initialize Methode Klasse zur Verbindungsaufbau aufrufen
@@ -15,9 +16,7 @@ public class ClientMVC extends Application{
 	private ClientView clientView;
 	private ClientController clientController;
 	private ServiceLocator_JC sl;
-	//nicht beachten, zu Testzwecken
-//	private Test_Controller tc;
-//	private Test_View tv;
+	
 
 	public static void main(String[] args){
 		launch(args);
@@ -46,6 +45,8 @@ public class ClientMVC extends Application{
 		String language = sl.getConfiguration().getOption("Language");
 		sl.setTranslator(new Translator_JC(language));
 		
+		
+		
 		//Hier fehlt noch Verbindung zu Server herstellen
 	}
 	private Logger configureLogger() {
@@ -66,6 +67,10 @@ public class ClientMVC extends Application{
 	    throw new RuntimeException("Unable to initialize log files: "+ e.toString());
 	        }
 	    return ourLogger;
+	}
+	
+	public static void changeLocales() {
+		
 	}
 
 }
