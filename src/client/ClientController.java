@@ -1,6 +1,8 @@
 package client;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import client.ServiceLocator_JC;
 //import chatGame.olmoClient.Model.ChatGame_Model;
 //import chatGame.olmoClient.Views.ChatGame_View;
@@ -8,6 +10,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import server.Lobby;
 
 public class ClientController {
 
@@ -20,10 +23,12 @@ ServiceLocator_JC serviceLocator;
 		this.clientModel = clientModel;
 		this.clientView = clientView;
 		Login_View view = clientView.getLoginView();
+		Lobby_View lobbyview = clientView.getLobbyView();
 		
 		
 		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
+		lobbyview.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobbyview.getTextField().getText()));
 	}
 	
 	public static void updateLoginInfoLabel(String info) {
@@ -46,8 +51,66 @@ ServiceLocator_JC serviceLocator;
 		});
 		
 	}
+	
+	
+	
+	
+	
+public static void loadPlayersOnline (String [] players) {
+	//ObservableList<String> newplayers = FXCollections.observableArrayList();
+	
+			clientView.getLobbyView().playerOnList.clear();
+			for(String s : players) {
+				clientView.getLobbyView().playerOnList.appendText(s+"\n");
+			}
 
 	
+	//System.out.println("ObservableList:"+newplayers.get(0));
+	
+	
+	/*Platform.runLater(new Runnable(){
+
+		@Override
+		public void run() {
+			clientView.getLobbyView().setPlayerOn(newplayers);
+		}
+	});*/
+	
+}
+
+public static void loadGames(String [] games) {
+	clientView.getLobbyView().gamesList.clear();
+	for(String s : games) {
+		clientView.getLobbyView().gamesList.appendText(s+"\n");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

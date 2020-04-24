@@ -1,6 +1,7 @@
 package client;
 
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -87,7 +88,7 @@ public class ClientModel {
 			
 		case LOGINOK:
 			msgOut = new Message_LOGINOK();
-			clientName = msgIn.getClient();
+			this.clientName = msgIn.getClient();
 			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
 			ClientController.switchview(2);
 			break;
@@ -112,9 +113,12 @@ public class ClientModel {
 			
 		case LOBBYUPDATE:
 			msgOut = new Message_LOBBYUPDATE();
+			Message_LOBBYUPDATE lu_msg = (Message_LOBBYUPDATE) msgIn;
+			lu_msg.setClient(clientName);
 			logger.info("Lobby Update erhalten:");
 			System.out.println(msgIn.toString());
-			//TODO Verbindung zu Controller um ViewUpdate zu machen
+			ClientController.loadPlayersOnline(findPlayers(lu_msg.getPlayersonline()));
+			ClientController.loadGames(findGames(lu_msg.getGames()));
 			break;
 			
 		case GAMEUPDATE:
@@ -124,12 +128,44 @@ public class ClientModel {
 			//TODO Verbindung zu Controller um ViewUpdate zu machen
 			break;
 			
+		case CREATEGAME:
+			msgOut = new Message_CREATEGAME();
+			logger.info("Spiel wurde erstellt");
+			break;
+			
+			
 		default:
 			msgOut = new Message_ERROR();
 		}
 		msgOut.setClient(clientName);
 		return msgOut;
 	}
+
+	
+	
+	
+	
+	private String [] findGames(String games) {
+		String [] gamesArray = games.split("\\|");
+		return gamesArray;
+		
+	}
+
+
+	private String [] findPlayers(String s) {
+		String [] playersArray = s.split("\\|");
+//		ArrayList <String> playersList = new ArrayList <String>();
+//		String [] playersArray = s.split("\\n");
+//		playersList.add(playersArray[4]);
+//		String players = playersList[3];
+//		String playersNew = players.substring(14);
+//		String [] returnString = playersNew.split("\\|");
+//		System.out.println("Das ist ein String: " + s);
+		
+		
+		return playersArray;
+	}
+
 
 	public void sayHello(String clientName) {
 		
@@ -184,6 +220,7 @@ public class ClientModel {
 		Message_CREATEGAME msgOut = new Message_CREATEGAME();
 		msgOut.setClient(clientName);
 		msgOut.setGamename(gamename);
+		System.out.println(msgOut.toString());
 		
 		if(socket != null) {
 			try {
@@ -191,9 +228,7 @@ public class ClientModel {
 				} catch (Exception e) {
 					logger.warning(e.toString());
 					}
-				}	
-		
-		
+				}		
 	}
 	
 	

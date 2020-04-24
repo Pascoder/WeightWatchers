@@ -34,7 +34,7 @@ public class Game_View extends BorderPane{
     protected Button weis;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8;
     
-    //Gehört nachher ins CSS
+    //Gehï¿½rt nachher ins CSS
     protected Image img1 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Acht.jpg"));
     protected Image img2 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Ass.jpg"));
     protected Image img3 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Koenig.jpg"));
@@ -60,7 +60,7 @@ public class Game_View extends BorderPane{
    
     
     
-    public Game_View(Stage stage/*, ClientModel model*/) { 
+    public Game_View(Stage stage) { 
     	this.stage = stage;
 		this.model = model;
 		this.setPadding(new Insets(10,10,10,10));

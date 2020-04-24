@@ -2,7 +2,7 @@ package messages;
 
 import java.util.ArrayList;
 
-import messages.Message.NameValue;
+
 
 public class Message_CREATEGAME extends Message{
 	

@@ -57,7 +57,7 @@ public class ClientThread extends Thread {
 					System.out.println("Antwort dem Client gesendet: "+ msgOut);
 					msgOut.send(clientSocket);
 				} catch (Exception e) {
-					Logger.getLogger(e.getMessage());
+					Logger.getLogger(e.getLocalizedMessage());
 				} 				
 			}
 	
@@ -113,29 +113,34 @@ public class ClientThread extends Thread {
 					}
 				}
 				ServerModel.updateClients(2, getClientName());//2 = Game Update
+				msgOut = new Message_MOVE();
 				break;
 				
 			case CREATEGAME:
 				Message_CREATEGAME cg_msg = (Message_CREATEGAME) msgIn;
 				Lobby.getLobby().createGame(cg_msg.getGamename());
 				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
+				msgOut = new Message_CREATEGAME();
 				break;
 				
 			case JOINGAME:
 				Message_JOINGAME jg_msg = (Message_JOINGAME) msgIn;
 //				Lobby.getLobby().JoinGame(jg_msg.getGamename(), getClientName());//TODO Uncomment when method ready
 				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
+				msgOut = new Message_JOINGAME();
 				break;
 				
 			case NEXTROUND:
 				Message_NEXTROUND nr_msg = (Message_NEXTROUND) msgIn;
 				Lobby.getLobby().startNextRound(nr_msg.getGamename());
+				msgOut = new Message_NEXTROUND();
 				break;
 				
 			case GOODBYE:
 				Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;
 				//TODO @Oli Methode in Lobby die ein Spieler löscht und alle seine aktiven Spiele beendet
 				ServerModel.updateClients(1, getClientName());
+				msgOut = new Message_GOODBYE();
 				break;
 
 				
