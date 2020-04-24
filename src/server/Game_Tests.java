@@ -50,6 +50,15 @@ public static void main(String[] args) {
     game.playCard(1, 1, game.stringToCard(card));
     System.out.println("CardsOnTAble:"+game.getCardsOnTable());
     
+    System.out.println(game.searchPlayer(1));
+    System.out.println(game.searchPlayer(9));
+    System.out.println(game.searchPlayer(3));
+    System.out.println(game.searchPlayer(45));
+    System.out.println("-----");
+    game.playCard(1, 1, game.searchPlayer(1).getHand().get(2));
+    System.out.println("CardsOnTAble:"+game.getCardsOnTable());
+    System.out.println("CardsOnTAble:"+game.getCardsOnTable());
+    
     
     System.out.println(game.searchPlayer(1));
     System.out.println(game.searchPlayer(9));
@@ -74,14 +83,14 @@ public static void main(String[] args) {
     System.out.println("-----");
     game.playCard(1, 45, game.searchPlayer(45).getHand().get(1));
     System.out.println("CardsOnTAble:"+game.getCardsOnTable());
-    System.out.println("Runde fertig");
+    System.out.println("Runde fertig ---------------------------------------------");
     game.nextRound();
     System.out.println("-----");
     System.out.println(game.searchPlayer(1));
     System.out.println(game.searchPlayer(9));
     System.out.println(game.searchPlayer(3));
     System.out.println(game.searchPlayer(45));
-    System.out.println("-----");
+    System.out.println("------------------------------------------------------------");
     game.playCard(1, 1, game.searchPlayer(1).getHand().get(1));
     System.out.println("CardsOnTAble:"+game.getCardsOnTable());
     
@@ -353,7 +362,7 @@ public static void main(String[] args) {
     System.out.println(game.searchPlayer(3));
     System.out.println(game.searchPlayer(45));
     System.out.println("-----");
-    game.playCard(1, 1, game.searchPlayer(1).getHand().get(1));
+    game.playCard(1, 1, game.searchPlayer(1).getHand().get(0));
     System.out.println("CardsOnTAble:"+game.getCardsOnTable());
     
     System.out.println(game.searchPlayer(1));
@@ -361,7 +370,7 @@ public static void main(String[] args) {
     System.out.println(game.searchPlayer(3));
     System.out.println(game.searchPlayer(45));
     System.out.println("-----");
-    game.playCard(1, 9, game.searchPlayer(9).getHand().get(1));
+    game.playCard(1, 9, game.searchPlayer(9).getHand().get(0));
     System.out.println("CardsOnTAble:"+game.getCardsOnTable());
     
     System.out.println(game.searchPlayer(1));
@@ -369,7 +378,7 @@ public static void main(String[] args) {
     System.out.println(game.searchPlayer(3));
     System.out.println(game.searchPlayer(45));
     System.out.println("-----");
-    game.playCard(1, 3, game.searchPlayer(3).getHand().get(1));
+    game.playCard(1, 3, game.searchPlayer(3).getHand().get(0));
     System.out.println("CardsOnTAble:"+game.getCardsOnTable());
     
     System.out.println(game.searchPlayer(1));
@@ -377,7 +386,7 @@ public static void main(String[] args) {
     System.out.println(game.searchPlayer(3));
     System.out.println(game.searchPlayer(45));
     System.out.println("-----");
-    game.playCard(1, 45, game.searchPlayer(45).getHand().get(1));
+    game.playCard(1, 45, game.searchPlayer(45).getHand().get(0));
     System.out.println("CardsOnTAble:"+game.getCardsOnTable());
     System.out.println("Runde fertig");
     game.nextRound();

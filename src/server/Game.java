@@ -20,6 +20,7 @@ public class Game {
     private int move;
     private int gameID;
     private String name;
+    private GameType gametype;
 
     // Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
     Game(int gameID, String name) {
@@ -32,6 +33,8 @@ public class Game {
 	this.name = name;
 	this.round = 0;
 	this.move = 0;
+	this.trumpf = null;
+	this.gametype = GameType.Schieber;
 	// sl.getLogger().info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name:
 	// "+this.name);
     }
@@ -41,6 +44,7 @@ public class Game {
     public void addPlayer(Player player) {
 	if (playersOnGame.size() < 4) {
 	    this.playersOnGame.add(player);
+	    player.setActualGame(this.gameID);
 	    if (playersOnGame.size() == 4) { // bei 4 Spielern wird das Game gestartet
 		startGame();
 		// sl.getLogger().info(
@@ -83,14 +87,13 @@ public class Game {
     private void startGame() {
 	generateMoveOrder();
 	generateTeams();
-	// spreadCards(); Brauchts nur, wenn der Spieler vor dem ersten Zug nicht auf
-	// Nächste Runde Spielen soll.
-	setPlayerOnMove();
+	setPlayersOffMove();
+
 	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
 	// + this.gameID + "|Name: " + this.name);
 
-	// Allen Clients im Game eine Message_STARTGAME senden um View auf Client zu
-	// wechseln, GameUpdate senden im GameView zu laden
+//	 Allen Clients im Game eine Message_STARTGAME senden um View auf Client zu
+//	 wechseln, GameUpdate senden im GameView zu laden
 	for (Player p : playersOnGame) {
 	    ServerModel.sayGameStarted(getName(), p.getName());
 	    ServerModel.updateClients(2, p.getName());
@@ -144,10 +147,19 @@ public class Game {
 	    searchPlayer(moveOrder[i]).setonMove(false);
 	}
 	searchPlayer(moveOrder[this.move]).setonMove(true);
+	setPlayableCards();
+    }
+
+    // Setzt alle Spieler auf inaktiv
+    private void setPlayersOffMove() {
+	for (Player p : this.playersOnGame) {
+	    p.setonMove(false);
+	}
     }
 
     // Erster Spieler der am Zug ist muss Trumpf definieren.
-    private void setTrumpf() {
+    private void setTrumpf(Card card) {
+	this.trumpf = card.getCardColor();	
 
     }
 
@@ -174,18 +186,23 @@ public class Game {
     }
 
     // Spieler spielt eine Karte
-    public void playCard(int Game_ID, int Player_ID, Card card) {
-	if (Game_ID == this.gameID) {
-	    if (this.move < 4) {
-		searchPlayer(Player_ID).removeCardFromHand(card);
-		this.cardsOnTable.add(card);
-		this.actualColor = card.getCardColor();
-		this.actualRank = card.getCardRank();
-		countMove();
-		setPlayerOnMove();
+    public void playCard(int game_ID, int player_ID, Card card) {
+	if (game_ID == this.gameID && searchPlayer(player_ID).getonMove()) {
+	    if (this.trumpf != null) {
+		normalMove(game_ID, player_ID, card);
+	    } else {
+		setTrumpf(card);
 	    }
 	}
+    }
 
+    private void normalMove(int game_ID, int player_ID, Card card) {
+	searchPlayer(player_ID).removeCardFromHand(card);
+	this.cardsOnTable.add(card);
+	this.actualColor = card.getCardColor();
+	this.actualRank = card.getCardRank();
+	countMove();
+	setPlayerOnMove();
     }
 
     // Zählt die Züge einer Runde
@@ -194,6 +211,7 @@ public class Game {
 	    this.move++;
 	} else {
 	    this.move = 0;
+	    setPlayersOffMove();
 	    evaluateRundWinner();
 	    countRound();
 	}
@@ -232,15 +250,55 @@ public class Game {
     }
 
     // Spielbare Karten für Spieler definieren
-   public void playableCards(int player_ID) {
-       if(player_ID != this.player_ID)
-       ArrayList<Card> hand =  searchPlayer(player_ID).getHand();     
-       hand.stream()
-       	.anyMatch(card -> card.getCardColor() == this.actualColor)
-       	.forEach(card -> card.setPlayable(true));
-       	  searchPlayer(player_ID).setHand(hand);
+   public void setPlayableCards() {
+       
+       checkTrumpfCards();
+       cardsNotOnMovePlayers();
        
    }
+   
+   private void cardsNotOnMovePlayers() {
+       for(Player p : this.playersOnGame) {	  
+	   if (!(p.getonMove()))
+	       for (Card c : p.getHand()){		   
+		   c.setPlayable(false);
+	       }
+       }    
+   }
+   
+   private void checkTrumpfCards() {
+       int i = 0;
+       for(Player p : this.playersOnGame) {	  
+	       for (Card c : p.getHand()){		   
+		   if (c.getCardColor()== this.trumpf) {
+		       c.setPlayable(true);
+		       i++;
+		   }else {
+		       c.setPlayable(false);
+		   }
+	       }
+       
+	   	if (i == 0) {
+		       for (Card c2: p.getHand()) {
+			   c2.setPlayable(true);
+		       }
+	   	}
+	   	}
+   }
+	   	
+   
+	       
+	       
+   
+
+   
+//      ArrayList<Card> hand =  searchPlayer(player_ID).getHand();     
+//       hand.stream()
+//       	.anyMatch(card -> card.getCardColor() == this.actualColor)
+//       	.forEach(card -> card.setPlayable(true));
+//       	  searchPlayer(player_ID).setHand(hand);
+//       
+//   }
 
     // Methode benötigt für Message_GAMEUPDATE
     public String GameAsString() {
@@ -269,16 +327,10 @@ public class Game {
 	return getLastCard().getCardRank();
     }
 
-    // Erzwingt Update der Spieleransichten/Table
-    private void updateClients() {
-	// TODO Table Objekt an alle Clients verteilen
-    }
-
     public String toString() {
 	return this.gameID + "";
     }
 
-    // Getter
     public int getGameID() {
 	return this.gameID;
     }
@@ -290,7 +342,5 @@ public class Game {
     public ArrayList<Player> getPlayersOnGame() {
 	return playersOnGame;
     }
-    
-    
 
 }
