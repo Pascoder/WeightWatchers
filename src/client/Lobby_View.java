@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -21,7 +22,8 @@ public class Lobby_View{
     private Label lblChat;
     public ListView<String> chatList;
     private Label lblPlayerOn;
-    public ListView<String> playerOnList;
+   // public ListView<String> playerOnList;
+    public TextArea playerOnList;
     private Label lblSelectedGame;
     public ListView<String> selectedGameList;
     private Stage stage;
@@ -85,8 +87,8 @@ public class Lobby_View{
 		
 		// RightTop: Player online
 		lblPlayerOn = new Label(t.getString("lobby.blbPlayerOn"));
-		playerOnList = new ListView<String>();
-		playerOnList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		playerOnList = new TextArea();
+		//playerOnList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
 		ScrollPane gameScroll3 = new ScrollPane();
 		HBox scrollBox3 = new HBox();
@@ -140,7 +142,10 @@ public class Lobby_View{
 	chatList.setItems(chat);
 	}
     public void setPlayerOn(ObservableList<String> playerOn) {	
-    playerOnList.setItems(playerOn);
+    
+    	//playerOnList.setItems(playerOn);
+    
+    
 	}
     public void setSelectedGame(ObservableList<String> selectedGame) {	
     selectedGameList.setItems(selectedGame);

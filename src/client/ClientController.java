@@ -1,6 +1,8 @@
 package client;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import client.ServiceLocator_JC;
 //import chatGame.olmoClient.Model.ChatGame_Model;
 //import chatGame.olmoClient.Views.ChatGame_View;
@@ -46,8 +48,63 @@ ServiceLocator_JC serviceLocator;
 		});
 		
 	}
+	
+	
+	
+	
+	
+public static void loadPlayersOnline (String [] players) {
+	//ObservableList<String> newplayers = FXCollections.observableArrayList();
+	
+	
+			for(String s : players) {
+				clientView.getLobbyView().playerOnList.appendText(s+"\n");
+			}
 
 	
+	//System.out.println("ObservableList:"+newplayers.get(0));
+	
+	
+	/*Platform.runLater(new Runnable(){
+
+		@Override
+		public void run() {
+			clientView.getLobbyView().setPlayerOn(newplayers);
+		}
+	});*/
+	
+}
+
+public static void loadGames(String [] games) {
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
