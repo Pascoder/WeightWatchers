@@ -46,8 +46,48 @@ ServiceLocator_JC serviceLocator;
 		});
 		
 	}
-
 	
+	
+	
+	
+	
+public static void loadPlayersOnline (String [] players) {
+	for(String s : players) {
+		
+	}
+	
+}
+
+public static void loadGames(String [] games) {
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
