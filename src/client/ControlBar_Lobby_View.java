@@ -18,10 +18,10 @@ public class ControlBar_Lobby_View extends ControlBar_Basic_View{
 //	btnCancel = new Button(t.getString("start.btnCancel"));
 	btnSend = new Button(t.getString("lobby.btnSend"));
 	txtMsg = new TextField();
-	btnLeave = new Button(t.getString("lobby.btnLeave"));
+//	btnLeave = new Button(t.getString("lobby.btnLeave"));
 //	btnCancel.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
 	
-	toolLeft.getItems().addAll(txtMsg, btnSend, btnLeave);
+	toolLeft.getItems().addAll(txtMsg, btnSend);
 	
 	
     }
