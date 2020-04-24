@@ -36,17 +36,12 @@ public class Lobby_View{
     public Label lblChatOptions;
     private Translator_JC t;
     private ServiceLocator_JC sl;
-<<<<<<< HEAD
-    private Button createBt, leaveBt; 
+
+    
     private TextField txtGameName;
-=======
-<<<<<<< HEAD
     private Button createBt, leaveBt, leaveLobbyBt; 
-=======
-    private Button createBt, leaveBt, createGame; 
     private TextField txt;
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
+
 
     public Lobby_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
@@ -69,20 +64,14 @@ public class Lobby_View{
 		this.txtGameName = new TextField();
 		
 		VBox gamesBox = new VBox();
-<<<<<<< HEAD
 		gamesBox.getChildren().addAll(lblGames, scrollBox,createBt,txtGameName);
-=======
-<<<<<<< HEAD
-		gamesBox.getChildren().addAll(lblGames, scrollBox, this.createBt);
+		
 		gamesBox.setPadding(new Insets(15, 12, 15, 12));
 		gamesBox.setSpacing(10);
 	
-=======
-		gamesBox.getChildren().addAll(lblGames, scrollBox, this.createBt, createGame,txt);
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
+		
 
 
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 		// LeftBottom: Chatroom
 		lblChat = new Label(t.getString("lobby.blbChat"));
 		chatList = new ListView<String>();
