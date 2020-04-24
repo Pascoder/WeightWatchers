@@ -123,7 +123,7 @@ public class ClientModel {
 			ClientController.joinGame(findJoinedgames(lu_msg.getGames())); //TODO:Hier Fehlt eine Methode auf dem Server Model LobbyUpdate habe einfach mal getGames genommen
 			break;
 			
-		case GAMEUPDATE:
+		case GAMEUPDATE: 
 			msgOut = new Message_GAMEUPDATE();
 			logger.info("Game Update erhalten:");
 			System.out.println(msgIn.toString());
