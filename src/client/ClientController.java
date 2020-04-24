@@ -59,7 +59,7 @@ ServiceLocator_JC serviceLocator;
 public static void loadPlayersOnline (String [] players) {
 	//ObservableList<String> newplayers = FXCollections.observableArrayList();
 	
-	
+			clientView.getLobbyView().playerOnList.clear();
 			for(String s : players) {
 				clientView.getLobbyView().playerOnList.appendText(s+"\n");
 			}
@@ -79,8 +79,9 @@ public static void loadPlayersOnline (String [] players) {
 }
 
 public static void loadGames(String [] games) {
+	clientView.getLobbyView().gamesList.clear();
 	for(String s : games) {
-		clientView.getLobbyView().selectedGameList.appendText(s+"\n");
+		clientView.getLobbyView().gamesList.appendText(s+"\n");
 	}
 }
 
