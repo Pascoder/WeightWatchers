@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -27,7 +28,7 @@ public class Lobby_View{
    // public ListView<String> playerOnList;
     public TextArea playerOnList;
     private Label lblSelectedGame;
-    public ListView<String> selectedGameList;
+    public TextArea selectedGameList;
     private Stage stage;
 	private ClientModel model;
     public Menu_Lobby_View lobbyMenu; 
@@ -35,7 +36,12 @@ public class Lobby_View{
     public Label lblChatOptions;
     private Translator_JC t;
     private ServiceLocator_JC sl;
+<<<<<<< HEAD
     private Button createBt, leaveBt, leaveLobbyBt; 
+=======
+    private Button createBt, leaveBt, createGame; 
+    private TextField txt;
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 
     public Lobby_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
@@ -54,12 +60,20 @@ public class Lobby_View{
 		scrollBox.getChildren().add(gamesList);
 		
 		this.createBt = new Button(t.getString("lobby.btnCreate"));
+		this.createGame = new Button("Create Gane");
+		this.txt = new TextField();
 		
 		VBox gamesBox = new VBox();
+<<<<<<< HEAD
 		gamesBox.getChildren().addAll(lblGames, scrollBox, this.createBt);
 		gamesBox.setPadding(new Insets(15, 12, 15, 12));
 		gamesBox.setSpacing(10);
 	
+=======
+		gamesBox.getChildren().addAll(lblGames, scrollBox, this.createBt, createGame,txt);
+
+
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 		// LeftBottom: Chatroom
 		lblChat = new Label(t.getString("lobby.blbChat"));
 		chatList = new ListView<String>();
@@ -109,8 +123,8 @@ public class Lobby_View{
 		//RightBottom 
 		
 		lblSelectedGame = new Label(t.getString("lobby.blbSelectedGame"));
-		selectedGameList = new ListView<String>();
-		selectedGameList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		selectedGameList = new TextArea();
+		//selectedGameList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
 		ScrollPane gameScroll4 = new ScrollPane();
 		HBox scrollBox4 = new HBox();
@@ -163,8 +177,18 @@ public class Lobby_View{
     
 	}
     public void setSelectedGame(ObservableList<String> selectedGame) {	
-    selectedGameList.setItems(selectedGame);
+    //selectedGameList.setItems(selectedGame);
     }
+    
+    
+    public Button getCreateGameButton() {
+    	return this.createGame;
+    }
+    
+    public TextField getTextField() {
+    	return this.txt;
+    }
+    
     
 	
 }

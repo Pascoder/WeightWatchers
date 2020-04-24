@@ -118,7 +118,7 @@ public class ClientModel {
 			logger.info("Lobby Update erhalten:");
 			System.out.println(msgIn.toString());
 			ClientController.loadPlayersOnline(findPlayers(lu_msg.getPlayersonline()));
-//			ClientController.loadGames(findGames(lu_msg.getGames()));
+			ClientController.loadGames(findGames(lu_msg.getGames()));
 			break;
 			
 		case GAMEUPDATE:
@@ -140,8 +140,8 @@ public class ClientModel {
 	
 	
 	private String [] findGames(String games) {
-		String [] result = null;
-		return result;
+		String [] gamesArray = games.split("\\|");
+		return gamesArray;
 		
 	}
 
