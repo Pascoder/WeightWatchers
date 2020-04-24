@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class ClientView {
 
-    public Stage stage;
+   
     protected Scene scene;
     protected ClientModel clientModel;
     protected ServiceLocator_JC sl;
@@ -17,6 +17,7 @@ public class ClientView {
     private Login_View loginView;
     private Lobby_View lobbyView;
     private Game_View gameView;
+    private Stage loginStage, lobbyStage, gameStage;
     /**
      * Set any options for the stage in the subclass constructor
      * 
@@ -24,11 +25,15 @@ public class ClientView {
      * @param model
      */
     public ClientView(Stage stage, ClientModel clientModel) {
-	this.stage = stage;
+	this.loginStage = stage;
+	lobbyStage = new Stage();
+	gameStage = new Stage();
 	this.clientModel = clientModel;
 	sl = ServiceLocator_JC.getServiceLocator();
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
-	 
+	this.lobbyView = new Lobby_View(lobbyStage, clientModel);
+	this.loginView = new Login_View(loginStage, clientModel);
+//	this.gameView = new Game_View(gameStage, clientModel);
 	switchView(1);
 	
     }
@@ -36,15 +41,17 @@ public class ClientView {
    public void switchView (int viewNumber) {
 	   if(viewNumber == 1) {
 		   //LoginView
-		   loginView = new Login_View(this.stage, this.clientModel);
+		   loginStage.show();
 	   }else {
 		if(viewNumber == 2) {
 			//LobbyView
-			lobbyView = new Lobby_View(this.stage, this.clientModel);
+			lobbyStage.show();
+			loginStage.hide();
 		
 		}else {
 		//GameView
-			gameView = new Game_View(this.stage/*, this.clientModel*/);
+			gameStage.show();
+			
 			}
 	   }
    }
@@ -54,22 +61,20 @@ public class ClientView {
      * Display the view
      */
     public void start() {
-	stage.show();
+    	loginStage.show();
     }
 
     /**
      * Hide the view
      */
     public void stop() {
-	stage.hide();
+    	loginStage.hide();
     }
 
     /**
      * Getter for the stage, so that the controller can access window events
      */
-    public Stage getStage() {
-	return stage;
-    }
+    
 
 	public Login_View getLoginView() {
 		return loginView;
@@ -81,6 +86,30 @@ public class ClientView {
 	
 	public Game_View getGameView() {
 		return gameView;
+	}
+
+	public Stage getLoginStage() {
+		return loginStage;
+	}
+
+	public void setLoginStage(Stage loginStage) {
+		this.loginStage = loginStage;
+	}
+
+	public Stage getLobbyStage() {
+		return lobbyStage;
+	}
+
+	public void setLobbyStage(Stage lobbyStage) {
+		this.lobbyStage = lobbyStage;
+	}
+
+	public Stage getGameStage() {
+		return gameStage;
+	}
+
+	public void setGameStage(Stage gameStage) {
+		this.gameStage = gameStage;
 	}
 
 	

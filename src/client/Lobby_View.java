@@ -35,8 +35,8 @@ public class Lobby_View{
     public Label lblMainRoom1;
     private Translator_JC t;
     private ServiceLocator_JC sl;
-    private Button createBt, leaveBt, createGame; 
-    private TextField txt;
+    private Button createBt, leaveBt; 
+    private TextField txtGameName;
 
     public Lobby_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
@@ -55,11 +55,11 @@ public class Lobby_View{
 		scrollBox.getChildren().add(gamesList);
 		
 		this.createBt = new Button(t.getString("lobby.btnCreate"));
-		this.createGame = new Button("Create Gane");
-		this.txt = new TextField();
+		
+		this.txtGameName = new TextField();
 		
 		VBox gamesBox = new VBox();
-		gamesBox.getChildren().addAll(lblGames, scrollBox, this.createBt, createGame,txt);
+		gamesBox.getChildren().addAll(lblGames, scrollBox,createBt,txtGameName);
 
 
 		// LeftBottom: Chatroom
@@ -157,11 +157,11 @@ public class Lobby_View{
     
     
     public Button getCreateGameButton() {
-    	return this.createGame;
+    	return this.createBt;
     }
     
     public TextField getTextField() {
-    	return this.txt;
+    	return this.txtGameName;
     }
     
     

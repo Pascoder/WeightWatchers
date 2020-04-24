@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import server.Lobby;
 
 public class ClientController {
 
@@ -22,12 +23,13 @@ ServiceLocator_JC serviceLocator;
 		this.clientModel = clientModel;
 		this.clientView = clientView;
 		Login_View view = clientView.getLoginView();
-		Lobby_View lobby = clientView.getLobbyView();
+		Lobby_View lobbyview = clientView.getLobbyView();
 		
 		
 		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
-		lobby.getCreateGameButton().setOnAction(c->clientModel.sayCreateGame(lobby.getTextField().getText()));
+		lobbyview.getCreateGameButton().setOnAction(e -> System.out.println("Hallo ich bin Frank"));
+//		lobby.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobby.getTextField().getText()));
 	}
 	
 	public static void updateLoginInfoLabel(String info) {
