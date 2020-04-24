@@ -128,6 +128,12 @@ public class ClientModel {
 			//TODO Verbindung zu Controller um ViewUpdate zu machen
 			break;
 			
+		case CREATEGAME:
+			msgOut = new Message_CREATEGAME();
+			logger.info("Spiel wurde erstellt");
+			break;
+			
+			
 		default:
 			msgOut = new Message_ERROR();
 		}
