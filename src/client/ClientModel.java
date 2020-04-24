@@ -88,7 +88,7 @@ public class ClientModel {
 			
 		case LOGINOK:
 			msgOut = new Message_LOGINOK();
-			clientName = msgIn.getClient();
+			this.clientName = msgIn.getClient();
 			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
 			ClientController.switchview(2);
 			break;
@@ -214,6 +214,7 @@ public class ClientModel {
 		Message_CREATEGAME msgOut = new Message_CREATEGAME();
 		msgOut.setClient(clientName);
 		msgOut.setGamename(gamename);
+		System.out.println(msgOut.toString());
 		
 		if(socket != null) {
 			try {
@@ -221,9 +222,7 @@ public class ClientModel {
 				} catch (Exception e) {
 					logger.warning(e.toString());
 					}
-				}	
-		
-		
+				}		
 	}
 	
 	

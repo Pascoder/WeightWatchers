@@ -28,8 +28,7 @@ ServiceLocator_JC serviceLocator;
 		
 		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
-		lobbyview.getCreateGameButton().setOnAction(e -> System.out.println("Hallo ich bin Frank"));
-//		lobby.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobby.getTextField().getText()));
+		lobbyview.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobbyview.getTextField().getText()));
 	}
 	
 	public static void updateLoginInfoLabel(String info) {

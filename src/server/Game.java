@@ -232,15 +232,15 @@ public class Game {
     }
 
     // Spielbare Karten für Spieler definieren
-   public void playableCards(int player_ID) {
-       if(player_ID != this.player_ID)
-       ArrayList<Card> hand =  searchPlayer(player_ID).getHand();     
-       hand.stream()
-       	.anyMatch(card -> card.getCardColor() == this.actualColor)
-       	.forEach(card -> card.setPlayable(true));
-       	  searchPlayer(player_ID).setHand(hand);
-       
-   }
+//   public void playableCards(int player_ID) {
+//       if(player_ID != this.player_ID)
+//       ArrayList<Card> hand =  searchPlayer(player_ID).getHand();     
+//       hand.stream()
+//       	.anyMatch(card -> card.getCardColor() == this.actualColor)
+//       	.forEach(card -> card.setPlayable(true));
+//       	  searchPlayer(player_ID).setHand(hand);
+//       
+//   }
 
     // Methode benötigt für Message_GAMEUPDATE
     public String GameAsString() {

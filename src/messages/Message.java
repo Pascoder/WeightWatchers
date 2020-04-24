@@ -163,8 +163,11 @@ import java.util.Iterator;
 		        else if (type == MessageType.PLAYERONLINE) newMessage = new Message_PLAYERONLINE();
 		        else if (type == MessageType.CHAT) newMessage = new Message_CHAT();
 		        else if (type == MessageType.GAMEUPDATE) newMessage = new Message_GAMEUPDATE();
+		        else if (type == MessageType.CREATEGAME) newMessage = new Message_CREATEGAME();
 		        else if (type == MessageType.GOODBYE) newMessage = new Message_GOODBYE();
 		        else if (type == MessageType.JOINGAME) newMessage = new Message_JOINGAME();
+		        else if (type == MessageType.NEXTROUND) newMessage = new Message_NEXTROUND();
+		        else if (type == MessageType.STARTGAME) newMessage = new Message_STARTGAME();
 		        else if (type == MessageType.MOVE) newMessage = new Message_MOVE();
 		        else if (type == MessageType.ERROR) newMessage = new Message_ERROR();
 		        
