@@ -20,6 +20,7 @@ public Player(int player_id, String name, String password) {
 	this.player_id = player_id;
 	this.name = name;
 	this.password = password;
+	this.actualGame = -1;
 	
 }
 
@@ -75,7 +76,9 @@ private void setCardsToUnPlay() {
 
 //Aktuelles Spiel in dem sich der Spieler befindet
 public void setActualGame(int gameID) {
-	this.actualGame = gameID;
+    	if (this.actualGame == -1) {
+    	    this.actualGame = gameID;
+    	}
 }
 
 public int getActualGame() {
@@ -87,7 +90,8 @@ public String toString() {
 	for(int i = 0; i< hand.size();i++) {
 		cards+="|"+hand.get(i);
 	}
-	return "Player_id: "+this.player_id+"|"+"Name: "+this.name+"|"+"onMove: "+this.onMove+"|"+"Cards: "+cards+"|"+"Weis: "+this.weis+"|";
+	// player_ID|name|actualGame|onMove|weis|cards|	
+	return this.player_id+"|"+this.name+"|"+this.actualGame+"|"+this.onMove+"|"+this.weis+"|"+cards+"|";
 }
 
 

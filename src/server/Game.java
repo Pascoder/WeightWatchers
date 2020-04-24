@@ -37,8 +37,7 @@ public class Game {
     }
 
     // Wählt ein Spieler in der Lobby ein Spiel aus, wird er dem Game hinzugefügt.
-    
-    
+
     public void addPlayer(Player player) {
 	if (playersOnGame.size() < 4) {
 	    this.playersOnGame.add(player);
@@ -84,19 +83,19 @@ public class Game {
     private void startGame() {
 	generateMoveOrder();
 	generateTeams();
-	//spreadCards(); Brauchts nur, wenn der Spieler vor dem ersten Zug nicht auf Nächste Runde Spielen soll.
+	// spreadCards(); Brauchts nur, wenn der Spieler vor dem ersten Zug nicht auf
+	// Nächste Runde Spielen soll.
 	setPlayerOnMove();
 	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
 	// + this.gameID + "|Name: " + this.name);
-	
-	//Allen Clients im Game eine Message_STARTGAME senden um View auf Client zu wechseln, GameUpdate senden im GameView zu laden
-	for(Player p : playersOnGame) {
-		ServerModel.sayGameStarted(getName(), p.getName());
-		ServerModel.updateClients(2, p.getName());
+
+	// Allen Clients im Game eine Message_STARTGAME senden um View auf Client zu
+	// wechseln, GameUpdate senden im GameView zu laden
+	for (Player p : playersOnGame) {
+	    ServerModel.sayGameStarted(getName(), p.getName());
+	    ServerModel.updateClients(2, p.getName());
 	}
-	
-	
-		
+
     }
 
     // Kartenverteilen: Nach dem Mischen der Karten müssen diese auf die Spieler
@@ -127,21 +126,21 @@ public class Game {
 
     // Starten nächste Runde sobald ein Spieler auf start next Round klickt
     public void nextRound() {
-	if (this.move == 0){
+	if (this.move == 0) {
 	    this.cardsOnTable.clear();
 	    setPlayerOnMove();
-		}if (this.round == 0) {
-		    spreadCards();
-	    
+	}
+	if (this.round == 0) {
+	    spreadCards();
+
 	}
     }
-    
+
     // ) Runden gespielt, alle Karten gespielt
-    
 
     // Setzt den Spieler der an der Reihe ist auf true.
     private void setPlayerOnMove() {
-	for(int i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++) {
 	    searchPlayer(moveOrder[i]).setonMove(false);
 	}
 	searchPlayer(moveOrder[this.move]).setonMove(true);
@@ -150,36 +149,34 @@ public class Game {
     // Erster Spieler der am Zug ist muss Trumpf definieren.
     private void setTrumpf() {
 
-	
     }
-      
-    // String Aufschlüsselung in Karte   
+
+    // String Aufschlüsselung in Karte
     public Card stringToCard(String crd) {
 	String[] strCrd = crd.split("\\|");
-	Card card = new Card(CardColor.valueOf(strCrd[0].substring(0,1)), CardRank.valueOf(strCrd[0].substring(1)));
+	Card card = new Card(CardColor.valueOf(strCrd[0].substring(0, 1)), CardRank.valueOf(strCrd[0].substring(1)));
 	card.setPlayable(Boolean.parseBoolean(strCrd[1]));
 	return card;
     }
-    
+
     // Wandelt kompletten String in int und Card um
     public void playedCardfromClient(String Game_ID, String Player_ID, String card) {
 	int game_ID = Integer.parseInt(Game_ID);
 	int player_ID = Integer.parseInt(Player_ID);
 	Card card2 = stringToCard(card);
-	playCard(game_ID, player_ID, card2);	
+	playCard(game_ID, player_ID, card2);
     }
-    
-    // Wandelt  nur KartenString um
+
+    // Wandelt nur KartenString um
     public void playedCardfromClient_2(int Game_ID, int Player_ID, String card) {
 	Card card2 = stringToCard(card);
-	playCard(Game_ID, Player_ID, card2);	
+	playCard(Game_ID, Player_ID, card2);
     }
-     
+
     // Spieler spielt eine Karte
-    //TODO @Oli playerCard(int, int, String)
     public void playCard(int Game_ID, int Player_ID, Card card) {
 	if (Game_ID == this.gameID) {
-	    if (this.move < 4) {	
+	    if (this.move < 4) {
 		searchPlayer(Player_ID).removeCardFromHand(card);
 		this.cardsOnTable.add(card);
 		this.actualColor = card.getCardColor();
@@ -188,7 +185,7 @@ public class Game {
 		setPlayerOnMove();
 	    }
 	}
-	
+
     }
 
     // Zählt die Züge einer Runde
@@ -202,7 +199,8 @@ public class Game {
 	}
 	System.out.println(move);
     }
- // Zählt die Runden
+
+    // Zählt die Runden
     private void countRound() {
 	if (this.round < 8) {
 	    this.round++;
@@ -215,9 +213,9 @@ public class Game {
 
     private void evaluateStapleWinner() {
 	// TODO Auto-generated method stub
-	
+
 	System.out.println("Stichgewinner:");
-	
+
     }
 
     private void evaluateRundWinner() {
@@ -230,8 +228,6 @@ public class Game {
 	cardsOnTable.stream().filter(card -> card.getCardColor() == this.trumpf).mapToInt(card -> card.getOrdinal())
 		.max();
 	System.out.println("Höchste Karte der Runde:");
-	
-	
 
     }
 
@@ -245,36 +241,22 @@ public class Game {
        	  searchPlayer(player_ID).setHand(hand);
        
    }
-   
-   
-   
-   	//Methode benötigt für Message_GAMEUPDATE
- 	public String GameAsString() {
- 		String gameString = null;
- 			
- 		for(Player p : playersOnGame) {
- 			gameString += p.toString() + "|";
- 		}
- 			
- 			
- 			
- 		return gameString;
- 	}
 
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   public ArrayList getCardsOnTable() {
-       return this.cardsOnTable;
-   }
-   
+    // Methode benötigt für Message_GAMEUPDATE
+    public String GameAsString() {
+	String gameString = null;
+
+	for (Player p : playersOnGame) {
+	    gameString += p.toString() + "|";
+	}
+
+	return gameString;
+    }
+
+    public ArrayList getCardsOnTable() {
+	return this.cardsOnTable;
+    }
+
     public Card getLastCard() {
 	return cardsOnTable.get(cardsOnTable.size() - 1);
     }
@@ -305,8 +287,10 @@ public class Game {
 	return name;
     }
 
-	public ArrayList<Player> getPlayersOnGame() {
-		return playersOnGame;
-	}
+    public ArrayList<Player> getPlayersOnGame() {
+	return playersOnGame;
+    }
+    
+    
 
 }
