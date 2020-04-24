@@ -1,6 +1,8 @@
 package client;
 
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,12 +33,20 @@ public class Lobby_View{
 	private ClientModel model;
     public Menu_Lobby_View lobbyMenu; 
     public ControlBar_Lobby_View controls;
-    public Label lblMainRoom;
-    public Label lblMainRoom1;
+    public Label lblChatOptions;
     private Translator_JC t;
     private ServiceLocator_JC sl;
+<<<<<<< HEAD
     private Button createBt, leaveBt; 
     private TextField txtGameName;
+=======
+<<<<<<< HEAD
+    private Button createBt, leaveBt, leaveLobbyBt; 
+=======
+    private Button createBt, leaveBt, createGame; 
+    private TextField txt;
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 
     public Lobby_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
@@ -59,9 +69,20 @@ public class Lobby_View{
 		this.txtGameName = new TextField();
 		
 		VBox gamesBox = new VBox();
+<<<<<<< HEAD
 		gamesBox.getChildren().addAll(lblGames, scrollBox,createBt,txtGameName);
+=======
+<<<<<<< HEAD
+		gamesBox.getChildren().addAll(lblGames, scrollBox, this.createBt);
+		gamesBox.setPadding(new Insets(15, 12, 15, 12));
+		gamesBox.setSpacing(10);
+	
+=======
+		gamesBox.getChildren().addAll(lblGames, scrollBox, this.createBt, createGame,txt);
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 
 
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 		// LeftBottom: Chatroom
 		lblChat = new Label(t.getString("lobby.blbChat"));
 		chatList = new ListView<String>();
@@ -77,17 +98,21 @@ public class Lobby_View{
 		controls.setId("controls");
 		VBox footerBox = new VBox(); 
 		HBox labelBox = new HBox();
-		lblMainRoom1 = new Label(t.getString(""));
-		lblMainRoom = new Label("");
-		labelBox.getChildren().addAll(lblMainRoom1, lblMainRoom);
+		lblChatOptions = new Label(t.getString("lobby.lblChatOptions"));
+		labelBox.getChildren().addAll(lblChatOptions);
 		footerBox.getChildren().addAll(labelBox, controls);
 		
+		this.leaveLobbyBt = new Button(t.getString("lobby.btnLeaveLobby"));
+		
 		VBox chatBox = new VBox();
-		chatBox.getChildren().addAll(lblChat, scrollBox2, footerBox);
+		chatBox.getChildren().addAll(lblChat, scrollBox2, footerBox, this.leaveLobbyBt);
+		chatBox.setPadding(new Insets(15, 12, 15, 12));
+		chatBox.setSpacing(10);
 		
 		//Left Box
 		VBox leftBox = new VBox(gamesBox, chatBox);
-		
+		leftBox.setPadding(new Insets(15, 12, 15, 12));
+	    leftBox.setSpacing(10);
 		
 		// RightTop: Player online
 		lblPlayerOn = new Label(t.getString("lobby.blbPlayerOn"));
@@ -100,6 +125,9 @@ public class Lobby_View{
 		
 		VBox playerOnBox = new VBox();
 		playerOnBox.getChildren().addAll(lblPlayerOn, scrollBox3);
+		playerOnBox.setPadding(new Insets(15, 12, 15, 12));
+		playerOnBox.setSpacing(10);
+		
 		
 		//RightBottom 
 		
@@ -111,16 +139,22 @@ public class Lobby_View{
 		HBox scrollBox4 = new HBox();
 		scrollBox4.getChildren().add(selectedGameList);
 		
-		this.leaveBt = new Button(t.getString("lobby.btnLeave"));
+		this.leaveBt = new Button(t.getString("lobby.btnLeaveGame"));
 		
+				
 		VBox selectedGameBox = new VBox();
 		selectedGameBox.getChildren().addAll(lblSelectedGame, scrollBox4, this.leaveBt);
+		selectedGameBox.setPadding(new Insets(15, 12, 15, 12));
+		selectedGameBox.setSpacing(10);
 		
 		// Right Box
-		VBox rightBox = new VBox (playerOnBox,selectedGameBox);
+		VBox rightBox = new VBox (playerOnBox, selectedGameBox);
+		rightBox.setPadding(new Insets(15, 12, 15, 12));
+	    rightBox.setSpacing(10);;
 
 		// TOP --> Menu
 		this.lobbyMenu = new Menu_Lobby_View();
+		
 
 	
 		// BorderPane
@@ -130,8 +164,8 @@ public class Lobby_View{
 		root.setLeft(leftBox);
 		root.setRight(rightBox);
 		
-
-		Scene scene = new Scene(root);
+		
+		Scene scene = new Scene(root, 1050, 650);
 		stage.setScene(scene);
 
 		//scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());

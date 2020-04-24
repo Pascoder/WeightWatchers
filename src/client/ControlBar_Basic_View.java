@@ -38,9 +38,9 @@ public class ControlBar_Basic_View extends HBox {
 	toolLeft = new ToolBar();
 	toolRight = new ToolBar();
 
-	toolRight.getItems().add(btnQuit);
+//	toolRight.getItems().add(btnQuit);
 
-	this.getChildren().addAll(toolLeft, spacer, toolRight);
+	this.getChildren().addAll(toolLeft, spacer);
 
     }
 
