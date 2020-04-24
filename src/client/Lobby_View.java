@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -25,7 +26,7 @@ public class Lobby_View{
    // public ListView<String> playerOnList;
     public TextArea playerOnList;
     private Label lblSelectedGame;
-    public ListView<String> selectedGameList;
+    public TextArea selectedGameList;
     private Stage stage;
 	private ClientModel model;
     public Menu_Lobby_View lobbyMenu; 
@@ -34,7 +35,8 @@ public class Lobby_View{
     public Label lblMainRoom1;
     private Translator_JC t;
     private ServiceLocator_JC sl;
-    private Button createBt, leaveBt; 
+    private Button createBt, leaveBt, createGame; 
+    private TextField txt;
 
     public Lobby_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
@@ -53,9 +55,11 @@ public class Lobby_View{
 		scrollBox.getChildren().add(gamesList);
 		
 		this.createBt = new Button(t.getString("lobby.btnCreate"));
+		this.createGame = new Button("Create Gane");
+		this.txt = new TextField();
 		
 		VBox gamesBox = new VBox();
-		gamesBox.getChildren().addAll(lblGames, scrollBox, this.createBt);
+		gamesBox.getChildren().addAll(lblGames, scrollBox, this.createBt, createGame,txt);
 
 
 		// LeftBottom: Chatroom
@@ -100,8 +104,8 @@ public class Lobby_View{
 		//RightBottom 
 		
 		lblSelectedGame = new Label(t.getString("lobby.blbSelectedGame"));
-		selectedGameList = new ListView<String>();
-		selectedGameList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		selectedGameList = new TextArea();
+		//selectedGameList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
 		ScrollPane gameScroll4 = new ScrollPane();
 		HBox scrollBox4 = new HBox();
@@ -148,8 +152,18 @@ public class Lobby_View{
     
 	}
     public void setSelectedGame(ObservableList<String> selectedGame) {	
-    selectedGameList.setItems(selectedGame);
+    //selectedGameList.setItems(selectedGame);
     }
+    
+    
+    public Button getCreateGameButton() {
+    	return this.createGame;
+    }
+    
+    public TextField getTextField() {
+    	return this.txt;
+    }
+    
     
 	
 }

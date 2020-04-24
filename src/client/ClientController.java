@@ -22,10 +22,12 @@ ServiceLocator_JC serviceLocator;
 		this.clientModel = clientModel;
 		this.clientView = clientView;
 		Login_View view = clientView.getLoginView();
+		Lobby_View lobby = clientView.getLobbyView();
 		
 		
 		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
+		lobby.getCreateGameButton().setOnAction(c->clientModel.sayCreateGame(lobby.getTextField().getText()));
 	}
 	
 	public static void updateLoginInfoLabel(String info) {
@@ -76,7 +78,9 @@ public static void loadPlayersOnline (String [] players) {
 }
 
 public static void loadGames(String [] games) {
-	
+	for(String s : games) {
+		clientView.getLobbyView().selectedGameList.appendText(s+"\n");
+	}
 }
 
 
