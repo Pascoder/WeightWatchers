@@ -29,6 +29,7 @@ ServiceLocator_JC serviceLocator;
 		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
 		lobbyview.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobbyview.getTextField().getText()));
+		lobbyview.getJoinButton().setOnAction(c -> clientModel.sayJoinGame(lobbyview.getTextField().getText()));
 	}
 	
 	public static void updateLoginInfoLabel(String info) {
@@ -82,6 +83,13 @@ public static void loadGames(String [] games) {
 	clientView.getLobbyView().gamesList.clear();
 	for(String s : games) {
 		clientView.getLobbyView().gamesList.appendText(s+"\n");
+	}
+}
+
+public static void joinGame(String [] joinedgames) {
+	clientView.getLobbyView().selectedGameList.clear();
+	for(String s : joinedgames) {
+		clientView.getLobbyView().selectedGameList.appendText(s+"\n");
 	}
 }
 

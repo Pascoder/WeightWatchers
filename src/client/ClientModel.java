@@ -12,6 +12,7 @@ import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
 import messages.Message_GAMEUPDATE;
 import messages.Message_HELLO;
+import messages.Message_JOINGAME;
 import messages.Message_LOBBYUPDATE;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
@@ -119,6 +120,7 @@ public class ClientModel {
 			System.out.println(msgIn.toString());
 			ClientController.loadPlayersOnline(findPlayers(lu_msg.getPlayersonline()));
 			ClientController.loadGames(findGames(lu_msg.getGames()));
+			ClientController.joinGame(findJoinedgames(lu_msg.getGames())); //TODO:Hier Fehlt eine Methode auf dem Server Model LobbyUpdate habe einfach mal getGames genommen
 			break;
 			
 		case GAMEUPDATE:
@@ -131,6 +133,11 @@ public class ClientModel {
 		case CREATEGAME:
 			msgOut = new Message_CREATEGAME();
 			logger.info("Spiel wurde erstellt");
+			break;
+		
+		case JOINGAME:
+			msgOut = new Message_JOINGAME();
+			logger.info("Game wurde beigetreten");
 			break;
 			
 			
@@ -149,6 +156,11 @@ public class ClientModel {
 		String [] gamesArray = games.split("\\|");
 		return gamesArray;
 		
+	}
+	
+	private String [] findJoinedgames(String joinedgames) {
+		String [] joinedgamesArray = joinedgames.split("\\|");
+		return joinedgamesArray;
 	}
 
 
@@ -231,6 +243,18 @@ public class ClientModel {
 				}		
 	}
 	
+	public void sayJoinGame(String gamename) {
+		Message_JOINGAME msgOut = new Message_JOINGAME();
+		msgOut.setClient(clientName);
+		msgOut.setGamename(gamename);
+		if(socket != null) {
+			try {
+					msgOut.send(socket);
+				} catch (Exception e) {
+					logger.warning(e.toString());
+					}
+				}	
+	}
 	
 	
 	

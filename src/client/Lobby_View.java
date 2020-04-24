@@ -180,6 +180,10 @@ public class Lobby_View{
     //selectedGameList.setItems(selectedGame);
     }
     
+    public Button getJoinButton() {
+    	return this.joingame;
+    }
+    
     
     public Button getCreateGameButton() {
     	return this.createBt;
