@@ -39,7 +39,7 @@ public class JassModel {
 	return hand;
     }
 
-    public static int[] evaluateStichWinner(ArrayList<Card> cardsOnTable, GameType gameType) {
+    public static int[] evaluateStichWinner(ArrayList<Card> cardsOnTable, GameType gameType, int round) {
 	int player_ID = 9;
 	int points = 0;
 	int[] winnerScore = new int[2];

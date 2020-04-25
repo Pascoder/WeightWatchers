@@ -261,7 +261,7 @@ public class Game {
     }
 
     private void evaluateStichWinner() {
-	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype);
+	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype, this.round);
 	for (Player p : this.team1.getTeamMembers())
 	    if (p.getPlayer_id() == winnerScore[0]) {
 		this.team1.setTeamPoints(winnerScore[1]);
