@@ -125,7 +125,8 @@ public class ClientThread extends Thread {
 				
 			case JOINGAME:
 				Message_JOINGAME jg_msg = (Message_JOINGAME) msgIn;
-//				Lobby.getLobby().JoinGame(jg_msg.getGamename(), getClientName());//TODO Uncomment when method ready
+				Lobby.getLobby().JoinGame(ServerModel.searchGameID(jg_msg.getGamename())
+				,ServerModel.searchPlayerbyName(getClientName()) );
 				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
 				msgOut = new Message_JOINGAME();
 				break;

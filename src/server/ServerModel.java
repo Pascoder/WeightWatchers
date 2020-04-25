@@ -186,7 +186,21 @@ public class ServerModel {
     public static void addClientThreadToList(ClientThread clientThread) {
 	clientList.add(clientThread);
     }
-
+    
+    // Sucht den Spieler nach name mittels String
+    public static Player searchPlayerbyName(String name) {
+    	Player player = null;
+    	for (Player p : Lobby.getPlayersOnline()) {
+    	    if (p.getName().equals(name))
+    		;
+    	    player = p;
+    	}
+    	return (player);
+        }
+    
+    
+    
+    
     // Sucht den Spieler nach ID mittels String
     public Player searchPlayer(String person_id) {
 	Player player = null;
@@ -207,6 +221,18 @@ public class ServerModel {
 	    game = g;
 	}
 	return (game);
+    }
+    
+    // Sucht die GameID String:name
+    public static String searchGameID(String name) {
+    	String game_ID = null;
+    	for (Game g : Lobby.getGames()) {
+    	    if (g.getName().equals(name)) {
+    		
+    	    game_ID = Integer.toString(g.getGameID());
+    	    }
+    	}
+    	return game_ID;
     }
     
     // Löscht Spieler aus den Spiel
