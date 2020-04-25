@@ -8,6 +8,7 @@ private int team_id = 0;
 private int gameID= 0;
 private ArrayList <Player> members = new ArrayList<>();
 private int points;
+private int totalPoints;
 private int wins;
 
 
@@ -21,6 +22,13 @@ public Team (int team_id, int gameID) {
 		this.points = 0;
 		this.wins = 0;
 	//}
+}
+
+public void nextStich() {
+    
+    
+    this.totalPoints += this.points;
+    this.points = 0;
 }
 
 public int getTeam_id() {

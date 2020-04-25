@@ -1,6 +1,7 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.stream.*;
 
@@ -14,11 +15,13 @@ public class Game {
     private Team team2;
     private int[] moveOrder;
     private CardColor trumpf;
-    private CardColor actualColor;
-    private CardRank actualRank;
+    private CardColor stichColor;
     private int round;
     private int move;
     private int gameID;
+    private int lastWinner_ID;
+    private int lastWinnerTeam_ID;
+    private int lastWinner_points;
     private String name;
     private GameType gametype;
 
@@ -33,6 +36,7 @@ public class Game {
 	this.name = name;
 	this.round = 0;
 	this.move = 0;
+	this.lastWinner_ID = 0;
 	this.trumpf = null;
 	this.gametype = GameType.Schieber;
 	// sl.getLogger().info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name:
@@ -82,6 +86,25 @@ public class Game {
 	}
     }
 
+    // Verschiebt die Spieler zum 1. Spieler nach dem letzten Gewinner
+    private void shiftMoveOrder() {
+	int i1 = -1;
+	int i2 = 0;
+	for (int i : this.moveOrder) {
+	    i1++;
+	    if (i == this.lastWinner_ID) {
+		i2 = i1;
+	    }
+	}
+	int[] oldorder = Arrays.copyOf(this.moveOrder, 8);
+	{
+	    for (int i = 0; i < 4; i++) {
+		oldorder[i + 4] = this.moveOrder[i];
+	    }
+	}
+	this.moveOrder = Arrays.copyOfRange(oldorder, i2, i2 + 4);
+    }
+
     // Sobald 2 Teams/4Spieler im Spiel vorhanden sind, wird das Spiel vorbereitet
     // und gestartet.
     private void startGame() {
@@ -94,16 +117,19 @@ public class Game {
 
 //	 Allen Clients im Game eine Message_STARTGAME senden um View auf Client zu
 //	 wechseln, GameUpdate senden im GameView zu laden
-	for (Player p : playersOnGame) {
-	    ServerModel.sayGameStarted(getName(), p.getName());
-	    ServerModel.updateClients(2, p.getName());
-	}
+//	for (Player p : playersOnGame) {
+//	    ServerModel.sayGameStarted(getName(), p.getName());
+//	    ServerModel.updateClients(2, p.getName());
+//	}
 
     }
 
     // Kartenverteilen: Nach dem Mischen der Karten müssen diese auf die Spieler
     // verteilt werden.
     void spreadCards() {
+	for(Player p : this.playersOnGame) {
+	    p.clearStichCards();
+	}
 	CardDeck deck = new CardDeck();
 	ArrayList<Card> hand1 = new ArrayList<>();
 	ArrayList<Card> hand2 = new ArrayList<>();
@@ -134,12 +160,12 @@ public class Game {
 	    setPlayerOnMove();
 	}
 	if (this.round == 0) {
+	    this.team1.nextStich();
+	    this.team2.nextStich();
 	    spreadCards();
 
 	}
     }
-
-    // ) Runden gespielt, alle Karten gespielt
 
     // Setzt den Spieler der an der Reihe ist auf true.
     private void setPlayerOnMove() {
@@ -159,7 +185,7 @@ public class Game {
 
     // Erster Spieler der am Zug ist muss Trumpf definieren.
     private void setTrumpf(Card card) {
-	this.trumpf = card.getCardColor();	
+	this.trumpf = card.getCardColor();
 
     }
 
@@ -194,15 +220,18 @@ public class Game {
 		setTrumpf(card);
 	    }
 	}
+	setPlayerOnMove();
     }
 
     private void normalMove(int game_ID, int player_ID, Card card) {
 	searchPlayer(player_ID).removeCardFromHand(card);
+	card.setPlayer_ID(player_ID);
 	this.cardsOnTable.add(card);
-	this.actualColor = card.getCardColor();
-	this.actualRank = card.getCardRank();
+	if (this.stichColor == null) {
+	    this.stichColor = card.getCardColor();
+	}
 	countMove();
-	setPlayerOnMove();
+
     }
 
     // Zählt die Züge einer Runde
@@ -212,7 +241,8 @@ public class Game {
 	} else {
 	    this.move = 0;
 	    setPlayersOffMove();
-	    evaluateRundWinner();
+	    evaluateStichWinner();
+	    this.stichColor = null;
 	    countRound();
 	}
 	System.out.println(move);
@@ -225,80 +255,67 @@ public class Game {
 	} else {
 	    this.round = 0;
 	    evaluateStapleWinner();
+	    this.trumpf = null;
 	}
+
+    }
+
+    private void evaluateStichWinner() {
+	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype, this.round);
+	for (Player p : this.team1.getTeamMembers())
+	    if (p.getPlayer_id() == winnerScore[0]) {
+		this.team1.setTeamPoints(winnerScore[1]);
+		this.team1.setTeamWins(+1);
+	    }
+	this.team2.setTeamPoints(winnerScore[0]);
+	this.team2.setTeamWins(+1);
+	this.lastWinner_ID = winnerScore[0];
+	searchPlayer(this.lastWinner_ID).addStichCards(cardsOnTable);
+	shiftMoveOrder();
 
     }
 
     private void evaluateStapleWinner() {
 	// TODO Auto-generated method stub
+	if (team1.getTeamPoints() > team2.getTeamPoints()) {
+	    this.lastWinnerTeam_ID = team1.getTeam_id();
+	}else {
+	
+	    this.lastWinnerTeam_ID = team2.getTeam_id();
+	}
 
-	System.out.println("Stichgewinner:");
-
-    }
-
-    private void evaluateRundWinner() {
-	// TODO Auto-generated method stub
-	//
-
-	//
-
-	// höchste Karte suchen
-	cardsOnTable.stream().filter(card -> card.getCardColor() == this.trumpf).mapToInt(card -> card.getOrdinal())
-		.max();
-	System.out.println("Höchste Karte der Runde:");
+	System.out.println("Rundengewinner: Team " + this.lastWinnerTeam_ID);
 
     }
 
     // Spielbare Karten für Spieler definieren
-   public void setPlayableCards() {
-       
-       checkTrumpfCards();
-       cardsNotOnMovePlayers();
-       
-   }
-   
-   private void cardsNotOnMovePlayers() {
-       for(Player p : this.playersOnGame) {	  
-	   if (!(p.getonMove()))
-	       for (Card c : p.getHand()){		   
-		   c.setPlayable(false);
-	       }
-       }    
-   }
-   
-   private void checkTrumpfCards() {
-       int i = 0;
-       for(Player p : this.playersOnGame) {	  
-	       for (Card c : p.getHand()){		   
-		   if (c.getCardColor()== this.trumpf) {
-		       c.setPlayable(true);
-		       i++;
-		   }else {
-		       c.setPlayable(false);
-		   }
-	       }
-       
-	   	if (i == 0) {
-		       for (Card c2: p.getHand()) {
-			   c2.setPlayable(true);
-		       }
-	   	}
-	   	}
-   }
-	   	
-   
-	       
-	       
-   
+    public void setPlayableCards() {
+	for (Player p : this.playersOnGame) {
+	    if (p.getonMove() && this.move == 0) {
+		allCardsPlayable();
+	    }
+	    p.setHand(JassModel.checkPlayableCards(p.getHand(), trumpf, stichColor));
+	}
+	cardsNotOnMovePlayers();
+    }
 
-   
-//      ArrayList<Card> hand =  searchPlayer(player_ID).getHand();     
-//       hand.stream()
-//       	.anyMatch(card -> card.getCardColor() == this.actualColor)
-//       	.forEach(card -> card.setPlayable(true));
-//       	  searchPlayer(player_ID).setHand(hand);
-//       
-//   }
+    private void allCardsPlayable() {
+	for (Player p : this.playersOnGame) {
+	    if (p.getonMove())
+		for (Card c : p.getHand()) {
+		    c.setPlayable(true);
+		}
+	}
+    }
+
+    private void cardsNotOnMovePlayers() {
+	for (Player p : this.playersOnGame) {
+	    if (!(p.getonMove()))
+		for (Card c : p.getHand()) {
+		    c.setPlayable(false);
+		}
+	}
+    }
 
     // Methode benötigt für Message_GAMEUPDATE
     public String GameAsString() {
@@ -341,6 +358,14 @@ public class Game {
 
     public ArrayList<Player> getPlayersOnGame() {
 	return playersOnGame;
+    }
+
+    public String getLastWinner_ID() {
+	return this.lastWinner_ID + "|";
+    }
+
+    public String getLastWinnerPoints() {
+	return this.lastWinner_points + "|";
     }
 
 }
