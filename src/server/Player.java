@@ -7,6 +7,7 @@ public class Player {
 private int player_id;
 private String password; //kommt nachher eventuell in DB
 private ArrayList <Card> hand = new ArrayList <>();
+private ArrayList <Card> stichCards = new ArrayList <>();
 private String name;
 private boolean onMove;
 private Weis weis;
@@ -72,6 +73,17 @@ private void setCardsToUnPlay() {
     for(int i = 0; i > hand.size(); i++) {
 	hand.get(i).setPlayable(false);
     }
+}
+
+public void addStichCards(ArrayList<Card> cardsOnTable) {
+    this.stichCards.addAll(cardsOnTable);
+}
+
+public ArrayList<Card> getStichCards(){
+    return this.stichCards;
+}
+public void clearStichCards() {
+    this.stichCards.clear();
 }
 
 //Aktuelles Spiel in dem sich der Spieler befindet

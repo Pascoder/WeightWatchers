@@ -57,7 +57,6 @@ public static void main(String[] args) {
     System.out.println("-----");
     game.playCard(1, 1, game.searchPlayer(1).getHand().get(2));
     System.out.println("CardsOnTAble:"+game.getCardsOnTable());
-    System.out.println("CardsOnTAble:"+game.getCardsOnTable());
     
     
     System.out.println(game.searchPlayer(1));
@@ -398,7 +397,8 @@ public static void main(String[] args) {
     
     
     
-    
+    System.out.println(game.getLastWinnerPoints());
+    System.out.println((game.getLastWinner_ID()));
     
     
     
