@@ -113,8 +113,10 @@ public class Game {
 	setPlayersOffMove();
 	for(int i = 0; i< playersOnGame.size();i++) {
 		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
+		
 	}
-	
+		//Muss nur 1 mal gemacht werden, es werden sowieso alle Clients updated
+		ServerModel.updateClients(2, playersOnGame.get(0).getName());
 
 	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
 	// + this.gameID + "|Name: " + this.name);

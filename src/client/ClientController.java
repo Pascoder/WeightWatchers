@@ -24,6 +24,7 @@ ServiceLocator_JC serviceLocator;
 		this.clientView = clientView;
 		Login_View view = clientView.getLoginView();
 		Lobby_View lobbyview = clientView.getLobbyView();
+		Game_View gameview = clientView.getGameView();
 		
 		
 		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
@@ -91,6 +92,14 @@ public static void joinGame(String [] joinedgames) {
 	for(String s : joinedgames) {
 		clientView.getLobbyView().selectedGameList.appendText(s+"\n");
 	}
+}
+
+public static void loadPlayersonGame(String [] playersOnGame) {
+	
+	clientView.getGameView().p1_name.setText(playersOnGame[0]);
+	clientView.getGameView().p2_name.setText(playersOnGame[1]);
+	clientView.getGameView().p3_name.setText(playersOnGame[2]);
+	clientView.getGameView().p4_name.setText(playersOnGame[3]);
 }
 
 
