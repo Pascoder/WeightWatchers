@@ -115,7 +115,7 @@ public class Game {
 	generateMoveOrder();
 	generateTeams();
 	setPlayersOffMove();
-
+	//NextRound
 	for(int i = 0; i< playersOnGame.size();i++) {
 		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
 		
