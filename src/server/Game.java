@@ -115,8 +115,9 @@ public class Game {
 		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
 		
 	}
+	ServerModel.updateClients(2, playersOnGame.get(1).getName());
 		//Muss nur 1 mal gemacht werden, es werden sowieso alle Clients updated
-		ServerModel.updateClients(2, playersOnGame.get(0).getName());
+		
 
 	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
 	// + this.gameID + "|Name: " + this.name);

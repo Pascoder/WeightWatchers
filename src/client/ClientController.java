@@ -94,13 +94,38 @@ public static void joinGame(String [] joinedgames) {
 	}
 }
 
-public static void loadPlayersonGame(String [] playersOnGame) {
+public static void loadPlayersonGame(String [] playersOnGame, String client) {
+	System.out.println("Controller"+client);
+	boolean p1 = false;
+	boolean p2 = false;
+	boolean p3 = false;
+	for(String player:playersOnGame) {
+		if(client.equals(player)) {
+			clientView.getGameView().p4_name.setText(player);
+			
+		}else {
+			if(p1 == false) {
+			clientView.getGameView().p1_name.setText(player);
+			p1 = true;
+			}else {
+				if(p2 == false) {
+					clientView.getGameView().p2_name.setText(playersOnGame[1]);
+					p2 = true;
+				}else {
+					if(p3 == false);
+					clientView.getGameView().p3_name.setText(playersOnGame[2]);
+				}
+				
+			}
+			
+			
+		}
+	}
 	
 	
-	clientView.getGameView().p2_name.setText(playersOnGame[1]);
-	clientView.getGameView().p3_name.setText(playersOnGame[2]);
-	clientView.getGameView().p4_name.setText(playersOnGame[3]);
-	clientView.getGameView().p1_name.setText(playersOnGame[0]);
+	
+	
+	
 }
 
 

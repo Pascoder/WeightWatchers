@@ -130,7 +130,7 @@ public class ClientModel {
 			gu_msg.setClient(clientName);
 			logger.info("Game Update erhalten:");
 			
-			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers())); //TODO: Hier fehlt eine Methode beim GameUpdate der Spieler im Spiel zurückgibt
+			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient()); //TODO: Hier fehlt eine Methode beim GameUpdate der Spieler im Spiel zurückgibt
 			//TODO Verbindung zu Controller um ViewUpdate zu machen
 			break;
 			
@@ -162,6 +162,9 @@ public class ClientModel {
 	
 	
 	
+	
+
+
 	private String[] findPlayersOnGame(String players) {
 		 String[] playersOnGame = players.split("\\|");
 		return playersOnGame;

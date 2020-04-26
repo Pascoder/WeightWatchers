@@ -152,7 +152,7 @@ public class ServerModel {
 		}
 	    }
 	    
-	    msgOutGame.setClient(clientName);
+	   
 	    msgOutGame.setGameid(Lobby.getLobby().getGameIDofPlayersGame(client));
 	    //Von Frank angepasst war vorher falsch
 	    msgOutGame.setPlayers(playersInGame1);
@@ -162,6 +162,7 @@ public class ServerModel {
 	    for (ClientThread cT : clientList) {
 		for (String player : playersInGame) {
 		    if (cT.getClientName().equals(player)) {
+		    msgOutGame.setClient(player);
 			msgOutGame.send(cT.getClientSocket());
 			System.out.println("Game Update an Client: " + cT.getClientName() + " gesendet");
 		    }
