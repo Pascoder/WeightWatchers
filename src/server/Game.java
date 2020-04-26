@@ -8,7 +8,7 @@ import java.util.stream.*;
 public class Game {
     private ServiceLocator sl;
     private Logger l;
-    // private CardDeck cardDeck;
+
     private ArrayList<Card> cardsOnTable;
     private ArrayList<Player> playersOnGame;
     private Team team1;
@@ -23,7 +23,9 @@ public class Game {
     private int lastWinnerTeam_ID;
     private int lastWinner_points;
     private String name;
+    private TrumpfType trumpftype;
     private GameType gametype;
+    private boolean gameFinish;
 
     // Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
     Game(int gameID, String name) {
@@ -38,7 +40,9 @@ public class Game {
 	this.move = 0;
 	this.lastWinner_ID = 0;
 	this.trumpf = null;
+	this.trumpftype = TrumpfType.TRUMPF;
 	this.gametype = GameType.Schieber;
+	this.gameFinish = false;
 	// sl.getLogger().info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name:
 	// "+this.name);
     }
@@ -143,11 +147,11 @@ public class Game {
 
     // Starten nächste Runde sobald ein Spieler auf start next Round klickt
     public void nextRound() {
-	if (this.move == 0) {
+	if (this.move == 0 && !(this.gameFinish)) {
 	    this.cardsOnTable.clear();
 	    setPlayerOnMove();
 	}
-	if (this.round == 0) {
+	if (this.round == 0 && !(this.gameFinish)) {
 	    this.team1.nextStich();
 	    this.team2.nextStich();
 	    spreadCards();
@@ -243,13 +247,21 @@ public class Game {
 	} else {
 	    this.round = 0;
 	    evaluateStapleWinner();
+	    gamefinish();
 	    this.trumpf = null;
 	}
 
     }
 
+    private void gamefinish() {
+	if(team1.getTeamPoints() > 1000) {
+	    this.gameFinish = true;
+	}
+	
+    }
+
     private void evaluateStichWinner() {
-	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype, this.round);
+	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype, this.trumpftype, this.round, this.trumpf);
 	for (Player p : this.team1.getTeamMembers())
 	    if (p.getPlayer_id() == winnerScore[0]) {
 		this.team1.setTeamPoints(winnerScore[1]);
@@ -260,6 +272,8 @@ public class Game {
 	this.lastWinner_ID = winnerScore[0];
 	searchPlayer(this.lastWinner_ID).addStichCards(cardsOnTable);
 	shiftMoveOrder();
+	
+	System.out.println("Stichgewinner: "+winnerScore[0] + " Punkte: "+winnerScore[1]);
 
     }
 
