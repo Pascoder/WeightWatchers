@@ -123,10 +123,10 @@ public class Game {
 
 //	 Allen Clients im Game eine Message_STARTGAME senden um View auf Client zu
 //	 wechseln, GameUpdate senden im GameView zu laden
-//	for (Player p : playersOnGame) {
-//	    ServerModel.sayGameStarted(getName(), p.getName());
-//	    ServerModel.updateClients(2, p.getName());
-//	}
+	for (Player p : playersOnGame) {
+	    ServerModel.sayGameStarted(getName(), p.getName());
+	    ServerModel.updateClients(2, p.getName());
+	}
 
     }
 
@@ -137,26 +137,10 @@ public class Game {
 	    p.clearStichCards();
 	}
 	CardDeck deck = new CardDeck();
-	ArrayList<Card> hand1 = new ArrayList<>();
-	ArrayList<Card> hand2 = new ArrayList<>();
-	ArrayList<Card> hand3 = new ArrayList<>();
-	ArrayList<Card> hand4 = new ArrayList<>();
-	for (int p = 0; p < 9; p++) {
-	    hand1.add(deck.getDeck().get(p));
-	}
-	for (int p = 9; p < 18; p++) {
-	    hand2.add(deck.getDeck().get(p));
-	}
-	for (int p = 18; p < 27; p++) {
-	    hand3.add(deck.getDeck().get(p));
-	}
-	for (int p = 27; p < 36; p++) {
-	    hand4.add(deck.getDeck().get(p));
-	}
-	playersOnGame.get(0).setHand(hand1);
-	playersOnGame.get(1).setHand(hand2);
-	playersOnGame.get(2).setHand(hand3);
-	playersOnGame.get(3).setHand(hand4);
+	playersOnGame.get(0).setHand(new ArrayList<>(deck.getDeck().subList(0,9)));
+	playersOnGame.get(1).setHand(new ArrayList<>(deck.getDeck().subList(9,18)));
+	playersOnGame.get(2).setHand(new ArrayList<>(deck.getDeck().subList(18,27)));
+	playersOnGame.get(3).setHand(new ArrayList<>(deck.getDeck().subList(27,36)));
     }
 
     // Starten nächste Runde sobald ein Spieler auf start next Round klickt
