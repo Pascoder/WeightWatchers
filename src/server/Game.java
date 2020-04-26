@@ -111,15 +111,13 @@ public class Game {
 	generateMoveOrder();
 	generateTeams();
 	setPlayersOffMove();
+
 	for(int i = 0; i< playersOnGame.size();i++) {
 		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
 		
 	}
 	ServerModel.updateClients(2, playersOnGame.get(1).getName());
 		//Muss nur 1 mal gemacht werden, es werden sowieso alle Clients updated
-		
-
-	
 
     }
 
