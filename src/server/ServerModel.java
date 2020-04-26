@@ -138,25 +138,31 @@ public class ServerModel {
 	case 2:
 	    Message_GAMEUPDATE msgOutGame = new Message_GAMEUPDATE();
 	    String gameId = Lobby.getLobby().getGameIDofPlayersGame(client);
-
-	    msgOutGame.setClient(clientName);
-	    msgOutGame.setGameid(Lobby.getLobby().getGameIDofPlayersGame(client));
-	    msgOutGame.setPlayers(Lobby.getLobby().getStringOfCertainGame(gameId));
-
+	    
 	    ArrayList<String> playersInGame = new ArrayList<String>();
+	    String playersInGame1 ="";
 
 	    // Fuellt Spielernamen in ArrayList
 	    for (Game g : Lobby.getLobby().getGames()) {
 		if (Integer.toString(g.getGameID()).equals(gameId)) {
 		    for (Player p : g.getPlayersOnGame()) {
 			playersInGame.add(p.getName());
+			playersInGame1 += p.getName()+"|";
 		    }
 		}
 	    }
+	    
+	   
+	    msgOutGame.setGameid(Lobby.getLobby().getGameIDofPlayersGame(client));
+	    //Von Frank angepasst war vorher falsch
+	    msgOutGame.setPlayers(playersInGame1);
+
+	    
 	    // Update an alle Clients senden die im gleichen Spiel sind
 	    for (ClientThread cT : clientList) {
 		for (String player : playersInGame) {
 		    if (cT.getClientName().equals(player)) {
+		    msgOutGame.setClient(player);
 			msgOutGame.send(cT.getClientSocket());
 			System.out.println("Game Update an Client: " + cT.getClientName() + " gesendet");
 		    }
@@ -185,6 +191,8 @@ public class ServerModel {
 	}
 
     }
+    
+   
 
     public static void addClientThreadToList(ClientThread clientThread) {
 	clientList.add(clientThread);

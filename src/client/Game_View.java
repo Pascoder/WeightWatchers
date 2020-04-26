@@ -25,7 +25,7 @@ public class Game_View extends BorderPane{
     //Layout
     protected HBox menu, player4, bottomBox;
     protected GridPane centerPane;
-    protected VBox player1, player2, player3;
+    protected VBox player1, player2, player3, tablebox;
     protected MenuBar menubar;
     protected Menu menumain;
     protected MenuItem sprache;
@@ -44,6 +44,7 @@ public class Game_View extends BorderPane{
     protected Image img7 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Sieben.jpg"));
     protected Image img8 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Under.jpg"));
     protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Poker-fuenf-verdeckte-karten.jpg"));
+    protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Schellen_Under.jpg"));
     
     protected ImageView image1 = new ImageView(img1);
     protected ImageView image2 = new ImageView(img2);
@@ -56,6 +57,7 @@ public class Game_View extends BorderPane{
     protected ImageView imageverdeckt = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt2 = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt3 = new ImageView(imgverdeckt);
+    protected ImageView tableview = new ImageView(table);
     
    
     
@@ -106,6 +108,14 @@ public class Game_View extends BorderPane{
 			player1.getChildren().add(imageverdeckt);
 			this.centerPane.add(player1, 0, 1);
 			
+			//Table
+			this.tablebox = new VBox();
+			this.tablebox.setSpacing(30);
+			this.tablebox.setPadding(new Insets(10,60,60,60));
+			this.tableview.setFitHeight(140);
+			this.tableview.setFitWidth(100);
+			this.tablebox.getChildren().add(tableview);
+			this.centerPane.add(tablebox, 1, 1);
 			
 			
 			
