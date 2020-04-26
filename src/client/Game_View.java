@@ -217,7 +217,6 @@ public class Game_View extends BorderPane{
 
 //	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setTitle("Game");
-	stage.show();
     }
 	
     }
