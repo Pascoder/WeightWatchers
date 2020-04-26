@@ -119,15 +119,7 @@ public class Game {
 		//Muss nur 1 mal gemacht werden, es werden sowieso alle Clients updated
 		
 
-	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
-	// + this.gameID + "|Name: " + this.name);
-
-//	 Allen Clients im Game eine Message_STARTGAME senden um View auf Client zu
-//	 wechseln, GameUpdate senden im GameView zu laden
-	for (Player p : playersOnGame) {
-	    ServerModel.sayGameStarted(getName(), p.getName());
-	    ServerModel.updateClients(2, p.getName());
-	}
+	
 
     }
 
