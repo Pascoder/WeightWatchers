@@ -148,6 +148,7 @@ public class ServerModel {
 		    for (Player p : g.getPlayersOnGame()) {
 			playersInGame.add(p.getName());
 			playersInGame1 += p.getName()+"|";
+			//p.toString();
 		    }
 		}
 	    }
