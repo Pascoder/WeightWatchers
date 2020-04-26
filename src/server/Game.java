@@ -115,20 +115,13 @@ public class Game {
 	generateMoveOrder();
 	generateTeams();
 	setPlayersOffMove();
+
 	for(int i = 0; i< playersOnGame.size();i++) {
 		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
+		
 	}
-	
-
-	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
-	// + this.gameID + "|Name: " + this.name);
-
-//	 Allen Clients im Game eine Message_STARTGAME senden um View auf Client zu
-//	 wechseln, GameUpdate senden im GameView zu laden
-	for (Player p : playersOnGame) {
-	    ServerModel.sayGameStarted(getName(), p.getName());
-	    ServerModel.updateClients(2, p.getName());
-	}
+	ServerModel.updateClients(2, playersOnGame.get(1).getName());
+		//Muss nur 1 mal gemacht werden, es werden sowieso alle Clients updated
 
     }
 
@@ -330,7 +323,7 @@ public class Game {
 	return gameString;
     }
 
-    public ArrayList getCardsOnTable() {
+    public ArrayList<Card> getCardsOnTable() {
 	return this.cardsOnTable;
     }
 
