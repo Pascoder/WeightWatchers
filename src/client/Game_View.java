@@ -25,7 +25,7 @@ public class Game_View extends BorderPane{
     //Layout
     protected HBox menu, player4, bottomBox;
     protected GridPane centerPane;
-    protected VBox player1, player2, player3;
+    protected VBox player1, player2, player3,table;
     protected MenuBar menubar;
     protected Menu menumain;
     protected MenuItem sprache;
@@ -44,6 +44,7 @@ public class Game_View extends BorderPane{
     protected Image img7 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Sieben.jpg"));
     protected Image img8 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Under.jpg"));
     protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Poker-fuenf-verdeckte-karten.jpg"));
+    protected Image tableCard = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Rosen_Ober.jpg"));
     
     protected ImageView image1 = new ImageView(img1);
     protected ImageView image2 = new ImageView(img2);
@@ -53,6 +54,7 @@ public class Game_View extends BorderPane{
     protected ImageView image6 = new ImageView(img6);
     protected ImageView image7 = new ImageView(img7);
     protected ImageView image8 = new ImageView(img8);
+    protected ImageView tableCards = new ImageView(tableCard);
     protected ImageView imageverdeckt = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt2 = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt3 = new ImageView(imgverdeckt);
@@ -135,6 +137,15 @@ public class Game_View extends BorderPane{
 			this.imageverdeckt3.setFitHeight(140);
 			this.imageverdeckt3.setFitWidth(100);
 			player3.getChildren().add(imageverdeckt3);
+			
+			//TableCards
+			this.table = new VBox();
+			this.table.setSpacing(30);
+			this.table.setPadding(new Insets(10,60,60,60));
+			this.tableCards.setFitHeight(140);
+			this.tableCards.setFitWidth(100);
+			table.getChildren().add(tableCards);
+			this.centerPane.add(table, 1, 1);
 			
 			//Player4
 			this.player4 = new HBox();
