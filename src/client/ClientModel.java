@@ -129,7 +129,6 @@ public class ClientModel {
 			Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 			gu_msg.setClient(clientName);
 			logger.info("Game Update erhalten:");
-			System.out.println(gu_msg);
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
 			//TODO Verbindung zu Controller um ViewUpdate zu machen
 			break;

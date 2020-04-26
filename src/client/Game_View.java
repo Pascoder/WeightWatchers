@@ -35,16 +35,16 @@ public class Game_View extends BorderPane{
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8;
     
     //Geh�rt nachher ins CSS
-    protected Image img1 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Acht.jpg"));
-    protected Image img2 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Ass.jpg"));
-    protected Image img3 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Koenig.jpg"));
-    protected Image img4 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Neun.jpg"));
-    protected Image img5 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Ober.jpg"));
-    protected Image img6 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Sechs.jpg"));
-    protected Image img7 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Sieben.jpg"));
-    protected Image img8 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Under.jpg"));
-    protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Poker-fuenf-verdeckte-karten.jpg"));
-    protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Schellen_Under.jpg"));
+    protected Image img1 = new Image(this.getClass().getClassLoader().getResourceAsStream("Eichel_Acht.jpg"));
+    protected Image img2 = new Image(this.getClass().getClassLoader().getResourceAsStream("Eichel_Ass.jpg"));
+    protected Image img3 = new Image(this.getClass().getClassLoader().getResourceAsStream("Eichel_Koenig.jpg"));
+    protected Image img4 = new Image(this.getClass().getClassLoader().getResourceAsStream("Eichel_Neun.jpg"));
+    protected Image img5 = new Image(this.getClass().getClassLoader().getResourceAsStream("Eichel_Ober.jpg"));
+    protected Image img6 = new Image(this.getClass().getClassLoader().getResourceAsStream("Eichel_Sechs.jpg"));
+    protected Image img7 = new Image(this.getClass().getClassLoader().getResourceAsStream("Eichel_Sieben.jpg"));
+    protected Image img8 = new Image(this.getClass().getClassLoader().getResourceAsStream("Eichel_Under.jpg"));
+    protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("Poker-fuenf-verdeckte-karten.jpg"));
+    protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen_Under.jpg"));
     
     protected ImageView image1 = new ImageView(img1);
     protected ImageView image2 = new ImageView(img2);
