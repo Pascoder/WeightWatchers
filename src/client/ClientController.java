@@ -96,10 +96,11 @@ public static void joinGame(String [] joinedgames) {
 
 public static void loadPlayersonGame(String [] playersOnGame) {
 	
-	clientView.getGameView().p1_name.setText(playersOnGame[0]);
+	
 	clientView.getGameView().p2_name.setText(playersOnGame[1]);
 	clientView.getGameView().p3_name.setText(playersOnGame[2]);
 	clientView.getGameView().p4_name.setText(playersOnGame[3]);
+	clientView.getGameView().p1_name.setText(playersOnGame[0]);
 }
 
 
