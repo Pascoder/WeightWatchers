@@ -129,7 +129,7 @@ public class ClientModel {
 			Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 			gu_msg.setClient(clientName);
 			logger.info("Game Update erhalten:");
-			
+			System.out.println(gu_msg);
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
 			//TODO Verbindung zu Controller um ViewUpdate zu machen
 			break;
@@ -166,8 +166,32 @@ public class ClientModel {
 
 
 	private String[] findPlayersOnGame(String players) {
-		 String[] playersOnGame = players.split("\\|");
-		return playersOnGame;
+		 String[] playersOnGame = players.split("\\$");
+		 String [] output = new String [4];
+		 String [] spieler1 = null;
+		 String [] spieler2 = null;
+		 String [] spieler3 = null;
+		 String [] spieler4 = null;
+		 for(int i = 0; i< playersOnGame.length;i++) {
+			if(i == 0) {
+				spieler1 = playersOnGame[i].split("\\|");
+			}
+			if(i == 1) {
+				spieler2 = playersOnGame[i].split("\\|");
+			}
+			if(i == 2) {
+				spieler3 = playersOnGame[i].split("\\|");
+			}
+			if(i == 3) {
+				spieler4 = playersOnGame[i].split("\\|");
+			}
+		 }
+		 output[0] = spieler1[1];
+		 output[1] = spieler2[1];
+		 output[2] = spieler3[1];
+		 output[3] = spieler4[1];
+		 
+		return output;
 	}
 
 

@@ -147,7 +147,7 @@ public class ServerModel {
 		if (Integer.toString(g.getGameID()).equals(gameId)) {
 		    for (Player p : g.getPlayersOnGame()) {
 			playersInGame.add(p.getName());
-			playersInGame1 += p.getName()+"|";
+			playersInGame1 += g.GameAsString();
 			//p.toString();
 		    }
 		}

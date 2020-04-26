@@ -111,6 +111,9 @@ public class Game {
 	generateMoveOrder();
 	generateTeams();
 	setPlayersOffMove();
+	if(round == 0) {
+	spreadCards();
+	}
 	//NextRound
 	for(int i = 0; i< playersOnGame.size();i++) {
 		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
@@ -300,10 +303,10 @@ public class Game {
 
     // Methode benötigt für Message_GAMEUPDATE
     public String GameAsString() {
-	String gameString = null;
+	String gameString = "";
 
 	for (Player p : playersOnGame) {
-	    gameString += p.toString() + "|";
+	    gameString += p.toString() + "$";
 	}
 
 	return gameString;

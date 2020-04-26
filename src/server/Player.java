@@ -100,10 +100,10 @@ public int getActualGame() {
 public String toString() {
 	String cards = "";
 	for(int i = 0; i< hand.size();i++) {
-		cards+="|"+hand.get(i);
+		cards+=hand.get(i)+"|";
 	}
 	// player_ID|name|actualGame|onMove|weis|cards|	
-	return this.player_id+"|"+this.name+"|"+this.actualGame+"|"+this.onMove+"|"+this.weis+"|"+cards+"|";
+	return this.player_id+"|"+this.name+"|"+this.actualGame+"|"+this.onMove+"|"+this.weis+"|"+cards;
 }
 
 
