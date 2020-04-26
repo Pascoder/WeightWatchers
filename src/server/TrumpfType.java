@@ -1,5 +1,5 @@
 package server;
 
-public enum TrumpfType {TRUMPF, OBENABE, UNDENUFE
+public enum TrumpfType {NORMAL, TRUMPF, OBENABE, UNDENUFE
 
 }
