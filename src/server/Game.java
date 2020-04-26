@@ -111,6 +111,10 @@ public class Game {
 	generateMoveOrder();
 	generateTeams();
 	setPlayersOffMove();
+	for(int i = 0; i< playersOnGame.size();i++) {
+		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
+	}
+	
 
 	// sl.getLogger().info("Teams gebildet, Spielerreihenfolge festgelegt|Game_ID: "
 	// + this.gameID + "|Name: " + this.name);

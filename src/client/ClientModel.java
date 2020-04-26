@@ -17,6 +17,7 @@ import messages.Message_LOBBYUPDATE;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
+import messages.Message_STARTGAME;
 import messages.Message_USERNAMETAKEN;
 
 
@@ -138,6 +139,12 @@ public class ClientModel {
 		case JOINGAME:
 			msgOut = new Message_JOINGAME();
 			logger.info("Game wurde beigetreten");
+			break;
+			
+		case STARTGAME:
+			msgOut = new Message_STARTGAME();
+			logger.info("Game wurde gestartet");
+			ClientController.switchview(3);
 			break;
 			
 			

@@ -174,8 +174,11 @@ public class ServerModel {
 
 	msgOutstart.setClient(client);
 	msgOutstart.setGamename(gamename);
+	
+	
 
 	for (ClientThread ct : clientList) {
+		
 	    if (ct.getClientName().equals(client)) {
 		msgOutstart.send(ct.getClientSocket());
 	    }
