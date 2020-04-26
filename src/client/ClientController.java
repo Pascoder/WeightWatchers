@@ -95,7 +95,7 @@ public static void joinGame(String [] joinedgames) {
 }
 
 public static void loadPlayersonGame(String [] playersOnGame, String client) {
-	
+	//System.out.println("ClientController: "+client);
 	boolean p1 = false;
 	boolean p2 = false;
 	boolean p3 = false;
