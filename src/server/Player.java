@@ -103,7 +103,7 @@ public String toString() {
 		cards+="|"+hand.get(i);
 	}
 	// player_ID|name|actualGame|onMove|weis|cards|	
-	return this.player_id+"|"+this.name+"|"+this.actualGame+"|"+this.onMove+"|"+this.weis+"|"+cards+"|";
+	return this.player_id+"|"+this.name+"|"+this.actualGame+"|"+this.onMove+"|"+this.weis+cards+"|";
 }
 
 
