@@ -130,6 +130,7 @@ public class ClientModel {
 			gu_msg.setClient(clientName);
 			logger.info("Game Update erhalten:");
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
+			ClientController.spreadCards(spreadCards(gu_msg.getPlayers()),gu_msg.getClient());
 			//TODO Verbindung zu Controller um ViewUpdate zu machen
 			break;
 			
@@ -162,6 +163,75 @@ public class ClientModel {
 	
 	
 	
+
+
+	private String[] spreadCards(String players) {
+		int counter = 0;
+		String[] playersOnGame = players.split("\\$");
+		
+		 String [] spieler1 = null;
+		 String [] spieler2 = null;
+		 String [] spieler3 = null;
+		 String [] spieler4 = null;
+		 String [] output = new String [40];
+		 for(int i = 0; i< playersOnGame.length;i++) {
+			if(i == 0) {
+				spieler1 = playersOnGame[i].split("\\|");
+			}
+			if(i == 1) {
+				spieler2 = playersOnGame[i].split("\\|");
+			}
+			if(i == 2) {
+				spieler3 = playersOnGame[i].split("\\|");
+			}
+			if(i == 3) {
+				spieler4 = playersOnGame[i].split("\\|");
+			}
+		 }
+		 //Karten Spieler 1
+		 for(int i = 5; i<spieler1.length;i=i+2) {
+			 if(i == 5) {
+				output[counter] = spieler1[1]; 
+				counter++;
+			 }
+			
+			 output[counter] = spieler1[i];
+			 counter++;
+		 }
+		 //Karten Spieler 2
+		 for(int i = 5; i<spieler2.length;i=i+2) {
+			 if(i == 5 ) {
+				 output[counter] = spieler2[1];
+				 counter++;
+			 }
+			 output[counter] = spieler2[i];
+			 counter++;
+		 }
+		 //Karten Spieler 3
+		 for(int i = 5; i<spieler3.length;i=i+2) {
+			 if(i == 5 ) {
+				 output[counter] = spieler3[1];
+				 counter++;
+			 }
+			 
+			 output[counter] = spieler3[i];
+			 counter++;
+		 }
+		 //Karten Spieler 4
+		 for(int i = 5; i<spieler4.length;i=i+2) {
+			 
+			 if(i == 5 ) {
+				 output[counter] = spieler4[1];
+				 counter++;
+			 }
+			 output[counter] = spieler4[i];
+			 counter++;
+		 }
+		 
+		 
+		return output;
+		
+	}
 
 
 	private String[] findPlayersOnGame(String players) {

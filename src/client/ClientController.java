@@ -129,6 +129,14 @@ public static void loadPlayersonGame(String [] playersOnGame, String client) {
 	
 }
 
+public static void spreadCards(String[] spreadCards, String client) {
+	// TODO Auto-generated method stub
+	for(String card : spreadCards) {
+		System.out.println(card);
+	}
+	
+}
+
 
 
 

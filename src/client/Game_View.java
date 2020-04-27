@@ -198,6 +198,38 @@ public class Game_View extends BorderPane{
 //	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setTitle("Game");
     }
+    
+    public void setKarte1(ImageView img) {
+    	this.karte1.setGraphic(img);
+    	
+    }
+    public void setKarte2(ImageView img) {
+    	this.karte2.setGraphic(img);
+    }
+    
+    public void setKarte3(ImageView img) {
+    	this.karte3.setGraphic(img);
+    }
+    
+    public void setKarte4(ImageView img) {
+    	this.karte4.setGraphic(img);
+    }
+    
+    public void setKarte5(ImageView img) {
+    	this.karte5.setGraphic(img);
+    }
+    
+    public void setKarte6(ImageView img) {
+    	this.karte6.setGraphic(img);
+    }
+    
+    public void setKarte7(ImageView img) {
+    	this.karte7.setGraphic(img);
+    }
+    
+    public void setKarte8(ImageView img) {
+    	this.karte8.setGraphic(img);
+    }
 	
     }
 
