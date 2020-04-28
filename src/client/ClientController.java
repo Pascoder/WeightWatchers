@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import server.Lobby;
+import server.Player;
 
 public class ClientController {
 
@@ -94,14 +95,50 @@ public static void joinGame(String [] joinedgames) {
 	}
 }
 
-public static void loadPlayersonGame(String [] playersOnGame, String client) {
+public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	//System.out.println("ClientController: "+client);
-	boolean p1 = false;
+	
+	
+	for(Player p : playersOnGame) {
+		for(String s: p.getHandAsString()) {
+			System.out.println(s);
+		}
+		
+	}
+	
+	if(playersOnGame[0].getName().equals(client)) {
+		clientView.getGameView().p4_name.setText(playersOnGame[0].getName());
+		clientView.getGameView().p1_name.setText(playersOnGame[1].getName());
+		clientView.getGameView().p2_name.setText(playersOnGame[2].getName());
+		clientView.getGameView().p3_name.setText(playersOnGame[3].getName());
+		
+	}
+	
+	if(playersOnGame[1].getName().equals(client)) {
+		clientView.getGameView().p4_name.setText(playersOnGame[1].getName());
+		clientView.getGameView().p1_name.setText(playersOnGame[2].getName());
+		clientView.getGameView().p2_name.setText(playersOnGame[3].getName());
+		clientView.getGameView().p3_name.setText(playersOnGame[0].getName());
+	}
+	if(playersOnGame[2].getName().equals(client)) {
+		clientView.getGameView().p4_name.setText(playersOnGame[2].getName());
+		clientView.getGameView().p1_name.setText(playersOnGame[3].getName());
+		clientView.getGameView().p2_name.setText(playersOnGame[0].getName());
+		clientView.getGameView().p3_name.setText(playersOnGame[1].getName());
+	}
+	if(playersOnGame[3].getName().equals(client)) {
+		clientView.getGameView().p4_name.setText(playersOnGame[3].getName()); 
+		clientView.getGameView().p1_name.setText(playersOnGame[0].getName());
+		clientView.getGameView().p2_name.setText(playersOnGame[1].getName());
+		clientView.getGameView().p3_name.setText(playersOnGame[2].getName());
+	}
+	
+	/*boolean p1 = false;
 	boolean p2 = false;
 	boolean p3 = false;
 	for(String player:playersOnGame) {
 		if(client.equals(player)) {
-			clientView.getGameView().p4_name.setText(player);
+			clientView.getGameView().p4_name.setText(player); //p4 ist unten in View
 			
 		}else {
 			if(p1 == false) {
@@ -121,7 +158,7 @@ public static void loadPlayersonGame(String [] playersOnGame, String client) {
 		}
 		
 			
-	}
+	}*/
 	
 	
 	
@@ -136,6 +173,8 @@ public static void spreadCards(String[] spreadCards, String client) {
 	}
 	
 }
+
+
 
 
 

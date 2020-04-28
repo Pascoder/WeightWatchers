@@ -19,6 +19,9 @@ import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
 import messages.Message_STARTGAME;
 import messages.Message_USERNAMETAKEN;
+import server.Card;
+import server.Player;
+import server.Weis;
 
 
 
@@ -130,7 +133,7 @@ public class ClientModel {
 			gu_msg.setClient(clientName);
 			logger.info("Game Update erhalten:");
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
-			ClientController.spreadCards(spreadCards(gu_msg.getPlayers()),gu_msg.getClient());
+			//ClientController.spreadCards(spreadCards(gu_msg.getPlayers()),gu_msg.getClient());
 			//TODO Verbindung zu Controller um ViewUpdate zu machen
 			break;
 			
@@ -234,10 +237,11 @@ public class ClientModel {
 	}
 
 
-	private String[] findPlayersOnGame(String players) {
-		 String[] playersOnGame = players.split("\\$");
-		 String [] output = new String [4];
-		 String [] spieler1 = null;
+	private Player[] findPlayersOnGame(String players) {
+		//System.out.println("Dieser String wird in die Methode gegeben:"+players);
+		 String[] playersOnGame = players.split("\\$"); // 1 Zeile = 1 Spieler + Karten etc
+		 Player [] output = new Player [4];
+		 String [] spieler1 = null; // 1Spieler auf Zeilen aufgeteilt
 		 String [] spieler2 = null;
 		 String [] spieler3 = null;
 		 String [] spieler4 = null;
@@ -254,11 +258,64 @@ public class ClientModel {
 			if(i == 3) {
 				spieler4 = playersOnGame[i].split("\\|");
 			}
+	
 		 }
-		 output[0] = spieler1[1];
-		 output[1] = spieler2[1];
-		 output[2] = spieler3[1];
-		 output[3] = spieler4[1];
+			/*System.out.println("Spieler1:");
+			for(String s:spieler1) {
+				System.out.println(s);
+			}
+			System.out.println("Spieler2:");
+			for(String a:spieler2) {
+				System.out.println(a);
+			}
+			System.out.println("Spieler3:");
+			for(String b:spieler3) {
+				System.out.println(b);
+			}
+			System.out.println("Spieler4:");
+			for(String c:spieler4) {
+				System.out.println(c);
+			}*/
+			
+		 ArrayList<String> cardPlayer1 = new ArrayList<String>();
+		 ArrayList<String> cardPlayer2 = new ArrayList<String>();
+		 ArrayList<String> cardPlayer3 = new ArrayList<String>();
+		 ArrayList<String> cardPlayer4 = new ArrayList<String>();
+		 //Karten Spieler 1
+		 for(int i = 5; i<spieler1.length;i=i+2) {
+			cardPlayer1.add(spieler1[i]+spieler1[i+1]) ;
+			
+			 
+		 }
+		 //Karten Spieler 2
+		 for(int i = 5; i<spieler2.length;i=i+2) {
+				cardPlayer2.add(spieler2[i]+spieler2[i+1]) ;
+				
+				 
+			 }
+		 //Karten Spieler 3
+		 for(int i = 5; i<spieler3.length;i=i+2) {
+				cardPlayer3.add(spieler3[i]+spieler3[i+1]) ;
+				
+				 
+			 }
+		 //Karten Spieler 4
+		 for(int i = 5; i<spieler4.length;i=i+2) {
+				cardPlayer4.add(spieler4[i]+spieler4[i+1]) ;
+				
+				 
+			 }
+		 
+		 
+		 //int player_id, String name, int actualGame, boolean onMove, Weis weis, ArrayList<String>cards
+		 Player p1 = new Player(Integer.parseInt(spieler1[0]), spieler1[1], Integer.parseInt(spieler1[2]), Boolean.parseBoolean(spieler1[3]),null,cardPlayer1);
+		 Player p2 = new Player(Integer.parseInt(spieler2[0]), spieler2[1], Integer.parseInt(spieler2[2]), Boolean.parseBoolean(spieler2[3]),null,cardPlayer2);
+		 Player p3 = new Player(Integer.parseInt(spieler3[0]), spieler3[1], Integer.parseInt(spieler3[2]), Boolean.parseBoolean(spieler3[3]),null,cardPlayer3);
+		 Player p4 = new Player(Integer.parseInt(spieler4[0]), spieler4[1], Integer.parseInt(spieler4[2]), Boolean.parseBoolean(spieler4[3]),null,cardPlayer4);
+		 output[0] = p1;
+		 output[1] = p2;
+		 output[2] = p3;
+		 output[3] = p4;
 		 
 		return output;
 	}

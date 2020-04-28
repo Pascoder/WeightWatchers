@@ -7,6 +7,7 @@ public class Player {
 private int player_id;
 private String password; //kommt nachher eventuell in DB
 private ArrayList <Card> hand = new ArrayList <>();
+private ArrayList <String> handAsString = new ArrayList <>();
 private ArrayList <Card> stichCards = new ArrayList <>();
 private String name;
 private boolean onMove;
@@ -23,6 +24,15 @@ public Player(int player_id, String name, String password) {
 	this.password = password;
 	this.actualGame = -1;
 	
+}
+
+public Player(int player_id, String name, int actualGame, boolean onMove, Weis weis, ArrayList<String>cards ) {
+	this.player_id = player_id;
+	this.name = name;
+	this.actualGame = actualGame;
+	this.onMove = onMove;
+	this.weis = weis;
+	this.handAsString = cards;
 }
 
 public int getPlayer_id() {
@@ -95,6 +105,11 @@ public void setActualGame(int gameID) {
 
 public int getActualGame() {
 	return this.actualGame;
+}
+
+public ArrayList<String> getHandAsString() {
+	
+	return handAsString;
 }
 
 public String toString() {

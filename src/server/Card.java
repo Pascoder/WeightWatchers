@@ -14,6 +14,8 @@ public class Card implements Comparable<Card> {
         this.player_ID = 0;
         
     }
+    
+ 
 
     public CardColor getCardColor() {
         return cardColor;

@@ -81,7 +81,7 @@ public class Game_View extends BorderPane{
 		this.setCenter(centerPane);
 		
 		
-			//Player1
+			//Player1 Links
 			this.player1 = new VBox();
 			this.player1.setSpacing(30);
 			this.player1.setPadding(new Insets(10,60,60,60));
