@@ -94,6 +94,7 @@ public class ClientModel {
 		case LOGINOK:
 			msgOut = new Message_LOGINOK();
 			this.clientName = msgIn.getClient();
+			System.out.println("Nachricht Login OK erhalten");
 			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
 			ClientController.switchview(2);
 			break;

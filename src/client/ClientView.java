@@ -45,6 +45,7 @@ public class ClientView {
 	   }else {
 		if(viewNumber == 2) {
 			//LobbyView
+			System.out.println("Lobby View öffnet sich jetzt!");
 			lobbyStage.show();
 			loginStage.hide();
 		

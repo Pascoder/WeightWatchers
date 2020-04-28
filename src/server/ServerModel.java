@@ -44,7 +44,7 @@ public class ServerModel {
 	    }
 	}
 
-	return loginOK;
+	return true;
 
 	// this.getClass().getClassLoader().getResourceAsStream("client/"+
 	// "Schweizer_Jasskarten.jpg")
@@ -65,7 +65,7 @@ public class ServerModel {
     }
 
     private static void loadaccounts() {
-	try (BufferedReader in = new BufferedReader(new FileReader("src/PlayerFile.txt"))) {
+	try (BufferedReader in = new BufferedReader(new FileReader("PlayerFile.txt"))) {
 	    String s = in.readLine();
 
 	    while (s != null) {
@@ -108,7 +108,7 @@ public class ServerModel {
     }
 
     private static void saveAccounts() throws IOException {
-	try (BufferedWriter out = new BufferedWriter(new FileWriter("src/PlayerFile.txt"))) {
+	try (BufferedWriter out = new BufferedWriter(new FileWriter("PlayerFile.txt"))) {
 	    for (int b = 0; b < accounts.size(); b++) {
 		out.write(accounts.get(b) + "\n");
 	    }

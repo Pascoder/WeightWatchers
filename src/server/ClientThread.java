@@ -77,7 +77,8 @@ public class ClientThread extends Thread {
 			case LOGIN:
 				//Ueberprueft ob Login korrekt ist und sendet dann die entsprechende Nachricht
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
-				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
+				//ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())
+				if(true) {
 					msgOut = new Message_LOGINOK();
 					this.clientName = lg_msg.getUsername();
 					lg_msg.setClient(clientName);
