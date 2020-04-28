@@ -124,15 +124,15 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 //	clientView.getGameView().karte1.setGraphic(jass);
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
-	clientView.getGameView().karte1.setGraphic(img.getCardImage(card1[1] + lang ));
-	clientView.getGameView().karte2.setGraphic(img.getCardImage(card2[1] + lang ));
-	clientView.getGameView().karte3.setGraphic(img.getCardImage(card3[1] + lang ));
-	clientView.getGameView().karte4.setGraphic(img.getCardImage(card4[1] + lang ));
-	clientView.getGameView().karte5.setGraphic(img.getCardImage(card5[1] + lang ));
-	clientView.getGameView().karte6.setGraphic(img.getCardImage(card6[1] + lang ));
-	clientView.getGameView().karte7.setGraphic(img.getCardImage(card7[1] + lang ));
-	clientView.getGameView().karte8.setGraphic(img.getCardImage(card8[1] + lang ));
-	clientView.getGameView().karte9.setGraphic(img.getCardImage(card9[1] + lang ));
+	clientView.getGameView().karte1.setGraphic(img.getCardImage(card1[0] + lang ));
+	clientView.getGameView().karte2.setGraphic(img.getCardImage(card2[0] + lang ));
+	clientView.getGameView().karte3.setGraphic(img.getCardImage(card3[0] + lang ));
+	clientView.getGameView().karte4.setGraphic(img.getCardImage(card4[0] + lang ));
+	clientView.getGameView().karte5.setGraphic(img.getCardImage(card5[0] + lang ));
+	clientView.getGameView().karte6.setGraphic(img.getCardImage(card6[0] + lang ));
+	clientView.getGameView().karte7.setGraphic(img.getCardImage(card7[0] + lang ));
+	clientView.getGameView().karte8.setGraphic(img.getCardImage(card8[0] + lang ));
+	clientView.getGameView().karte9.setGraphic(img.getCardImage(card9[0] + lang ));
 	
 	if(playersOnGame[0].getName().equals(client)) {
 		clientView.getGameView().p4_name.setText(playersOnGame[0].getName());
