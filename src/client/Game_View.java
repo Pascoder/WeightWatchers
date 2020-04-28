@@ -32,7 +32,7 @@ public class Game_View extends BorderPane{
     //Labels,Buttons...
     protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,turn;
     protected Button weis;
-    protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8;
+    protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     
     //Geh�rt nachher ins CSS
 
@@ -48,7 +48,7 @@ public class Game_View extends BorderPane{
    
     
     
-    public Game_View(Stage stage) { 
+    public Game_View(Stage stage, ClientModel model) { 
     	this.stage = stage;
 		this.model = model;
 		this.setPadding(new Insets(10,10,10,10));
@@ -165,6 +165,9 @@ public class Game_View extends BorderPane{
 			
 			this.karte8 = new ToggleButton();
 			player4.getChildren().add(karte8);
+			
+			this.karte9 = new ToggleButton();
+			player4.getChildren().add(karte9);
 			
 			
 			

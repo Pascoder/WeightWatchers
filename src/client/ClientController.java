@@ -3,6 +3,9 @@ package client;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+
 import client.ServiceLocator_JC;
 //import chatGame.olmoClient.Model.ChatGame_Model;
 //import chatGame.olmoClient.Views.ChatGame_View;
@@ -18,11 +21,13 @@ public class ClientController {
 private ClientModel clientModel;
 private static ClientView clientView;
 ServiceLocator_JC serviceLocator;
+
 	
 
 	public ClientController(ClientModel clientModel, ClientView clientView) {
 		this.clientModel = clientModel;
 		this.clientView = clientView;
+		
 		Login_View view = clientView.getLoginView();
 		Lobby_View lobbyview = clientView.getLobbyView();
 		Game_View gameview = clientView.getGameView();
@@ -96,23 +101,47 @@ public static void joinGame(String [] joinedgames) {
 }
 
 public static void loadPlayersonGame(Player [] playersOnGame, String client) {
-	//System.out.println("ClientController: "+client);
 	
-	
+	//lädt die Karten des aktuellen Spielers in eine ArrayList
+	ArrayList <String> cardList = new ArrayList <String>();
 	for(Player p : playersOnGame) {
-		for(String s: p.getHandAsString()) {
-			System.out.println(s);
+		if(p.getName().equals(client)) {
+			cardList = p.getHandAsStrings();
 		}
 		
 	}
+	//Lädt die Karten sowie boolean für spielbarkeit in Arrays
+	String [] card1 = cardList.get(0).split("$");
+	String [] card2 = cardList.get(1).split("$");
+	String [] card3 = cardList.get(2).split("$");
+	String [] card4 = cardList.get(3).split("$");
+	String [] card5 = cardList.get(4).split("$");
+	String [] card6 = cardList.get(5).split("$");
+	String [] card7 = cardList.get(6).split("$");
+	String [] card8 = cardList.get(7).split("$");
+	String [] card9 = cardList.get(8).split("$");
+	
+//	clientView.getGameView().karte1.setGraphic(jass);
+	JassImage img = new JassImage();
+	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
+	clientView.getGameView().karte1.setGraphic(img.getCardImage(card1[1] + lang ));
+	clientView.getGameView().karte2.setGraphic(img.getCardImage(card2[1] + lang ));
+	clientView.getGameView().karte3.setGraphic(img.getCardImage(card3[1] + lang ));
+	clientView.getGameView().karte4.setGraphic(img.getCardImage(card4[1] + lang ));
+	clientView.getGameView().karte5.setGraphic(img.getCardImage(card5[1] + lang ));
+	clientView.getGameView().karte6.setGraphic(img.getCardImage(card6[1] + lang ));
+	clientView.getGameView().karte7.setGraphic(img.getCardImage(card7[1] + lang ));
+	clientView.getGameView().karte8.setGraphic(img.getCardImage(card8[1] + lang ));
+	clientView.getGameView().karte9.setGraphic(img.getCardImage(card9[1] + lang ));
 	
 	if(playersOnGame[0].getName().equals(client)) {
 		clientView.getGameView().p4_name.setText(playersOnGame[0].getName());
 		clientView.getGameView().p1_name.setText(playersOnGame[1].getName());
 		clientView.getGameView().p2_name.setText(playersOnGame[2].getName());
 		clientView.getGameView().p3_name.setText(playersOnGame[3].getName());
-		
-	}
+
+		}
+	
 	
 	if(playersOnGame[1].getName().equals(client)) {
 		clientView.getGameView().p4_name.setText(playersOnGame[1].getName());
@@ -132,6 +161,8 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 		clientView.getGameView().p2_name.setText(playersOnGame[1].getName());
 		clientView.getGameView().p3_name.setText(playersOnGame[2].getName());
 	}
+	
+	
 	
 	/*boolean p1 = false;
 	boolean p2 = false;
@@ -166,7 +197,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	
 }
 
-public static void spreadCards(String[] spreadCards, String client) {
+public static void showCards(String[] spreadCards, String client) {
 	// TODO Auto-generated method stub
 	for(String card : spreadCards) {
 		System.out.println(card);

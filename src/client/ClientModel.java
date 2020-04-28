@@ -283,25 +283,25 @@ public class ClientModel {
 		 ArrayList<String> cardPlayer4 = new ArrayList<String>();
 		 //Karten Spieler 1
 		 for(int i = 5; i<spieler1.length;i=i+2) {
-			cardPlayer1.add(spieler1[i]+spieler1[i+1]) ;
+			cardPlayer1.add(spieler1[i]+"$"+ spieler1[i+1]) ;
 			
 			 
 		 }
 		 //Karten Spieler 2
 		 for(int i = 5; i<spieler2.length;i=i+2) {
-				cardPlayer2.add(spieler2[i]+spieler2[i+1]) ;
+				cardPlayer2.add(spieler2[i]+"$"+spieler2[i+1]) ;
 				
 				 
 			 }
 		 //Karten Spieler 3
 		 for(int i = 5; i<spieler3.length;i=i+2) {
-				cardPlayer3.add(spieler3[i]+spieler3[i+1]) ;
+				cardPlayer3.add(spieler3[i]+"$"+spieler3[i+1]) ;
 				
 				 
 			 }
 		 //Karten Spieler 4
 		 for(int i = 5; i<spieler4.length;i=i+2) {
-				cardPlayer4.add(spieler4[i]+spieler4[i+1]) ;
+				cardPlayer4.add(spieler4[i]+"$"+spieler4[i+1]) ;
 				
 				 
 			 }

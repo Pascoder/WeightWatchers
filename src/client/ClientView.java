@@ -33,7 +33,7 @@ public class ClientView {
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	this.lobbyView = new Lobby_View(lobbyStage, clientModel);
 	this.loginView = new Login_View(loginStage, clientModel);
-	this.gameView = new Game_View(gameStage/*, clientModel*/);
+	this.gameView = new Game_View(gameStage, clientModel);
 	switchView(1);
 	
     }

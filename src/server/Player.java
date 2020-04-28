@@ -7,7 +7,7 @@ public class Player {
 private int player_id;
 private String password; //kommt nachher eventuell in DB
 private ArrayList <Card> hand = new ArrayList <>();
-private ArrayList <String> handAsString = new ArrayList <>();
+private ArrayList <String> handAsStrings = new ArrayList <>();
 private ArrayList <Card> stichCards = new ArrayList <>();
 private String name;
 private boolean onMove;
@@ -32,7 +32,7 @@ public Player(int player_id, String name, int actualGame, boolean onMove, Weis w
 	this.actualGame = actualGame;
 	this.onMove = onMove;
 	this.weis = weis;
-	this.handAsString = cards;
+	this.handAsStrings = cards;
 }
 
 public int getPlayer_id() {
@@ -107,9 +107,9 @@ public int getActualGame() {
 	return this.actualGame;
 }
 
-public ArrayList<String> getHandAsString() {
+public ArrayList<String> getHandAsStrings() {
 	
-	return handAsString;
+	return handAsStrings;
 }
 
 public String toString() {
