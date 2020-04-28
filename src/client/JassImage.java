@@ -77,7 +77,7 @@ public class JassImage {
 	protected Image HQueenCH = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen_Ober.jpg"));
 	protected Image SQueenCH = new Image(this.getClass().getClassLoader().getResourceAsStream("Rosen_Ober.jpg"));
 	protected Image SQueenFR = new Image(this.getClass().getClassLoader().getResourceAsStream("Schaufel_Dame.jpg"));
-	protected Image rückseite = new Image(this.getClass().getClassLoader().getResourceAsStream("Rückseite.jpg"));
+	protected Image rueckseite = new Image(this.getClass().getClassLoader().getResourceAsStream("Rueckseite.jpg"));
 
 	protected ImageView C6_FR = new ImageView(C6FR);
 	protected ImageView C6_CH = new ImageView(C6CH);
@@ -151,7 +151,7 @@ public class JassImage {
 	protected ImageView HQueen_CH = new ImageView(HQueenCH);
 	protected ImageView SQueen_CH = new ImageView(SQueenCH);
 	protected ImageView SQueen_FR = new ImageView(SQueenFR);
-	protected ImageView _rückseite = new ImageView(rückseite);
+	protected ImageView _rueckseite = new ImageView(rueckseite);
 	
 
 
@@ -236,7 +236,7 @@ public class JassImage {
     	if(imageView.equals("HQueen_CH")){img=HQueen_CH;}
     	if(imageView.equals("SQueen_CH")){img=SQueen_CH;}
     	if(imageView.equals("SQueen_FR")){img=SQueen_FR;}
-    	if(imageView.equals("_rückseite")){img=_rückseite;}
+    	if(imageView.equals("_rueckseite")){img=_rueckseite;}
     
     	
     	return img;
