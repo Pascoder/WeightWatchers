@@ -11,6 +11,7 @@ import client.ServiceLocator_JC;
 //import chatGame.olmoClient.Views.ChatGame_View;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import server.Lobby;
@@ -107,60 +108,111 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	for(Player p : playersOnGame) {
 		if(p.getName().equals(client)) {
 			cardList = p.getHandAsStrings();
+			
 		}
 		
 	}
+	
+	
+	
 	//Lädt die Karten sowie boolean für spielbarkeit in Arrays
-	String [] card1 = cardList.get(0).split("$");
-	String [] card2 = cardList.get(1).split("$");
-	String [] card3 = cardList.get(2).split("$");
-	String [] card4 = cardList.get(3).split("$");
-	String [] card5 = cardList.get(4).split("$");
-	String [] card6 = cardList.get(5).split("$");
-	String [] card7 = cardList.get(6).split("$");
-	String [] card8 = cardList.get(7).split("$");
-	String [] card9 = cardList.get(8).split("$");
+	String [] card1 = cardList.get(0).split("\\$");
+	String [] card2 = cardList.get(1).split("\\$");
+	String [] card3 = cardList.get(2).split("\\$");
+	String [] card4 = cardList.get(3).split("\\$");
+	String [] card5 = cardList.get(4).split("\\$");
+	String [] card6 = cardList.get(5).split("\\$");
+	String [] card7 = cardList.get(6).split("\\$");
+	String [] card8 = cardList.get(7).split("\\$");
+	String [] card9 = cardList.get(8).split("\\$");
 	
 //	clientView.getGameView().karte1.setGraphic(jass);
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
-	clientView.getGameView().karte1.setGraphic(img.getCardImage(card1[0] + lang ));
-	clientView.getGameView().karte2.setGraphic(img.getCardImage(card2[0] + lang ));
-	clientView.getGameView().karte3.setGraphic(img.getCardImage(card3[0] + lang ));
-	clientView.getGameView().karte4.setGraphic(img.getCardImage(card4[0] + lang ));
-	clientView.getGameView().karte5.setGraphic(img.getCardImage(card5[0] + lang ));
-	clientView.getGameView().karte6.setGraphic(img.getCardImage(card6[0] + lang ));
-	clientView.getGameView().karte7.setGraphic(img.getCardImage(card7[0] + lang ));
-	clientView.getGameView().karte8.setGraphic(img.getCardImage(card8[0] + lang ));
-	clientView.getGameView().karte9.setGraphic(img.getCardImage(card9[0] + lang ));
 	
-	if(playersOnGame[0].getName().equals(client)) {
-		clientView.getGameView().p4_name.setText(playersOnGame[0].getName());
-		clientView.getGameView().p1_name.setText(playersOnGame[1].getName());
-		clientView.getGameView().p2_name.setText(playersOnGame[2].getName());
-		clientView.getGameView().p3_name.setText(playersOnGame[3].getName());
+	Platform.runLater(new Runnable(){
+		@Override
+		public void run() {
+			ImageView img1 = new ImageView();
+			ImageView img2 = new ImageView();
+			ImageView img3 = new ImageView();
+			ImageView img4 = new ImageView();
+			ImageView img5 = new ImageView();
+			ImageView img6 = new ImageView();
+			ImageView img7 = new ImageView();
+			ImageView img8 = new ImageView();
+			ImageView img9 = new ImageView();
+			img1 = img.getCardImage(card1[0]+lang);
+			img2 = img.getCardImage(card2[0]+lang);
+			img3 = img.getCardImage(card3[0]+lang);
+			img4 = img.getCardImage(card4[0]+lang);
+			img5 = img.getCardImage(card5[0]+lang);
+			img6 = img.getCardImage(card6[0]+lang);
+			img7 = img.getCardImage(card7[0]+lang);
+			img8 = img.getCardImage(card8[0]+lang);
+			img9 = img.getCardImage(card9[0]+lang);
+			img1.setFitHeight(140);
+			img1.setFitWidth(100);
+			img2.setFitHeight(140);
+			img2.setFitWidth(100);
+			img3.setFitHeight(140);
+			img3.setFitWidth(100);
+			img4.setFitHeight(140);
+			img4.setFitWidth(100);
+			img5.setFitHeight(140);
+			img5.setFitWidth(100);
+			img6.setFitHeight(140);
+			img6.setFitWidth(100);
+			img7.setFitHeight(140);
+			img7.setFitWidth(100);
+			img8.setFitHeight(140);
+			img8.setFitWidth(100);
+			img9.setFitHeight(140);
+			img9.setFitWidth(100);
+			
+			
+			clientView.getGameView().setGraphic1(img1);
+			clientView.getGameView().setGraphic2(img2);
+			clientView.getGameView().setGraphic3(img3);
+			clientView.getGameView().setGraphic4(img4);
+			clientView.getGameView().setGraphic5(img5);
+			clientView.getGameView().setGraphic6(img6);
+			clientView.getGameView().setGraphic7(img7);
+			clientView.getGameView().setGraphic8(img8);
+			clientView.getGameView().setGraphic9(img9);
+			
+			if(playersOnGame[0].getName().equals(client)) {
+				clientView.getGameView().p4_name.setText(playersOnGame[0].getName());
+				clientView.getGameView().p1_name.setText(playersOnGame[1].getName());
+				clientView.getGameView().p2_name.setText(playersOnGame[2].getName());
+				clientView.getGameView().p3_name.setText(playersOnGame[3].getName());
 
+				}
+			
+			
+			if(playersOnGame[1].getName().equals(client)) {
+				clientView.getGameView().p4_name.setText(playersOnGame[1].getName());
+				clientView.getGameView().p1_name.setText(playersOnGame[2].getName());
+				clientView.getGameView().p2_name.setText(playersOnGame[3].getName());
+				clientView.getGameView().p3_name.setText(playersOnGame[0].getName());
+			}
+			if(playersOnGame[2].getName().equals(client)) {
+				clientView.getGameView().p4_name.setText(playersOnGame[2].getName());
+				clientView.getGameView().p1_name.setText(playersOnGame[3].getName());
+				clientView.getGameView().p2_name.setText(playersOnGame[0].getName());
+				clientView.getGameView().p3_name.setText(playersOnGame[1].getName());
+			}
+			if(playersOnGame[3].getName().equals(client)) {
+				clientView.getGameView().p4_name.setText(playersOnGame[3].getName()); 
+				clientView.getGameView().p1_name.setText(playersOnGame[0].getName());
+				clientView.getGameView().p2_name.setText(playersOnGame[1].getName());
+				clientView.getGameView().p3_name.setText(playersOnGame[2].getName());
+			}
 		}
+	});
 	
 	
-	if(playersOnGame[1].getName().equals(client)) {
-		clientView.getGameView().p4_name.setText(playersOnGame[1].getName());
-		clientView.getGameView().p1_name.setText(playersOnGame[2].getName());
-		clientView.getGameView().p2_name.setText(playersOnGame[3].getName());
-		clientView.getGameView().p3_name.setText(playersOnGame[0].getName());
-	}
-	if(playersOnGame[2].getName().equals(client)) {
-		clientView.getGameView().p4_name.setText(playersOnGame[2].getName());
-		clientView.getGameView().p1_name.setText(playersOnGame[3].getName());
-		clientView.getGameView().p2_name.setText(playersOnGame[0].getName());
-		clientView.getGameView().p3_name.setText(playersOnGame[1].getName());
-	}
-	if(playersOnGame[3].getName().equals(client)) {
-		clientView.getGameView().p4_name.setText(playersOnGame[3].getName()); 
-		clientView.getGameView().p1_name.setText(playersOnGame[0].getName());
-		clientView.getGameView().p2_name.setText(playersOnGame[1].getName());
-		clientView.getGameView().p3_name.setText(playersOnGame[2].getName());
-	}
+	
 	
 	
 	

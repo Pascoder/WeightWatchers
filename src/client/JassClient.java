@@ -13,7 +13,7 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class JassClient extends Application {
-    private static JassClient mainProgram; // singleton
+    private static JassClient mainProgram; // singletonfrank
 	private ClientModel clientModel;
 	private ClientView clientView;
 	private ClientController clientController;

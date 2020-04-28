@@ -98,9 +98,9 @@ public class Game_View extends BorderPane{
 			this.tablebox = new VBox();
 			this.tablebox.setSpacing(30);
 			this.tablebox.setPadding(new Insets(10,60,60,60));
-			this.tableview.setFitHeight(140);
+			/*this.tableview.setFitHeight(140);
 			this.tableview.setFitWidth(100);
-			this.tablebox.getChildren().add(tableview);
+			this.tablebox.getChildren().add(tableview);*/
 			this.centerPane.add(tablebox, 1, 1);
 			
 			
@@ -141,8 +141,12 @@ public class Game_View extends BorderPane{
 			this.centerPane.add(player4, 0, 2,10,1);
 			
 				//Hier unten werden dann ImageViews verwendet die Image beinhalten
-		
+			JassImage imgjass = new JassImage();
 			this.karte1 = new ToggleButton();
+			/*ImageView img = imgjass.getCardImage("DSix_CH");
+			img.setFitHeight(140);
+			img.setFitWidth(100);
+			this.karte1.setGraphic(img);*/
 			player4.getChildren().add(karte1);
 			
 			this.karte2 = new ToggleButton();
@@ -193,6 +197,44 @@ public class Game_View extends BorderPane{
 //	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setTitle("Game");
     }
+    
+    public void setGraphic1(ImageView img) {
+    	this.karte1.setGraphic(img);
+    }
+    
+    public void setGraphic2(ImageView img) {
+    	this.karte2.setGraphic(img);
+    }
+    
+    public void setGraphic3(ImageView img) {
+    	this.karte3.setGraphic(img);
+    }
+    
+    public void setGraphic4(ImageView img) {
+    	this.karte4.setGraphic(img);
+    }
+    
+    public void setGraphic5(ImageView img) {
+    	this.karte5.setGraphic(img);
+    }
+    
+    public void setGraphic6(ImageView img) {
+    	this.karte6.setGraphic(img);
+    }
+    
+    public void setGraphic7(ImageView img) {
+    	this.karte7.setGraphic(img);
+    }
+    
+    public void setGraphic8(ImageView img) {
+    	this.karte8.setGraphic(img);
+    }
+    
+    public void setGraphic9(ImageView img) {
+    	this.karte9.setGraphic(img);
+    }
+    
+    
 	
     }
 
