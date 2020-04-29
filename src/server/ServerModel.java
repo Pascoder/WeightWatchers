@@ -32,12 +32,15 @@ public class ServerModel {
 	if (accountsloaded == false) {
 	    loadaccounts();
 	}
+	
 	boolean loginOK = false;
 	String key = username + password;
-	System.out.println("LOGIN VERSUCH:"+username+password);
+	
 	for (int i = 0; i < accounts.size(); i++) {
-	    if (accounts.get(i).equals(key)) {
-	    	System.out.println("LOGIN OK");
+		String [] logindata = accounts.get(i).split("\\|");
+		
+	    if (logindata[1].equals(password) && logindata[0].equals(username)) {
+	    
 		Player player = new Player(player_id, username, password);
 		Lobby.getLobby().setPlayersOnline(player);
 		player_id++;
@@ -94,14 +97,14 @@ public class ServerModel {
 	// Pr�fen ob User bereits existiert
 	boolean userNotExist = true;
 	for (int i = 0; i < accounts.size(); i++) {
-	    if (accounts.get(i).equals(username + "" + password)) {
+	    if (accounts.get(i).equals(username + "|" + password)) {
 
 		userNotExist = false;
 	    }
 	}
 	// Wenn User nicht existiert wird Accounts Liste updated
 	if (userNotExist == true) {
-	    accounts.add(username + "" + password);
+	    accounts.add(username + "|" + password);
 	    saveAccounts();
 	}
 

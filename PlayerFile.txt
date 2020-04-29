@@ -1,3 +1,3 @@
-frank1234
-oli1234
-pascal1234
+frank|1234
+oli|1234
+pascal|1234
