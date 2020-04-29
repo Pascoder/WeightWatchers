@@ -110,7 +110,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	
 	for(Player p : playersOnGame) {
 		if(p.getName().equals(client)) {
-			cardList = p.getHandAsStrings();
+			cardList = p.getHandAsStrings(); 
 			
 			
 		}
