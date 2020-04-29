@@ -199,42 +199,40 @@ public class Game_View extends BorderPane{
 	stage.setTitle("Game");
     }
     
-    public void setGraphic1(ImageView img) {
-    	this.karte1.setGraphic(img);
+    public void setGraphic(int num, ImageView img) {
+    	switch(num) {
+    	case 1:
+    		this.karte1.setGraphic(img);
+    	break;
+    	case 2: 
+    		this.karte2.setGraphic(img);
+    	break;
+    	case 3:
+    		this.karte3.setGraphic(img);
+    	break;
+    	case 4:
+    		this.karte4.setGraphic(img);
+    	break;
+    	case 5:
+    		this.karte5.setGraphic(img);
+    	break;
+    	case 6:
+    		this.karte6.setGraphic(img);
+    	break;
+    	case 7:
+    		this.karte7.setGraphic(img);
+    	break;
+    	case 8:
+    		this.karte8.setGraphic(img);
+    	break;
+    	case 9:
+    		this.karte9.setGraphic(img);
+    	break;
+    	}
+   
     }
     
-    public void setGraphic2(ImageView img) {
-    	this.karte2.setGraphic(img);
-    }
-    
-    public void setGraphic3(ImageView img) {
-    	this.karte3.setGraphic(img);
-    }
-    
-    public void setGraphic4(ImageView img) {
-    	this.karte4.setGraphic(img);
-    }
-    
-    public void setGraphic5(ImageView img) {
-    	this.karte5.setGraphic(img);
-    }
-    
-    public void setGraphic6(ImageView img) {
-    	this.karte6.setGraphic(img);
-    }
-    
-    public void setGraphic7(ImageView img) {
-    	this.karte7.setGraphic(img);
-    }
-    
-    public void setGraphic8(ImageView img) {
-    	this.karte8.setGraphic(img);
-    }
-    
-    public void setGraphic9(ImageView img) {
-    	this.karte9.setGraphic(img);
-    }
-    
+   
     
 	
     }
