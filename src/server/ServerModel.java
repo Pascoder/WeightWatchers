@@ -44,7 +44,7 @@ public class ServerModel {
 	    }
 	}
 
-	return true;
+	return loginOK;  //War auf null
 
 	// this.getClass().getClassLoader().getResourceAsStream("client/"+
 	// "Schweizer_Jasskarten.jpg")
