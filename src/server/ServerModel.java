@@ -34,9 +34,10 @@ public class ServerModel {
 	}
 	boolean loginOK = false;
 	String key = username + password;
-
+	System.out.println("LOGIN VERSUCH:"+username+password);
 	for (int i = 0; i < accounts.size(); i++) {
 	    if (accounts.get(i).equals(key)) {
+	    	System.out.println("LOGIN OK");
 		Player player = new Player(player_id, username, password);
 		Lobby.getLobby().setPlayersOnline(player);
 		player_id++;
