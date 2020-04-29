@@ -72,18 +72,6 @@ public static void loadPlayersOnline (String [] players) {
 			for(String s : players) {
 				clientView.getLobbyView().playerOnList.appendText(s+"\n");
 			}
-
-	
-	//System.out.println("ObservableList:"+newplayers.get(0));
-	
-	
-	/*Platform.runLater(new Runnable(){
-
-		@Override
-		public void run() {
-			clientView.getLobbyView().setPlayerOn(newplayers);
-		}
-	});*/
 	
 }
 
@@ -161,39 +149,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 			}
 		}
 	});
-	
-	
-	
-	
-	
-	
-	/*boolean p1 = false;
-	boolean p2 = false;
-	boolean p3 = false;
-	for(String player:playersOnGame) {
-		if(client.equals(player)) {
-			clientView.getGameView().p4_name.setText(player); //p4 ist unten in View
-			
-		}else {
-			if(p1 == false) {
-				clientView.getGameView().p1_name.setText(player);
-				p1 = true;
-				}else {
-					if(p2 == false) {
-						clientView.getGameView().p2_name.setText(player);
-						p2 = true;
-					}else {
-						if(p3 == false);
-						clientView.getGameView().p3_name.setText(player);
-						p3 = true;
-					}	
-			}
-			
-		}
-		
-			
-	}*/
-	
+
 	
 	
 	
