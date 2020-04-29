@@ -38,6 +38,10 @@ ServiceLocator_JC serviceLocator;
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
 		lobbyview.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobbyview.getTextField().getText()));
 		lobbyview.getJoinButton().setOnAction(c -> clientModel.sayJoinGame(lobbyview.getTextField().getText()));
+		for(int i = 1; i<10;i++ ) {
+			gameview.getToggleButton(i).setOnAction(c-> System.out.println("ToggleButton geklickt"));
+		}
+		
 	}
 	
 	public static void updateLoginInfoLabel(String info) {

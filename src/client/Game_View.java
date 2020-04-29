@@ -143,10 +143,7 @@ public class Game_View extends BorderPane{
 				//Hier unten werden dann ImageViews verwendet die Image beinhalten
 			JassImage imgjass = new JassImage();
 			this.karte1 = new ToggleButton();
-			/*ImageView img = imgjass.getCardImage("DSix_CH");
-			img.setFitHeight(140);
-			img.setFitWidth(100);
-			this.karte1.setGraphic(img);*/
+		
 			player4.getChildren().add(karte1);
 			
 			this.karte2 = new ToggleButton();
@@ -230,6 +227,41 @@ public class Game_View extends BorderPane{
     	break;
     	}
    
+    }
+    
+    public ToggleButton getToggleButton(int button) {
+    	ToggleButton b = null;
+    	switch(button) {
+    	case 1:
+    		b = this.karte1;
+    	break;
+    	case 2: 
+    		b = this.karte2;
+    	break;
+    	case 3:
+    		b =this.karte3;
+    	break;
+    	case 4:
+    		b =this.karte4;
+    	break;
+    	case 5:
+    		b =this.karte5;
+    	break;
+    	case 6:
+    		b = this.karte6;
+    	break;
+    	case 7:
+    		b = this.karte7;
+    	break;
+    	case 8:
+    		b = this.karte8;
+    	break;
+    	case 9:
+    		b = this.karte9;
+    	break;
+    	}
+    	return b;
+    	
     }
     
    
