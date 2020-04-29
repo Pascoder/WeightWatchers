@@ -191,7 +191,8 @@ public class Game_View extends BorderPane{
 	
 //	root.getStyleClass().add("root"); // Class for styling
 	
-	Scene scene = new Scene(this,1000,850);
+	Scene scene = new Scene(this);
+	stage.setMaximized(true);
 	stage.setScene(scene);
 
 //	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
