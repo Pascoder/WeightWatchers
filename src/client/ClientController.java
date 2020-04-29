@@ -23,6 +23,7 @@ private ClientModel clientModel;
 private static ClientView clientView;
 ServiceLocator_JC serviceLocator;
 
+
 	
 
 	public ClientController(ClientModel clientModel, ClientView clientView) {
@@ -38,9 +39,89 @@ ServiceLocator_JC serviceLocator;
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
 		lobbyview.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobbyview.getTextField().getText()));
 		lobbyview.getJoinButton().setOnAction(c -> clientModel.sayJoinGame(lobbyview.getTextField().getText()));
-		for(int i = 1; i<10;i++ ) {
-			gameview.getToggleButton(i).setOnAction(c-> System.out.println("ToggleButton geklickt"));
-		}
+		
+		
+		gameview.getToggleButton(1).setOnAction((c)-> { 
+			
+			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
+			String playerID = clientModel.getPlayer(gameview.getPlayerName()).getPlayer_id()+"";
+			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
+			 String [] card = hand.get(0).split("\\$");
+			clientModel.sayMove(gameID, playerID, card[0]);
+		});
+		
+		gameview.getToggleButton(2).setOnAction((c)-> { 
+			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
+			String playerID = clientModel.getPlayer(gameview.getPlayerName()).getPlayer_id()+"";
+			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
+			 String [] card = hand.get(1).split("\\$");
+			clientModel.sayMove(gameID, playerID, card[0]);
+		});
+		
+		gameview.getToggleButton(3).setOnAction((c)-> { 
+			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
+			String playerID = clientModel.getPlayer(gameview.getPlayerName()).getPlayer_id()+"";
+			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
+			 String [] card = hand.get(2).split("\\$");
+			clientModel.sayMove(gameID, playerID, card[0]);
+		});
+		
+		gameview.getToggleButton(4).setOnAction((c)-> { 
+			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
+			String playerID = clientModel.getPlayer(gameview.getPlayerName()).getPlayer_id()+"";
+			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
+			 String [] card = hand.get(3).split("\\$");
+			clientModel.sayMove(gameID, playerID, card[0]);
+		});
+		
+		gameview.getToggleButton(5).setOnAction((c)-> { 
+			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
+			String playerID = clientModel.getPlayer(gameview.getPlayerName()).getPlayer_id()+"";
+			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
+			 String [] card = hand.get(4).split("\\$");
+			clientModel.sayMove(gameID, playerID, card[0]);
+		});
+		
+		gameview.getToggleButton(6).setOnAction((c)-> { 
+			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
+			String playerID = clientModel.getPlayer(gameview.getPlayerName()).getPlayer_id()+"";
+			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
+			 String [] card = hand.get(5).split("\\$");
+			clientModel.sayMove(gameID, playerID, card[0]);
+		});
+		
+		gameview.getToggleButton(7).setOnAction((c)-> { 
+			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
+			String playerID = clientModel.getPlayer(gameview.getPlayerName()).getPlayer_id()+"";
+			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
+			 String [] card = hand.get(6).split("\\$");
+			clientModel.sayMove(gameID, playerID, card[0]);
+		});
+		
+		gameview.getToggleButton(8).setOnAction((c)-> { 
+			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
+			String playerID = clientModel.getPlayer(gameview.getPlayerName()).getPlayer_id()+"";
+			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
+			 String [] card = hand.get(7).split("\\$");
+			clientModel.sayMove(gameID, playerID, card[0]);
+		});
+		
+		gameview.getToggleButton(9).setOnAction((c)-> { 
+			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
+			String playerID = clientModel.getPlayer(gameview.getPlayerName()).getPlayer_id()+"";
+			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
+			 String [] card = hand.get(8).split("\\$");
+			clientModel.sayMove(gameID, playerID, card[0]);
+		});
+		
+		
+			
+			
+			
+		
+	
+		
+		
 		
 	}
 	

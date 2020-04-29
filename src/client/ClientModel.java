@@ -17,6 +17,7 @@ import messages.Message_LOBBYUPDATE;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
+import messages.Message_MOVE;
 import messages.Message_STARTGAME;
 import messages.Message_USERNAMETAKEN;
 import server.Card;
@@ -33,7 +34,7 @@ public class ClientModel {
 		private Logger logger = ServiceLocator_JC.getServiceLocator().getLogger();;
 		private Socket socket;
 		private String clientName;
-		
+		private ArrayList<Player> players = new ArrayList<Player>();
 		
 	public ClientModel() {
 		clientName = "none";
@@ -134,7 +135,6 @@ public class ClientModel {
 			gu_msg.setClient(clientName);
 			logger.info("Game Update erhalten:");
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
-			//ClientController.spreadCards(spreadCards(gu_msg.getPlayers()),gu_msg.getClient());
 			//TODO Verbindung zu Controller um ViewUpdate zu machen
 			break;
 			
@@ -169,73 +169,7 @@ public class ClientModel {
 	
 
 
-	private String[] spreadCards(String players) {
-		int counter = 0;
-		String[] playersOnGame = players.split("\\$");
-		
-		 String [] spieler1 = null;
-		 String [] spieler2 = null;
-		 String [] spieler3 = null;
-		 String [] spieler4 = null;
-		 String [] output = new String [40];
-		 for(int i = 0; i< playersOnGame.length;i++) {
-			if(i == 0) {
-				spieler1 = playersOnGame[i].split("\\|");
-			}
-			if(i == 1) {
-				spieler2 = playersOnGame[i].split("\\|");
-			}
-			if(i == 2) {
-				spieler3 = playersOnGame[i].split("\\|");
-			}
-			if(i == 3) {
-				spieler4 = playersOnGame[i].split("\\|");
-			}
-		 }
-		 //Karten Spieler 1
-		 for(int i = 5; i<spieler1.length;i=i+2) {
-			 if(i == 5) {
-				output[counter] = spieler1[1]; 
-				counter++;
-			 }
-			
-			 output[counter] = spieler1[i];
-			 counter++;
-		 }
-		 //Karten Spieler 2
-		 for(int i = 5; i<spieler2.length;i=i+2) {
-			 if(i == 5 ) {
-				 output[counter] = spieler2[1];
-				 counter++;
-			 }
-			 output[counter] = spieler2[i];
-			 counter++;
-		 }
-		 //Karten Spieler 3
-		 for(int i = 5; i<spieler3.length;i=i+2) {
-			 if(i == 5 ) {
-				 output[counter] = spieler3[1];
-				 counter++;
-			 }
-			 
-			 output[counter] = spieler3[i];
-			 counter++;
-		 }
-		 //Karten Spieler 4
-		 for(int i = 5; i<spieler4.length;i=i+2) {
-			 
-			 if(i == 5 ) {
-				 output[counter] = spieler4[1];
-				 counter++;
-			 }
-			 output[counter] = spieler4[i];
-			 counter++;
-		 }
-		 
-		 
-		return output;
-		
-	}
+	
 
 
 	private Player[] findPlayersOnGame(String players) {
@@ -261,22 +195,7 @@ public class ClientModel {
 			}
 	
 		 }
-			/*System.out.println("Spieler1:");
-			for(String s:spieler1) {
-				System.out.println(s);
-			}
-			System.out.println("Spieler2:");
-			for(String a:spieler2) {
-				System.out.println(a);
-			}
-			System.out.println("Spieler3:");
-			for(String b:spieler3) {
-				System.out.println(b);
-			}
-			System.out.println("Spieler4:");
-			for(String c:spieler4) {
-				System.out.println(c);
-			}*/
+	
 			
 		 ArrayList<String> cardPlayer1 = new ArrayList<String>();
 		 ArrayList<String> cardPlayer2 = new ArrayList<String>();
@@ -317,7 +236,7 @@ public class ClientModel {
 		 output[1] = p2;
 		 output[2] = p3;
 		 output[3] = p4;
-		 
+		 setPlayers(p1, p2, p3, p4);//Auf instanz ebene
 		return output;
 	}
 
@@ -428,6 +347,59 @@ public class ClientModel {
 					logger.warning(e.toString());
 					}
 				}	
+	}
+	
+	
+	public void sayMove(String gameID, String playerID, String card) {
+		System.out.println("SAYMOVE: "+gameID+playerID+card);
+		Message_MOVE msgOut = new Message_MOVE();
+		msgOut.setClient(clientName);
+		msgOut.setPlayerid(playerID);
+		msgOut.setGameid(gameID);
+		msgOut.setCard(card);
+		if(socket != null) {
+			try {
+					msgOut.send(socket);
+				} catch (Exception e) {
+					logger.warning(e.toString());
+					}
+				}	
+	}
+	
+	public void setPlayers(Player p1, Player p2, Player p3, Player p4) {
+		if(players.size()<1) {
+			players.add(p1); players.add(p2); players.add(p3); players.add(p4);
+		}else {
+			for(int i = 0; i< players.size();i++) {
+				if(players.get(i).getName().equals(p1.getName())) {
+					players.remove(i);
+					players.add(p1);
+				}
+				if(players.get(i).getName().equals(p2.getName())) {
+					players.remove(i);
+					players.add(p2);
+				}
+				if(players.get(i).getName().equals(p3.getName())) {
+					players.remove(i);
+					players.add(p3);
+				}
+				if(players.get(i).getName().equals(p4.getName())) {
+					players.remove(i);
+					players.add(p4);
+				}
+			}
+		}
+		
+	}
+	
+	public Player getPlayer (String name) {
+		Player pla = null;
+		for(Player p : players) {
+			if(p.getName().equals(name)) {
+				pla = p;
+			}
+		}
+		return pla;
 	}
 	
 	

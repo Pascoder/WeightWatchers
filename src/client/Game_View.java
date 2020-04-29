@@ -264,6 +264,12 @@ public class Game_View extends BorderPane{
     	
     }
     
+    
+    
+    public String getPlayerName() {
+    	return this.p4_name.getText();
+    }
+    
    
     
 	
