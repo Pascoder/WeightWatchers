@@ -33,7 +33,7 @@ public class Lobby {
     }
 
 //
-    public static ArrayList<Game> getGames() {
+    public ArrayList<Game> getGames() {
 	return Lobby.actualgames;
     }
 

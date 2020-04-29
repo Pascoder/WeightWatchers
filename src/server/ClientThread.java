@@ -110,7 +110,10 @@ public class ClientThread extends Thread {
 				
 				for(Game g : Lobby.getLobby().getGames()) {
 					if(g.getGameID() == Game_ID) {
-						g.playedCardfromClient_2(Game_ID, Player_ID, Card);
+						if(g.getTrumpf()== null) {//Wenn Trumpf null ist wird er gesetzt
+							g.setTrumpf(Game.stringToCard(Card).getCardColor());
+							System.out.println("Trumpf wurde gesetzt");
+						}else g.playedCardfromClient_2(Game_ID, Player_ID, Card);
 					}
 				}
 				ServerModel.updateClients(2, getClientName());//2 = Game Update

@@ -174,7 +174,7 @@ public class Game {
     }
 
     // String Aufschlüsselung in Karte
-    public Card stringToCard(String crd) {
+    public static Card stringToCard(String crd) {
 	String[] strCrd = crd.split("\\|");
 	Card card = new Card(CardColor.valueOf(strCrd[0].substring(0, 1)), CardRank.valueOf(strCrd[0].substring(1)));
 	card.setPlayable(Boolean.parseBoolean(strCrd[1]));
@@ -351,5 +351,13 @@ public class Game {
     public String getLastWinnerPoints() {
 	return this.lastWinner_points + "|";
     }
+
+	public CardColor getTrumpf() {
+		return trumpf;
+	}
+
+	public void setTrumpf(CardColor trumpf) {
+		this.trumpf = trumpf;
+	}
 
 }

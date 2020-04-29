@@ -231,7 +231,7 @@ public class ServerModel {
     // Sucht das Game nach ID mittels String
     public Game searchGame(String game_id) {
 	Game game = null;
-	for (Game g : Lobby.getGames()) {
+	for (Game g : Lobby.getLobby().getGames()) {
 	    if (g.getGameID() == Integer.parseInt(game_id))
 		;
 	    game = g;
@@ -242,7 +242,7 @@ public class ServerModel {
     // Sucht die GameID String:name
     public static String searchGameID(String name) {
     	String game_ID = null;
-    	for (Game g : Lobby.getGames()) {
+    	for (Game g : Lobby.getLobby().getGames()) {
     	    if (g.getName().equals(name)) {
     		
     	    game_ID = Integer.toString(g.getGameID());
