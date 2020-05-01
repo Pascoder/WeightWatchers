@@ -48,7 +48,7 @@ ServiceLocator_JC serviceLocator;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(0).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			gameview.getToggleButton(1).setVisible(false);
+			//gameview.getToggleButton(1).setVisible(false);
 		});
 		
 		gameview.getToggleButton(2).setOnAction((c)-> { 
@@ -57,7 +57,7 @@ ServiceLocator_JC serviceLocator;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(1).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			gameview.getToggleButton(2).setVisible(false);
+			//gameview.getToggleButton(2).setVisible(false);
 		});
 		
 		gameview.getToggleButton(3).setOnAction((c)-> { 
@@ -66,7 +66,7 @@ ServiceLocator_JC serviceLocator;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(2).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			gameview.getToggleButton(3).setVisible(false);
+			//gameview.getToggleButton(3).setVisible(false);
 		});
 		
 		gameview.getToggleButton(4).setOnAction((c)-> { 
@@ -75,7 +75,7 @@ ServiceLocator_JC serviceLocator;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(3).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			gameview.getToggleButton(4).setVisible(false);
+			//gameview.getToggleButton(4).setVisible(false);
 		});
 		
 		gameview.getToggleButton(5).setOnAction((c)-> { 
@@ -84,7 +84,7 @@ ServiceLocator_JC serviceLocator;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(4).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			gameview.getToggleButton(5).setVisible(false);
+			//gameview.getToggleButton(5).setVisible(false);
 		});
 		
 		gameview.getToggleButton(6).setOnAction((c)-> { 
@@ -93,7 +93,7 @@ ServiceLocator_JC serviceLocator;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(5).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			gameview.getToggleButton(6).setVisible(false);
+			//gameview.getToggleButton(6).setVisible(false);
 		});
 		
 		gameview.getToggleButton(7).setOnAction((c)-> { 
@@ -102,7 +102,7 @@ ServiceLocator_JC serviceLocator;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(6).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			gameview.getToggleButton(7).setVisible(false);
+			//gameview.getToggleButton(7).setVisible(false);
 		});
 		
 		gameview.getToggleButton(8).setOnAction((c)-> { 
@@ -111,7 +111,7 @@ ServiceLocator_JC serviceLocator;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(7).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			gameview.getToggleButton(8).setVisible(false);
+			//gameview.getToggleButton(8).setVisible(false);
 		});
 		
 		gameview.getToggleButton(9).setOnAction((c)-> { 
@@ -120,7 +120,7 @@ ServiceLocator_JC serviceLocator;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(8).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			gameview.getToggleButton(9).setVisible(false);
+			//gameview.getToggleButton(9).setVisible(false);
 		});
 		
 		
@@ -248,18 +248,18 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 
 
 public static void loadCardsOnTable(String cardsontable) {
-	
+	System.out.println("CARDS ON TABLE: "+cardsontable);
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
 	String [] cards = cardsontable.split("\\$");
 	
-	for(int i = 0; i < cards.length;i++) {
+	/*for(int i = 0; i < cards.length;i++) {
 		ImageView c = img.getCardImage(cards[0]+lang);
 		c.setFitHeight(80);
 		c.setFitWidth(60);
 		clientView.getGameView().placeCardtoTable(i+1, c);
 	
-		}
+		}*/
 	
 	}
 	

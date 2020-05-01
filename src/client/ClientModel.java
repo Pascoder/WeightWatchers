@@ -135,7 +135,9 @@ public class ClientModel {
 			gu_msg.setClient(clientName);
 			logger.info("Game Update erhalten:");
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
+			 if(gu_msg.getCardsontable()!=null) {
 			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
+			 }
 			break;
 			
 		case CREATEGAME:
@@ -255,17 +257,6 @@ public class ClientModel {
 
 	private String [] findPlayers(String s) {
 		String [] playersArray = s.split("\\|");
-		for(String se:playersArray) {
-			System.out.println("Das ist ein Spieler: "+se);
-		}
-		
-//		ArrayList <String> playersList = new ArrayList <String>();
-//		String [] playersArray = s.split("\\n");
-//		playersList.add(playersArray[4]);
-//		String players = playersList[3];
-//		String playersNew = players.substring(14);
-//		String [] returnString = playersNew.split("\\|");
-//		System.out.println("Das ist ein String: " + s);
 		
 		
 		return playersArray;

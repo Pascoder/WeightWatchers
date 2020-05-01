@@ -162,7 +162,10 @@ public class ServerModel {
 	    String gameid = Lobby.getLobby().getGameIDofPlayersGame(client);
 	    msgOutGame.setGameid(gameid);
 	    msgOutGame.setPlayers(playersInGameString);
+	   
 	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
+	    
+	    	
 
 	    
 	    // Update an alle Clients senden die im gleichen Spiel sind
