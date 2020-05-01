@@ -30,7 +30,7 @@ public class Game_View extends BorderPane{
     protected Menu menumain;
     protected MenuItem sprache;
     //Labels,Buttons...
-    protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,turn;
+    protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn;
     protected Button weis;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     
@@ -175,8 +175,8 @@ public class Game_View extends BorderPane{
 		//Bottom
 		this.bottomBox = new HBox();
 		this.setBottom(bottomBox);
-		this.turn = new Label("Oli's Turn");
-		this.bottomBox.getChildren().add(turn);
+		this.onTurn = new Label("-");
+		this.bottomBox.getChildren().add(onTurn);
 		this.weis = new Button ("Weis");
 		this.bottomBox.getChildren().add(weis);
 		this.bottomBox.setPadding(new Insets(10,10,10,10));
@@ -279,6 +279,10 @@ public void placeCardtoTable(int num, ImageView img) {
     	}
     	return b;
     	
+    }
+    
+    public Label getOnTurn() {
+    	return this.onTurn;
     }
     
     

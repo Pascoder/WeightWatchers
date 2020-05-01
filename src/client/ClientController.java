@@ -195,6 +195,8 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 			cardList = p.getHandAsStrings(); 
 			
 			
+				clientView.getGameView().getOnTurn().setText("On move: "+p.getonMove());
+			
 		}
 		
 	}
@@ -248,7 +250,6 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 
 
 public static void loadCardsOnTable(String cardsontable) {
-	System.out.println("CARDS ON TABLE: "+cardsontable);
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
 	String [] cards = cardsontable.split("\\$");

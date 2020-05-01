@@ -133,7 +133,7 @@ public class ClientModel {
 			msgOut = new Message_GAMEUPDATE();
 			Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 			gu_msg.setClient(clientName);
-			logger.info("Game Update erhalten:");
+			logger.info("Game Update erhalten: "+"\n"+gu_msg);
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
 			 if(gu_msg.getCardsontable()!=null) {
 			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
