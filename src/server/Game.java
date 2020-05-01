@@ -173,6 +173,12 @@ public class Game {
 	this.trumpf = card.getCardColor();
 
     }
+    
+    public static Card singlecardStringtoCard(String s) {
+    	Card card = new Card(CardColor.valueOf(s.substring(0, 1)), CardRank.valueOf(s.substring(1)));
+    	
+    	return card;
+    }
 
     // String Aufschlüsselung in Karte
     public static Card stringToCard(String crd) {
@@ -192,7 +198,7 @@ public class Game {
 
     // Wandelt nur KartenString um
     public void playedCardfromClient_2(int Game_ID, int Player_ID, String card) {
-	Card card2 = stringToCard(card);
+	Card card2 = singlecardStringtoCard(card);
 	playCard(Game_ID, Player_ID, card2);
     }
 
