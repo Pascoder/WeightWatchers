@@ -159,6 +159,7 @@ public class ClientThread extends Thread {
 				
 			case GAMEUPDATE:
 				Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
+				gu_msg.setClient(clientName);
 				ServerModel.updateClients(2, clientName);//2 = Game Update
 				msgOut = new Message_HELLO();
 				break;

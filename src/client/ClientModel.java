@@ -158,10 +158,11 @@ public class ClientModel {
 			break;
 			
 		case STARTGAME:
-			msgOut = new Message_STARTGAME();
+			msgOut = new Message_GAMEUPDATE();
 			msgOut.setClient(this.clientName);
 			logger.info("Game wurde gestartet");
 			ClientController.switchview(3);
+			msgOut.send(socket);
 			break;
 			
 		case MOVE:
