@@ -135,7 +135,7 @@ public class ClientModel {
 			gu_msg.setClient(clientName);
 			logger.info("Game Update erhalten:");
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
-			//TODO Verbindung zu Controller um ViewUpdate zu machen
+			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
 			break;
 			
 		case CREATEGAME:
@@ -173,7 +173,7 @@ public class ClientModel {
 
 
 	private Player[] findPlayersOnGame(String players) {
-		//System.out.println("Dieser String wird in die Methode gegeben:"+players);
+		
 		 String[] playersOnGame = players.split("\\$"); // 1 Zeile = 1 Spieler + Karten etc
 		 Player [] output = new Player [4];
 		 String [] spieler1 = null; // 1Spieler auf Zeilen aufgeteilt

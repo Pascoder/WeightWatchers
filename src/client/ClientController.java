@@ -213,7 +213,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	}
 	
 	
-			
+			//Logik um die Reihenfolge am Tisch für alle richtig zu setzen
 			if(playersOnGame[0].getName().equals(client)) {
 				clientView.getGameView().p4_name.setText(playersOnGame[0].getName());
 				clientView.getGameView().p1_name.setText(playersOnGame[1].getName());
@@ -221,7 +221,6 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 				clientView.getGameView().p3_name.setText(playersOnGame[3].getName());
 
 				}
-			
 			
 			if(playersOnGame[1].getName().equals(client)) {
 				clientView.getGameView().p4_name.setText(playersOnGame[1].getName());
@@ -243,12 +242,27 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 			}
 		}
 	});
-
-	
-	
-	
 	
 }
+
+
+
+public static void loadCardsOnTable(String cardsontable) {
+	
+	JassImage img = new JassImage();
+	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
+	String [] cards = cardsontable.split("\\$");
+	
+	for(int i = 0; i < cards.length;i++) {
+		ImageView c = img.getCardImage(cards[0]+lang);
+		c.setFitHeight(80);
+		c.setFitWidth(60);
+		clientView.getGameView().placeCardtoTable(i+1, c);
+	
+		}
+	
+	}
+	
 
 public static void showCards(String[] spreadCards, String client) {
 	// TODO Auto-generated method stub
@@ -257,34 +271,6 @@ public static void showCards(String[] spreadCards, String client) {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

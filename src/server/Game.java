@@ -312,8 +312,17 @@ public class Game {
 	return gameString;
     }
 
-    public ArrayList getCardsOnTable() {
+    public ArrayList<Card> getCardsOnTable() {
 	return this.cardsOnTable;
+    }
+    
+    public String getCardsOnTableAsString() {
+    	String result = "";
+    	
+    	for (Card c : cardsOnTable) {
+    		result += c.toString() + "$";
+    	}
+    	return result;
     }
 
     public Card getLastCard() {

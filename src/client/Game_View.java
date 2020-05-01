@@ -24,8 +24,8 @@ public class Game_View extends BorderPane{
     private ServiceLocator_JC sl;
     //Layout
     protected HBox menu, player4, bottomBox;
-    protected GridPane centerPane;
-    protected VBox player1, player2, player3, tablebox;
+    protected GridPane centerPane, tablebox;
+    protected VBox player1, player2, player3 ;
     protected MenuBar menubar;
     protected Menu menumain;
     protected MenuItem sprache;
@@ -95,8 +95,8 @@ public class Game_View extends BorderPane{
 			this.centerPane.add(player1, 0, 1);
 			
 			//Table
-			this.tablebox = new VBox();
-			this.tablebox.setSpacing(30);
+			this.tablebox = new GridPane();
+//			this.tablebox.setSpacing(30);
 			this.tablebox.setPadding(new Insets(10,60,60,60));
 			/*this.tableview.setFitHeight(140);
 			this.tableview.setFitWidth(100);
@@ -141,7 +141,7 @@ public class Game_View extends BorderPane{
 			this.centerPane.add(player4, 0, 2,10,1);
 			
 				//Hier unten werden dann ImageViews verwendet die Image beinhalten
-			JassImage imgjass = new JassImage();
+			
 			this.karte1 = new ToggleButton();
 		
 			player4.getChildren().add(karte1);
@@ -229,6 +229,23 @@ public class Game_View extends BorderPane{
    
     }
     
+public void placeCardtoTable(int num, ImageView img) {
+	switch(num) {
+	case 1: tablebox.add(img, 0, 0);
+	break;
+	case 2: tablebox.add(img, 0, 1);
+	break;
+	case 3: tablebox.add(img, 1, 0);
+	break;
+	case 4: tablebox.add(img, 1, 1);
+	break;
+	default:
+		System.out.println("Zu viele Karten auf dem Tisch!! max: 4!");
+	
+	}
+    	
+    }
+    
     public ToggleButton getToggleButton(int button) {
     	ToggleButton b = null;
     	switch(button) {
@@ -263,6 +280,8 @@ public class Game_View extends BorderPane{
     	return b;
     	
     }
+    
+    
     
     
     

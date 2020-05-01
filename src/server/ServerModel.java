@@ -144,23 +144,25 @@ public class ServerModel {
 	    String gameId = Lobby.getLobby().getGameIDofPlayersGame(client);
 	    
 	    ArrayList<String> playersInGame = new ArrayList<String>();
-	    String playersInGame1 ="";
+	    String playersInGameString ="";
+	    Game game = null;
 
 	    // Fuellt Spielernamen in ArrayList
 	    for (Game g : Lobby.getLobby().getGames()) {
 		if (Integer.toString(g.getGameID()).equals(gameId)) {
+			game = g;
 		    for (Player p : g.getPlayersOnGame()) {
 			playersInGame.add(p.getName());
-			playersInGame1 += g.GameAsString();
+			playersInGameString += g.GameAsString();
 			//p.toString();
 		    }
 		}
 	    }
 	    
-	   
-	    msgOutGame.setGameid(Lobby.getLobby().getGameIDofPlayersGame(client));
-	    //Von Frank angepasst war vorher falsch
-	    msgOutGame.setPlayers(playersInGame1);
+	    String gameid = Lobby.getLobby().getGameIDofPlayersGame(client);
+	    msgOutGame.setGameid(gameid);
+	    msgOutGame.setPlayers(playersInGameString);
+	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
 
 	    
 	    // Update an alle Clients senden die im gleichen Spiel sind
