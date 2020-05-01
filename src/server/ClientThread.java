@@ -15,9 +15,11 @@ import messages.MessageType;
 import messages.Message_CREATEGAME;
 import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
+import messages.Message_GAMEUPDATE;
 import messages.Message_GOODBYE;
 import messages.Message_HELLO;
 import messages.Message_JOINGAME;
+import messages.Message_LOBBYUPDATE;
 import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
@@ -78,11 +80,12 @@ public class ClientThread extends Thread {
 				//Ueberprueft ob Login korrekt ist und sendet dann die entsprechende Nachricht
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
 				
-				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword()) == true) {
+				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
 					msgOut = new Message_LOGINOK();
+					
 					this.clientName = lg_msg.getUsername();
 					lg_msg.setClient(clientName);
-					ServerModel.updateClients(1, getClientName());//1 = Lobby Update TODO ENUM machen!
+//					ServerModel.updateClients(1, getClientName());//1 = Lobby Update TODO ENUM machen!
 				} else  { 
 					msgOut = new Message_LOGINNOTOK();
 				}
@@ -116,14 +119,13 @@ public class ClientThread extends Thread {
 						}else g.playedCardfromClient_2(Game_ID, Player_ID, Card);
 					}
 				}
-				ServerModel.updateClients(2, getClientName());//2 = Game Update
+//				ServerModel.updateClients(2, getClientName());//2 = Game Update
 				msgOut = new Message_MOVE();
 				break;
 				
 			case CREATEGAME:
 				Message_CREATEGAME cg_msg = (Message_CREATEGAME) msgIn;
 				Lobby.getLobby().createGame(cg_msg.getGamename());
-				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
 				msgOut = new Message_CREATEGAME();
 				break;
 				
@@ -131,7 +133,7 @@ public class ClientThread extends Thread {
 				Message_JOINGAME jg_msg = (Message_JOINGAME) msgIn;
 				Lobby.getLobby().JoinGame(ServerModel.searchGameID(jg_msg.getGamename())
 				,ServerModel.searchPlayerbyName(getClientName()) );
-				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
+//				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
 				msgOut = new Message_JOINGAME();
 				break;
 				
@@ -144,10 +146,22 @@ public class ClientThread extends Thread {
 			case GOODBYE:
 				Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;
 				//TODO @Oli Methode in Lobby die ein Spieler löscht und alle seine aktiven Spiele beendet
-				ServerModel.updateClients(1, getClientName());
+//				ServerModel.updateClients(1, getClientName());
 				msgOut = new Message_GOODBYE();
 				break;
-
+				
+			case LOBBYUPDATE:
+				Message_LOBBYUPDATE lu_msg = (Message_LOBBYUPDATE) msgIn;
+				lu_msg.setClient(clientName);
+				ServerModel.updateClients(1, clientName);//1 = Lobby Update
+				msgOut = new Message_HELLO();
+				break;
+				
+			case GAMEUPDATE:
+				Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
+				ServerModel.updateClients(2, clientName);//2 = Game Update
+				msgOut = new Message_HELLO();
+				break;
 				
 			default:
 				msgOut = new Message_ERROR();
@@ -162,7 +176,7 @@ public class ClientThread extends Thread {
 	}
 
 	public String getClientName() {
-		return clientName;
+		return this.clientName;
 	}
 
 	

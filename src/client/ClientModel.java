@@ -93,15 +93,19 @@ public class ClientModel {
 			break;
 			
 		case LOGINOK:
-			msgOut = new Message_LOGINOK();
+			msgOut = new Message_LOBBYUPDATE();
 			this.clientName = msgIn.getClient();
-			System.out.println("Nachricht Login OK erhalten");
+			logger.info("Nachricht LoginOK erhalten");
 			logger.info(msgIn.getClient() + " erfolgreich eingeloggt");
 			ClientController.switchview(2);
+			msgOut.setClient(this.clientName);
+			msgOut.send(socket);
+			logger.info("Client hat Lobby Update angefordert");
 			break;
 			
 		case LOGINNOTOK:
 			msgOut = new Message_LOGINNOTOK();
+			msgOut.setClient(this.clientName);
 			logger.info(msgIn.getClient() + " Login Daten nicht korrekt");
 			ClientController.updateLoginInfoLabel("Login Daten nicht korrekt");
 			break;
@@ -121,9 +125,8 @@ public class ClientModel {
 		case LOBBYUPDATE:
 			msgOut = new Message_LOBBYUPDATE();
 			Message_LOBBYUPDATE lu_msg = (Message_LOBBYUPDATE) msgIn;
-			lu_msg.setClient(clientName);
-			logger.info("Lobby Update erhalten:");
-			System.out.println(msgIn.toString());
+			lu_msg.setClient(this.clientName);
+			logger.info("Lobby Update erhalten:" + lu_msg);
 			ClientController.loadPlayersOnline(findPlayers(lu_msg.getPlayersonline()));
 			ClientController.loadGames(findGames(lu_msg.getGames()));
 			ClientController.joinGame(findJoinedgames(lu_msg.getGames())); //TODO:Hier Fehlt eine Methode auf dem Server Model LobbyUpdate habe einfach mal getGames genommen
@@ -132,8 +135,8 @@ public class ClientModel {
 		case GAMEUPDATE: 
 			msgOut = new Message_GAMEUPDATE();
 			Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
-			gu_msg.setClient(clientName);
-			logger.info("Game Update erhalten: "+"\n"+gu_msg);
+			gu_msg.setClient(this.clientName);
+			logger.info("Game Update erhalten: "+"\n" + gu_msg);
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
 			 if(gu_msg.getCardsontable()!=null) {
 			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
@@ -141,26 +144,37 @@ public class ClientModel {
 			break;
 			
 		case CREATEGAME:
-			msgOut = new Message_CREATEGAME();
-			logger.info("Spiel wurde erstellt");
+			msgOut = new Message_LOBBYUPDATE();
+			msgOut.setClient(this.clientName);
+			logger.info("Spiel wurde erstellt und Lobby Update angefordert");
+			msgOut.send(socket);
 			break;
 		
 		case JOINGAME:
-			msgOut = new Message_JOINGAME();
-			logger.info("Game wurde beigetreten");
+			msgOut = new Message_LOBBYUPDATE();
+			msgOut.setClient(this.clientName);
+			logger.info("Game wurde beigetreten und Lobby Update angefordert");
+			msgOut.send(socket);
 			break;
 			
 		case STARTGAME:
 			msgOut = new Message_STARTGAME();
+			msgOut.setClient(this.clientName);
 			logger.info("Game wurde gestartet");
 			ClientController.switchview(3);
 			break;
 			
+		case MOVE:
+			msgOut = new Message_GAMEUPDATE();
+			msgOut.setClient(this.clientName);
+			logger.info("Zug wurde gemacht und GameUpdate angefordert");
+			msgOut.send(socket);
+			break;
 			
 		default:
 			msgOut = new Message_ERROR();
 		}
-		msgOut.setClient(clientName);
+		msgOut.setClient(this.clientName);
 		return msgOut;
 	}
 
@@ -331,6 +345,7 @@ public class ClientModel {
 		Message_JOINGAME msgOut = new Message_JOINGAME();
 		msgOut.setClient(clientName);
 		msgOut.setGamename(gamename);
+		logger.info("Join Game Message an Server gesendet: "+ msgOut);
 		if(socket != null) {
 			try {
 					msgOut.send(socket);

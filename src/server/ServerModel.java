@@ -165,9 +165,6 @@ public class ServerModel {
 	   
 	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
 	    
-	    	
-
-	    
 	    // Update an alle Clients senden die im gleichen Spiel sind
 	    for (ClientThread cT : clientList) {
 		for (String player : playersInGame) {
@@ -197,6 +194,7 @@ public class ServerModel {
 		
 	    if (ct.getClientName().equals(client)) {
 		msgOutstart.send(ct.getClientSocket());
+		
 	    }
 	}
 

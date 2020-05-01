@@ -53,6 +53,7 @@ public class ClientView {
 		//GameView
 			if(viewNumber == 3) {
 				gameStage.show();
+				lobbyStage.hide();
 			}
 			
 			
