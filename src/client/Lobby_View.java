@@ -40,7 +40,7 @@ public class Lobby_View{
 
     
     private TextField txtGameName;
-    private Button createBt, leaveBt, leaveLobbyBt, joingame; 
+    private Button createBt, leaveBt, leaveLobbyBt; 
     private TextField txt;
 
     
@@ -68,9 +68,8 @@ public class Lobby_View{
 		this.createBt = new Button(t.getString("lobby.btnCreate"));
 		
 		this.txtGameName = new TextField();
-		this.joingame = new Button("Join Game");
 		VBox gamesBox = new VBox();
-		gamesBox.getChildren().addAll(lblGames, gamesList,createBt,joingame,txtGameName);
+		gamesBox.getChildren().addAll(lblGames, gamesList,createBt,txtGameName);
 		
 		gamesBox.setPadding(new Insets(15, 12, 15, 12));
 		gamesBox.setSpacing(10);
@@ -191,9 +190,6 @@ public class Lobby_View{
     //selectedGameList.setItems(selectedGame);
     }
     
-    public Button getJoinButton() {
-    	return this.joingame;
-    }
     
     
     public Button getCreateGameButton() {
