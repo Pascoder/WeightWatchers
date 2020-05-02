@@ -16,6 +16,8 @@ public class Card {
 	this.player_ID = 0;
 
     }
+    
+ 
 
     public CardColor getCardColor() {
 	return cardColor;

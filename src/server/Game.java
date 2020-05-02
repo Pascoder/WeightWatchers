@@ -115,12 +115,16 @@ public class Game {
 	generateMoveOrder();
 	generateTeams();
 	setPlayersOffMove();
+	if(round == 0) {
+	spreadCards();
+	nextRound();
+	}
 	//NextRound
 	for(int i = 0; i< playersOnGame.size();i++) {
 		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
 		
 	}
-	ServerModel.updateClients(2, playersOnGame.get(1).getName());
+//	ServerModel.updateClients(2, playersOnGame.get(1).getName());
 		//Muss nur 1 mal gemacht werden, es werden sowieso alle Clients updated
 
     }
@@ -173,9 +177,15 @@ public class Game {
 	this.trumpf = card.getCardColor();
 
     }
+    
+    public static Card singlecardStringtoCard(String s) {
+    	Card card = new Card(CardColor.valueOf(s.substring(0, 1)), CardRank.valueOf(s.substring(1)));
+    	
+    	return card;
+    }
 
     // String Aufschlüsselung in Karte
-    public Card stringToCard(String crd) {
+    public static Card stringToCard(String crd) {
 	String[] strCrd = crd.split("\\|");
 	Card card = new Card(CardColor.valueOf(strCrd[0].substring(0, 1)), CardRank.valueOf(strCrd[0].substring(1)));
 	card.setPlayable(Boolean.parseBoolean(strCrd[1]));
@@ -192,7 +202,7 @@ public class Game {
 
     // Wandelt nur KartenString um
     public void playedCardfromClient_2(int Game_ID, int Player_ID, String card) {
-	Card card2 = stringToCard(card);
+	Card card2 = singlecardStringtoCard(card);
 	playCard(Game_ID, Player_ID, card2);
     }
 
@@ -314,10 +324,10 @@ public class Game {
 
     // Methode benötigt für Message_GAMEUPDATE
     public String GameAsString() {
-	String gameString = null;
+	String gameString = "";
 
 	for (Player p : playersOnGame) {
-	    gameString += p.toString() + "|";
+	    gameString += p.toString() + "$";
 	}
 
 	return gameString;
@@ -325,6 +335,15 @@ public class Game {
 
     public ArrayList<Card> getCardsOnTable() {
 	return this.cardsOnTable;
+    }
+    
+    public String getCardsOnTableAsString() {
+    	String result = "";
+    	
+    	for (Card c : cardsOnTable) {
+    		result += c.toString() + "$";
+    	}
+    	return result;
     }
 
     public Card getLastCard() {
@@ -362,5 +381,13 @@ public class Game {
     public String getLastWinnerPoints() {
 	return this.lastWinner_points + "|";
     }
+
+	public CardColor getTrumpf() {
+		return trumpf;
+	}
+
+	public void setTrumpf(CardColor trumpf) {
+		this.trumpf = trumpf;
+	}
 
 }

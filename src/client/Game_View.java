@@ -24,36 +24,22 @@ public class Game_View extends BorderPane{
     private ServiceLocator_JC sl;
     //Layout
     protected HBox menu, player4, bottomBox;
-    protected GridPane centerPane;
-    protected VBox player1, player2, player3, tablebox;
+    protected GridPane centerPane, tablebox;
+    protected VBox player1, player2, player3 ;
     protected MenuBar menubar;
     protected Menu menumain;
     protected MenuItem sprache;
     //Labels,Buttons...
-    protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,turn;
+    protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn;
     protected Button weis;
-    protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8;
+    protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     
     //Geh�rt nachher ins CSS
-    protected Image img1 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Acht.jpg"));
-    protected Image img2 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Ass.jpg"));
-    protected Image img3 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Koenig.jpg"));
-    protected Image img4 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Neun.jpg"));
-    protected Image img5 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Ober.jpg"));
-    protected Image img6 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Sechs.jpg"));
-    protected Image img7 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Sieben.jpg"));
-    protected Image img8 = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Eichel_Under.jpg"));
-    protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Poker-fuenf-verdeckte-karten.jpg"));
-    protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("card_images/deutsch/Schellen_Under.jpg"));
+
+    protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("Poker-fuenf-verdeckte-karten.jpg"));
+    protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen_Under.jpg"));
     
-    protected ImageView image1 = new ImageView(img1);
-    protected ImageView image2 = new ImageView(img2);
-    protected ImageView image3 = new ImageView(img3);
-    protected ImageView image4 = new ImageView(img4);
-    protected ImageView image5 = new ImageView(img5);
-    protected ImageView image6 = new ImageView(img6);
-    protected ImageView image7 = new ImageView(img7);
-    protected ImageView image8 = new ImageView(img8);
+
     protected ImageView imageverdeckt = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt2 = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt3 = new ImageView(imgverdeckt);
@@ -62,7 +48,7 @@ public class Game_View extends BorderPane{
    
     
     
-    public Game_View(Stage stage) { 
+    public Game_View(Stage stage, ClientModel model) { 
     	this.stage = stage;
 		this.model = model;
 		this.setPadding(new Insets(10,10,10,10));
@@ -95,7 +81,7 @@ public class Game_View extends BorderPane{
 		this.setCenter(centerPane);
 		
 		
-			//Player1
+			//Player1 Links
 			this.player1 = new VBox();
 			this.player1.setSpacing(30);
 			this.player1.setPadding(new Insets(10,60,60,60));
@@ -109,12 +95,12 @@ public class Game_View extends BorderPane{
 			this.centerPane.add(player1, 0, 1);
 			
 			//Table
-			this.tablebox = new VBox();
-			this.tablebox.setSpacing(30);
+			this.tablebox = new GridPane();
+//			this.tablebox.setSpacing(30);
 			this.tablebox.setPadding(new Insets(10,60,60,60));
-			this.tableview.setFitHeight(140);
+			/*this.tableview.setFitHeight(140);
 			this.tableview.setFitWidth(100);
-			this.tablebox.getChildren().add(tableview);
+			this.tablebox.getChildren().add(tableview);*/
 			this.centerPane.add(tablebox, 1, 1);
 			
 			
@@ -155,62 +141,42 @@ public class Game_View extends BorderPane{
 			this.centerPane.add(player4, 0, 2,10,1);
 			
 				//Hier unten werden dann ImageViews verwendet die Image beinhalten
-		
+			
 			this.karte1 = new ToggleButton();
-			karte1.setGraphic(image1);
-			this.image1.setFitHeight(130);
-			this.image1.setFitWidth(65);
+		
 			player4.getChildren().add(karte1);
 			
 			this.karte2 = new ToggleButton();
-			karte2.setGraphic(image2);
-			this.image2.setFitHeight(130);
-			this.image2.setFitWidth(65);
 			player4.getChildren().add(karte2);
 			
 			this.karte3 = new ToggleButton();
-			karte3.setGraphic(image3);
-			this.image3.setFitHeight(130);
-			this.image3.setFitWidth(65);
 			player4.getChildren().add(karte3);
 			
 			this.karte4 = new ToggleButton();
-			karte4.setGraphic(image4);
-			this.image4.setFitHeight(130);
-			this.image4.setFitWidth(65);
 			player4.getChildren().add(karte4);
 			
 			this.karte5 = new ToggleButton();
-			karte5.setGraphic(image5);
-			this.image5.setFitHeight(130);
-			this.image5.setFitWidth(65);
 			player4.getChildren().add(karte5);
 			
 			this.karte6 = new ToggleButton();
-			karte6.setGraphic(image6);
-			this.image6.setFitHeight(130);
-			this.image6.setFitWidth(65);
 			player4.getChildren().add(karte6);
 			
 			this.karte7 = new ToggleButton();
-			karte7.setGraphic(image7);
-			this.image7.setFitHeight(130);
-			this.image7.setFitWidth(65);
 			player4.getChildren().add(karte7);
 			
 			this.karte8 = new ToggleButton();
-			karte8.setGraphic(image8);
-			this.image8.setFitHeight(130);
-			this.image8.setFitWidth(65);
 			player4.getChildren().add(karte8);
+			
+			this.karte9 = new ToggleButton();
+			player4.getChildren().add(karte9);
 			
 			
 			
 		//Bottom
 		this.bottomBox = new HBox();
 		this.setBottom(bottomBox);
-		this.turn = new Label("Oli's Turn");
-		this.bottomBox.getChildren().add(turn);
+		this.onTurn = new Label("-");
+		this.bottomBox.getChildren().add(onTurn);
 		this.weis = new Button ("Weis");
 		this.bottomBox.getChildren().add(weis);
 		this.bottomBox.setPadding(new Insets(10,10,10,10));
@@ -222,12 +188,113 @@ public class Game_View extends BorderPane{
 	
 //	root.getStyleClass().add("root"); // Class for styling
 	
-	Scene scene = new Scene(this,1000,850);
+	Scene scene = new Scene(this);
+	stage.setMaximized(true);
 	stage.setScene(scene);
 
 //	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setTitle("Game");
     }
+    
+    public void setGraphic(int num, ImageView img) {
+    	switch(num) {
+    	case 1:
+    		this.karte1.setGraphic(img);
+    	break;
+    	case 2: 
+    		this.karte2.setGraphic(img);
+    	break;
+    	case 3:
+    		this.karte3.setGraphic(img);
+    	break;
+    	case 4:
+    		this.karte4.setGraphic(img);
+    	break;
+    	case 5:
+    		this.karte5.setGraphic(img);
+    	break;
+    	case 6:
+    		this.karte6.setGraphic(img);
+    	break;
+    	case 7:
+    		this.karte7.setGraphic(img);
+    	break;
+    	case 8:
+    		this.karte8.setGraphic(img);
+    	break;
+    	case 9:
+    		this.karte9.setGraphic(img);
+    	break;
+    	}
+   
+    }
+    
+public void placeCardtoTable(int num, ImageView img) {
+	switch(num) {
+	case 1: tablebox.add(img, 0, 0);
+	break;
+	case 2: tablebox.add(img, 0, 1);
+	break;
+	case 3: tablebox.add(img, 1, 0);
+	break;
+	case 4: tablebox.add(img, 1, 1);
+	break;
+	default:
+		System.out.println("Zu viele Karten auf dem Tisch!! max: 4!");
+	
+	}
+    	
+    }
+    
+    public ToggleButton getToggleButton(int button) {
+    	ToggleButton b = null;
+    	switch(button) {
+    	case 1:
+    		b = this.karte1;
+    	break;
+    	case 2: 
+    		b = this.karte2;
+    	break;
+    	case 3:
+    		b =this.karte3;
+    	break;
+    	case 4:
+    		b =this.karte4;
+    	break;
+    	case 5:
+    		b =this.karte5;
+    	break;
+    	case 6:
+    		b = this.karte6;
+    	break;
+    	case 7:
+    		b = this.karte7;
+    	break;
+    	case 8:
+    		b = this.karte8;
+    	break;
+    	case 9:
+    		b = this.karte9;
+    	break;
+    	}
+    	return b;
+    	
+    }
+    
+    public Label getOnTurn() {
+    	return this.onTurn;
+    }
+    
+    
+    
+    
+    
+    public String getPlayerName() {
+    	return this.p4_name.getText();
+    }
+    
+   
+    
 	
     }
 

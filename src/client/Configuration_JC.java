@@ -34,6 +34,7 @@ public class Configuration_JC {
     private String pass;
     private String userAct;
     private boolean loginSucces = false;
+    private boolean frenchCards = false; //false = SwissCards, true=frenchCards
 
     public Configuration_JC() {
 	// Load default properties from wherever the code is
@@ -243,4 +244,12 @@ public class Configuration_JC {
     public void setLoginSucces(boolean loginSucces) {
 	this.loginSucces = loginSucces;
     }
+
+	public boolean isFrenchCards() {
+		return frenchCards;
+	}
+
+	public void setFrenchCards(boolean frenchCards) {
+		this.frenchCards = frenchCards;
+	}
 }

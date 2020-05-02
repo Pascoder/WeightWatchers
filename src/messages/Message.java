@@ -93,7 +93,7 @@ import java.util.Iterator;
 	     * 
 	     * @param s The socket to use when sending the message
 	     */
-	    public void send(Socket s) {
+	    public synchronized void send(Socket s) {
 	    	// Set the message id before sending (if not already done)
 	    	if (this.id == -1) this.id = nextMessageID();
 	    	

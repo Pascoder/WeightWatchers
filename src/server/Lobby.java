@@ -33,7 +33,7 @@ public class Lobby {
     }
 
 //
-    public static ArrayList<Game> getGames() {
+    public ArrayList<Game> getGames() {
 	return Lobby.actualgames;
     }
 
@@ -120,6 +120,17 @@ public class Lobby {
 	}
 	return result;
     }
+
+	public String getCardsOnTable(String gameid) {
+		int gameID = Integer.parseInt(gameid);
+		for( Game g : actualgames) {
+			if(g.getGameID() == gameID) {
+				ArrayList cards = g.getCardsOnTable();
+			}
+		}
+
+		return null;
+	}
 
   
     

@@ -32,11 +32,15 @@ public class ServerModel {
 	if (accountsloaded == false) {
 	    loadaccounts();
 	}
+	
 	boolean loginOK = false;
 	String key = username + password;
-
+	
 	for (int i = 0; i < accounts.size(); i++) {
-	    if (accounts.get(i).equals(key)) {
+		String [] logindata = accounts.get(i).split("\\|");
+		
+	    if (logindata[1].equals(password) && logindata[0].equals(username)) {
+	    
 		Player player = new Player(player_id, username, password);
 		Lobby.getLobby().setPlayersOnline(player);
 		player_id++;
@@ -44,7 +48,7 @@ public class ServerModel {
 	    }
 	}
 
-	return loginOK;
+	return loginOK;  //War auf null
 
 	// this.getClass().getClassLoader().getResourceAsStream("client/"+
 	// "Schweizer_Jasskarten.jpg")
@@ -65,7 +69,7 @@ public class ServerModel {
     }
 
     private static void loadaccounts() {
-	try (BufferedReader in = new BufferedReader(new FileReader("src/PlayerFile.txt"))) {
+	try (BufferedReader in = new BufferedReader(new FileReader("PlayerFile.txt"))) {
 	    String s = in.readLine();
 
 	    while (s != null) {
@@ -93,14 +97,14 @@ public class ServerModel {
 	// Pr�fen ob User bereits existiert
 	boolean userNotExist = true;
 	for (int i = 0; i < accounts.size(); i++) {
-	    if (accounts.get(i).equals(username + "" + password)) {
+	    if (accounts.get(i).equals(username + "|" + password)) {
 
 		userNotExist = false;
 	    }
 	}
 	// Wenn User nicht existiert wird Accounts Liste updated
 	if (userNotExist == true) {
-	    accounts.add(username + "" + password);
+	    accounts.add(username + "|" + password);
 	    saveAccounts();
 	}
 
@@ -108,7 +112,7 @@ public class ServerModel {
     }
 
     private static void saveAccounts() throws IOException {
-	try (BufferedWriter out = new BufferedWriter(new FileWriter("src/PlayerFile.txt"))) {
+	try (BufferedWriter out = new BufferedWriter(new FileWriter("PlayerFile.txt"))) {
 	    for (int b = 0; b < accounts.size(); b++) {
 		out.write(accounts.get(b) + "\n");
 	    }
@@ -140,24 +144,26 @@ public class ServerModel {
 	    String gameId = Lobby.getLobby().getGameIDofPlayersGame(client);
 	    
 	    ArrayList<String> playersInGame = new ArrayList<String>();
-	    String playersInGame1 ="";
+	    String playersInGameString ="";
+	    Game game = null;
 
 	    // Fuellt Spielernamen in ArrayList
 	    for (Game g : Lobby.getLobby().getGames()) {
 		if (Integer.toString(g.getGameID()).equals(gameId)) {
+			game = g;
 		    for (Player p : g.getPlayersOnGame()) {
 			playersInGame.add(p.getName());
-			playersInGame1 += p.getName()+"|";
+			playersInGameString += g.GameAsString();
 			//p.toString();
 		    }
 		}
 	    }
 	    
+	    String gameid = Lobby.getLobby().getGameIDofPlayersGame(client);
+	    msgOutGame.setGameid(gameid);
+	    msgOutGame.setPlayers(playersInGameString);
 	   
-	    msgOutGame.setGameid(Lobby.getLobby().getGameIDofPlayersGame(client));
-	    //Von Frank angepasst war vorher falsch
-	    msgOutGame.setPlayers(playersInGame1);
-
+	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
 	    
 	    // Update an alle Clients senden die im gleichen Spiel sind
 	    for (ClientThread cT : clientList) {
@@ -188,6 +194,7 @@ public class ServerModel {
 		
 	    if (ct.getClientName().equals(client)) {
 		msgOutstart.send(ct.getClientSocket());
+		
 	    }
 	}
 
@@ -227,7 +234,7 @@ public class ServerModel {
     // Sucht das Game nach ID mittels String
     public Game searchGame(String game_id) {
 	Game game = null;
-	for (Game g : Lobby.getGames()) {
+	for (Game g : Lobby.getLobby().getGames()) {
 	    if (g.getGameID() == Integer.parseInt(game_id))
 		;
 	    game = g;
@@ -238,7 +245,7 @@ public class ServerModel {
     // Sucht die GameID String:name
     public static String searchGameID(String name) {
     	String game_ID = null;
-    	for (Game g : Lobby.getGames()) {
+    	for (Game g : Lobby.getLobby().getGames()) {
     	    if (g.getName().equals(name)) {
     		
     	    game_ID = Integer.toString(g.getGameID());
