@@ -287,6 +287,12 @@ public class Game_View extends BorderPane{
     }
     
 public void placeCardtoTable(int num, Image img) {
+	
+	//fünfte Karte muss wieder an den 1. Platz
+	while(num > 4) {
+		num = num-4;
+	}
+	
 	switch(num) {
 	case 1:
 			this.cardOnTable1.setImage(img);
@@ -360,6 +366,14 @@ public void placeCardtoTable(int num, Image img) {
 			playerButtons.get(i).setVisible(true);
 
 		}
+		
+	}
+
+	public void removeCardsonTable(String stichwinner) {
+		this.cardOnTable1.setImage(null);//TODO Bilder werden noch nicht entfernt
+		this.cardOnTable2.setImage(null);
+		this.cardOnTable3.setImage(null);
+		this.cardOnTable4.setImage(null);
 		
 	}
     

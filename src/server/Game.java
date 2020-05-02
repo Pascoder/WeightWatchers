@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.stream.*;
 
+import messages.Message_GAMEUPDATE;
+
 public class Game {
     private ServiceLocator sl;
     private Logger l;
@@ -243,11 +245,17 @@ public class Game {
 	    evaluateStichWinner();
 	    this.stichColor = null;
 	    countRound();
+	    //Nachricht an Clients
+	    for(Player p : playersOnGame) {
+	    	ServerModel.informClients(p.getName(), name);
+	    }	   
 	}
 	System.out.println(move);
     }
 
-    // Zählt die Runden
+   
+
+	// Zählt die Runden
     private void countRound() {
 	if (this.round < 8) {
 	    this.round++;
@@ -280,7 +288,7 @@ public class Game {
 	searchPlayer(this.lastWinner_ID).addStichCards(cardsOnTable);
 	shiftMoveOrder();
 	
-	System.out.println("Stichgewinner: "+winnerScore[0] + " Punkte: "+winnerScore[1]);
+	System.out.println("Stichgewinner: "+ winnerScore[0] + " Punkte: "+ winnerScore[1]);
 
     }
 

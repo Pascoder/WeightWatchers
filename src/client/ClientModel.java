@@ -23,6 +23,7 @@ import messages.Message_MOVE;
 import messages.Message_STARTGAME;
 import messages.Message_USERNAMETAKEN;
 import server.Card;
+import server.Message_STICHOVER;
 import server.Player;
 import server.Weis;
 
@@ -142,8 +143,8 @@ public class ClientModel {
 			logger.info("Game Update erhalten: "+"\n" + gu_msg);
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
 		
-		 if(gu_msg.getCardsontable().length()<2) {
-			break;
+			if(gu_msg.getCardsontable().length()<2) {
+				break;
 		
 		 	}
 		 
@@ -178,6 +179,13 @@ public class ClientModel {
 			logger.info("Zug wurde gemacht und GameUpdate angefordert");
 			msgOut.send(socket);
 			break;
+			
+		case STICHOVER:
+			msgOut = new Message_STICHOVER();
+			Message_STICHOVER stiMsg = (Message_STICHOVER) msgIn;
+			ClientController.emptyTable(stiMsg.getStichwinner());
+			break;
+			
 			
 		default:
 			msgOut = new Message_ERROR();

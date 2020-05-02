@@ -154,26 +154,25 @@ public class ServerModel {
 		    for (Player p : g.getPlayersOnGame()) {
 			playersInGame.add(p.getName());
 			playersInGameString += g.GameAsString();
-			//p.toString();
 		    }
 		}
 	    }
 	    
 	    String gameid = Lobby.getLobby().getGameIDofPlayersGame(client);
+	    
 	    msgOutGame.setGameid(gameid);
 	    msgOutGame.setPlayers(playersInGameString);
-	   
 	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
 	    
 	    // Update an alle Clients senden die im gleichen Spiel sind
 	    for (ClientThread cT : clientList) {
-		for (String player : playersInGame) {
-		    if (cT.getClientName().equals(player)) {
-		    msgOutGame.setClient(player);
-			msgOutGame.send(cT.getClientSocket());
-			System.out.println("Game Update an Client: " + cT.getClientName() + " gesendet");
-		    }
-		}
+	    	for (String player : playersInGame) {
+	    		if (cT.getClientName().equals(player)) {
+	    			msgOutGame.setClient(player);
+	    			msgOutGame.send(cT.getClientSocket());
+	    			System.out.println("Game Update an Client: " + cT.getClientName() + " gesendet");
+	    		}
+	    	}
 	    }
 	    break;
 
@@ -188,10 +187,8 @@ public class ServerModel {
 	msgOutstart.setClient(client);
 	msgOutstart.setGamename(gamename);
 	
-	
 
 	for (ClientThread ct : clientList) {
-		
 	    if (ct.getClientName().equals(client)) {
 		msgOutstart.send(ct.getClientSocket());
 		
@@ -201,6 +198,23 @@ public class ServerModel {
     }
     
    
+    
+    public static void informClients(String name, String gamename) {
+    	Message_STICHOVER msg = new Message_STICHOVER();
+    	msg.setClient(name);
+    	msg.setGamename(gamename);
+    	
+
+    	for (ClientThread ct : clientList) {
+    	    if (ct.getClientName().equals(name)) {
+    	    	msg.send(ct.getClientSocket());
+    		
+    	    }
+    	}
+    	
+    }
+    
+    
 
     public static void addClientThreadToList(ClientThread clientThread) {
 	clientList.add(clientThread);

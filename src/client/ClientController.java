@@ -10,6 +10,8 @@ import client.ServiceLocator_JC;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -321,6 +323,25 @@ public static void showCards(String[] spreadCards, String client) {
 	for(String card : spreadCards) {
 		System.out.println(card);
 	}
+	
+}
+
+public static void emptyTable(String stichwinner) {
+	Platform.runLater(new Runnable(){
+
+		@Override
+		public void run() {
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Stich vorbei");
+			alert.setContentText(stichwinner + " hat den Stich gewonnen, yeah!");
+			alert.showAndWait();
+			
+			clientView.getGameView().removeCardsonTable(stichwinner);
+		
+
+		}
+});
 	
 }
 

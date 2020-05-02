@@ -1,6 +1,6 @@
 package messages;
 
-
+import server.Message_STICHOVER;
 
 public enum MessageType {
 	HELLO,
@@ -19,7 +19,8 @@ public enum MessageType {
 	STARTGAME,
 	NEXTROUND,
 	MOVE,
-	ERROR;
+	ERROR, 
+	STICHOVER;
 	
 	
 	public static MessageType parseType(String typeName) {
@@ -51,6 +52,7 @@ public enum MessageType {
     	else if (msg instanceof Message_STARTGAME) type = 		STARTGAME;
     	else if (msg instanceof Message_NEXTROUND) type = 		NEXTROUND;
     	else if (msg instanceof Message_MOVE) type = 			MOVE;
+    	else if (msg instanceof Message_STICHOVER) type = 		STICHOVER;
     	else if (msg instanceof Message_ERROR) type = 			ERROR;
     	return type;
     }	

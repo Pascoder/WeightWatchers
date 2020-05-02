@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import server.Message_STICHOVER;
+
 /**
 	 * A simple example showing how to encapsulate messages in a class. This class sends and receives
 	 * some simple data via sockets. The data is formatted in plain text, with our own protocol:
@@ -169,6 +171,7 @@ import java.util.Iterator;
 		        else if (type == MessageType.NEXTROUND) newMessage = new Message_NEXTROUND();
 		        else if (type == MessageType.STARTGAME) newMessage = new Message_STARTGAME();
 		        else if (type == MessageType.MOVE) newMessage = new Message_MOVE();
+		        else if (type == MessageType.STICHOVER) newMessage = new Message_STICHOVER();
 		        else if (type == MessageType.ERROR) newMessage = new Message_ERROR();
 		        
 		        
