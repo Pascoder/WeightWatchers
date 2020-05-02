@@ -84,11 +84,12 @@ public class Game_View extends BorderPane{
 		this.setCenter(centerPane);
 		
 		
+		
 			//Player1 Links
 			this.player1 = new VBox();
 			this.player1.setSpacing(30);
 			this.player1.setPadding(new Insets(10,60,60,60));
-			this.p1_name = new Label("Frank");
+			this.p1_name = new Label("--");
 			this.player1.getChildren().add(p1_name);
 			
 			
@@ -101,9 +102,9 @@ public class Game_View extends BorderPane{
 			this.tablebox = new GridPane();
 //			this.tablebox.setSpacing(30);
 			this.tablebox.setPadding(new Insets(10,60,60,60));
-			/*this.tableview.setFitHeight(140);
-			this.tableview.setFitWidth(100);
-			this.tablebox.getChildren().add(tableview);*/
+			this.tablebox.add(tableview, 0, 0);
+			this.tableview.setFitHeight(80);
+			this.tableview.setFitWidth(50);
 			this.centerPane.add(tablebox, 1, 1);
 			
 			
@@ -113,7 +114,7 @@ public class Game_View extends BorderPane{
 			this.player2 = new VBox();
 			this.player2.setSpacing(30);
 			this.player2.setPadding(new Insets(10,60,60,60));
-			this.p2_name = new Label("Leon");
+			this.p2_name = new Label("--");
 			this.player2.getChildren().add(p2_name);
 			this.centerPane.add(player2, 1, 0);
 			
@@ -127,7 +128,7 @@ public class Game_View extends BorderPane{
 			this.player3 = new VBox();
 			this.player3.setSpacing(30);
 			this.player3.setPadding(new Insets(10,60,60,60));
-			this.p3_name = new Label("Pascal");
+			this.p3_name = new Label("--");
 			this.player3.getChildren().add(p3_name);
 			this.centerPane.add(player3, 2, 1);
 			
@@ -139,7 +140,7 @@ public class Game_View extends BorderPane{
 			this.player4 = new HBox();
 			this.player4.setSpacing(30);
 			this.player4.setPadding(new Insets(10,10,10,10));
-			this.p4_name = new Label("Oli");
+			this.p4_name = new Label("--");
 			this.player4.getChildren().add(p4_name);
 			this.centerPane.add(player4, 0, 2,10,1);
 			

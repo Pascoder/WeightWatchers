@@ -141,10 +141,10 @@ public class ClientModel {
 			gu_msg.setClient(this.clientName);
 			logger.info("Game Update erhalten: "+"\n" + gu_msg);
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
-			 if(gu_msg.getCardsontable()!=null) {
-				 System.out.println("Cards on Table: " + gu_msg.getCardsontable());
-			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
-			 }
+//			 if(gu_msg.getCardsontable().equals("null")) {
+//				break;
+//			
+//			 }ClientController.loadCardsOnTable(gu_msg.getCardsontable());
 			break;
 			
 		case CREATEGAME:

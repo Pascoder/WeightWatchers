@@ -15,6 +15,7 @@ public class Game_View_Test extends Application{
 	public void start(Stage primary) {
 		
 		this.view = new Game_View(primary, model);
+		primary.show();
 	}
 	
 

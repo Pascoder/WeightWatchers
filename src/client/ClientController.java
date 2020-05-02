@@ -296,13 +296,13 @@ public static void loadCardsOnTable(String cardsontable) {
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
 	String [] cards = cardsontable.split("\\$");
 	
-	/*for(int i = 0; i < cards.length;i++) {
+	for(int i = 0; i < cards.length;i++) {
 		ImageView c = img.getCardImage(cards[0]+lang);
 		c.setFitHeight(80);
 		c.setFitWidth(60);
 		clientView.getGameView().placeCardtoTable(i+1, c);
 	
-		}*/
+		}
 	
 	}
 	
