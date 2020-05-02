@@ -23,7 +23,6 @@ public class Game {
     private int lastWinnerTeam_ID;
     private int lastWinner_points;
     private String name;
-    private int numbersOfPlayers;
     private TrumpfType trumpftype;
     private GameType gametype;
     private boolean gameFinish;
@@ -147,7 +146,7 @@ public class Game {
     public void nextRound() {
 	if (this.move == 0 && !(this.gameFinish)) {
 	    this.cardsOnTable.clear();
-	    setPlayerOnMove();
+	    
 	}
 	if (this.round == 0 && !(this.gameFinish)) {
 	    this.team1.nextStich();
@@ -155,6 +154,7 @@ public class Game {
 	    spreadCards();
 
 	}
+	setPlayerOnMove();
     }
 
     // Setzt den Spieler der an der Reihe ist auf true.
