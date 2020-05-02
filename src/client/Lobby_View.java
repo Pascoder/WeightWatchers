@@ -171,7 +171,10 @@ public class Lobby_View{
     }
 
     public void setGames(ObservableList<String> games) {
-	gamesList.setItems(games);
+  
+    	gamesList.setItems(games);	
+    
+	
     }
     
 	

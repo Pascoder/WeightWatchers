@@ -188,16 +188,16 @@ public static void loadPlayersOnline (String [] players) {
 
 
 public static void loadGames(String [] games) {
-    	ObservableList<String> gameList = FXCollections.observableArrayList();
-    	
-	//clientView.getLobbyView().gamesList.clear();
-	for(String s : games) {
-	    gameList.add(s);
-	}
-	if(gameList.size()<=0) {
-	    gameList.add("--");
-	}
-	clientView.getLobbyView().setGames(gameList);
+	
+	Platform.runLater(new Runnable(){
+
+		@Override
+		public void run() {
+	    	ObservableList<String> gameList = FXCollections.observableArrayList(games);
+	    	clientView.getLobbyView().setGames(gameList);
+		}
+	});
+
 }
 
 
