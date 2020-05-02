@@ -220,8 +220,9 @@ public class Game {
     }
 
     private void normalMove(int game_ID, int player_ID, Card card) {
-	searchPlayer(player_ID).removeCardFromHand(card);
+	card.setPlayable(true);
 	card.setPlayer_ID(player_ID);
+	searchPlayer(player_ID).removeCardFromHand(card);
 	this.cardsOnTable.add(card);
 	if (this.stichColor == null) {
 	    this.stichColor = card.getCardColor();
