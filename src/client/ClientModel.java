@@ -133,7 +133,6 @@ public class ClientModel {
 			logger.info("Lobby Update erhalten:" + lu_msg);
 			ClientController.loadPlayersOnline(findPlayers(lu_msg.getPlayersonline()));
 			ClientController.loadGames(findGames(lu_msg.getGames()));
-			//ClientController.joinGame(findJoinedgames(lu_msg.getGames())); //TODO:Hier Fehlt eine Methode auf dem Server Model LobbyUpdate habe einfach mal getGames genommen
 			break;
 			
 		case GAMEUPDATE: 
@@ -143,6 +142,7 @@ public class ClientModel {
 			logger.info("Game Update erhalten: "+"\n" + gu_msg);
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
 			 if(gu_msg.getCardsontable()!=null) {
+				 System.out.println("Cards on Table: " + gu_msg.getCardsontable());
 			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
 			 }
 			break;

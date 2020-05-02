@@ -48,7 +48,7 @@ public class ServerModel {
 	    }
 	}
 
-	return loginOK;  //War auf null
+	return true;  //Muss loginOK sein
 
 	// this.getClass().getClassLoader().getResourceAsStream("client/"+
 	// "Schweizer_Jasskarten.jpg")
