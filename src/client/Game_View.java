@@ -199,7 +199,7 @@ public class Game_View extends BorderPane{
     public void setGraphic(int num, ImageView img, boolean b) {
     	switch(num) {
     	case 1:
-    		this.karte1.setGraphic(null);
+    		this.karte1.setVisible(false);
     		this.karte1.setGraphic(img);
     		this.karte1.setDisable(!b);
     	break;
@@ -310,6 +310,11 @@ public void placeCardtoTable(int num, ImageView img) {
     public String getPlayerName() {
     	return this.p4_name.getText();
     }
+
+	public void clearButtons(int cards) {
+		
+		
+	}
     
    
     
