@@ -248,10 +248,12 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	
 	for(int i = 0; i < cardList.size();i++) {
 		cards = cardList.get(i).split("\\$");
+		
 		ImageView c = img.getCardImage(cards[0]+lang);
 		c.setFitHeight(100);
 		c.setFitWidth(80);
-		clientView.getGameView().setGraphic(i+1,c);
+		
+		clientView.getGameView().setGraphic(i+1,c,Boolean.parseBoolean(cards[1]));
 	}
 	
 	

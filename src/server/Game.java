@@ -209,6 +209,7 @@ public class Game {
 
     // Spieler spielt eine Karte
     public void playCard(int game_ID, int player_ID, Card card) {
+    	System.out.println("PLAY CARD: "+game_ID+player_ID+card.toString());
 	if (game_ID == this.gameID && searchPlayer(player_ID).getonMove()) {
 	    if (this.trumpf != null) {
 		normalMove(game_ID, player_ID, card);
