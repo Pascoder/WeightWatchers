@@ -46,6 +46,7 @@ ServiceLocator_JC serviceLocator;
 			if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
 			    String selectedItem = clientView.getLobbyView().gamesList.getSelectionModel().getSelectedItem().toString();
 			    clientModel.sayJoinGame(selectedItem.substring(2));
+			    lobbyview.selectedGameList.setText(selectedItem);
 			}}
 			catch (Exception b) {
 			    b.printStackTrace();
