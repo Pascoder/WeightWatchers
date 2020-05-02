@@ -118,13 +118,11 @@ public String toString() {
 		cards+=hand.get(i)+"|";
 	}
 	// player_ID|name|actualGame|onMove|weis|cards|	
-<<<<<<< HEAD
-	return this.player_id+"|"+this.name+"|"+this.actualGame+"|"+this.onMove+"|"+this.weis+cards+"|";
-=======
+
 	return this.player_id+"|"+this.name+"|"+this.actualGame+"|"+this.onMove+"|"+this.weis+"|"+cards;
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
+
+
+
+
 }
-
-
-
 }

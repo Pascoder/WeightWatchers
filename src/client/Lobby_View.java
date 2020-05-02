@@ -21,7 +21,8 @@ import javafx.stage.Stage;
 public class Lobby_View{
 
     private Label lblGames;
-    public TextArea gamesList;
+    //public TextArea gamesList;
+    public ListView<String> gamesList;
     private Label lblChat;
     public TextArea chatList;
     private Label lblPlayerOn;
@@ -42,6 +43,10 @@ public class Lobby_View{
     private Button createBt, leaveBt, leaveLobbyBt, joingame; 
     private TextField txt;
 
+    public void setGames(ObservableList<String> games) {
+	gamesList.setItems(games);
+    }
+    
 
     public Lobby_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
@@ -52,19 +57,22 @@ public class Lobby_View{
 		
 		// LeftTop: Actual Games	
 		lblGames = new Label(t.getString("lobby.blbGame"));
-		gamesList = new TextArea();
-		//gamesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		//gamesList = new TextArea();
 		
-		ScrollPane gameScroll = new ScrollPane();
-		HBox scrollBox = new HBox();
-		scrollBox.getChildren().add(gamesList);
+		
+		gamesList = new ListView<String>();
+		gamesList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		
+		//ScrollPane gameScroll = new ScrollPane();
+		//HBox scrollBox = new HBox();
+		//scrollBox.getChildren().add(gamesList);
 		
 		this.createBt = new Button(t.getString("lobby.btnCreate"));
 		
 		this.txtGameName = new TextField();
 		this.joingame = new Button("Join Game");
 		VBox gamesBox = new VBox();
-		gamesBox.getChildren().addAll(lblGames, scrollBox,createBt,joingame,txtGameName);
+		gamesBox.getChildren().addAll(lblGames, gamesList,createBt,joingame,txtGameName);
 		
 		gamesBox.setPadding(new Insets(15, 12, 15, 12));
 		gamesBox.setSpacing(10);
@@ -192,7 +200,9 @@ public class Lobby_View{
     public TextField getTextField() {
     	return this.txtGameName;
     }
-    
+
+
+ 
     
 	
 }

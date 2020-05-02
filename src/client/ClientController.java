@@ -7,8 +7,7 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 import client.ServiceLocator_JC;
-//import chatGame.olmoClient.Model.ChatGame_Model;
-//import chatGame.olmoClient.Views.ChatGame_View;
+
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
@@ -39,6 +38,19 @@ ServiceLocator_JC serviceLocator;
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
 		lobbyview.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobbyview.getTextField().getText()));
 		lobbyview.getJoinButton().setOnAction(c -> clientModel.sayJoinGame(lobbyview.getTextField().getText()));
+		
+		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent e) {
+			if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+			    String selectedItem = clientView.getLobbyView().gamesList.getSelectionModel().getSelectedItem().toString();
+			    clientModel.sayJoinGame(selectedItem.substring(2));
+			}
+		    }
+		});
+
+		
+		
 		
 		
 		gameview.getToggleButton(1).setOnAction((c)-> { 
@@ -167,21 +179,41 @@ public static void loadPlayersOnline (String [] players) {
 				clientView.getLobbyView().playerOnList.appendText(s+"\n");
 			}
 	
+
 }
+
 
 public static void loadGames(String [] games) {
-	clientView.getLobbyView().gamesList.clear();
+    	ObservableList<String> gameList = FXCollections.observableArrayList();
+    	
+	//clientView.getLobbyView().gamesList.clear();
 	for(String s : games) {
-		clientView.getLobbyView().gamesList.appendText(s+"\n");
+	    gameList.add(s);
 	}
+	clientView.getLobbyView().setGames(gameList);
 }
 
-public static void joinGame(String [] joinedgames) {
-	clientView.getLobbyView().selectedGameList.clear();
-	for(String s : joinedgames) {
-		clientView.getLobbyView().selectedGameList.appendText(s+"\n");
-	}
-}
+
+
+//public static void joinGame(String [] joinedgames) {
+//	clientView.getLobbyView().selectedGameList.clear();
+//	for(String s : joinedgames) {
+//		clientView.getLobbyView().selectedGameList.appendText(s+"\n");
+//	}
+//}
+
+//public void joinGame() {
+//	try {
+//	    String selectedItem = clientView.getLobbyView().gamesList.getSelectionModel().getSelectedItem().toString();
+//	    clientModel.sayJoinGame(selectedItem);
+//	    //view.lblMainRoom.setText(Chatroom_Model.getMainRoom());
+//	    //updateChatter();
+//	} catch (Exception e) {
+//	    e.printStackTrace();
+//	}
+//}
+
+
 
 public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	Platform.runLater(new Runnable(){

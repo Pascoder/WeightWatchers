@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import messages.Message;
 import messages.MessageType;
 import messages.Message_CREATEGAME;
@@ -35,6 +37,8 @@ public class ClientModel {
 		private Socket socket;
 		private String clientName;
 		private ArrayList<Player> players = new ArrayList<Player>();
+
+		
 		
 	public ClientModel() {
 		clientName = "none";
@@ -129,7 +133,7 @@ public class ClientModel {
 			logger.info("Lobby Update erhalten:" + lu_msg);
 			ClientController.loadPlayersOnline(findPlayers(lu_msg.getPlayersonline()));
 			ClientController.loadGames(findGames(lu_msg.getGames()));
-			ClientController.joinGame(findJoinedgames(lu_msg.getGames())); //TODO:Hier Fehlt eine Methode auf dem Server Model LobbyUpdate habe einfach mal getGames genommen
+			//ClientController.joinGame(findJoinedgames(lu_msg.getGames())); //TODO:Hier Fehlt eine Methode auf dem Server Model LobbyUpdate habe einfach mal getGames genommen
 			break;
 			
 		case GAMEUPDATE: 

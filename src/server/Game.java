@@ -23,6 +23,7 @@ public class Game {
     private int lastWinnerTeam_ID;
     private int lastWinner_points;
     private String name;
+    private int numbersOfPlayers;
     private TrumpfType trumpftype;
     private GameType gametype;
     private boolean gameFinish;
