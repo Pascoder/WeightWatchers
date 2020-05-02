@@ -196,34 +196,52 @@ public class Game_View extends BorderPane{
 	stage.setTitle("Game");
     }
     
-    public void setGraphic(int num, ImageView img) {
+    public void setGraphic(int num, ImageView img, boolean b) {
     	switch(num) {
     	case 1:
+    		this.karte1.setVisible(false);
     		this.karte1.setGraphic(img);
+    		this.karte1.setDisable(!b);
     	break;
     	case 2: 
+    		this.karte2.setGraphic(null);
     		this.karte2.setGraphic(img);
+    		this.karte2.setDisable(!b);
     	break;
     	case 3:
+    		this.karte3.setGraphic(null);
     		this.karte3.setGraphic(img);
+    		this.karte3.setDisable(!b);
     	break;
     	case 4:
+    		this.karte4.setGraphic(null);
     		this.karte4.setGraphic(img);
+    		this.karte4.setDisable(!b);
     	break;
     	case 5:
+    		this.karte5.setGraphic(null);
     		this.karte5.setGraphic(img);
+    		this.karte5.setDisable(!b);
     	break;
     	case 6:
+    		this.karte6.setGraphic(null);
     		this.karte6.setGraphic(img);
+    		this.karte6.setDisable(!b);
     	break;
     	case 7:
+    		this.karte7.setGraphic(null);
     		this.karte7.setGraphic(img);
+    		this.karte7.setDisable(!b);
     	break;
     	case 8:
+    		this.karte8.setGraphic(null);
     		this.karte8.setGraphic(img);
+    		this.karte8.setDisable(!b);
     	break;
     	case 9:
+    		this.karte9.setGraphic(null);
     		this.karte9.setGraphic(img);
+    		this.karte9.setDisable(!b);
     	break;
     	}
    
@@ -292,6 +310,11 @@ public void placeCardtoTable(int num, ImageView img) {
     public String getPlayerName() {
     	return this.p4_name.getText();
     }
+
+	public void clearButtons(int cards) {
+		
+		
+	}
     
    
     

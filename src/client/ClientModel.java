@@ -331,7 +331,6 @@ public class ClientModel {
 	
 	
 	public void sayCreateGame(String gamename) {
-		
 		Message_CREATEGAME msgOut = new Message_CREATEGAME();
 		msgOut.setClient(clientName);
 		msgOut.setGamename(gamename);

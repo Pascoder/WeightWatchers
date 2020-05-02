@@ -60,7 +60,7 @@ public void setHand(ArrayList <Card> hand) {
 }
 public void removeCardFromHand(Card card) {
     for(int i = 0; i < hand.size(); i++) {
-	if(hand.get(i) == card) {
+	if(hand.get(i).compareTo(card)==0) {
 	    hand.remove(i);
 	}
     }

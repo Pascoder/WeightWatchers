@@ -37,15 +37,20 @@ ServiceLocator_JC serviceLocator;
 		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
 		lobbyview.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobbyview.getTextField().getText()));
-		lobbyview.getJoinButton().setOnAction(c -> clientModel.sayJoinGame(lobbyview.getTextField().getText()));
+		
 		
 		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent e) {
+			try {
 			if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
 			    String selectedItem = clientView.getLobbyView().gamesList.getSelectionModel().getSelectedItem().toString();
 			    clientModel.sayJoinGame(selectedItem.substring(2));
-			}
+			    lobbyview.selectedGameList.setText(selectedItem);
+			}}
+			catch (Exception b) {
+			    b.printStackTrace();
+				}
 		    }
 		});
 
@@ -184,13 +189,16 @@ public static void loadPlayersOnline (String [] players) {
 
 
 public static void loadGames(String [] games) {
-    	ObservableList<String> gameList = FXCollections.observableArrayList();
-    	
-	//clientView.getLobbyView().gamesList.clear();
-	for(String s : games) {
-	    gameList.add(s);
-	}
-	clientView.getLobbyView().setGames(gameList);
+	
+	Platform.runLater(new Runnable(){
+
+		@Override
+		public void run() {
+	    	ObservableList<String> gameList = FXCollections.observableArrayList(games);
+	    	clientView.getLobbyView().setGames(gameList);
+		}
+	});
+
 }
 
 
@@ -237,13 +245,15 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
 	String[] cards;
 	
-	
+	clientView.getGameView().clearButtons(cardList.size());
 	for(int i = 0; i < cardList.size();i++) {
 		cards = cardList.get(i).split("\\$");
+		
 		ImageView c = img.getCardImage(cards[0]+lang);
 		c.setFitHeight(100);
 		c.setFitWidth(80);
-		clientView.getGameView().setGraphic(i+1,c);
+		
+		clientView.getGameView().setGraphic(i+1,c,Boolean.parseBoolean(cards[1]));
 	}
 	
 	

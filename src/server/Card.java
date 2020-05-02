@@ -2,7 +2,7 @@ package server;
 
 import java.util.Comparator;
 
-public class Card {
+public class Card implements Comparable<Card>{
 
     private final CardColor cardColor;
     private final CardRank cardRank;
@@ -50,6 +50,15 @@ public class Card {
     @Override
     public String toString() {
 	return cardColor.name() + cardRank.name() + "|" + cardPlayable;
+    }
+    
+    public int compareTo(Card c) {
+    	int cf = 1;
+    	if(this.getCardRank() == c.getCardRank() && this.getCardColor() == c.getCardColor())
+    		cf=0;
+    	
+    	
+    	return cf;
     }
 
     public static Comparator<Card> normalRankComparator = new Comparator<Card>() {

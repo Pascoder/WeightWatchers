@@ -209,6 +209,7 @@ public class Game {
 
     // Spieler spielt eine Karte
     public void playCard(int game_ID, int player_ID, Card card) {
+    	System.out.println("PLAY CARD: "+game_ID+player_ID+card.toString());
 	if (game_ID == this.gameID && searchPlayer(player_ID).getonMove()) {
 	    if (this.trumpf != null) {
 		normalMove(game_ID, player_ID, card);
@@ -220,9 +221,10 @@ public class Game {
     }
 
     private void normalMove(int game_ID, int player_ID, Card card) {
+    	System.out.println("NORMAL MOVE: "+game_ID+player_ID+card.toString());
 	card.setPlayable(true);
-	card.setPlayer_ID(player_ID);
 	searchPlayer(player_ID).removeCardFromHand(card);
+	card.setPlayer_ID(player_ID);
 	this.cardsOnTable.add(card);
 	if (this.stichColor == null) {
 	    this.stichColor = card.getCardColor();
