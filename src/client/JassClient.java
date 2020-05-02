@@ -19,7 +19,7 @@ public class JassClient extends Application {
 	private ClientController clientController;
 	private ServiceLocator_JC serviceLocator;
 
-    // resources, after initialization
+    // resources, after initializationf
 
     public static void main(String[] args) {
         launch(args);
