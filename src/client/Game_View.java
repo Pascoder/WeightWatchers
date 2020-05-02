@@ -47,6 +47,11 @@ public class Game_View extends BorderPane{
     protected ImageView imageverdeckt2 = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt3 = new ImageView(imgverdeckt);
     protected ImageView tableview = new ImageView(table);
+    protected ImageView cardOnTable1 = new ImageView();
+    
+    protected ImageView cardOnTable2 = new ImageView();
+    protected ImageView cardOnTable3 = new ImageView();
+    protected ImageView cardOnTable4 = new ImageView();
     
    
     
@@ -102,9 +107,19 @@ public class Game_View extends BorderPane{
 			this.tablebox = new GridPane();
 //			this.tablebox.setSpacing(30);
 			this.tablebox.setPadding(new Insets(10,60,60,60));
-			this.tablebox.add(tableview, 0, 0);
-			this.tableview.setFitHeight(80);
-			this.tableview.setFitWidth(50);
+			this.tablebox.add(cardOnTable1, 0, 0);
+			this.tablebox.add(cardOnTable2, 1, 0);
+			this.tablebox.add(cardOnTable3, 1, 1);
+			this.tablebox.add(cardOnTable4, 0, 1);
+			cardOnTable1.setFitHeight(80);
+			cardOnTable1.setFitWidth(60);
+			cardOnTable2.setFitHeight(80);
+			cardOnTable2.setFitWidth(60);
+			cardOnTable3.setFitHeight(80);
+			cardOnTable3.setFitWidth(60);
+			cardOnTable4.setFitHeight(80);
+			cardOnTable4.setFitWidth(60);
+			
 			this.centerPane.add(tablebox, 1, 1);
 			
 			
@@ -271,15 +286,16 @@ public class Game_View extends BorderPane{
    
     }
     
-public void placeCardtoTable(int num, ImageView img) {
+public void placeCardtoTable(int num, Image img) {
 	switch(num) {
-	case 1: tablebox.add(img, 0, 0);
+	case 1:
+			this.cardOnTable1.setImage(img);
 	break;
-	case 2: tablebox.add(img, 0, 1);
+	case 2: this.cardOnTable2.setImage(img);
 	break;
-	case 3: tablebox.add(img, 1, 0);
+	case 3: this.cardOnTable3.setImage(img);
 	break;
-	case 4: tablebox.add(img, 1, 1);
+	case 4: this.cardOnTable4.setImage(img);
 	break;
 	default:
 		System.out.println("Zu viele Karten auf dem Tisch!! max: 4!");

@@ -342,7 +342,7 @@ public class Game {
     }
     
     public String getCardsOnTableAsString() {
-    	String result = null;
+    	String result = "";
     	
     	if(cardsOnTable.isEmpty())return result;
     	
