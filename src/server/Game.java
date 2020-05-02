@@ -220,6 +220,7 @@ public class Game {
     }
 
     private void normalMove(int game_ID, int player_ID, Card card) {
+    	System.out.println("NORMAL MOVE: "+game_ID+player_ID+card.toString());
 	card.setPlayable(true);
 	searchPlayer(player_ID).removeCardFromHand(card);
 	card.setPlayer_ID(player_ID);
