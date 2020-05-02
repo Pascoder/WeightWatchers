@@ -245,7 +245,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
 	String[] cards;
 	
-	clientView.getGameView().clearButtons(cardList.size());
+	clientView.getGameView().makeButtonsVisible(cardList.size());
 	for(int i = 0; i < cardList.size();i++) {
 		cards = cardList.get(i).split("\\$");
 		

@@ -1,5 +1,7 @@
 package client;
 
+import java.util.ArrayList;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,6 +35,7 @@ public class Game_View extends BorderPane{
     protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn;
     protected Button weis;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
+    protected ArrayList <ToggleButton> playerButtons;
     
     //Geh�rt nachher ins CSS
 
@@ -65,7 +68,7 @@ public class Game_View extends BorderPane{
 		this.menumain.getItems().add(sprache);
 		this.menu.getChildren().add(menubar);
 		
-		
+		playerButtons = new ArrayList<ToggleButton>();
 		
 		this.round = new Label("Runde: 1");
 		menu.getChildren().add(round);
@@ -142,34 +145,61 @@ public class Game_View extends BorderPane{
 			
 				//Hier unten werden dann ImageViews verwendet die Image beinhalten
 			
+			//TODO kann mit for schleife gelöst werden
 			this.karte1 = new ToggleButton();
-		
+			this.karte1.setVisible(false);
 			player4.getChildren().add(karte1);
+			playerButtons.add(karte1);
 			
 			this.karte2 = new ToggleButton();
 			player4.getChildren().add(karte2);
+			playerButtons.add(karte2);
+			this.karte2.setVisible(false);
+
 			
 			this.karte3 = new ToggleButton();
 			player4.getChildren().add(karte3);
+			playerButtons.add(karte3);
+			this.karte3.setVisible(false);
+
+			
 			
 			this.karte4 = new ToggleButton();
 			player4.getChildren().add(karte4);
-			
+			playerButtons.add(karte4);
+			this.karte4.setVisible(false);
+
+
 			this.karte5 = new ToggleButton();
 			player4.getChildren().add(karte5);
-			
+			playerButtons.add(karte5);
+			this.karte5.setVisible(false);
+
+
 			this.karte6 = new ToggleButton();
 			player4.getChildren().add(karte6);
-			
+			playerButtons.add(karte6);
+			this.karte6.setVisible(false);
+
+
 			this.karte7 = new ToggleButton();
 			player4.getChildren().add(karte7);
-			
+			playerButtons.add(karte7);
+			this.karte7.setVisible(false);
+
+
 			this.karte8 = new ToggleButton();
 			player4.getChildren().add(karte8);
-			
+			playerButtons.add(karte8);
+			this.karte8.setVisible(false);
+
+
 			this.karte9 = new ToggleButton();
 			player4.getChildren().add(karte9);
-			
+			playerButtons.add(karte9);
+			this.karte9.setVisible(false);
+
+
 			
 			
 		//Bottom
@@ -199,47 +229,40 @@ public class Game_View extends BorderPane{
     public void setGraphic(int num, ImageView img, boolean b) {
     	switch(num) {
     	case 1:
-    		this.karte1.setVisible(false);
+    		
     		this.karte1.setGraphic(img);
     		this.karte1.setDisable(!b);
     	break;
     	case 2: 
-    		this.karte2.setGraphic(null);
+    		
     		this.karte2.setGraphic(img);
     		this.karte2.setDisable(!b);
     	break;
     	case 3:
-    		this.karte3.setGraphic(null);
     		this.karte3.setGraphic(img);
     		this.karte3.setDisable(!b);
     	break;
     	case 4:
-    		this.karte4.setGraphic(null);
     		this.karte4.setGraphic(img);
     		this.karte4.setDisable(!b);
     	break;
     	case 5:
-    		this.karte5.setGraphic(null);
     		this.karte5.setGraphic(img);
     		this.karte5.setDisable(!b);
     	break;
     	case 6:
-    		this.karte6.setGraphic(null);
     		this.karte6.setGraphic(img);
     		this.karte6.setDisable(!b);
     	break;
     	case 7:
-    		this.karte7.setGraphic(null);
     		this.karte7.setGraphic(img);
     		this.karte7.setDisable(!b);
     	break;
     	case 8:
-    		this.karte8.setGraphic(null);
     		this.karte8.setGraphic(img);
     		this.karte8.setDisable(!b);
     	break;
     	case 9:
-    		this.karte9.setGraphic(null);
     		this.karte9.setGraphic(img);
     		this.karte9.setDisable(!b);
     	break;
@@ -310,9 +333,16 @@ public void placeCardtoTable(int num, ImageView img) {
     public String getPlayerName() {
     	return this.p4_name.getText();
     }
+    
+    //Alle Button unsichtbar machen und nur soviele sichtbar wie Karten in der Hand sind
+	public void makeButtonsVisible(int cards) {
+		for(ToggleButton b : playerButtons) {
+			b.setVisible(false);
+		}
+		for (int i=0; i<cards; i++) {
+			playerButtons.get(i).setVisible(true);
 
-	public void clearButtons(int cards) {
-		
+		}
 		
 	}
     

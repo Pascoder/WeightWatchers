@@ -15,7 +15,7 @@ public class Lobby {
     public static Lobby getLobby() {
 	if (lobby == null)
 	    lobby = new Lobby();
-		lobby.createGame("game");//Für Testklasse!! Pascal
+//		lobby.createGame("game");//Für Testklasse!! Pascal
 	return lobby;
     }
 
