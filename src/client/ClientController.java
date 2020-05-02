@@ -42,10 +42,14 @@ ServiceLocator_JC serviceLocator;
 		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent e) {
+			try {
 			if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
 			    String selectedItem = clientView.getLobbyView().gamesList.getSelectionModel().getSelectedItem().toString();
 			    clientModel.sayJoinGame(selectedItem.substring(2));
-			}
+			}}
+			catch (Exception b) {
+			    b.printStackTrace();
+				}
 		    }
 		});
 
@@ -189,6 +193,9 @@ public static void loadGames(String [] games) {
 	//clientView.getLobbyView().gamesList.clear();
 	for(String s : games) {
 	    gameList.add(s);
+	}
+	if(gameList.size()<=0) {
+	    gameList.add("--");
 	}
 	clientView.getLobbyView().setGames(gameList);
 }

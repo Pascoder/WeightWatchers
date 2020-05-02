@@ -43,9 +43,7 @@ public class Lobby_View{
     private Button createBt, leaveBt, leaveLobbyBt, joingame; 
     private TextField txt;
 
-    public void setGames(ObservableList<String> games) {
-	gamesList.setItems(games);
-    }
+    
     
 
     public Lobby_View(Stage stage, ClientModel model ) {
@@ -172,9 +170,11 @@ public class Lobby_View{
 	    
     }
 
-    public void setGame(ObservableList<String> games) {	
-	//gamesList.setItems(games);
-	}
+    public void setGames(ObservableList<String> games) {
+	gamesList.setItems(games);
+    }
+    
+	
     public void setChat(ObservableList<String> chat) {	
 	//chatList.setItems(chat);
 	}
