@@ -24,7 +24,7 @@ public class ClientController {
 private ClientModel clientModel;
 private static ClientView clientView;
 ServiceLocator_JC serviceLocator;
-
+private static int countCardsOnTable = 0;
 
 	
 
@@ -295,25 +295,32 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 
 
 public static void loadCardsOnTable(String cardsontable) {
+	
 	Platform.runLater(new Runnable(){
 
 		@Override
 		public void run() {
 			
 		
-		
+		System.out.println("CARDS ON TABLE: "+cardsontable);
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
 	String [] cards = cardsontable.split("\\$");
 	
-	for(int i = 0; i < cards.length;i++) {
-		String [] card = cards[i].split("\\|");
-		Image b = img.getCardImage(card[0]+lang).getImage();
-		clientView.getGameView().placeCardtoTable(i+1, b);
 	
-		}
-		}
+		for(int i = cards.length-1; i < cards.length;i++) {
+			String [] card = cards[i].split("\\|");
+			Image b = img.getCardImage(card[0]+lang).getImage();
+			clientView.getGameView().placeCardtoTable(i+1, b);
+			}
+		
+	}
+	
+	
+
+		
 });
+	
 	
 	}
 	
