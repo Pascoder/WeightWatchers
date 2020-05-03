@@ -25,7 +25,7 @@ public class ClientController {
 private ClientModel clientModel;
 private static ClientView clientView;
 ServiceLocator_JC serviceLocator;
-private static int countCardsOnTable = 0;
+private static int GameUpdateCounter = 0;
 
 	
 
@@ -228,6 +228,7 @@ public static void loadGames(String [] games) {
 
 
 public static void loadPlayersonGame(Player [] playersOnGame, String client) {
+	
 	Platform.runLater(new Runnable(){
 		
 		public void run() {
@@ -240,6 +241,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 			clientView.getGameView().getOnTurn().setText("On move: "+p.getonMove());
 			clientView.getGameView().setTitle("Game of "+p.getName());
 				if(p.getonMove() == true) {
+					//Trumpf ausw‰hlen aber nur wenn 1. Runde
 					clientView.getGameView().getOnTurn().setTextFill(Color.web("red"));
 				}else {
 					clientView.getGameView().getOnTurn().setTextFill(Color.web("black"));
@@ -266,14 +268,17 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 		clientView.getGameView().setGraphic(i+1,c,Boolean.parseBoolean(cards[1]));
 	}
 	
-	
+	GameUpdateCounter++;
 			//Logik um die Reihenfolge am Tisch f√ºr alle richtig zu setzen
 			if(playersOnGame[0].getName().equals(client)) {
 				clientView.getGameView().p4_name.setText(playersOnGame[0].getName());
 				clientView.getGameView().p1_name.setText(playersOnGame[1].getName());
 				clientView.getGameView().p2_name.setText(playersOnGame[2].getName());
 				clientView.getGameView().p3_name.setText(playersOnGame[3].getName());
-
+				
+				if(GameUpdateCounter == 1) 
+				clientView.getGameView().setTrumpf("Trumpf: Bitte Trumpf mit klick auf Karte W‰hlen");
+				clientView.getGameView().getTrumpf().setTextFill(Color.web("red"));
 				}
 			
 			if(playersOnGame[1].getName().equals(client)) {
@@ -357,6 +362,8 @@ public static void emptyTable(String stichwinner) {
 });
 	
 }
+
+
 
 }
 

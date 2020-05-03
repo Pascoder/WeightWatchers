@@ -39,6 +39,7 @@ public class ClientModel {
 		private String clientName;
 		private ArrayList<Player> players = new ArrayList<Player>();
 
+
 		
 		
 	public ClientModel() {
@@ -137,6 +138,8 @@ public class ClientModel {
 			break;
 			
 		case GAMEUPDATE: 
+
+	
 			msgOut = new Message_GAMEUPDATE();
 			Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 			gu_msg.setClient(this.clientName);
@@ -202,6 +205,8 @@ public class ClientModel {
 
 
 	
+
+
 
 
 	private Player[] findPlayersOnGame(String players) {

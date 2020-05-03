@@ -32,7 +32,7 @@ public class Game_View extends BorderPane{
     protected Menu menumain;
     protected MenuItem sprache;
     //Labels,Buttons...
-    protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn;
+    protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn,trumpf;
     protected Button weis;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     protected ArrayList <ToggleButton> playerButtons;
@@ -80,6 +80,8 @@ public class Game_View extends BorderPane{
 		menu.getChildren().add(round);
 		this.points = new Label("Punkte: 0");
 		menu.getChildren().add(points);
+		this.trumpf = new Label("Trumpf: ");
+		menu.getChildren().add(trumpf);
 		
 		this.setTop(menu);
 		menu.setPadding(new Insets(40,40,40,40));
@@ -380,6 +382,14 @@ public void placeCardtoTable(int num, Image img) {
 	
 	public void setTitle(String title) {
 		this.stage.setTitle(title);
+	}
+	
+	public void setTrumpf(String trumpf) {
+		this.trumpf.setText(trumpf);
+	}
+	
+	public Label getTrumpf() {
+		return this.trumpf;
 	}
     
    
