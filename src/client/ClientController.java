@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import server.Lobby;
 import server.Player;
 
@@ -236,9 +237,15 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client) {
 	for(Player p : playersOnGame) {
 		if(p.getName().equals(client)) {
 			cardList = p.getHandAsStrings(); 
-			
-			
-				clientView.getGameView().getOnTurn().setText("On move: "+p.getonMove());
+			clientView.getGameView().getOnTurn().setText("On move: "+p.getonMove());
+			clientView.getGameView().setTitle("Game of "+p.getName());
+				if(p.getonMove() == true) {
+					clientView.getGameView().getOnTurn().setTextFill(Color.web("red"));
+				}else {
+					clientView.getGameView().getOnTurn().setTextFill(Color.web("black"));
+				}
+				
+				
 			
 		}
 		
@@ -301,8 +308,7 @@ public static void loadCardsOnTable(String cardsontable) {
 		@Override
 		public void run() {
 			
-		
-		System.out.println("CARDS ON TABLE: "+cardsontable);
+	
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
 	String [] cards = cardsontable.split("\\$");

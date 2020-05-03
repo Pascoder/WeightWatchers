@@ -377,6 +377,10 @@ public void placeCardtoTable(int num, Image img) {
 		this.cardOnTable4.setImage(null);
 		
 	}
+	
+	public void setTitle(String title) {
+		this.stage.setTitle(title);
+	}
     
    
     
