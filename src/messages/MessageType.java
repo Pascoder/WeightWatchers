@@ -1,7 +1,5 @@
 package messages;
 
-import server.Message_STICHOVER;
-
 public enum MessageType {
 	HELLO,
 	CREATEUSER,

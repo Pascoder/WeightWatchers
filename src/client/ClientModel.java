@@ -23,7 +23,7 @@ import messages.Message_MOVE;
 import messages.Message_STARTGAME;
 import messages.Message_USERNAMETAKEN;
 import server.Card;
-import server.Message_STICHOVER;
+import messages.Message_STICHOVER;
 import server.Player;
 import server.Weis;
 

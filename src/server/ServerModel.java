@@ -14,6 +14,7 @@ import messages.Message;
 import messages.Message_GAMEUPDATE;
 import messages.Message_LOBBYUPDATE;
 import messages.Message_STARTGAME;
+import messages.Message_STICHOVER;
 
 public class ServerModel {
 
