@@ -144,7 +144,7 @@ public class ClientModel {
 			Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 			gu_msg.setClient(this.clientName);
 			logger.info("Game Update erhalten: "+"\n" + gu_msg);
-			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient());
+			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient(),gu_msg.getTrumpf());
 		
 			if(gu_msg.getCardsontable().length()<2) {
 				break;

@@ -163,6 +163,7 @@ public class ServerModel {
 	    msgOutGame.setGameid(gameid);
 	    msgOutGame.setPlayers(playersInGameString);
 	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
+	    msgOutGame.setTrumpf(game.getTrumpf()+"");
 	    
 	    // Update an alle Clients senden die im gleichen Spiel sind
 	    for (ClientThread cT : clientList) {

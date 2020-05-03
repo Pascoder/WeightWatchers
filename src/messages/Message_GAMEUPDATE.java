@@ -9,12 +9,14 @@ public class Message_GAMEUPDATE extends Message{
 	private static final String ELEMENT_GAMEID = "gameid";
 	private static final String ELEMENT_PLAYERS = "players";
 	private static final String ELEMENT_CARDSONTABLE = "cardsontable";
+	private static final String ELEMENT_TRUMPF = "trumpf";
 
 	
 	
 	private String gameid;
 	private String players;
 	private String cardsontable;
+	private String trumpf;
 	
 	
 	
@@ -24,6 +26,7 @@ public class Message_GAMEUPDATE extends Message{
 		this.gameid = findAttribute(pairs, ELEMENT_GAMEID);
 		this.players = findAttribute(pairs, ELEMENT_PLAYERS);
 		this.cardsontable = findAttribute(pairs, ELEMENT_CARDSONTABLE);
+		this.trumpf = findAttribute(pairs, ELEMENT_TRUMPF);
 		
 	}
 
@@ -32,6 +35,7 @@ public class Message_GAMEUPDATE extends Message{
 		pairs.add(new NameValue(ELEMENT_GAMEID, this.gameid));
 		pairs.add(new NameValue(ELEMENT_PLAYERS, this.players));
 		pairs.add(new NameValue(ELEMENT_CARDSONTABLE, this.cardsontable));
+		pairs.add(new NameValue(ELEMENT_TRUMPF, this.trumpf));
 		
 		
 	}
@@ -58,6 +62,13 @@ public class Message_GAMEUPDATE extends Message{
 
 	public void setCardsontable(String cardsontable) {
 		this.cardsontable = cardsontable;
+	}
+	
+	public void setTrumpf(String trumpf) {
+		this.trumpf = trumpf;
+	}
+	public String getTrumpf() {
+		return this.trumpf;
 	}
 
 }
