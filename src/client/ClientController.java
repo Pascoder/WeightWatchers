@@ -25,7 +25,7 @@ public class ClientController {
 private ClientModel clientModel;
 private static ClientView clientView;
 ServiceLocator_JC serviceLocator;
-private static int GameUpdateCounter = 0;
+
 
 	
 
@@ -268,7 +268,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 		clientView.getGameView().setGraphic(i+1,c,Boolean.parseBoolean(cards[1]));
 	}
 	
-	GameUpdateCounter++;
+	
 			//Logik um die Reihenfolge am Tisch fÃ¼r alle richtig zu setzen
 			if(playersOnGame[0].getName().equals(client)) {
 				clientView.getGameView().p4_name.setText(playersOnGame[0].getName());
@@ -276,15 +276,16 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				clientView.getGameView().p2_name.setText(playersOnGame[2].getName());
 				clientView.getGameView().p3_name.setText(playersOnGame[3].getName());
 				
-				if(GameUpdateCounter == 1) 
+				if(trumpf.equals("null")) {
 				clientView.getGameView().setTrumpf("Trumpf: Bitte Trumpf mit klick auf Karte Wählen");
 				clientView.getGameView().getTrumpf().setTextFill(Color.web("red"));
 				}
-				
-				if(GameUpdateCounter> 1) {
-					clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
-					clientView.getGameView().getTrumpf().setTextFill(Color.web("black"));
 				}
+				
+			if(!trumpf.equals("null")) {
+				clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
+				clientView.getGameView().getTrumpf().setTextFill(Color.web("black"));
+			}
 				
 			
 			if(playersOnGame[1].getName().equals(client)) {
@@ -292,21 +293,27 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				clientView.getGameView().p1_name.setText(playersOnGame[2].getName());
 				clientView.getGameView().p2_name.setText(playersOnGame[3].getName());
 				clientView.getGameView().p3_name.setText(playersOnGame[0].getName());
-				clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
+				if(!trumpf.equals("null")) {
+					clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
+				}
 			}
 			if(playersOnGame[2].getName().equals(client)) {
 				clientView.getGameView().p4_name.setText(playersOnGame[2].getName());
 				clientView.getGameView().p1_name.setText(playersOnGame[3].getName());
 				clientView.getGameView().p2_name.setText(playersOnGame[0].getName());
 				clientView.getGameView().p3_name.setText(playersOnGame[1].getName());
-				clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
+				if(!trumpf.equals("null")) {
+					clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
+				}
 			}
 			if(playersOnGame[3].getName().equals(client)) {
 				clientView.getGameView().p4_name.setText(playersOnGame[3].getName()); 
 				clientView.getGameView().p1_name.setText(playersOnGame[0].getName());
 				clientView.getGameView().p2_name.setText(playersOnGame[1].getName());
 				clientView.getGameView().p3_name.setText(playersOnGame[2].getName());
-				clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
+				if(!trumpf.equals("null")) {
+					clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
+				}
 			}
 		}
 	});
