@@ -371,10 +371,10 @@ public void placeCardtoTable(int num, Image img) {
 	}
 
 	public void removeCardsonTable(String stichwinner) {
-		this.cardOnTable1.setImage(imageverdeckt.getImage());//TODO Bilder werden noch nicht entfernt
-		this.cardOnTable2.setImage(imageverdeckt.getImage());
-		this.cardOnTable3.setImage(imageverdeckt.getImage());
-		this.cardOnTable4.setImage(imageverdeckt.getImage());
+		this.cardOnTable1.setImage(null);//TODO Bilder werden noch nicht entfernt
+		this.cardOnTable2.setImage(null);
+		this.cardOnTable3.setImage(null);
+		this.cardOnTable4.setImage(null);
 		
 	}
     
