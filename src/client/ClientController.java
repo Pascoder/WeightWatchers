@@ -255,16 +255,17 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 	
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
-	String[] cards;
+	
 	
 	clientView.getGameView().makeButtonsVisible(cardList.size());
 	for(int i = 0; i < cardList.size();i++) {
-		cards = cardList.get(i).split("\\$");
+		String[] cards = cardList.get(i).split("\\$");
 		
 		ImageView c = img.getCardImage(cards[0]+lang);
 		c.setFitHeight(100);
 		c.setFitWidth(80);
 		
+		System.out.println("CARDS OF PLAYER "+client+cards[1]);
 		clientView.getGameView().setGraphic(i+1,c,Boolean.parseBoolean(cards[1]));
 	}
 	

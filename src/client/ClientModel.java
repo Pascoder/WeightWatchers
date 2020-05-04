@@ -210,6 +210,7 @@ public class ClientModel {
 
 
 	private Player[] findPlayersOnGame(String players) {
+		System.out.println(players);
 		
 		 String[] playersOnGame = players.split("\\$"); // 1 Zeile = 1 Spieler + Karten etc
 		 Player [] output = new Player [4];

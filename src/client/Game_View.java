@@ -248,7 +248,6 @@ public class Game_View extends BorderPane{
     public void setGraphic(int num, ImageView img, boolean b) {
     	switch(num) {
     	case 1:
-    		
     		this.karte1.setGraphic(img);
     		this.karte1.setDisable(!b);
     	break;
