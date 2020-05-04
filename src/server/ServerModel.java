@@ -152,13 +152,15 @@ public class ServerModel {
 	    for (Game g : Lobby.getLobby().getGames()) {
 		if (Integer.toString(g.getGameID()).equals(gameId)) {
 			game = g;
-		    for (Player p : g.getPlayersOnGame()) {
+			 playersInGameString += g.GameAsString();
+		   for (Player p : g.getPlayersOnGame()) {
 			playersInGame.add(p.getName());
-			playersInGameString += g.GameAsString();
-		    }
+			//playersInGameString += g.GameAsString();
+		   }
 		}
+		
 	    }
-	    
+	   
 	    String gameid = Lobby.getLobby().getGameIDofPlayersGame(client);
 	    
 	    msgOutGame.setGameid(gameid);
