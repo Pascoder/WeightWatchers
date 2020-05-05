@@ -160,17 +160,15 @@ public class ClientThread extends Thread {
 				Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 				gu_msg.setClient(clientName);
 				ServerModel.updateClients(2, clientName);//2 = Game Update
-				//Wenn aktuelles Spiel stichFinish is true, sende STICHOVERMESSAGE
-				for(Game g : Lobby.getLobby().getGames()) {
-					if(g.getGameID() == Integer.parseInt(Lobby.getLobby().getGameIDofPlayersGame(clientName))) {
-						if(g.isStichFinish()) {
-							ServerModel.updateClients(3, clientName);
-							
-						}else msgOut = new Message_HELLO();
-						
-					}
-				}
-				
+//				//Wenn aktuelles Spiel stichFinish is true, sende STICHOVERMESSAGE
+//				for(Game g : Lobby.getLobby().getGames()) {
+//					if(g.getGameID() == Integer.parseInt(Lobby.getLobby().getGameIDofPlayersGame(clientName))) {
+//						if(g.isStichFinish()) {
+//							ServerModel.updateClients(3, clientName);
+//						}
+//					}
+//				}
+				msgOut = new Message_HELLO();
 				
 				break;
 				

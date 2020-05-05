@@ -167,6 +167,9 @@ public class ServerModel {
 	    msgOutGame.setPlayers(playersInGameString);
 	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
 	    msgOutGame.setTrumpf(game.getTrumpf()+"");
+	    msgOutGame.setStichover(game.isStichFinish()+"");
+	    msgOutGame.setWinnerteamid(game.getLastWinnerTeam_ID() + "");
+	    msgOutGame.setGamefinish(game.isGameFinish()+"");
 	    
 	    // Update an alle Clients senden die im gleichen Spiel sind
 	    for (ClientThread cT : clientList) {
@@ -179,40 +182,6 @@ public class ServerModel {
 	    	}
 	    }
 	    break;
-	    
-	case 3://TODO Kann mit Methoden gelöst werden, aktuell sehr hässlich
-		Message_STICHOVER msgOutSti = new Message_STICHOVER();
-		
-		String gameId2 = Lobby.getLobby().getGameIDofPlayersGame(client);
-	    
-	    ArrayList<String> playersInGame2 = new ArrayList<String>();
-//	    String playersInGameString2 ="";
-	    
-
-	    // Fuellt Spielernamen in ArrayList
-	    for (Game g : Lobby.getLobby().getGames()) {
-	    	if (Integer.toString(g.getGameID()).equals(gameId2)) {
-	    			for (Player p : g.getPlayersOnGame()) {
-	    				playersInGame2.add(p.getName());
-			
-	    			}
-	    	}
-		
-	    }
-
-	    // Update an alle Clients senden die im gleichen Spiel sind
-	    for (ClientThread cT : clientList) {
-	    	for (String player : playersInGame2) {
-	    		if (cT.getClientName().equals(player)) {
-	    			msgOutSti.setClient(player);
-	    			msgOutSti.send(cT.getClientSocket());
-	    			System.out.println("StichOver an Client: " + cT.getClientName() + " gesendet");
-	    		}
-	    	}
-	    }
-		   
-		
-
 	}
 
     }

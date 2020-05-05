@@ -10,24 +10,29 @@ public class Message_GAMEUPDATE extends Message{
 	private static final String ELEMENT_PLAYERS = "players";
 	private static final String ELEMENT_CARDSONTABLE = "cardsontable";
 	private static final String ELEMENT_TRUMPF = "trumpf";
+	private static final String ELEMENT_STICHOVER = "stichover";
+	private static final String ELEMENT_GAMEFINISH = "gamefinish";
+	private static final String ELEMENT_WINNERTEAMID = "winnerteamid";
 
-	
-	
+
 	private String gameid;
 	private String players;
 	private String cardsontable;
 	private String trumpf;
-	
-	
-	
-	
+	private String stichover;
+	private String gamefinish;
+	private String winnerteamid;
+
+
 	@Override
 	protected void receiveAttributes(ArrayList<NameValue> pairs) {
 		this.gameid = findAttribute(pairs, ELEMENT_GAMEID);
 		this.players = findAttribute(pairs, ELEMENT_PLAYERS);
 		this.cardsontable = findAttribute(pairs, ELEMENT_CARDSONTABLE);
 		this.trumpf = findAttribute(pairs, ELEMENT_TRUMPF);
-		
+		this.stichover = findAttribute(pairs, ELEMENT_STICHOVER);
+		this.gamefinish = findAttribute(pairs, ELEMENT_GAMEFINISH);
+		this.winnerteamid = findAttribute(pairs, ELEMENT_WINNERTEAMID);
 	}
 
 	@Override
@@ -36,7 +41,12 @@ public class Message_GAMEUPDATE extends Message{
 		pairs.add(new NameValue(ELEMENT_PLAYERS, this.players));
 		pairs.add(new NameValue(ELEMENT_CARDSONTABLE, this.cardsontable));
 		pairs.add(new NameValue(ELEMENT_TRUMPF, this.trumpf));
-		
+		pairs.add(new NameValue(ELEMENT_STICHOVER, this.stichover));
+		pairs.add(new NameValue(ELEMENT_GAMEFINISH, this.gamefinish));
+		pairs.add(new NameValue(ELEMENT_WINNERTEAMID, this.winnerteamid));
+
+
+
 		
 	}
 
@@ -69,6 +79,30 @@ public class Message_GAMEUPDATE extends Message{
 	}
 	public String getTrumpf() {
 		return this.trumpf;
+	}
+
+	public String getStichover() {
+		return stichover;
+	}
+
+	public void setStichover(String stichover) {
+		this.stichover = stichover;
+	}
+
+	public String getGamefinish() {
+		return gamefinish;
+	}
+
+	public void setGamefinish(String gamefinish) {
+		this.gamefinish = gamefinish;
+	}
+
+	public String getWinnerteamid() {
+		return winnerteamid;
+	}
+
+	public void setWinnerteamid(String winnerteamid) {
+		this.winnerteamid = winnerteamid;
 	}
 
 }

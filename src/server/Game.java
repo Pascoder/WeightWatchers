@@ -417,4 +417,20 @@ public class Game {
 		this.stichFinish = stichFinish;
 	}
 
+	public boolean isGameFinish() {
+		return gameFinish;
+	}
+
+	public void setGameFinish(boolean gameFinish) {
+		this.gameFinish = gameFinish;
+	}
+
+	public int getLastWinnerTeam_ID() {
+		return lastWinnerTeam_ID;
+	}
+
+	public void setLastWinnerTeam_ID(int lastWinnerTeam_ID) {
+		this.lastWinnerTeam_ID = lastWinnerTeam_ID;
+	}
+
 }

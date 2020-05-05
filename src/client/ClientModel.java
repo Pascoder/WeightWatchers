@@ -147,9 +147,15 @@ public class ClientModel {
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient(),gu_msg.getTrumpf());
 			if(gu_msg.getCardsontable().length()<2) {
 				break;
-		
 		 	}
 			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
+			if(gu_msg.getStichover().equals("true")) {
+				ClientController.emptyTable();
+				if(gu_msg.getGamefinish().equals("true")) {
+					ClientController.showWinnerTeam(gu_msg.getWinnerteamid());
+				}
+			}
+			
 			break;
 			
 		case CREATEGAME:
@@ -185,7 +191,7 @@ public class ClientModel {
 			msgOut = new Message_STICHOVER();
 			Message_STICHOVER stiMsg = (Message_STICHOVER) msgIn;
 			System.out.println("Stich vorbei");
-			ClientController.emptyTable();
+//			ClientController.emptyTable();
 			break;
 			
 			

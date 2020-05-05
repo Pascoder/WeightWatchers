@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import client.ServiceLocator_JC;
 
@@ -12,6 +13,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -368,18 +370,31 @@ public static void emptyTable() {
 //			alert.setTitle("Stich vorbei");
 //			alert.setContentText(stichwinner + " hat den Stich gewonnen, yeah!");
 //			alert.showAndWait();
-//			try {
-//				Thread.sleep(3000);
-//			} catch (InterruptedException e) {
-//				
-//				e.printStackTrace();
-//			}
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
+			}
 			clientView.getGameView().removeCardsonTable();
 		
 
 		}
 });
 	
+}
+
+public static void showWinnerTeam(String winnerteamid) {
+	Alert alert = new Alert(AlertType.CONFIRMATION);
+	alert.setTitle("Spiel vorbei!");
+	alert.setContentText("Winnerteam: "+ winnerteamid);
+	alert.showAndWait();
+	Optional<ButtonType> result = alert.showAndWait();
+	if (result.get() == ButtonType.OK){
+	    System.out.println("User möchte spielen");
+	} else {
+	    System.out.println("Nicht spielen");
+	}
 }
 
 
