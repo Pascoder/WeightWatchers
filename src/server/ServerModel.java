@@ -14,7 +14,6 @@ import messages.Message;
 import messages.Message_GAMEUPDATE;
 import messages.Message_LOBBYUPDATE;
 import messages.Message_STARTGAME;
-import messages.Message_STICHOVER;
 
 public class ServerModel {
 
@@ -201,23 +200,6 @@ public class ServerModel {
 	    }
 	}
 
-    }
-    
-   
-    
-    public static void informClients(String name, String gamename) {
-    	Message_STICHOVER msg = new Message_STICHOVER();
-    	msg.setClient(name);
-    	msg.setGamename(gamename);
-    	
-
-    	for (ClientThread ct : clientList) {
-    	    if (ct.getClientName().equals(name)) {
-    	    	msg.send(ct.getClientSocket());
-    		
-    	    }
-    	}
-    	
     }
     
     

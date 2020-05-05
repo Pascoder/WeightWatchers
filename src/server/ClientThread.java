@@ -25,7 +25,6 @@ import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
 import messages.Message_MOVE;
 import messages.Message_NEXTROUND;
-import messages.Message_STICHOVER;
 import messages.Message_USERNAMETAKEN;
 
 

@@ -23,7 +23,6 @@ import messages.Message_MOVE;
 import messages.Message_STARTGAME;
 import messages.Message_USERNAMETAKEN;
 import server.Card;
-import messages.Message_STICHOVER;
 import server.Player;
 import server.Weis;
 
@@ -186,13 +185,7 @@ public class ClientModel {
 			logger.info("Zug wurde gemacht und GameUpdate angefordert");
 			msgOut.send(socket);
 			break;
-			
-		case STICHOVER:
-			msgOut = new Message_STICHOVER();
-			Message_STICHOVER stiMsg = (Message_STICHOVER) msgIn;
-			System.out.println("Stich vorbei");
-//			ClientController.emptyTable();
-			break;
+
 			
 			
 		default:
