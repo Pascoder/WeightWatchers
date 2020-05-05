@@ -25,6 +25,7 @@ import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
 import messages.Message_MOVE;
 import messages.Message_NEXTROUND;
+import messages.Message_STICHOVER;
 import messages.Message_USERNAMETAKEN;
 
 
@@ -37,6 +38,8 @@ public class ClientThread extends Thread {
 	private PrintWriter out;
 //	private final Logger logger = Logger.getLogger("");
 	private String clientName = null;
+	private String actualGameID = null;
+	
 	
 	public ClientThread(Socket clientSocket) throws IOException {
 		
@@ -115,8 +118,8 @@ public class ClientThread extends Thread {
 					if(g.getGameID() == Game_ID) g.playedCardfromClient_2(Game_ID, Player_ID, Card);
 					
 				}
-//				ServerModel.updateClients(2, getClientName());//2 = Game Update
 				msgOut = new Message_MOVE();
+				
 				break;
 				
 			case CREATEGAME:
@@ -157,14 +160,25 @@ public class ClientThread extends Thread {
 				Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 				gu_msg.setClient(clientName);
 				ServerModel.updateClients(2, clientName);//2 = Game Update
-				msgOut = new Message_HELLO();
+				//Wenn aktuelles Spiel stichFinish is true, sende STICHOVERMESSAGE
+				for(Game g : Lobby.getLobby().getGames()) {
+					if(g.getGameID() == Integer.parseInt(Lobby.getLobby().getGameIDofPlayersGame(clientName))) {
+						if(g.isStichFinish()) {
+							ServerModel.updateClients(3, clientName);
+							
+						}else msgOut = new Message_HELLO();
+						
+					}
+				}
+				
+				
 				break;
 				
 			default:
 				msgOut = new Message_ERROR();
 				
 		}
-		msgOut.setClient(clientName);
+		msgOut.setClient(this.clientName);
 		return msgOut;
 	}
 

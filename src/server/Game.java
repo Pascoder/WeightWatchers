@@ -27,7 +27,7 @@ public class Game {
     private String name;
     private TrumpfType trumpftype;
     private GameType gametype;
-    private boolean gameFinish;
+    private boolean gameFinish, stichFinish;
 
     // Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
     Game(int gameID, String name) {
@@ -45,6 +45,7 @@ public class Game {
 	this.trumpftype = TrumpfType.TRUMPF;
 	this.gametype = GameType.Schieber;
 	this.gameFinish = false;
+	this.stichFinish = false;
 	// sl.getLogger().info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name:
 	// "+this.name);
     }
@@ -126,8 +127,6 @@ public class Game {
 		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
 		
 	}
-//	ServerModel.updateClients(2, playersOnGame.get(1).getName());
-		//Muss nur 1 mal gemacht werden, es werden sowieso alle Clients updated
 
     }
 
@@ -222,6 +221,10 @@ public class Game {
 	setPlayerOnMove();
     }
 
+    
+    
+    
+    
     private void normalMove(int game_ID, int player_ID, Card card) {
     	System.out.println("NORMAL MOVE: "+game_ID+player_ID+card.toString());
 	card.setPlayable(true);
@@ -238,17 +241,19 @@ public class Game {
     // Zählt die Züge einer Runde
     private void countMove() {
 	if (this.move < 3) {
+		this.stichFinish = false;
 	    this.move++;
 	} else {
+		this.stichFinish = true;
 	    this.move = 0;
 	    setPlayersOffMove();
 	    evaluateStichWinner();
 	    this.stichColor = null;
 	    countRound();
-	    //Nachricht an Clients
-	    for(Player p : playersOnGame) {
-	    	ServerModel.informClients(p.getName(), name);
-	    }	   
+//	    //Nachricht an Clients---> darf nicht hier sein, sondern Teil vom GameUpdate
+//	    for(Player p : playersOnGame) {
+//	    	ServerModel.informClients(p.getName(), name);
+//	    }	   
 	}
 	System.out.println(move);
     }
@@ -402,6 +407,14 @@ public class Game {
 
 	public void setTrumpf(CardColor trumpf) {
 		this.trumpf = trumpf;
+	}
+
+	public boolean isStichFinish() {
+		return stichFinish;
+	}
+
+	public void setStichFinish(boolean stichFinish) {
+		this.stichFinish = stichFinish;
 	}
 
 }

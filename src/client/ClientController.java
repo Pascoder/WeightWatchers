@@ -241,31 +241,28 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 			clientView.getGameView().getOnTurn().setText("On move: "+p.getonMove());
 			clientView.getGameView().setTitle("Game of "+p.getName());
 				if(p.getonMove() == true) {
-					//Trumpf auswählen aber nur wenn 1. Runde
+					//Trumpf auswï¿½hlen aber nur wenn 1. Runde
 					clientView.getGameView().getOnTurn().setTextFill(Color.web("red"));
 				}else {
 					clientView.getGameView().getOnTurn().setTextFill(Color.web("black"));
 				}
-				
-				
-			
+		
 		}
 		
 	}
 	
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
-	
+	String[] cards;
 	
 	clientView.getGameView().makeButtonsVisible(cardList.size());
 	for(int i = 0; i < cardList.size();i++) {
-		String[] cards = cardList.get(i).split("\\$");
+		cards = cardList.get(i).split("\\$");
 		
 		ImageView c = img.getCardImage(cards[0]+lang);
 		c.setFitHeight(100);
 		c.setFitWidth(80);
 		
-		System.out.println("CARDS OF PLAYER "+client+cards[1]);
 		clientView.getGameView().setGraphic(i+1,c,Boolean.parseBoolean(cards[1]));
 	}
 	
@@ -278,7 +275,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				clientView.getGameView().p3_name.setText(playersOnGame[3].getName());
 				
 				if(trumpf.equals("null")) {
-				clientView.getGameView().setTrumpf("Trumpf: Bitte Trumpf mit klick auf Karte Wählen");
+				clientView.getGameView().setTrumpf("Trumpf: Bitte Trumpf mit klick auf Karte Wï¿½hlen");
 				clientView.getGameView().getTrumpf().setTextFill(Color.web("red"));
 				}
 				}
@@ -361,18 +358,23 @@ public static void showCards(String[] spreadCards, String client) {
 	
 }
 
-public static void emptyTable(String stichwinner) {
+public static void emptyTable() {
 	Platform.runLater(new Runnable(){
 
 		@Override
 		public void run() {
 			
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Stich vorbei");
-			alert.setContentText(stichwinner + " hat den Stich gewonnen, yeah!");
-			alert.showAndWait();
-			
-			clientView.getGameView().removeCardsonTable(stichwinner);
+//			Alert alert = new Alert(AlertType.INFORMATION);
+//			alert.setTitle("Stich vorbei");
+//			alert.setContentText(stichwinner + " hat den Stich gewonnen, yeah!");
+//			alert.showAndWait();
+//			try {
+//				Thread.sleep(3000);
+//			} catch (InterruptedException e) {
+//				
+//				e.printStackTrace();
+//			}
+			clientView.getGameView().removeCardsonTable();
 		
 
 		}

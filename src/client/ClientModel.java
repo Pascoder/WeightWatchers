@@ -145,13 +145,11 @@ public class ClientModel {
 			gu_msg.setClient(this.clientName);
 			logger.info("Game Update erhalten: "+"\n" + gu_msg);
 			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient(),gu_msg.getTrumpf());
-		
 			if(gu_msg.getCardsontable().length()<2) {
 				break;
 		
 		 	}
-		 
-		 ClientController.loadCardsOnTable(gu_msg.getCardsontable());
+			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
 			break;
 			
 		case CREATEGAME:
@@ -186,7 +184,8 @@ public class ClientModel {
 		case STICHOVER:
 			msgOut = new Message_STICHOVER();
 			Message_STICHOVER stiMsg = (Message_STICHOVER) msgIn;
-			ClientController.emptyTable(stiMsg.getStichwinner());
+			System.out.println("Stich vorbei");
+			ClientController.emptyTable();
 			break;
 			
 			
