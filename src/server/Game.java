@@ -254,7 +254,9 @@ public class Game {
 	    this.stichColor = null;
 	    countRound();
 	    if(!stapelFinish) {
-	    	nextRound();
+	    	
+			nextRound();
+	    	
 	    }
 	    
 //	    //Nachricht an Clients---> darf nicht hier sein, sondern Teil vom GameUpdate

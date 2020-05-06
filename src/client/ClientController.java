@@ -366,17 +366,14 @@ public static void emptyTable() {
 		@Override
 		public void run() {
 			
-
-		
-			
-			clientView.getGameView().removeCardsonTable();
-			
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(3000);
+				clientView.getGameView().removeCardsonTable();
 			} catch (InterruptedException e) {
 				
 				e.printStackTrace();
 			}
+			
 
 		}
 });
