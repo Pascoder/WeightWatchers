@@ -150,6 +150,9 @@ public class ClientModel {
 			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
 			if(gu_msg.getStichover().equals("true")) {
 				ClientController.emptyTable();
+				if(gu_msg.getStapelfinish().equals("true")) {
+					ClientController.showStapelWinner();
+				}
 				if(gu_msg.getGamefinish().equals("true")) {
 					ClientController.showWinnerTeam(gu_msg.getWinnerteamid());
 				}

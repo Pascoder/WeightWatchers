@@ -366,10 +366,7 @@ public static void emptyTable() {
 		@Override
 		public void run() {
 			
-//			Alert alert = new Alert(AlertType.INFORMATION);
-//			alert.setTitle("Stich vorbei");
-//			alert.setContentText(stichwinner + " hat den Stich gewonnen, yeah!");
-//			alert.showAndWait();
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -387,7 +384,7 @@ public static void emptyTable() {
 public static void showWinnerTeam(String winnerteamid) {
 	Alert alert = new Alert(AlertType.CONFIRMATION);
 	alert.setTitle("Spiel vorbei!");
-	alert.setContentText("Winnerteam: "+ winnerteamid);
+	alert.setContentText("Winnerteam: "+ winnerteamid + "/n" + "Neues Spiel?");
 	alert.showAndWait();
 	Optional<ButtonType> result = alert.showAndWait();
 	if (result.get() == ButtonType.OK){
@@ -395,6 +392,21 @@ public static void showWinnerTeam(String winnerteamid) {
 	} else {
 	    System.out.println("Nicht spielen");
 	}
+}
+
+public static void showStapelWinner() {
+	Alert alert = new Alert(AlertType.CONFIRMATION);
+	alert.setTitle("Stapel fertig!");
+	alert.setContentText("Stapel fertig. Weiterspielen?");
+	alert.showAndWait();
+	Optional<ButtonType> result = alert.showAndWait();
+	if (result.get() == ButtonType.OK){
+	    System.out.println("User möchte spielen");
+	    
+	} else {
+	    System.out.println("Nicht spielen");
+	}
+
 }
 
 
