@@ -13,6 +13,8 @@ public class Message_GAMEUPDATE extends Message{
 	private static final String ELEMENT_STICHOVER = "stichover";
 	private static final String ELEMENT_GAMEFINISH = "gamefinish";
 	private static final String ELEMENT_WINNERTEAMID = "winnerteamid";
+	private static final String ELEMENT_STAPELFINISH = "stapelfinish";
+
 
 
 	private String gameid;
@@ -22,6 +24,7 @@ public class Message_GAMEUPDATE extends Message{
 	private String stichover;
 	private String gamefinish;
 	private String winnerteamid;
+	private String stapelfinish;
 
 
 	@Override
@@ -33,6 +36,8 @@ public class Message_GAMEUPDATE extends Message{
 		this.stichover = findAttribute(pairs, ELEMENT_STICHOVER);
 		this.gamefinish = findAttribute(pairs, ELEMENT_GAMEFINISH);
 		this.winnerteamid = findAttribute(pairs, ELEMENT_WINNERTEAMID);
+		this.stapelfinish = findAttribute(pairs, ELEMENT_STAPELFINISH);
+
 	}
 
 	@Override
@@ -44,6 +49,8 @@ public class Message_GAMEUPDATE extends Message{
 		pairs.add(new NameValue(ELEMENT_STICHOVER, this.stichover));
 		pairs.add(new NameValue(ELEMENT_GAMEFINISH, this.gamefinish));
 		pairs.add(new NameValue(ELEMENT_WINNERTEAMID, this.winnerteamid));
+		pairs.add(new NameValue(ELEMENT_STAPELFINISH, this.stapelfinish));
+
 
 
 
@@ -104,5 +111,15 @@ public class Message_GAMEUPDATE extends Message{
 	public void setWinnerteamid(String winnerteamid) {
 		this.winnerteamid = winnerteamid;
 	}
+
+	public String getStapelfinish() {
+		return stapelfinish;
+	}
+
+	public void setStapelfinish(String stapelfinish) {
+		this.stapelfinish = stapelfinish;
+	}
+
+	
 
 }

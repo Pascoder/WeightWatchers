@@ -167,6 +167,7 @@ public class ServerModel {
 	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
 	    msgOutGame.setTrumpf(game.getTrumpf()+"");
 	    msgOutGame.setStichover(game.isStichFinish()+"");
+	    msgOutGame.setStapelfinish(game.isStapelFinish()+"");
 	    msgOutGame.setWinnerteamid(game.getLastWinnerTeam_ID() + "");
 	    msgOutGame.setGamefinish(game.isGameFinish()+"");
 	    

@@ -28,6 +28,7 @@ public class Game {
     private TrumpfType trumpftype;
     private GameType gametype;
     private boolean gameFinish, stichFinish;
+	private boolean stapelFinish;
 
     // Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
     Game(int gameID, String name) {
@@ -153,6 +154,7 @@ public class Game {
 	    this.team1.nextStich();
 	    this.team2.nextStich();
 	    spreadCards();
+	    this.stapelFinish = false;
 
 	}
 	setPlayerOnMove();
@@ -298,7 +300,7 @@ public class Game {
     }
 
     private void evaluateStapleWinner() {
-	// TODO Auto-generated method stub
+    	this.stapelFinish = true;
 	if (team1.getTeamPoints() > team2.getTeamPoints()) {
 	    this.lastWinnerTeam_ID = team1.getTeam_id();
 	}else {
@@ -306,7 +308,7 @@ public class Game {
 	    this.lastWinnerTeam_ID = team2.getTeam_id();
 	}
 
-	System.out.println("Rundengewinner: Team " + this.lastWinnerTeam_ID);
+	System.out.println("Stapelgewinner: Team " + this.lastWinnerTeam_ID);
 
     }
 
@@ -431,6 +433,14 @@ public class Game {
 
 	public void setLastWinnerTeam_ID(int lastWinnerTeam_ID) {
 		this.lastWinnerTeam_ID = lastWinnerTeam_ID;
+	}
+
+	public boolean isStapelFinish() {
+		return stapelFinish;
+	}
+
+	public void setStapelFinish(boolean stapelFinish) {
+		this.stapelFinish = stapelFinish;
 	}
 
 }
