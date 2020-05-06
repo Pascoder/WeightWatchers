@@ -31,8 +31,7 @@ public class ServerMain {
 			while (true) {
 				Socket socket = serverSocket.accept();
 				client_id++;
-				System.out.println(client_id + ". Client hinzügefügt");
-//				sl.getLogger().info(client_id + ". Client hinzügefügt");
+
 				
 				ClientThread ct = new ClientThread (socket);
 				ct.start();

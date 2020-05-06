@@ -56,9 +56,9 @@ public class ClientThread extends Thread {
 				try {
 					//Read Message from the Client
 					Message msgIn = Message.receive(clientSocket);
-					System.out.println("Nachricht vom Client erhalten: " + msgIn);
+		
 					Message msgOut = processMessage(msgIn);
-					System.out.println("Antwort dem Client gesendet: "+ msgOut);
+					
 					msgOut.send(clientSocket);
 				} catch (Exception e) {
 					Logger.getLogger(e.getLocalizedMessage());

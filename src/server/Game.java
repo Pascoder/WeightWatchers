@@ -212,7 +212,7 @@ public class Game {
 
     // Spieler spielt eine Karte
     public void playCard(int game_ID, int player_ID, Card card) {
-    	System.out.println("PLAY CARD: "+game_ID+player_ID+card.toString());
+    	
 	if (game_ID == this.gameID && searchPlayer(player_ID).getonMove()) {
 	    if (this.trumpf != null) {
 		normalMove(game_ID, player_ID, card);
@@ -228,7 +228,7 @@ public class Game {
     
     
     private void normalMove(int game_ID, int player_ID, Card card) {
-    	System.out.println("NORMAL MOVE: "+game_ID+player_ID+card.toString());
+    	System.out.println("NORMAL MOVE: "+"Player= "+searchPlayer(player_ID).getName()+" "+card.toString());
 	card.setPlayable(true);
 	searchPlayer(player_ID).removeCardFromHand(card);
 	card.setPlayer_ID(player_ID);
@@ -242,6 +242,7 @@ public class Game {
 
     // Zählt die Züge einer Runde
     private void countMove() {
+    	System.out.println("MOVE NUMBER: "+move);
 	if (this.move < 3) {
 		this.stichFinish = false;
 	    this.move++;
@@ -252,12 +253,16 @@ public class Game {
 	    evaluateStichWinner();
 	    this.stichColor = null;
 	    countRound();
+	    if(!stapelFinish) {
+	    	nextRound();
+	    }
+	    
 //	    //Nachricht an Clients---> darf nicht hier sein, sondern Teil vom GameUpdate
 //	    for(Player p : playersOnGame) {
 //	    	ServerModel.informClients(p.getName(), name);
 //	    }	   
 	}
-	System.out.println(move);
+	
     }
 
    
@@ -283,7 +288,7 @@ public class Game {
     }
 
     private void evaluateStichWinner() {
-	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype, this.trumpftype, this.round, this.trumpf);
+	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype, this.trumpftype, this.round, this.trumpf, this.stichColor);
 	for (Player p : this.team1.getTeamMembers())
 	    if (p.getPlayer_id() == winnerScore[0]) {
 		this.team1.setTeamPoints(winnerScore[1]);

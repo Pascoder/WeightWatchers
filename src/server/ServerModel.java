@@ -135,7 +135,7 @@ public class ServerModel {
 
 	    for (ClientThread cT : clientList) {
 		msgOutLobby.send(cT.getClientSocket());
-		System.out.println("Lobby Update an Client: " + cT.getClientName() + " gesendet");
+	
 	    }
 	    break;
 
@@ -164,6 +164,7 @@ public class ServerModel {
 	    
 	    msgOutGame.setGameid(gameid);
 	    msgOutGame.setPlayers(playersInGameString);
+	    
 	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
 	    msgOutGame.setTrumpf(game.getTrumpf()+"");
 	    msgOutGame.setStichover(game.isStichFinish()+"");
@@ -175,9 +176,10 @@ public class ServerModel {
 	    for (ClientThread cT : clientList) {
 	    	for (String player : playersInGame) {
 	    		if (cT.getClientName().equals(player)) {
+	    			System.out.println("SERVER sendet:"+cT.getClientName()+" "+playersInGameString);
 	    			msgOutGame.setClient(player);
 	    			msgOutGame.send(cT.getClientSocket());
-	    			System.out.println("Game Update an Client: " + cT.getClientName() + " gesendet");
+	    			
 	    		}
 	    	}
 	    }

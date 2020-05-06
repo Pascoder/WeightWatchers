@@ -41,9 +41,9 @@ public class JassModel {
     }
 
     public static int[] evaluateStichWinner(ArrayList<Card> cardsOnTable, GameType gameType, TrumpfType trumpfType,
-	    int round, CardColor trumpf) {
+	    int round, CardColor trumpf, CardColor stich) {
 	int points = evaluateScore(cardsOnTable, gameType, trumpfType, trumpf);
-	Card winnerCard = evluateWinnerCard(cardsOnTable, trumpfType, trumpf);
+	Card winnerCard = evluateWinnerCard(cardsOnTable, trumpfType, trumpf, stich);
 	
 	if(round == 0) {
 	    points += 5;
@@ -56,24 +56,43 @@ public class JassModel {
 	return winnerScore;
     }
 
-    private static Card evluateWinnerCard(ArrayList<Card> cardsOnTable, TrumpfType trumpfType, CardColor trumpf) {
-	ArrayList<Card> trumpfCards = new ArrayList<>();
+    private static Card evluateWinnerCard(ArrayList<Card> cardsOnTable, TrumpfType trumpfType, CardColor trumpf, CardColor stich) {	
+    ArrayList<Card> trumpfCards = new ArrayList<>();
+	ArrayList<Card> stichCards = new ArrayList<>();
 	ArrayList<Card> otherCards = new ArrayList<>();
 	Card winnerCard = null;	
-	for(Card c : cardsOnTable) 
+	for(Card c : cardsOnTable) {
 	    if(c.getCardColor() == trumpf) {
 		trumpfCards.add(c);
 	    }else {
-		otherCards.add(c);
+	    if(c.getCardColor() == stich) {
+	    stichCards.add(c);
+	    }else {
+	    otherCards.add(c);
 	    }
+	    }
+	    }
+	System.out.println("CARDS ON TABLE: "+cardsOnTable);
+	System.out.println("TRUMPF CARDS: "+trumpfCards);
+	System.out.println("STICH CARDS: "+stichCards);
+	System.out.println("OTHER CARDS: "+otherCards);
+	
 	if(trumpfCards.size()>0) {
 	    Collections.sort(trumpfCards, Card.trumpfRankComparator);
 	    winnerCard = trumpfCards.get(0);
 	}else {
+	    
+	    if(stichCards.size()>0) {
+	    Collections.sort(stichCards, Card.normalRankComparator);
+		winnerCard = stichCards.get(0);
+	    }else {
 	    Collections.sort(otherCards, Card.normalRankComparator);
-	    winnerCard = otherCards.get(0);
+		winnerCard = otherCards.get(0);
+	    }
 	}
+	
 	return winnerCard;
+	
     }
 
     

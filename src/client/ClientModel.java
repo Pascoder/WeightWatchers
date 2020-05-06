@@ -20,6 +20,7 @@ import messages.Message_LOGIN;
 import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
 import messages.Message_MOVE;
+import messages.Message_NEXTROUND;
 import messages.Message_STARTGAME;
 import messages.Message_USERNAMETAKEN;
 import server.Card;
@@ -148,6 +149,7 @@ public class ClientModel {
 				break;
 		 	}
 			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
+			System.out.println("CLIENTCONTROLLERCARDSONTABLE:"+gu_msg.getCardsontable());
 			if(gu_msg.getStichover().equals("true")) {
 				ClientController.emptyTable();
 				if(gu_msg.getStapelfinish().equals("true")) {
@@ -363,6 +365,8 @@ public class ClientModel {
 				}		
 	}
 	
+
+	
 	public void sayJoinGame(String gamename) {
 		Message_JOINGAME msgOut = new Message_JOINGAME();
 		msgOut.setClient(clientName);
@@ -419,6 +423,8 @@ public class ClientModel {
 		}
 		
 	}
+	
+	
 	
 	public Player getPlayer (String name) {
 		Player pla = null;

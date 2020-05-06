@@ -33,7 +33,7 @@ public class Game_View extends BorderPane{
     protected MenuItem sprache;
     //Labels,Buttons...
     protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn,trumpf;
-    protected Button weis;
+    protected Button weis, nextRound;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     protected ArrayList <ToggleButton> playerButtons;
   
@@ -290,10 +290,6 @@ public class Game_View extends BorderPane{
     
 public void placeCardtoTable(int num, Image img) {
 	
-	//fünfte Karte muss wieder an den 1. Platz
-	while(num > 4) {
-		num = num-4;
-	}
 	
 	switch(num) {
 	case 1:

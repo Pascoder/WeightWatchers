@@ -323,7 +323,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 
 
 public static void loadCardsOnTable(String cardsontable) {
-	
+	System.out.println("CLIENT CARDSONTABLE: "+cardsontable);
 	Platform.runLater(new Runnable(){
 
 		@Override
@@ -335,7 +335,7 @@ public static void loadCardsOnTable(String cardsontable) {
 	String [] cards = cardsontable.split("\\$");
 	
 	
-		for(int i = cards.length-1; i < cards.length;i++) {
+		for(int i = 0; i < cards.length;i++) {
 			String [] card = cards[i].split("\\|");
 			Image b = img.getCardImage(card[0]+lang).getImage();
 			clientView.getGameView().placeCardtoTable(i+1, b);
@@ -367,14 +367,16 @@ public static void emptyTable() {
 		public void run() {
 			
 
+		
+			
+			clientView.getGameView().removeCardsonTable();
+			
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				
 				e.printStackTrace();
 			}
-			clientView.getGameView().removeCardsonTable();
-		
 
 		}
 });
@@ -382,6 +384,10 @@ public static void emptyTable() {
 }
 
 public static void showWinnerTeam(String winnerteamid) {
+	Platform.runLater(new Runnable(){
+
+		@Override
+		public void run() {
 	Alert alert = new Alert(AlertType.CONFIRMATION);
 	alert.setTitle("Spiel vorbei!");
 	alert.setContentText("Winnerteam: "+ winnerteamid + "/n" + "Neues Spiel?");
@@ -392,9 +398,16 @@ public static void showWinnerTeam(String winnerteamid) {
 	} else {
 	    System.out.println("Nicht spielen");
 	}
+		}
+	});
 }
 
 public static void showStapelWinner() {
+	Platform.runLater(new Runnable(){
+
+		@Override
+		public void run() {
+	
 	Alert alert = new Alert(AlertType.CONFIRMATION);
 	alert.setTitle("Stapel fertig!");
 	alert.setContentText("Stapel fertig. Weiterspielen?");
@@ -406,6 +419,8 @@ public static void showStapelWinner() {
 	} else {
 	    System.out.println("Nicht spielen");
 	}
+		}
+	});
 
 }
 
