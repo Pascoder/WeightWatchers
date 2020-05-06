@@ -2,14 +2,14 @@ package server;
 
 public enum CardRank {
 Six(1,1,0,0,11),
-Seven(2,0),
-Eight(3,8),
-Nine(4,12,0,14,0),
-Ten(5,10),
-Jack(6,13,2,20,2),
-Queen(7,3),
-King(8,4),
-Ace(9,9,11,11,0);
+Seven(2,2,0,0,11),
+Eight(3,3,0,0,8),
+Nine(4,8,0,14,0),
+Ten(5,4,10,10,10),
+Jack(6,9,2,20,2),
+Queen(7,5,3,3,3),
+King(8,6,4,4,4),
+Ace(9,7,11,11,0);
 
     private final int rank;
     private final int trumpfRank;
