@@ -150,9 +150,12 @@ public class ClientModel {
 		 	}
 			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
 			System.out.println("CLIENTCONTROLLERCARDSONTABLE:"+gu_msg.getCardsontable());
+			
 			if(gu_msg.getStichover().equals("true")) {
+				
 				ClientController.emptyTable();
 				Message_NEXTROUND msg_nr = new Message_NEXTROUND();
+				msg_nr.setGamename(gu_msg.getGameid());
 				msg_nr.send(socket);
 				if(gu_msg.getStapelfinish().equals("true")) {
 					ClientController.showStapelWinner();

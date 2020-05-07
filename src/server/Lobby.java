@@ -68,9 +68,9 @@ public class Lobby {
 	}
     }
 
-    public void startNextRound(String gamename) {
+    public void startNextRound(String id) {
 	for (Game g : actualgames) {
-	    if (g.getName().equals(gamename)) {
+	    if (id.equals(g.getGameID()+"")) {
 		g.nextRound();
 	    }
 	}
