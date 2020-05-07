@@ -152,6 +152,8 @@ public class ClientModel {
 			System.out.println("CLIENTCONTROLLERCARDSONTABLE:"+gu_msg.getCardsontable());
 			if(gu_msg.getStichover().equals("true")) {
 				ClientController.emptyTable();
+				Message_NEXTROUND msg_nr = new Message_NEXTROUND();
+				msg_nr.send(socket);
 				if(gu_msg.getStapelfinish().equals("true")) {
 					ClientController.showStapelWinner();
 				}
@@ -190,7 +192,12 @@ public class ClientModel {
 			logger.info("Zug wurde gemacht und GameUpdate angefordert");
 			msgOut.send(socket);
 			break;
-
+			
+		case NEXTROUND:
+			msgOut = new Message_GAMEUPDATE();
+			msgOut.setClient(this.clientName);
+			msgOut.send(socket);
+			break;
 			
 			
 		default:

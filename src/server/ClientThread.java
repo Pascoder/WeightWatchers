@@ -138,7 +138,7 @@ public class ClientThread extends Thread {
 			case NEXTROUND:
 				Message_NEXTROUND nr_msg = (Message_NEXTROUND) msgIn;
 				Lobby.getLobby().startNextRound(nr_msg.getGamename());
-				msgOut = new Message_NEXTROUND();
+				msgOut = new Message_HELLO();
 				break;
 				
 			case GOODBYE:

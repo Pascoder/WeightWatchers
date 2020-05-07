@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import java.util.stream.*;
 
 import messages.Message_GAMEUPDATE;
+import messages.Message_NEXTROUND;
 
 public class Game {
     private ServiceLocator sl;
@@ -246,6 +247,12 @@ public class Game {
 	if (this.move < 3) {
 		this.stichFinish = false;
 	    this.move++;
+	   /* for(int i = 0; i < playersOnGame.size();i++) {
+	    	 ServerModel.updateClients(2, playersOnGame.get(i).getName());
+	    }*/
+	  
+	    
+	    
 	} else {
 		this.stichFinish = true;
 	    this.move = 0;
@@ -253,11 +260,7 @@ public class Game {
 	    evaluateStichWinner();
 	    this.stichColor = null;
 	    countRound();
-	    if(!stapelFinish) {
-	    	
-			nextRound();
-	    	
-	    }
+	
 	    
 //	    //Nachricht an Clients---> darf nicht hier sein, sondern Teil vom GameUpdate
 //	    for(Player p : playersOnGame) {
@@ -371,6 +374,7 @@ public class Game {
     	for (Card c : cardsOnTable) {
     		result += c.toString() + "$";
     	}
+    	System.out.println("GETCARDSONTABLE: "+result);
     	return result;
     }
 
