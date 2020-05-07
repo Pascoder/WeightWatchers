@@ -152,7 +152,11 @@ public class ClientModel {
 			System.out.println("CLIENTCONTROLLERCARDSONTABLE:"+gu_msg.getCardsontable());
 			
 			if(gu_msg.getStichover().equals("true")) {
-				
+				int i = 0;
+				while(i < 30000) {
+					i++;
+					System.out.println(i);
+				}
 				ClientController.emptyTable();
 				Message_NEXTROUND msg_nr = new Message_NEXTROUND();
 				msg_nr.setGamename(gu_msg.getGameid());
