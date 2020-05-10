@@ -144,7 +144,7 @@ public class ClientModel {
 			Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 			gu_msg.setClient(this.clientName);
 			logger.info("Game Update erhalten: "+"\n" + gu_msg);
-			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient(),gu_msg.getTrumpf());
+			ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()),gu_msg.getClient(),gu_msg.getTrumpf(),gu_msg.getTeamScore());
 			if(gu_msg.getCardsontable().length()<2) {
 				break;
 		 	}
@@ -154,9 +154,11 @@ public class ClientModel {
 			if(gu_msg.getStichover().equals("true")) {
 				int i = 0;
 				while(i < 30000) {
-					i++;
 					System.out.println(i);
+					i++;
+					
 				}
+				
 				ClientController.emptyTable();
 				Message_NEXTROUND msg_nr = new Message_NEXTROUND();
 				msg_nr.setGamename(gu_msg.getGameid());

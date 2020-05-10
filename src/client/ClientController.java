@@ -229,13 +229,14 @@ public static void loadGames(String [] games) {
 
 
 
-public static void loadPlayersonGame(Player [] playersOnGame, String client, String trumpf) {
+public static void loadPlayersonGame(Player [] playersOnGame, String client, String trumpf, String teamscore) {
 	
 	Platform.runLater(new Runnable(){
 		
 		public void run() {
 	//lädt die Karten des aktuellen Spielers in eine ArrayList
 	ArrayList <String> cardList = new ArrayList <String>();
+	String [] teams = teamscore.split("\\$");
 	
 	for(Player p : playersOnGame) {
 		if(p.getName().equals(client)) {
@@ -250,7 +251,17 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				}
 		
 		}
-		
+
+	}
+	//Set Team Points
+	System.out.println("TEAMSCORE: "+teamscore);
+	for(int i = 0; i< teams.length;i++) {
+		String team[] = teams[i].split("\\|");
+		for(int c = 0; c<team.length;c++) {
+			if(team[c].equals(client)) {
+				clientView.getGameView().setPoints(team[2]);
+			}
+		}
 	}
 	
 	JassImage img = new JassImage();
@@ -415,6 +426,8 @@ public static void showStapelWinner() {
 	});
 
 }
+
+
 
 
 

@@ -386,6 +386,10 @@ public void placeCardtoTable(int num, Image img) {
 	public Label getTrumpf() {
 		return this.trumpf;
 	}
+	
+	public void setPoints(String points) {
+		this.points.setText("Punkte: "+points);
+	}
     
    
     

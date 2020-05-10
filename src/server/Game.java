@@ -453,5 +453,13 @@ public class Game {
 	public void setStapelFinish(boolean stapelFinish) {
 		this.stapelFinish = stapelFinish;
 	}
+	
+	public Team getTeam1() {
+		return this.team1;
+	}
+	public Team getTeam2() {
+		return this.team2;
+	}
+	
 
 }

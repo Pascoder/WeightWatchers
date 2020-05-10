@@ -171,6 +171,7 @@ public class ServerModel {
 	    msgOutGame.setStapelfinish(game.isStapelFinish()+"");
 	    msgOutGame.setWinnerteamid(game.getLastWinnerTeam_ID() + "");
 	    msgOutGame.setGamefinish(game.isGameFinish()+"");
+	    msgOutGame.setTeamScore(game.getTeam1().getTeamMembers().get(0).getName()+"|"+game.getTeam1().getTeamMembers().get(1).getName()+"|"+game.getTeam1().getTeamPoints()+"$"+game.getTeam2().getTeamMembers().get(0).getName()+"|"+game.getTeam2().getTeamMembers().get(1).getName()+"|"+game.getTeam2().getTeamPoints());
 	    
 	    // Update an alle Clients senden die im gleichen Spiel sind
 	    for (ClientThread cT : clientList) {
