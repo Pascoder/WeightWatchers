@@ -254,7 +254,6 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 
 	}
 	//Set Team Points
-	System.out.println("TEAMSCORE: "+teamscore);
 	for(int i = 0; i< teams.length;i++) {
 		String team[] = teams[i].split("\\|");
 		for(int c = 0; c<team.length;c++) {
