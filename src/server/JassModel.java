@@ -103,8 +103,10 @@ public class JassModel {
 	    for (Card c : cardsOnTable) {
 		if (c.getCardColor() == trumpf) {
 		    score += c.getCardRank().getTrumpfScore();
+		}else {
+			score += c.getCardRank().getScore();
 		}
-		score += c.getCardRank().getScore();
+		
 	    }
 
 	return score;

@@ -8,7 +8,7 @@ private int team_id = 0;
 private int gameID= 0;
 private ArrayList <Player> members = new ArrayList<>();
 private int points;
-private int totalPoints;
+private int totalPoints = 0;
 private int wins;
 
 
@@ -21,6 +21,7 @@ public Team (int team_id, int gameID) {
 		//members.add(player2);
 		this.points = 0;
 		this.wins = 0;
+		
 	//}
 }
 
