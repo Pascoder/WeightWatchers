@@ -27,8 +27,6 @@ public Team (int team_id, int gameID) {
 
 public void nextStich() {
     
-    
-    this.totalPoints += this.points;
     this.points = 0;
 }
 
@@ -39,13 +37,15 @@ public ArrayList <Player> getTeamMembers(){
 	return this.members;
 }
 public int getTeamPoints() {
-	return this.points;
+	return this.totalPoints;
 }
 public int getTeamWins() {
 	return this.wins;
 }
 public void setTeamPoints(int points) {
+	System.out.println("TEAMPOINTS: "+points);
 	this.points = points;
+	this.totalPoints += points;
 }
 public void setTeamWins(int wins) {
 	this.wins = wins;

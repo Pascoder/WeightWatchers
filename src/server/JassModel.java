@@ -45,9 +45,6 @@ public class JassModel {
 	int points = evaluateScore(cardsOnTable, gameType, trumpfType, trumpf);
 	Card winnerCard = evluateWinnerCard(cardsOnTable, trumpfType, trumpf, stich);
 	
-	if(round == 0) {
-	    points += 5;
-	}
 
 	int[] winnerScore = new int[2];
 
@@ -108,7 +105,7 @@ public class JassModel {
 		}
 		
 	    }
-
+	System.out.println("TRUMPFSCORE: "+score);
 	return score;
     }
 

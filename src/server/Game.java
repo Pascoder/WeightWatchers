@@ -299,8 +299,12 @@ public class Game {
 		this.team1.setTeamPoints(winnerScore[1]);
 		this.team1.setTeamWins(+1);
 	    }
-	this.team2.setTeamPoints(winnerScore[0]);
-	this.team2.setTeamWins(+1);
+	for (Player p : this.team2.getTeamMembers())
+	    if (p.getPlayer_id() == winnerScore[0]) {
+		this.team2.setTeamPoints(winnerScore[1]);
+		this.team2.setTeamWins(+1);
+	    }
+
 	this.lastWinner_ID = winnerScore[0];
 	searchPlayer(this.lastWinner_ID).addStichCards(cardsOnTable);
 	shiftMoveOrder();
