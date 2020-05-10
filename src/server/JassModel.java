@@ -105,7 +105,7 @@ public class JassModel {
 		}
 		
 	    }
-	System.out.println("TRUMPFSCORE: "+score);
+	
 	return score;
     }
 
