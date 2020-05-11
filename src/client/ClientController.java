@@ -42,8 +42,11 @@ ServiceLocator_JC serviceLocator;
 		
 		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
 		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
-		lobbyview.getCreateGameButton().setOnAction(e -> clientModel.sayCreateGame(lobbyview.getTextField().getText()));
-		
+		lobbyview.getCreateGameButton().setOnAction((e) -> {clientModel.sayCreateGame(lobbyview.getTextField().getText());
+		lobbyview.getTextField().clear();
+		});
+		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());
+		//view.btnDelete.disableProperty().bind(model.petProperty().isNull());
 		
 		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override
