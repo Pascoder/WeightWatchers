@@ -27,9 +27,9 @@ public class Lobby_View{
     public TextArea chatList;
     private Label lblPlayerOn;
    // public ListView<String> playerOnList;
-    public TextArea playerOnList;
+    public ListView<String> playerOnList;
     private Label lblSelectedGame;
-    public TextArea selectedGameList;
+    public ListView<String> selectedGameList;
     private Stage stage;
 	private ClientModel model;
     public Menu_Lobby_View lobbyMenu; 
@@ -111,7 +111,7 @@ public class Lobby_View{
 		
 		// RightTop: Player online
 		lblPlayerOn = new Label(t.getString("lobby.blbPlayerOn"));
-		playerOnList = new TextArea();
+		playerOnList = new ListView<String>();
 		//playerOnList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
 		ScrollPane gameScroll3 = new ScrollPane();
@@ -127,8 +127,8 @@ public class Lobby_View{
 		//RightBottom 
 		
 		lblSelectedGame = new Label(t.getString("lobby.blbSelectedGame"));
-		selectedGameList = new TextArea();
-		//selectedGameList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		selectedGameList = new ListView<String>();
+		selectedGameList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
 		ScrollPane gameScroll4 = new ScrollPane();
 		HBox scrollBox4 = new HBox();
@@ -182,12 +182,12 @@ public class Lobby_View{
 	}
     public void setPlayerOn(ObservableList<String> playerOn) {	
     
-    	//playerOnList.setItems(playerOn);
+    	playerOnList.setItems(playerOn);
     
     
 	}
     public void setSelectedGame(ObservableList<String> selectedGame) {	
-    //selectedGameList.setItems(selectedGame);
+    selectedGameList.setItems(selectedGame);
     }
     
     

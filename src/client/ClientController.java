@@ -59,7 +59,11 @@ ServiceLocator_JC serviceLocator;
 			if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
 			    String selectedItem = clientView.getLobbyView().gamesList.getSelectionModel().getSelectedItem().toString();
 			    clientModel.sayJoinGame(selectedItem.substring(2));
-			    lobbyview.selectedGameList.setText(selectedItem);
+			    ObservableList<String> selectedGame = FXCollections.observableArrayList();
+			    selectedGame.add(selectedItem);
+			    lobbyview.setSelectedGame(selectedGame);
+			    
+			    
 			}}
 			catch (Exception b) {
 			    b.printStackTrace();
@@ -190,14 +194,17 @@ ServiceLocator_JC serviceLocator;
 	
 	
 public static void loadPlayersOnline (String [] players) {
-	//ObservableList<String> newplayers = FXCollections.observableArrayList();
 	
-			clientView.getLobbyView().playerOnList.clear();
-			for(String s : players) {
-				clientView.getLobbyView().playerOnList.appendText(s+"\n");
-			}
-	
+	Platform.runLater(new Runnable(){
 
+		@Override
+		public void run() {
+			ObservableList<String> newplayers = FXCollections.observableArrayList(players);
+			clientView.getLobbyView().setPlayerOn(newplayers);
+			
+	
+		}
+	});
 }
 
 
