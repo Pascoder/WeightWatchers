@@ -45,7 +45,9 @@ ServiceLocator_JC serviceLocator;
 		lobbyview.getCreateGameButton().setOnAction((e) -> {clientModel.sayCreateGame(lobbyview.getTextField().getText());
 		lobbyview.getTextField().clear();
 		});
-		
+		clientView.getLobbyStage().setOnCloseRequest(c->{
+			clientModel.sayGoodBye("Lobby");
+		});
 		lobbyview.getLeaveLobbyButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby");
 			clientView.getLobbyStage().hide();
