@@ -45,12 +45,13 @@ ServiceLocator_JC serviceLocator;
 		lobbyview.getCreateGameButton().setOnAction((e) -> {clientModel.sayCreateGame(lobbyview.getTextField().getText());
 		lobbyview.getTextField().clear();
 		});
+		
 		lobbyview.getLeaveLobbyButton().setOnAction(c -> {
+			clientModel.sayGoodBye("Lobby");
 			clientView.getLobbyStage().hide();
-			
 		});
 		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());
-		//view.btnDelete.disableProperty().bind(model.petProperty().isNull());
+	
 		
 		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override

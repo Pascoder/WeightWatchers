@@ -269,4 +269,13 @@ public class ServerModel {
 	}
     }
 
+	public static void removePlayerFromLobby(String playername) {
+		for(int i = 0; i< Lobby.getPlayersOnline().size();i++) {
+			if(Lobby.getPlayersOnline().get(i).getName().equals(playername)) {
+				Lobby.getPlayersOnline().remove(i);
+			}
+		}
+		
+	}
+
 }

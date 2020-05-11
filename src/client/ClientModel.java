@@ -13,6 +13,7 @@ import messages.Message_CREATEGAME;
 import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
 import messages.Message_GAMEUPDATE;
+import messages.Message_GOODBYE;
 import messages.Message_HELLO;
 import messages.Message_JOINGAME;
 import messages.Message_LOBBYUPDATE;
@@ -450,6 +451,22 @@ public class ClientModel {
 			}
 		}
 		return pla;
+	}
+
+
+	public void sayGoodBye(String source) {
+		Message_GOODBYE msgOut = new Message_GOODBYE();
+		msgOut.setClient(clientName);
+		msgOut.setPlayername(clientName);
+		msgOut.setCiaoSource(source);
+		if(socket != null) {
+		try {
+				msgOut.send(socket);
+			} catch (Exception e) {
+				logger.warning(e.toString());
+				}
+			}	
+		
 	}
 	
 	

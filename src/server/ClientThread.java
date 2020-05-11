@@ -144,9 +144,11 @@ public class ClientThread extends Thread {
 				
 			case GOODBYE:
 				Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;
-				//TODO @Oli Methode in Lobby die ein Spieler löscht und alle seine aktiven Spiele beendet
-//				ServerModel.updateClients(1, getClientName());
-				msgOut = new Message_GOODBYE();
+				if(ciao_msg.getCiaoSource().equals("Lobby")) {
+				ServerModel.removePlayerFromLobby(ciao_msg.getPlayername());
+				}
+				ServerModel.updateClients(1, clientName);
+				msgOut = new Message_HELLO();
 				break;
 				
 			case LOBBYUPDATE:
