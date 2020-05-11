@@ -199,6 +199,10 @@ public class Lobby_View{
     public TextField getTextField() {
     	return this.txtGameName;
     }
+    
+    public Button getLeaveLobbyButton() {
+    	return this.leaveLobbyBt;
+    }
 
 
  
