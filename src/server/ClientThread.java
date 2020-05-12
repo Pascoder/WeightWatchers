@@ -149,8 +149,12 @@ public class ClientThread extends Thread {
 				
 			case GOODBYE:
 				Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;
-				if(ciao_msg.getCiaoSource().equals("Lobby")) {
+				if(ciao_msg.getCiaoSource().equals("Lobby1")) {
 				ServerModel.removePlayerFromLobby(ciao_msg.getPlayername());
+				}
+				if(ciao_msg.getCiaoSource().equals("Lobby2")) {
+				ServerModel.leaveGame(ciao_msg.getPlayername());
+				System.out.println("GOODBYE");
 				}
 				ServerModel.updateClients(1, clientName);
 				msgOut = new Message_HELLO();

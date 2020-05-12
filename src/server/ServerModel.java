@@ -277,5 +277,17 @@ public class ServerModel {
 		}
 		
 	}
+	public static void leaveGame(String playername) {
+		for(int i = 0; i<Lobby.getLobby().getGames().size();i++) {
+			for(int b = 0; b< Lobby.getLobby().getGames().get(i).getPlayersOnGame().size();b++) {
+				if(Lobby.getLobby().getGames().get(i).getPlayersOnGame().get(b).getName().equals(playername)) {
+					Lobby.getLobby().getGames().get(i).getPlayersOnGame().remove(b);
+					System.out.println("Spieler :"+Lobby.getLobby().getGames().get(i).getPlayersOnGame().get(b).getName()+" hat das Spiel: "+Lobby.getLobby().getGames().get(i).getName()+" verlassen.");
+				}
+			}
+		}
+		
+		
+	}
 
 }

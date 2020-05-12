@@ -45,11 +45,16 @@ ServiceLocator_JC serviceLocator;
 		lobbyview.getTextField().clear();
 		});
 		clientView.getLobbyStage().setOnCloseRequest(c->{
-			clientModel.sayGoodBye("Lobby");
+			clientModel.sayGoodBye("Lobby1");
 		});
 		lobbyview.getLeaveLobbyButton().setOnAction(c -> {
-			clientModel.sayGoodBye("Lobby");
+			clientModel.sayGoodBye("Lobby1");
 			clientView.getLobbyStage().hide();
+		});
+		lobbyview.getLeaveGameButton().setOnAction(c->{
+			clientModel.sayGoodBye("Lobby2");
+			ObservableList<String> selectedGame = FXCollections.observableArrayList();
+			lobbyview.setSelectedGame(selectedGame);
 		});
 		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());
 	
