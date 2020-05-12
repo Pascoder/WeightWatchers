@@ -179,8 +179,6 @@ public class Game_View extends BorderPane{
 			player4.getChildren().add(karte3);
 			playerButtons.add(karte3);
 			this.karte3.setVisible(false);
-
-			
 			
 			this.karte4 = new ToggleButton();
 			player4.getChildren().add(karte4);
