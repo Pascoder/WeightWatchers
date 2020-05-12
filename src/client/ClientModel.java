@@ -157,6 +157,7 @@ public class ClientModel {
 					i++;
 				}
 					ClientController.emptyTable();
+					//TODO Sollte nicht aufgerufen werden wenn Stapel fertig ist
 					Message_NEXTROUND msg_nr = new Message_NEXTROUND();
 					msg_nr.setGamename(gu_msg.getGameid());
 					msg_nr.send(socket);
