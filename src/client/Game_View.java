@@ -38,7 +38,7 @@ public class Game_View extends BorderPane{
     protected ArrayList <ToggleButton> playerButtons;
   
     
-    //Geh�rt nachher ins CSS
+    //Gehört nachher ins CSS
 
     protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("Poker-fuenf-verdeckte-karten.jpg"));
     protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen_Under.jpg"));
@@ -56,7 +56,7 @@ public class Game_View extends BorderPane{
     
    
     
-    
+    // Leon
     public Game_View(Stage stage, ClientModel model) { 
     	this.stage = stage;
 		this.model = model;
@@ -125,9 +125,7 @@ public class Game_View extends BorderPane{
 			
 			this.centerPane.add(tablebox, 1, 1);
 			
-			
-			
-			
+
 			//Player2
 			this.player2 = new VBox();
 			this.player2.setSpacing(30);
@@ -165,6 +163,7 @@ public class Game_View extends BorderPane{
 				//Hier unten werden dann ImageViews verwendet die Image beinhalten
 			
 			//TODO kann mit for schleife gelöst werden
+			
 			this.karte1 = new ToggleButton();
 			this.karte1.setVisible(false);
 			player4.getChildren().add(karte1);
@@ -219,8 +218,6 @@ public class Game_View extends BorderPane{
 			this.karte9.setVisible(false);
 
 
-			
-			
 		//Bottom
 		this.bottomBox = new HBox();
 		this.setBottom(bottomBox);
@@ -232,9 +229,6 @@ public class Game_View extends BorderPane{
 		this.bottomBox.setSpacing(30);
 		
 		
-		
-		
-	
 //	root.getStyleClass().add("root"); // Class for styling
 	
 	Scene scene = new Scene(this);
@@ -372,7 +366,6 @@ public void placeCardtoTable(int num, Image img) {
 		this.cardOnTable2.setImage(imgverdeckt);
 		this.cardOnTable3.setImage(imgverdeckt);
 		this.cardOnTable4.setImage(imgverdeckt);
-		
 	}
 	
 	public void setTitle(String title) {
