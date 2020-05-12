@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import client.ClientModel;
+import client.Message_NEXTSTAPLE;
 import client.ServiceLocator_JC;
 import messages.Message;
 import messages.MessageType;
@@ -131,16 +132,20 @@ public class ClientThread extends Thread {
 				Message_JOINGAME jg_msg = (Message_JOINGAME) msgIn;
 				Lobby.getLobby().JoinGame(ServerModel.searchGameID(jg_msg.getGamename())
 				,ServerModel.searchPlayerbyName(getClientName()) );
-//				ServerModel.updateClients(1, getClientName());//1 = Lobby Update
 				msgOut = new Message_JOINGAME();
 				break;
 				
 			case NEXTROUND:
 				Message_NEXTROUND nr_msg = (Message_NEXTROUND) msgIn;
-			
 				Lobby.getLobby().startNextRound(nr_msg.getGamename());
 				msgOut = new Message_HELLO();
 				break;
+				
+			case NEXTSTAPLE:
+				Message_NEXTSTAPLE ns_msg = (Message_NEXTSTAPLE) msgIn;
+				Lobby.getLobby().nextStaple(ns_msg.getGamename(), ns_msg.getClient());
+				msgOut = new Message_NEXTSTAPLE();
+				break;	
 				
 			case GOODBYE:
 				Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;

@@ -30,6 +30,7 @@ public class Game {
     private GameType gametype;
     private boolean gameFinish, stichFinish;
 	private boolean stapelFinish;
+	private int wishForNewStaple;
 
     // Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
     Game(int gameID, String name) {
@@ -48,6 +49,7 @@ public class Game {
 	this.gametype = GameType.Schieber;
 	this.gameFinish = false;
 	this.stichFinish = false;
+	this.wishForNewStaple = 0;
 	// sl.getLogger().info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name:
 	// "+this.name);
     }
@@ -463,6 +465,14 @@ public class Game {
 	}
 	public Team getTeam2() {
 		return this.team2;
+	}
+
+	public int getWishForNewStaple() {
+		return wishForNewStaple;
+	}
+
+	public void setWishForNewStaple(int wishForNewStaple) {
+		this.wishForNewStaple = wishForNewStaple;
 	}
 	
 

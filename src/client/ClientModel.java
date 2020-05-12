@@ -39,6 +39,7 @@ public class ClientModel {
 		private Socket socket;
 		private String clientName;
 		private ArrayList<Player> players = new ArrayList<Player>();
+		private String actualGame;
 
 
 		
@@ -139,8 +140,6 @@ public class ClientModel {
 			break;
 			
 		case GAMEUPDATE: 
-
-	
 			msgOut = new Message_GAMEUPDATE();
 			Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 			gu_msg.setClient(this.clientName);
@@ -151,25 +150,22 @@ public class ClientModel {
 		 	}
 			ClientController.loadCardsOnTable(gu_msg.getCardsontable());
 			System.out.println("CLIENTCONTROLLERCARDSONTABLE:"+gu_msg.getCardsontable());
-			
+			//TODO Bessere Lösung finden als While Schleife
 			if(gu_msg.getStichover().equals("true")) {
 				int i = 0;
-				while(i < 30000) {
-					System.out.println(i);
+				while(i < 40000) {
 					i++;
-					
 				}
-				
-				ClientController.emptyTable();
-				Message_NEXTROUND msg_nr = new Message_NEXTROUND();
-				msg_nr.setGamename(gu_msg.getGameid());
-				msg_nr.send(socket);
-				if(gu_msg.getStapelfinish().equals("true")) {
-					ClientController.showStapelWinner();
-				}
-				if(gu_msg.getGamefinish().equals("true")) {
-					ClientController.showWinnerTeam(gu_msg.getWinnerteamid());
-				}
+					ClientController.emptyTable();
+					Message_NEXTROUND msg_nr = new Message_NEXTROUND();
+					msg_nr.setGamename(gu_msg.getGameid());
+					msg_nr.send(socket);
+						if(gu_msg.getStapelfinish().equals("true")) {
+							ClientController.showStapelWinner();
+						}
+						if(gu_msg.getGamefinish().equals("true")) {
+							ClientController.showWinnerTeam(gu_msg.getWinnerteamid());
+						}
 			}
 			
 			break;
@@ -189,6 +185,8 @@ public class ClientModel {
 			break;
 			
 		case STARTGAME:
+			Message_STARTGAME msgtemp = (Message_STARTGAME) msgIn;
+			this.actualGame = msgtemp.getGamename();
 			msgOut = new Message_GAMEUPDATE();
 			msgOut.setClient(this.clientName);
 			logger.info("Game wurde gestartet");
@@ -204,6 +202,11 @@ public class ClientModel {
 			break;
 			
 		case NEXTROUND:
+			msgOut = new Message_GAMEUPDATE();
+			msgOut.setClient(this.clientName);
+			msgOut.send(socket);
+			break;
+		case NEXTSTAPLE:
 			msgOut = new Message_GAMEUPDATE();
 			msgOut.setClient(this.clientName);
 			msgOut.send(socket);
@@ -468,6 +471,42 @@ public class ClientModel {
 			}	
 		
 	}
+
+	public void sayNextStaple() {
+		Message_NEXTSTAPLE msgOut = new Message_NEXTSTAPLE();
+		msgOut.setGamename(actualGame);
+		msgOut.setClient(clientName);
+		msgOut.send(socket);
+
+	}
+	
+	
+	public void sayExitGame() {
+		Message_NEXTROUND msgOut = new Message_NEXTROUND();
+		msgOut.setGamename(actualGame);
+		msgOut.setClient(clientName);
+		msgOut.send(socket);
+		
+	}
+	
+	
+	
+	
+
+	public String getActualGame() {
+		return actualGame;
+	}
+
+
+	public void setActualGame(String actualGame) {
+		this.actualGame = actualGame;
+	}
+
+
+
+
+
+
 	
 	
 	

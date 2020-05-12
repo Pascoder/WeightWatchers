@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import client.ServiceLocator_JC;
 
-import javafx.application.Platform;
+
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -19,12 +19,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import server.Lobby;
 import server.Player;
 
 public class ClientController {
 
-private ClientModel clientModel;
+private static ClientModel clientModel;
 private static ClientView clientView;
 ServiceLocator_JC serviceLocator;
 
@@ -32,8 +31,8 @@ ServiceLocator_JC serviceLocator;
 	
 
 	public ClientController(ClientModel clientModel, ClientView clientView) {
-		this.clientModel = clientModel;
-		this.clientView = clientView;
+		ClientController.clientModel = clientModel;
+		ClientController.clientView = clientView;
 		
 		Login_View view = clientView.getLoginView();
 		Lobby_View lobbyview = clientView.getLobbyView();
@@ -429,16 +428,18 @@ public static void showStapelWinner() {
 	
 	Alert alert = new Alert(AlertType.CONFIRMATION);
 	alert.setTitle("Stapel fertig!");
-	alert.setContentText("Stapel fertig. Weiterspielen?");
+	alert.setContentText("Stapel fertig. Weiterspielen? -> OK / Beenden? -> Cancel");
 	alert.showAndWait();
 	Optional<ButtonType> result = alert.showAndWait();
 	if (result.get() == ButtonType.OK){
-	    System.out.println("User möchte spielen");
+		clientModel.sayNextStaple();
 	    
-	} else {
-	    System.out.println("Nicht spielen");
+	} else if(result.get() == ButtonType.CANCEL){
+//	    clientModel.sayExitGame();
 	}
 		}
+
+		
 	});
 
 }

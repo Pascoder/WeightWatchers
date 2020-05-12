@@ -11,6 +11,7 @@ public class Lobby {
 //Hier kommt dann die Game id von der DB rein gibt kein Counter mehr
     private static int counterGames = 0;
     private static int counterPlayers = 0;
+    private static int wishForNextStaple = 0;
 
     public static Lobby getLobby() {
 	if (lobby == null)
@@ -58,7 +59,6 @@ public class Lobby {
     }
 
 //In Spieler aktuelles Spiel schreiben sobald er einem Spiel in der Lobby beitretet
-//TODO @Oli diese Methode soll zwei Strings entgegennehmen, thanks!!
     public void JoinGame(String game_id, Player player) {
 	player.setActualGame(Integer.parseInt(game_id));
 	for (int i = 0; i < actualgames.size(); i++) {
@@ -131,6 +131,31 @@ public class Lobby {
 		}
 
 		return null;
+	}
+
+	public void leaveGame(String gamename, String client) {
+		//TODO Diese Methode soll ein Game beenden und alle Spieler von diesem Game darüber informieren
+		System.out.println("Der Spieler: "+ client + " hat das Spiel " + gamename + " verlassen!");
+		
+	}
+	//Sobald 4 Spieler einen neuen Stapel möchten wird neu ausgeteilt
+	public synchronized void nextStaple(String gamename, String client) {
+		for(Game g : actualgames) {
+			if(g.getName().equals(gamename)) {
+				if(g.getWishForNewStaple() == 3) {
+					System.out.println("NextRound() aufgerufen");
+					g.nextRound();
+					g.setWishForNewStaple(0);
+				} else {
+					int num = g.getWishForNewStaple();
+					g.setWishForNewStaple(num++);
+				}
+				
+				
+			}
+			
+		}
+		
 	}
 
 	
