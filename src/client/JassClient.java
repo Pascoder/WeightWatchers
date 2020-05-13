@@ -15,9 +15,9 @@ import javafx.stage.Stage;
 public class JassClient extends Application {
     private static JassClient mainProgram; // singleton
 	private ClientModel clientModel;
-	private ClientView clientView;
-	private ClientController clientController;
-	private ServiceLocator_JC serviceLocator;
+	private static ClientView clientView;
+	private static ClientController clientController;
+	private static ServiceLocator_JC serviceLocator;
 
     // resources, after initializationff
 
@@ -38,9 +38,9 @@ public class JassClient extends Application {
     public void start(Stage stage) {
         // Create and display the splash screen and model
     	initialize();
-		this.clientModel = new ClientModel();
-		this.clientView = new ClientView(stage, clientModel);
-		this.clientController = new ClientController(clientModel, clientView);
+		clientModel = new ClientModel();
+		JassClient.clientView = new ClientView(stage, clientModel);
+		JassClient.clientController = new ClientController(clientModel, clientView);
 		//nicht beachten, zu Testzwecken
 //		this.tc = new Test_Controller(clientModel, tv);
 		//Test fertig
@@ -51,8 +51,8 @@ public class JassClient extends Application {
         
         
     }
-    public void initialize() {
-		this.serviceLocator = serviceLocator.getServiceLocator();
+    public static void initialize() {
+		serviceLocator = ServiceLocator_JC.getServiceLocator();
 		serviceLocator.setLogger(configureLogger());
 		serviceLocator.setConfiguration(new Configuration_JC());
 		String language = serviceLocator.getConfiguration().getOption("Language");
@@ -63,7 +63,7 @@ public class JassClient extends Application {
 		//Hier fehlt noch Verbindung zu Server herstellen
 	}
 
-    private Logger configureLogger() {
+    private static Logger configureLogger() {
 		Logger rootLogger = Logger.getLogger("");
 	    rootLogger.setLevel(Level.FINEST);
 	    // By default there is one handler: the console
@@ -101,12 +101,14 @@ public class JassClient extends Application {
         return mainProgram;
     }
     
-    public static void changeLocales() {
-	/*view.stop();
-	Stage appStage = new Stage();
-        Start_Model model = new Start_Model();
-        view = new Start_View(appStage, model);
-        new Start_Controller(model, view);
-        view.start();*/
+    public static  void changeLocales() {
+	clientView.stop();
+	initialize();
+	Stage stage = new Stage();
+	ClientModel clientModel = new ClientModel();
+	clientView = new ClientView(stage, clientModel);
+	clientController = new ClientController(clientModel, clientView);
+	clientView.start();
+
     }
 }
