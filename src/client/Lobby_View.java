@@ -54,7 +54,7 @@ public class Lobby_View{
 		
 		
 		// LeftTop: Actual Games	
-		lblGames = new Label(t.getString("lobby.blbGame"));
+		lblGames = new Label(t.getString("lobby.lblGame"));
 		//gamesList = new TextArea();
 		
 		

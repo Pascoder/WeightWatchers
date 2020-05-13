@@ -3,6 +3,7 @@ package client;
 import java.util.Locale;
 
 
+
 import client.Translator_JC;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
@@ -11,6 +12,7 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import server.ServiceLocator;
 
 public class Menu_Login_View extends Menu_Basic_View {
 
@@ -19,16 +21,11 @@ public class Menu_Login_View extends Menu_Basic_View {
 
     ToggleGroup tg1;
 
-    // MenuItems menu2
-//    MenuItem menuItem21 = new MenuItem("item21");
-//    MenuItem menuItem22 = new MenuItem("item22");
-//    MenuItem menuItem23 = new MenuItem("item23");
 
     public Menu_Login_View() {
 	super();
 	
 	menu1 = new Menu();
-	menu2 = new Menu();
 	
 	tg1 = new ToggleGroup();
 	
@@ -52,8 +49,11 @@ public class Menu_Login_View extends Menu_Basic_View {
 				@Override
 				public void run() {
 					sl.getConfiguration().setLocalOption("Language", locale.getLanguage());
-					sl.setTranslator(new Translator_JC(locale.getLanguage()));	
+					sl.setTranslator(new Translator_JC(locale.getLanguage()));
+					sl.getConfiguration().save();
+					JassClient.changeLocales();
 				}
+
 			});
 	    });
 
@@ -65,12 +65,18 @@ public class Menu_Login_View extends Menu_Basic_View {
 	menu1.setGraphic(icon1);
 	menu1.setText(t.getString("program.menu.language"));
 
-//	menu2.getItems().addAll(menuItem21, menuItem22, menuItem23);
 
 	this.getMenus().addAll(menu1);
 
 	this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
+    
+	
+	
+
+	
     }
+    
+ 
 
 }
