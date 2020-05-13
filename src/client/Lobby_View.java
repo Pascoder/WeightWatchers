@@ -162,9 +162,8 @@ public class Lobby_View{
 		
 		
 		Scene scene = new Scene(root, 1050, 650);
+		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		stage.setScene(scene);
-
-		//scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		this.stage.setTitle("Lobby Jass Game");
 	    
     }

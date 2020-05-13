@@ -66,6 +66,7 @@ public class Login_View extends GridPane {
 		this.add(registerLabel, 3, 11);
        
 		this.registerButton = new Button(t.getString("login.btnRegister"));
+//		this.registerButton.setId("Registerbutton"); // Wenn ein button anders aussehen soll --> CSS Stylesheet schauen
 		this.add(registerButton, 3, 12);
 		
 //		_olmo: Auskommentiert, weil Fehler beim Laden Image
@@ -77,8 +78,6 @@ public class Login_View extends GridPane {
 		imageView.setFitWidth(250);
 		this.add(imageView, 3, 15);
 		
-		
-		this.setStyle("-fx-background-color: #D8D8D8");
 		this.setAlignment(Pos.CENTER);
 		this.setHgap(20);
 		this.setVgap(10);

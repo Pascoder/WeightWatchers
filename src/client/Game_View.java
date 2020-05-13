@@ -38,7 +38,7 @@ public class Game_View extends BorderPane{
     protected ArrayList <ToggleButton> playerButtons;
   
     
-    //Gehört nachher ins CSS
+    //Gehört nachher ins CSS --> Sicher?
 
     protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("Poker-fuenf-verdeckte-karten.jpg"));
     protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen_Under.jpg"));
@@ -233,7 +233,7 @@ public class Game_View extends BorderPane{
 	stage.setMaximized(true);
 	stage.setScene(scene);
 
-//	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setTitle("Game");
     }
     
