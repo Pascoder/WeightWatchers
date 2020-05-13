@@ -54,7 +54,7 @@ public class Lobby_View{
 		
 		
 		// LeftTop: Actual Games	
-		lblGames = new Label(t.getString("lobby.blbGame"));
+		lblGames = new Label(t.getString("lobby.lblGame"));
 		//gamesList = new TextArea();
 		
 		
@@ -190,6 +190,10 @@ public class Lobby_View{
     selectedGameList.setItems(selectedGame);
     }
     
+    public ListView getSelectedGames() {
+    	return this.selectedGameList;
+    }
+    
     
     
     public Button getCreateGameButton() {
@@ -202,6 +206,10 @@ public class Lobby_View{
     
     public Button getLeaveLobbyButton() {
     	return this.leaveLobbyBt;
+    }
+    
+    public Button getLeaveGameButton() {
+    	return this.leaveBt;
     }
 
 

@@ -23,18 +23,21 @@ public class ServiceLocator_JC {
     private Configuration_JC configuration;
     private Translator_JC translator;
 
- 
+    private Locale locale;
 
+ 
+  
     
     public static ServiceLocator_JC getServiceLocator() {
         if (serviceLocator == null)
             serviceLocator = new ServiceLocator_JC();
         return serviceLocator;
     }
-
-   
     private ServiceLocator_JC() {
+	
     }
+   
+    
 
     public Class<?> getAPP_CLASS() {
         return APP_CLASS;
@@ -62,6 +65,10 @@ public class ServiceLocator_JC {
 
     public Locale[] getLocales() {
         return locales;
+    }
+    
+    public void setLocales(Locale locale) {
+	this.locale = locale;
     }
 
     public Translator_JC getTranslator() {

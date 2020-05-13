@@ -5,3 +5,4 @@ leon|1234
 oli|12345
 oli|123
 spieler2|1234
+peter|1234

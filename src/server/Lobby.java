@@ -133,11 +133,7 @@ public class Lobby {
 		return null;
 	}
 
-	public void leaveGame(String gamename, String client) {
-		//TODO Diese Methode soll ein Game beenden und alle Spieler von diesem Game darüber informieren
-		System.out.println("Der Spieler: "+ client + " hat das Spiel " + gamename + " verlassen!");
-		
-	}
+
 	//Sobald 4 Spieler einen neuen Stapel möchten wird neu ausgeteilt
 	public synchronized void nextStaple(String gamename, String client) {
 		for(Game g : actualgames) {

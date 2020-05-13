@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -45,11 +46,19 @@ ServiceLocator_JC serviceLocator;
 		lobbyview.getTextField().clear();
 		});
 		clientView.getLobbyStage().setOnCloseRequest(c->{
-			clientModel.sayGoodBye("Lobby");
+			clientModel.sayGoodBye("Lobby1");
+		});
+		clientView.getGameStage().setOnCloseRequest(c->{
+			clientModel.sayGoodBye("ExitGame");
 		});
 		lobbyview.getLeaveLobbyButton().setOnAction(c -> {
-			clientModel.sayGoodBye("Lobby");
+			clientModel.sayGoodBye("Lobby1");
 			clientView.getLobbyStage().hide();
+		});
+		lobbyview.getLeaveGameButton().setOnAction(c->{
+			clientModel.sayGoodBye("Lobby2");
+			ObservableList<String> selectedGame = FXCollections.observableArrayList();
+			lobbyview.setSelectedGame(selectedGame);
 		});
 		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());
 	
@@ -160,13 +169,6 @@ ServiceLocator_JC serviceLocator;
 		});
 		
 		
-			
-			
-			
-		
-	
-		
-		
 		
 	}
 	
@@ -225,59 +227,40 @@ public static void loadGames(String [] games) {
 
 
 
-//public static void joinGame(String [] joinedgames) {
-//	clientView.getLobbyView().selectedGameList.clear();
-//	for(String s : joinedgames) {
-//		clientView.getLobbyView().selectedGameList.appendText(s+"\n");
-//	}
-//}
-
-//public void joinGame() {
-//	try {
-//	    String selectedItem = clientView.getLobbyView().gamesList.getSelectionModel().getSelectedItem().toString();
-//	    clientModel.sayJoinGame(selectedItem);
-//	    //view.lblMainRoom.setText(Chatroom_Model.getMainRoom());
-//	    //updateChatter();
-//	} catch (Exception e) {
-//	    e.printStackTrace();
-//	}
-//}
-
-
-
 public static void loadPlayersonGame(Player [] playersOnGame, String client, String trumpf, String teamscore) {
 	
 	Platform.runLater(new Runnable(){
 		
 		public void run() {
 	//lädt die Karten des aktuellen Spielers in eine ArrayList
-	ArrayList <String> cardList = new ArrayList <String>();
-	String [] teams = teamscore.split("\\$");
-	
-	for(Player p : playersOnGame) {
-		if(p.getName().equals(client)) {
-			cardList = p.getHandAsStrings(); 
-			clientView.getGameView().getOnTurn().setText("On move: "+p.getonMove());
-			clientView.getGameView().setTitle("Game of "+p.getName());
-				if(p.getonMove() == true) {
-					//Trumpf ausw�hlen aber nur wenn 1. Runde
-					clientView.getGameView().getOnTurn().setTextFill(Color.web("red"));
-				}else {
-					clientView.getGameView().getOnTurn().setTextFill(Color.web("black"));
-				}
+			
+		ArrayList <String> cardList = new ArrayList <String>();
+		String [] teams = teamscore.split("\\$");
 		
-		}
+		for(Player p : playersOnGame) {
+			if(p.getName().equals(client)) {
+				cardList = p.getHandAsStrings(); 
+				clientView.getGameView().getOnTurn().setText("On move: "+p.getonMove());
+				clientView.getGameView().setTitle("Game of "+p.getName());
+					if(p.getonMove() == true) {
+						//Trumpf ausw�hlen aber nur wenn 1. Runde
+						clientView.getGameView().getOnTurn().setTextFill(Color.web("red"));
+					}else {
+						clientView.getGameView().getOnTurn().setTextFill(Color.web("black"));
+					}
+			
+			}
 
 	}
 	//Set Team Points
-	for(int i = 0; i< teams.length;i++) {
-		String team[] = teams[i].split("\\|");
-		for(int c = 0; c<team.length;c++) {
-			if(team[c].equals(client)) {
-				clientView.getGameView().setPoints(team[2]);
+		for(int i = 0; i< teams.length;i++) {
+			String team[] = teams[i].split("\\|");
+			for(int c = 0; c<team.length;c++) {
+				if(team[c].equals(client)) {
+					clientView.getGameView().setPoints(team[2]);
+				}
 			}
 		}
-	}
 	
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
@@ -342,6 +325,9 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				}
 			}
 		}
+
+
+
 	});
 	
 }
@@ -420,7 +406,7 @@ public static void showWinnerTeam(String winnerteamid) {
 	});
 }
 
-public static void showStapelWinner() {
+public static void showStapelWinner(String winnerTeam, String points) {
 	Platform.runLater(new Runnable(){
 
 		@Override
@@ -428,14 +414,15 @@ public static void showStapelWinner() {
 	
 	Alert alert = new Alert(AlertType.CONFIRMATION);
 	alert.setTitle("Stapel fertig!");
-	alert.setContentText("Stapel fertig. Weiterspielen? -> OK / Beenden? -> Cancel");
+	alert.setContentText("Stapelsieger: Team " + winnerTeam + "mit " + points + " Punkten!" + "/n"
+			+ "Weiterspielen? -> OK / Beenden? -> Cancel");
 	alert.showAndWait();
 	Optional<ButtonType> result = alert.showAndWait();
 	if (result.get() == ButtonType.OK){
 		clientModel.sayNextStaple();
 	    
 	} else if(result.get() == ButtonType.CANCEL){
-//	    clientModel.sayExitGame();
+	    clientModel.sayExitGame();
 	}
 		}
 
@@ -444,124 +431,44 @@ public static void showStapelWinner() {
 
 }
 
+public static void showDialog() {
+	Platform.runLater(new Runnable(){
 
+		@Override
+		public void run() {
+			Dialog<Object> dialog = new Dialog<>();
+			dialog.setTitle("Spiel wird beendet");
+			dialog.setContentText("Ein Spieler hat das Spiel verlassen. Spiel wird beendet in 5 Sekunden");
+			dialog.show();
+
+				Thread newThread = new Thread(new Runnable() {
+					    @Override
+					    public void run() {
+					    	try {
+					                Thread.sleep(5000);
+					            } catch (InterruptedException ex) {
+					                Thread.currentThread().interrupt();
+					            }
+
+					            Platform.runLater(new Runnable() {
+					                @Override
+					                public void run() {
+					                    dialog.close();
+					                    clientView.switchView(2);
+					                }
+					                });
+					            }
+					    });
+					    newThread.start();
+			
+		}
+		
+	});
+	
+	
+	
+		}
 
 
 
 }
-
-
-
-
-
-
-
- 
-
-//	setGames();
-//	setPlayers();
-//	setMessages();
-//
-//	updateGames();
-//
-//	view.controls.btnQuit.setOnAction(e -> Platform.exit());
-//	view.controls.btnCancel.setOnAction(e -> clearForms());
-//	view.controls.btnLeave.setOnAction(e -> leaveGame());
-//	view.controls.btnSend.setOnAction(e -> msgSend());
-//
-//	view.GameList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//	    @Override
-//	    public void handle(MouseEvent e) {
-//		if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-//		    choiceGame();
-//		}
-//	    }
-//	});
-//	view.playerList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//	    @Override
-//	    public void handle(MouseEvent e) {
-//		if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-//		    choiceChatter();
-//		}
-//	    }
-//	});
-//
-//    }
-//
-//    public void setGames() {
-//	view.setGame(ChatGame_Model.getGames());
-//    }
-//
-//    public void setPlayer() {
-//	view.setChatter(model.getPlayer());
-//    }
-//
-//    public void setMessages() {
-//	view.setMessages(model.getActMsg());
-//    }
-//
-//    public void updateGames() {
-//	try {
-//	    model.listGames();
-//	} catch (Exception e) {
-//	    // TODO Auto-generated catch block
-//	    e.printStackTrace();
-//	}
-//    }
-//
-//    public void updatePlayer() {
-//	try {
-//	    model.listChatters();
-//	} catch (Exception e) {
-//	    // TODO Auto-generated catch block
-//	    e.printStackTrace();
-//	}
-//    }
-//
-//    private void choiceGame() {
-//	try {
-//	    String selectedItem = view.gameList.getSelectionModel().getSelectedItem().toString();
-//	    model.enterGame(selectedItem);
-//	    view.lblMainGame.setText(ChatGame_Model.getMainGame());
-//	    updatePlayer();
-//	} catch (Exception e) {
-//	    e.printStackTrace();
-//	}
-//    }
-//
-//    private void leaveGame() {
-//	try {
-//	    model.leaveGame();
-//	    view.lblMainGame.setText("--");
-//	} catch (Exception e) {
-//	    e.printStackTrace();
-//	}
-//    }
-//
-//    private void choiceChatter() {
-//	try {
-//	    String selectedItem = view.chatterList.getSelectionModel().getSelectedItem().toString();
-//	} catch (Exception e) {
-//	    e.printStackTrace();
-//	}
-//    }
-//
-//    private void msgSend() {
-//	try {
-//	    model.sendMessage(view.controls.txtMsg.getText());
-//	    clearForms();
-//	} catch (Exception e) {
-//	    // TODO Auto-generated catch block
-//	    e.printStackTrace();
-//	}
-//    }
-//
-//    private void goBack() {
-//	view.stop();
-//	// Start_Controller.showStart();
-//    }
-//
-//    private void clearForms() {
-//	view.controls.txtMsg.setText("");
-//    }
-//}

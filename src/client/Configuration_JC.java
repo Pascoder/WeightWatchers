@@ -39,7 +39,7 @@ public class Configuration_JC {
     public Configuration_JC() {
 	// Load default properties from wherever the code is
 	defaultOptions = new Properties();
-	String defaultFilename = sl.getAPP_NAME() + "Defaults.cfg";
+	String defaultFilename = sl.getAPP_NAME() + "_defaults.cfg";
 	InputStream inStream = sl.getAPP_CLASS().getResourceAsStream(defaultFilename);
 	try {
 	    defaultOptions.load(inStream);
@@ -80,7 +80,7 @@ public class Configuration_JC {
     public void save() {
 	FileOutputStream propFile = null;
 	try {
-	    propFile = new FileOutputStream(sl.getAPP_NAME() + "Defaults.cfg");
+	    propFile = new FileOutputStream(sl.getAPP_NAME() + ".cfg");
 	    localOptions.store(propFile, null);
 	    logger.config("Local configuration file saved");
 	} catch (Exception e) {

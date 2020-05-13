@@ -1,7 +1,5 @@
 package messages;
 
-import client.Message_NEXTSTAPLE;
-
 public enum MessageType {
 	HELLO,
 	CREATEUSER,
