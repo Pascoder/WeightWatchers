@@ -116,7 +116,7 @@ public class ClientModel {
 			msgOut = new Message_LOGINNOTOK();
 			msgOut.setClient(this.clientName);
 			logger.info(msgIn.getClient() + " Login Daten nicht korrekt");
-			ClientController.updateLoginInfoLabel("Login Daten nicht korrekt");
+			ClientController.updateLoginInfoLabel("Login Daten nicht korrekt"); // Translator setzen
 			break;
 			
 		case CREATEUSER:
