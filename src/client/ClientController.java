@@ -45,7 +45,7 @@ ServiceLocator_JC serviceLocator;
 		lobbyview.getTextField().clear();
 		});
 		clientView.getLobbyStage().setOnCloseRequest(c->{
-			clientModel.sayGoodBye("Lobby1");
+			clientModel.sayGoodBye("Lobby1");//TODO @ Frank Bezeichnungen verwenden die man versteht, thanks ;)
 		});
 		lobbyview.getLeaveLobbyButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby1");
@@ -425,7 +425,7 @@ public static void showWinnerTeam(String winnerteamid) {
 	});
 }
 
-public static void showStapelWinner() {
+public static void showStapelWinner(String winnerTeam, String points) {
 	Platform.runLater(new Runnable(){
 
 		@Override
@@ -433,14 +433,15 @@ public static void showStapelWinner() {
 	
 	Alert alert = new Alert(AlertType.CONFIRMATION);
 	alert.setTitle("Stapel fertig!");
-	alert.setContentText("Stapel fertig. Weiterspielen? -> OK / Beenden? -> Cancel");
+	alert.setContentText("Stapelsieger: Team " + winnerTeam + "mit " + points + " Punkten!" + "/n"
+			+ "Weiterspielen? -> OK / Beenden? -> Cancel");
 	alert.showAndWait();
 	Optional<ButtonType> result = alert.showAndWait();
 	if (result.get() == ButtonType.OK){
 		clientModel.sayNextStaple();
 	    
 	} else if(result.get() == ButtonType.CANCEL){
-//	    clientModel.sayExitGame();
+	    clientModel.sayExitGame();
 	}
 		}
 

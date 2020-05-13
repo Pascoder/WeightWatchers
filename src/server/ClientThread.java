@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import client.ClientModel;
-import client.Message_NEXTSTAPLE;
 import client.ServiceLocator_JC;
 import messages.Message;
 import messages.MessageType;
@@ -26,6 +25,7 @@ import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
 import messages.Message_MOVE;
 import messages.Message_NEXTROUND;
+import messages.Message_NEXTSTAPLE;
 import messages.Message_USERNAMETAKEN;
 
 
@@ -148,13 +148,16 @@ public class ClientThread extends Thread {
 				break;	
 				
 			case GOODBYE:
+				//Lobby1 = Lobby verlassen, Lobby2 = Spiel verlassen
 				Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;
 				if(ciao_msg.getCiaoSource().equals("Lobby1")) {
-				ServerModel.removePlayerFromLobby(ciao_msg.getPlayername());
+					ServerModel.removePlayerFromLobby(ciao_msg.getPlayername());
 				}
 				if(ciao_msg.getCiaoSource().equals("Lobby2")) {
-				ServerModel.leaveGame(ciao_msg.getPlayername());
-				System.out.println("GOODBYE");
+					//TODO Alle Spieler dieses Spiels müssen in die Lobby zurückgehen
+//					ServerModel.kickPlayers(ciao_msg.getPlayername());
+					System.out.println(ciao_msg.getClient() + " verlässt das Spiel");
+					ServerModel.leaveGame(ciao_msg.getPlayername());
 				}
 				ServerModel.updateClients(1, clientName);
 				msgOut = new Message_HELLO();

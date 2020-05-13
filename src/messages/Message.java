@@ -7,8 +7,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import client.Message_NEXTSTAPLE;
-
 /**
 	 * A simple example showing how to encapsulate messages in a class. This class sends and receives
 	 * some simple data via sockets. The data is formatted in plain text, with our own protocol:

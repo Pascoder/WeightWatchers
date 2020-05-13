@@ -1,8 +1,6 @@
-package client;
+package messages;
 
 import java.util.ArrayList;
-
-import messages.Message;
 
 
 public class Message_NEXTSTAPLE extends Message{

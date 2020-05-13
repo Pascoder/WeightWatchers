@@ -290,4 +290,11 @@ public class ServerModel {
 		
 	}
 
+	public static void kickPlayers(String client) {
+		
+		
+	}
+
+
+
 }

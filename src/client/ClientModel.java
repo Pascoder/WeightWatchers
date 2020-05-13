@@ -22,6 +22,7 @@ import messages.Message_LOGINNOTOK;
 import messages.Message_LOGINOK;
 import messages.Message_MOVE;
 import messages.Message_NEXTROUND;
+import messages.Message_NEXTSTAPLE;
 import messages.Message_STARTGAME;
 import messages.Message_USERNAMETAKEN;
 import server.Card;
@@ -157,15 +158,17 @@ public class ClientModel {
 					i++;
 				}
 					ClientController.emptyTable();
-					//TODO Sollte nicht aufgerufen werden wenn Stapel fertig ist
-					Message_NEXTROUND msg_nr = new Message_NEXTROUND();
-					msg_nr.setGamename(gu_msg.getGameid());
-					msg_nr.send(socket);
-						if(gu_msg.getStapelfinish().equals("true")) {
-							ClientController.showStapelWinner();
-						}
-						if(gu_msg.getGamefinish().equals("true")) {
-							ClientController.showWinnerTeam(gu_msg.getWinnerteamid());
+					
+					if(gu_msg.getGamefinish().equals("true")) {
+						ClientController.showWinnerTeam(gu_msg.getWinnerteamid());
+						
+						} else if(gu_msg.getStapelfinish().equals("true")) {
+							ClientController.showStapelWinner(gu_msg.getWinnerteamid(), gu_msg.getTeamScore());
+						} else {
+							Message_NEXTROUND msg_nr = new Message_NEXTROUND();
+							msg_nr.setGamename(gu_msg.getGameid());
+							msg_nr.send(socket);
+						
 						}
 			}
 			
@@ -223,14 +226,6 @@ public class ClientModel {
 
 	
 	
-	
-	
-	
-
-
-	
-
-
 
 
 	private Player[] findPlayersOnGame(String players) {
@@ -483,8 +478,8 @@ public class ClientModel {
 	
 	
 	public void sayExitGame() {
-		Message_NEXTROUND msgOut = new Message_NEXTROUND();
-		msgOut.setGamename(actualGame);
+		Message_GOODBYE msgOut = new Message_GOODBYE();
+		msgOut.setCiaoSource("Lobby2");
 		msgOut.setClient(clientName);
 		msgOut.send(socket);
 		
