@@ -29,8 +29,8 @@ public class Game {
     private TrumpfType trumpftype;
     private GameType gametype;
     private boolean gameFinish, stichFinish;
-	private boolean stapelFinish;
-	private int wishForNewStaple;
+    private boolean stapelFinish;
+    private int wishForNewStaple;
 
     // Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
     Game(int gameID, String name) {
@@ -122,14 +122,14 @@ public class Game {
 	generateMoveOrder();
 	generateTeams();
 	setPlayersOffMove();
-	if(round == 0) {
-	spreadCards();
-	nextRound();
+	if (round == 0) {
+	    spreadCards();
+	    nextRound();
 	}
-	//NextRound
-	for(int i = 0; i< playersOnGame.size();i++) {
-		ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
-		
+	// NextRound
+	for (int i = 0; i < playersOnGame.size(); i++) {
+	    ServerModel.sayGameStarted(name, playersOnGame.get(i).getName());
+
 	}
 
     }
@@ -137,21 +137,21 @@ public class Game {
     // Kartenverteilen: Nach dem Mischen der Karten müssen diese auf die Spieler
     // verteilt werden.
     void spreadCards() {
-	for(Player p : this.playersOnGame) {
+	for (Player p : this.playersOnGame) {
 	    p.clearStichCards();
 	}
 	CardDeck deck = new CardDeck();
-	playersOnGame.get(0).setHand(new ArrayList<>(deck.getDeck().subList(0,9)));
-	playersOnGame.get(1).setHand(new ArrayList<>(deck.getDeck().subList(9,18)));
-	playersOnGame.get(2).setHand(new ArrayList<>(deck.getDeck().subList(18,27)));
-	playersOnGame.get(3).setHand(new ArrayList<>(deck.getDeck().subList(27,36)));
+	playersOnGame.get(0).setHand(new ArrayList<>(deck.getDeck().subList(0, 9)));
+	playersOnGame.get(1).setHand(new ArrayList<>(deck.getDeck().subList(9, 18)));
+	playersOnGame.get(2).setHand(new ArrayList<>(deck.getDeck().subList(18, 27)));
+	playersOnGame.get(3).setHand(new ArrayList<>(deck.getDeck().subList(27, 36)));
     }
 
     // Starten nächste Runde sobald ein Spieler auf start next Round klickt
     public void nextRound() {
 	if (this.move == 0 && !(this.gameFinish)) {
 	    this.cardsOnTable.clear();
-	    
+
 	}
 	if (this.round == 0 && !(this.gameFinish)) {
 	    this.team1.nextStich();
@@ -184,11 +184,11 @@ public class Game {
 	this.trumpf = card.getCardColor();
 
     }
-    
+
     public static Card singlecardStringtoCard(String s) {
-    	Card card = new Card(CardColor.valueOf(s.substring(0, 1)), CardRank.valueOf(s.substring(1)));
-    	
-    	return card;
+	Card card = new Card(CardColor.valueOf(s.substring(0, 1)), CardRank.valueOf(s.substring(1)));
+
+	return card;
     }
 
     // String Aufschlüsselung in Karte
@@ -215,7 +215,7 @@ public class Game {
 
     // Spieler spielt eine Karte
     public void playCard(int game_ID, int player_ID, Card card) {
-    	
+
 	if (game_ID == this.gameID && searchPlayer(player_ID).getonMove()) {
 	    if (this.trumpf != null) {
 		normalMove(game_ID, player_ID, card);
@@ -226,12 +226,8 @@ public class Game {
 	setPlayerOnMove();
     }
 
-    
-    
-    
-    
     private void normalMove(int game_ID, int player_ID, Card card) {
-    	System.out.println("NORMAL MOVE: "+"Player= "+searchPlayer(player_ID).getName()+" "+card.toString());
+	System.out.println("NORMAL MOVE: " + "Player= " + searchPlayer(player_ID).getName() + " " + card.toString());
 	card.setPlayable(true);
 	searchPlayer(player_ID).removeCardFromHand(card);
 	card.setPlayer_ID(player_ID);
@@ -245,36 +241,32 @@ public class Game {
 
     // Zählt die Züge einer Runde
     private void countMove() {
-    	System.out.println("MOVE NUMBER: "+move);
+	System.out.println("MOVE NUMBER: " + move);
 	if (this.move < 3) {
-		this.stichFinish = false;
+	    this.stichFinish = false;
 	    this.move++;
-	   /* for(int i = 0; i < playersOnGame.size();i++) {
-	    	 ServerModel.updateClients(2, playersOnGame.get(i).getName());
-	    }*/
-	  
-	    
-	    
+	    /*
+	     * for(int i = 0; i < playersOnGame.size();i++) { ServerModel.updateClients(2,
+	     * playersOnGame.get(i).getName()); }
+	     */
+
 	} else {
-		this.stichFinish = true;
+	    this.stichFinish = true;
 	    this.move = 0;
 	    setPlayersOffMove();
 	    evaluateStichWinner();
 	    this.stichColor = null;
 	    countRound();
-	
-	    
+
 //	    //Nachricht an Clients---> darf nicht hier sein, sondern Teil vom GameUpdate
 //	    for(Player p : playersOnGame) {
 //	    	ServerModel.informClients(p.getName(), name);
 //	    }	   
 	}
-	
+
     }
 
-   
-
-	// Zählt die Runden
+    // Zählt die Runden
     private void countRound() {
 	if (this.round < 8) {
 	    this.round++;
@@ -288,14 +280,19 @@ public class Game {
     }
 
     private void gamefinish() {
-	if(team1.getTeamPoints() > 1000) {
+	if (team1.getTeamPoints() > 1000) {
 	    this.gameFinish = true;
 	}
-	
+
     }
 
     private void evaluateStichWinner() {
-	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype, this.trumpftype, this.round, this.trumpf, this.stichColor);
+	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype, this.trumpftype, this.round,
+		this.trumpf, this.stichColor);
+	if (this.round == 8) {	//letzter Stich zusätzlich 5 Punkte
+	    winnerScore[1] += 5;
+	}
+
 	for (Player p : this.team1.getTeamMembers())
 	    if (p.getPlayer_id() == winnerScore[0]) {
 		this.team1.setTeamPoints(winnerScore[1]);
@@ -310,17 +307,17 @@ public class Game {
 	this.lastWinner_ID = winnerScore[0];
 	searchPlayer(this.lastWinner_ID).addStichCards(cardsOnTable);
 	shiftMoveOrder();
-	
-	System.out.println("Stichgewinner: "+ winnerScore[0] + " Punkte: "+ winnerScore[1]);
+
+	System.out.println("Stichgewinner: " + winnerScore[0] + " Punkte: " + winnerScore[1]);
 
     }
 
     private void evaluateStapleWinner() {
-    	this.stapelFinish = true;
+	this.stapelFinish = true;
 	if (team1.getTeamPoints() > team2.getTeamPoints()) {
 	    this.lastWinnerTeam_ID = team1.getTeam_id();
-	}else {
-	
+	} else {
+
 	    this.lastWinnerTeam_ID = team2.getTeam_id();
 	}
 
@@ -371,17 +368,18 @@ public class Game {
     public ArrayList<Card> getCardsOnTable() {
 	return this.cardsOnTable;
     }
-    
+
     public String getCardsOnTableAsString() {
-    	String result = "";
-    	
-    	if(cardsOnTable.isEmpty())return result;
-    	
-    	for (Card c : cardsOnTable) {
-    		result += c.toString() + "$";
-    	}
-    	System.out.println("GETCARDSONTABLE: "+result);
-    	return result;
+	String result = "";
+
+	if (cardsOnTable.isEmpty())
+	    return result;
+
+	for (Card c : cardsOnTable) {
+	    result += c.toString() + "$";
+	}
+	System.out.println("GETCARDSONTABLE: " + result);
+	return result;
     }
 
     public Card getLastCard() {
@@ -420,60 +418,60 @@ public class Game {
 	return this.lastWinner_points + "|";
     }
 
-	public CardColor getTrumpf() {
-		return trumpf;
-	}
+    public CardColor getTrumpf() {
+	return trumpf;
+    }
 
-	public void setTrumpf(CardColor trumpf) {
-		this.trumpf = trumpf;
-	}
+    public void setTrumpf(CardColor trumpf) {
+	this.trumpf = trumpf;
+    }
 
-	public boolean isStichFinish() {
-		return stichFinish;
-	}
+    public boolean isStichFinish() {
+	return stichFinish;
+    }
 
-	public void setStichFinish(boolean stichFinish) {
-		this.stichFinish = stichFinish;
-	}
+    public void setStichFinish(boolean stichFinish) {
+	this.stichFinish = stichFinish;
+    }
 
-	public boolean isGameFinish() {
-		return gameFinish;
-	}
+    public boolean isGameFinish() {
+	return gameFinish;
+    }
 
-	public void setGameFinish(boolean gameFinish) {
-		this.gameFinish = gameFinish;
-	}
+    public void setGameFinish(boolean gameFinish) {
+	this.gameFinish = gameFinish;
+    }
 
-	public int getLastWinnerTeam_ID() {
-		return lastWinnerTeam_ID;
-	}
+    public int getLastWinnerTeam_ID() {
+	return lastWinnerTeam_ID;
+    }
 
-	public void setLastWinnerTeam_ID(int lastWinnerTeam_ID) {
-		this.lastWinnerTeam_ID = lastWinnerTeam_ID;
-	}
+    public void setLastWinnerTeam_ID(int lastWinnerTeam_ID) {
+	this.lastWinnerTeam_ID = lastWinnerTeam_ID;
+    }
 
-	public boolean isStapelFinish() {
-		return stapelFinish;
-	}
+    public boolean isStapelFinish() {
+	return stapelFinish;
+    }
 
-	public void setStapelFinish(boolean stapelFinish) {
-		this.stapelFinish = stapelFinish;
-	}
-	
-	public Team getTeam1() {
-		return this.team1;
-	}
-	public Team getTeam2() {
-		return this.team2;
-	}
+    public void setStapelFinish(boolean stapelFinish) {
+	this.stapelFinish = stapelFinish;
+    }
 
-	public int getWishForNewStaple() {
-		return wishForNewStaple;
-	}
+    public Team getTeam1() {
+	return this.team1;
+    }
 
-	public void setWishForNewStaple(int wishForNewStaple) {
-		this.wishForNewStaple = wishForNewStaple;
-	}
-	
+    public Team getTeam2() {
+	return this.team2;
+    }
+
+    public int getWishForNewStaple() {
+	return wishForNewStaple;
+    }
+
+    public void setWishForNewStaple(int wishForNewStaple) {
+	this.wishForNewStaple = wishForNewStaple;
+    }
 
 }
