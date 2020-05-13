@@ -215,6 +215,17 @@ public class ClientModel {
 			msgOut.setClient(this.clientName);
 			msgOut.send(socket);
 			break;
+		case GOODBYE:
+			Message_GOODBYE msg_bye = (Message_GOODBYE) msgIn;
+			msgOut = new Message_GOODBYE();
+			if(msg_bye.getCiaoSource().equals("LEAVEGAME")) {
+				ClientController.showDialog();
+				//TODO Ausgewähltes Game aus Liste in Lobby ausblenden
+			}
+				
+			break;
+			
+		
 			
 			
 		default:

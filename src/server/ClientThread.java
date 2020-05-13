@@ -148,18 +148,22 @@ public class ClientThread extends Thread {
 				break;	
 				
 			case GOODBYE:
-				//Lobby1 = Lobby verlassen, Lobby2 = Spiel verlassen
+				//Lobby1 = Lobby verlassen, Lobby2 = Ausgewähltes Spiel verlassen, ExitGame = Spiel, das bereits gestartet ist verlassen
 				Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;
 				if(ciao_msg.getCiaoSource().equals("Lobby1")) {
-					ServerModel.removePlayerFromLobby(ciao_msg.getPlayername());
+					ServerModel.removePlayerFromLobby(clientName);
+					ServerModel.updateClients(1, clientName);
 				}
 				if(ciao_msg.getCiaoSource().equals("Lobby2")) {
-					//TODO Alle Spieler dieses Spiels müssen in die Lobby zurückgehen
-//					ServerModel.kickPlayers(ciao_msg.getPlayername());
-					System.out.println(ciao_msg.getClient() + " verlässt das Spiel");
-					ServerModel.leaveGame(ciao_msg.getPlayername());
+					System.out.println(clientName + " verlässt das Spiel");
+					ServerModel.leaveGame(clientName);
+					ServerModel.updateClients(1, clientName);
+
+					}
+				if(ciao_msg.getCiaoSource().equals("ExitGame")) {
+					ServerModel.kickPlayers(clientName);
 				}
-				ServerModel.updateClients(1, clientName);
+				
 				msgOut = new Message_HELLO();
 				break;
 				

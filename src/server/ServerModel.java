@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import messages.Message;
 import messages.Message_GAMEUPDATE;
+import messages.Message_GOODBYE;
 import messages.Message_LOBBYUPDATE;
 import messages.Message_STARTGAME;
 
@@ -277,10 +278,12 @@ public class ServerModel {
 		}
 		
 	}
+	//Sucht game des Spielers und kickt ihn aus dem Spiel
 	public static void leaveGame(String playername) {
 		for(int i = 0; i<Lobby.getLobby().getGames().size();i++) {
 			for(int b = 0; b< Lobby.getLobby().getGames().get(i).getPlayersOnGame().size();b++) {
 				if(Lobby.getLobby().getGames().get(i).getPlayersOnGame().get(b).getName().equals(playername)) {
+					
 					Lobby.getLobby().getGames().get(i).getPlayersOnGame().remove(b);
 					System.out.println("Spieler :"+Lobby.getLobby().getGames().get(i).getPlayersOnGame().get(b).getName()+" hat das Spiel: "+Lobby.getLobby().getGames().get(i).getName()+" verlassen.");
 				}
@@ -289,9 +292,34 @@ public class ServerModel {
 		
 		
 	}
-
+	//Sucht das richtige Spiel und die übrigen Spieler noch im Spiel
 	public static void kickPlayers(String client) {
+		String GameID = Lobby.getLobby().getGameIDofPlayersGame(client);
+		for(Game g : Lobby.getLobby().getGames()) {
+			if(GameID.equals(g.getGameID()+"")) {
+				for(Player p : g.getPlayersOnGame()) {
+					if(p.getName().equals(client)) {
+						
+					} else { sendGoodbyeMsg(p.getName());
+						
+					}
+					
+				}
+			}
+		}
 		
+		
+	}
+
+	private static void sendGoodbyeMsg(String name) {
+		Message_GOODBYE bye_msg = new Message_GOODBYE();
+		bye_msg.setCiaoSource("LEAVEGAME");
+		bye_msg.setClient(name);
+		for(ClientThread ct : clientList) {
+			if(ct.getClientName().equals(name)) {
+				bye_msg.send(ct.getClientSocket());	
+			}
+		}
 		
 	}
 

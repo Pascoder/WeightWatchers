@@ -48,6 +48,7 @@ public class ClientView {
 			System.out.println("Lobby View öffnet sich jetzt!");
 			lobbyStage.show();
 			loginStage.hide();
+			if(gameStage != null) gameStage.hide();
 		
 		}else {
 		//GameView
