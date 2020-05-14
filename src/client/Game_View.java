@@ -127,7 +127,7 @@ public class Game_View extends BorderPane{
 			this.centerPane.add(tablebox, 1, 1);
 			
 
-			//Player2
+			//Player2 Seite? 
 			this.player2 = new VBox();
 			this.player2.setSpacing(30);
 			this.player2.setPadding(new Insets(10,60,60,60));

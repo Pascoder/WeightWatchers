@@ -33,7 +33,9 @@
 }
 #opponentsPointsLabel {
 	-fx-font-weight: bold;
+	-fx-font-size: 12px;
 }
 #ourPointsLabel{
 	-fx-font-weight: bold;
+	-fx-font-size: 12px;
 }
