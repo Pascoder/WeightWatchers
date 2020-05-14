@@ -25,17 +25,18 @@ public class Game_View extends BorderPane{
     private Translator_JC t;
     private ServiceLocator_JC sl;
     //Layout
-    protected HBox menu, player4, bottomBox;
+    protected HBox menu, player4, bottomBox, ourPointsBox, opponentsPointsBox;
     protected GridPane centerPane, tablebox;
-    protected VBox player1, player2, player3 ;
+    protected VBox player1, player2, player3, pointsBox;
     protected MenuBar menubar;
     protected Menu menumain;
     protected MenuItem sprache;
     //Labels,Buttons...
-    protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn,trumpf;
+    protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn,trumpf, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
     protected Button weis, nextRound;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     protected ArrayList <ToggleButton> playerButtons;
+   
   
     
     //Gehört nachher ins CSS --> Sicher?
@@ -226,6 +227,28 @@ public class Game_View extends BorderPane{
 		this.bottomBox.setPadding(new Insets(10,10,10,10));
 		this.bottomBox.setSpacing(30);
 		
+		// PointBox (Our and opponent points
+		
+		//Unsere Punkte
+		this.ourPointsBox = new HBox();
+		this.ourPointsLabel = new Label(t.getString("game.lblPoints"));
+		this.ourPointsLabel.setId("ourPointsLabel");
+		this.ourPlbl = new Label("..."); // Wie setzen wir die Punkte hier? 
+		this.ourPointsBox.getChildren().addAll(this.ourPointsLabel, this.ourPlbl);
+		
+		//Punkte Gegner
+		this.opponentsPointsBox = new HBox();
+		this.opponentsPointsLabel = new Label(t.getString("game.lblOpponentPoints"));
+		this.opponentsPointsLabel.setId("opponentsPointsLabel");
+		this.oppPlbl = new Label("...");
+		this.opponentsPointsBox.getChildren().addAll(this.opponentsPointsLabel,this.oppPlbl);
+		
+		this.pointsBox = new VBox();
+		this.pointsBox.getChildren().addAll(ourPointsBox,opponentsPointsBox);
+		this.pointsBox.setPadding(new Insets(20,20,20,20));
+		this.pointsBox.setSpacing(30);
+		
+		this.centerPane.add(pointsBox, 10, 1);
 		
 //	root.getStyleClass().add("root"); // Class for styling
 	

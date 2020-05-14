@@ -31,3 +31,9 @@
 #Registerbutton {
 	-fx-background-color: red;
 }
+#opponentsPointsLabel {
+	-fx-font-weight: bold;
+}
+#ourPointsLabel{
+	-fx-font-weight: bold;
+}
