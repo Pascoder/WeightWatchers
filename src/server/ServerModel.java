@@ -218,7 +218,7 @@ public class ServerModel {
     	Player player = null;
     	for (Player p : Lobby.getPlayersOnline()) {
     	    if (p.getName().equals(name))
-    		;
+    		
     	    player = p;
     	}
     	return (player);
@@ -232,7 +232,7 @@ public class ServerModel {
 	Player player = null;
 	for (Player p : Lobby.getPlayersOnline()) {
 	    if (p.getPlayer_id() == Integer.parseInt(person_id))
-		;
+		
 	    player = p;
 	}
 	return (player);
@@ -243,7 +243,7 @@ public class ServerModel {
 	Game game = null;
 	for (Game g : Lobby.getLobby().getGames()) {
 	    if (g.getGameID() == Integer.parseInt(game_id))
-		;
+		
 	    game = g;
 	}
 	return (game);
