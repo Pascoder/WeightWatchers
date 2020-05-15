@@ -41,11 +41,13 @@ public class ServerModel {
 		String [] logindata = accounts.get(i).split("\\|");
 		
 	    if (logindata[1].equals(password) && logindata[0].equals(username)) {
-	    
-		Player player = new Player(player_id, username, password);
-		Lobby.getLobby().setPlayersOnline(player);
-		player_id++;
-		loginOK = true;
+	    if(isPlayerOffline(username)) {
+	    	Player player = new Player(player_id, username, password);
+			Lobby.getLobby().setPlayersOnline(player);
+			player_id++;
+			loginOK = true;
+	    }
+		
 	    }
 	}
 
@@ -69,7 +71,17 @@ public class ServerModel {
 	 */
     }
 
-    private static void loadaccounts() {
+    private static boolean isPlayerOffline(String username) {
+    	boolean isPlayerOffline = true;
+	for(Player p : Lobby.getPlayersOnline()) {
+		if(p.getName().equals(username)) {
+			isPlayerOffline = false;
+		}
+	}
+	return isPlayerOffline;
+}
+
+	private static void loadaccounts() {
 	try (BufferedReader in = new BufferedReader(new FileReader("PlayerFile.txt"))) {
 	    String s = in.readLine();
 
