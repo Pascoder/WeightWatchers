@@ -248,7 +248,7 @@ public class Game_View extends BorderPane{
 		this.pointsBox.setPadding(new Insets(20,20,20,20));
 		this.pointsBox.setSpacing(30);
 		
-		this.centerPane.add(pointsBox, 10, 1);
+		this.centerPane.add(pointsBox, 3, 0,2,2);
 		
 //	root.getStyleClass().add("root"); // Class for styling
 	
