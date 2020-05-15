@@ -1,7 +1,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 .root{
-	-fx-background-color: skyblue;
+	-fx-background-color: #BA7F01;
 	-fx-font-size: 11pt;
 }
 
@@ -31,11 +31,13 @@
 #Registerbutton {
 	-fx-background-color: red;
 }
-#opponentsPointsLabel {
+#opponentsPointsBox {
+	-fx-background-color:lightgrey;
 	-fx-font-weight: bold;
 	-fx-font-size: 12px;
 }
-#ourPointsLabel{
+#ourPointsBox {
+	-fx-background-color:lightgrey;
 	-fx-font-weight: bold;
 	-fx-font-size: 12px;
 }

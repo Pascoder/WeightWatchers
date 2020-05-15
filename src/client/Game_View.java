@@ -25,14 +25,14 @@ public class Game_View extends BorderPane{
     private Translator_JC t;
     private ServiceLocator_JC sl;
     //Layout
-    protected HBox menu, player4, bottomBox, ourPointsBox, opponentsPointsBox;
+    protected HBox menu, player4, bottomBox, ourPointsBox, opponentsPointsBox, roundBox, trumpfBox;
     protected GridPane centerPane, tablebox;
-    protected VBox player1, player2, player3, pointsBox;
+    protected VBox player1, player2, player3, pointsBox, P13, P24;
     protected MenuBar menubar;
     protected Menu menumain;
-    protected MenuItem sprache;
+    protected MenuItem info;
     //Labels,Buttons...
-    protected Label round, points,p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn,trumpf, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
+    protected Label round, roundNo, p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn, trumpf, selectedT, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
     protected Button weis, nextRound;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     protected ArrayList <ToggleButton> playerButtons;
@@ -69,20 +69,13 @@ public class Game_View extends BorderPane{
 		//Top MenuLeiste (sollte eine Menubar sein hier nur als Beispiel)
 		this.menu = new HBox();
 		this.menubar = new MenuBar();
-		this.menumain = new Menu("Options");
+		this.menumain = new Menu(t.getString("game.lblMenuBar"));
 		this.menubar.getMenus().add(menumain);
-		this.sprache = new MenuItem("Sprache");
-		this.menumain.getItems().add(sprache);
+		this.info = new MenuItem(t.getString("game.lblMenuBarV"));
+		this.menumain.getItems().add(info);
 		this.menu.getChildren().add(menubar);
 		
 		playerButtons = new ArrayList<ToggleButton>();
-		
-		this.round = new Label("Runde: 1");
-		menu.getChildren().add(round);
-		this.points = new Label("Punkte: 0");
-		menu.getChildren().add(points);
-		this.trumpf = new Label("Trumpf: ");
-		menu.getChildren().add(trumpf);
 		
 		this.setTop(menu);
 		menu.setPadding(new Insets(40,40,40,40));
@@ -227,29 +220,53 @@ public class Game_View extends BorderPane{
 		this.bottomBox.setPadding(new Insets(10,10,10,10));
 		this.bottomBox.setSpacing(30);
 		
-		// PointBox (Our and opponent points
+		// PointBox (Our and opponent points)
 		
 		//Unsere Punkte
 		this.ourPointsBox = new HBox();
 		this.ourPointsLabel = new Label(t.getString("game.lblPoints"));
-		this.ourPointsLabel.setId("ourPointsLabel");
-		this.ourPlbl = new Label("--"); // Wie setzen wir die Punkte hier? 
+		this.ourPointsBox.setId("ourPointsBox");
+		this.ourPlbl = new Label("--"); // 
 		this.ourPointsBox.getChildren().addAll(this.ourPointsLabel, this.ourPlbl);
+		
+		// Namen unser Team
+		this.P13 = new VBox();
+		this.P13.getChildren().addAll(p1_name, p3_name);
+		this.P13.setSpacing(5);
+		
 		
 		//Punkte Gegner
 		this.opponentsPointsBox = new HBox();
 		this.opponentsPointsLabel = new Label(t.getString("game.lblOpponentPoints"));
-		this.opponentsPointsLabel.setId("opponentsPointsLabel");
-		this.oppPlbl = new Label("...");
+		this.opponentsPointsBox.setId("opponentsPointsBox");
+		this.oppPlbl = new Label("0");
 		this.opponentsPointsBox.getChildren().addAll(this.opponentsPointsLabel,this.oppPlbl);
 		
+		//Namen Gegner
+		this.P24 = new VBox();
+		this.P24.getChildren().addAll(p2_name, p4_name);
+		this.P24.setSpacing(5);
+		
+		//Round Displaying
+		this.roundBox = new HBox();
+		this.round = new Label(t.getString("game.lblRound")); 
+		this.roundNo = new Label("1");
+		this.roundBox.getChildren().addAll(round, roundNo);
+				
+		// Trumpf Displaying
+		this.trumpfBox = new HBox();
+		this.trumpf = new Label(t.getString("game.lblTrumpf"));
+		this.selectedT = new Label("-");
+		this.trumpfBox.getChildren().addAll(this.trumpf, this.selectedT);
+		
+		
 		this.pointsBox = new VBox();
-		this.pointsBox.getChildren().addAll(ourPointsBox,opponentsPointsBox);
+		this.pointsBox.getChildren().addAll(roundBox, trumpfBox, ourPointsBox, P13, opponentsPointsBox, P24);
 		this.pointsBox.setPadding(new Insets(20,20,20,20));
 		this.pointsBox.setSpacing(30);
 		this.pointsBox.setId("pointsBox");
 		
-		this.centerPane.add(pointsBox, 4, 0,4,1);
+		this.centerPane.add(pointsBox, 4, 0, 4, 1);
 		
 //	root.getStyleClass().add("root"); // Class for styling
 	
