@@ -460,6 +460,7 @@ public static void showDialog() {
 		@Override
 		public void run() {
 			Dialog<Object> dialog = new Dialog<>();
+			
 			dialog.setTitle("Spiel wird beendet");
 			dialog.setContentText("Ein Spieler hat das Spiel verlassen. Spiel wird beendet in 5 Sekunden");
 			dialog.show();
@@ -476,13 +477,17 @@ public static void showDialog() {
 					            Platform.runLater(new Runnable() {
 					                @Override
 					                public void run() {
-					                    dialog.close();
+					                   
 					                    clientView.switchView(2);
+					                    dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
+					                    dialog.hide();
 					                }
 					                });
+					            
 					            }
 					    });
 					    newThread.start();
+					    
 			
 		}
 		
