@@ -270,14 +270,20 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 
 	}
 	//Set Team Points
+		
 		for(int i = 0; i< teams.length;i++) {
-			String team[] = teams[i].split("\\|");
-			for(int c = 0; c<team.length;c++) {
-				if(team[c].equals(client)) {
-					clientView.getGameView().setPoints(team[2]);
+			String spieler[] = teams[i].split("\\|");
+			for(int c = 0; c<spieler.length;c++) {
+				System.out.println("TEAMPOINTS: "+spieler[c]);
+				if(spieler[c].equals(client)) {
+					clientView.getGameView().setPoints(spieler[2]);
+					
 				}
 			}
 		}
+		
+			
+		
 	
 	JassImage img = new JassImage();
 	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen

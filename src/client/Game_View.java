@@ -429,6 +429,11 @@ public void placeCardtoTable(int num, Image img) {
 	public void setPoints(String points) {
 		this.ourPlbl.setText(points);
 	}
+
+	public void setOtherTeamPoints(String points) {
+		this.opponentsPointsLabel.setText(points);
+		
+	}
     
    
     
