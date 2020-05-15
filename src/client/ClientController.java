@@ -1,6 +1,7 @@
 package client;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -52,19 +53,21 @@ ServiceLocator_JC serviceLocator;
 		view.getPasswordField().clear();
 		view.getUsernameField().clear();
 		});
+		
+		//Lobby
 		lobbyview.getCreateGameButton().setOnAction((e) -> {clientModel.sayCreateGame(lobbyview.getTextField().getText());
 		lobbyview.getTextField().clear();
 		});
+		lobbyview.getLeaveGameButton().disableProperty().bind(Bindings.isEmpty(lobbyview.selectedGameList.getItems()));
 		clientView.getLobbyStage().setOnCloseRequest(c->{
 			clientModel.sayGoodBye("Lobby1");
 		});
-		clientView.getGameStage().setOnCloseRequest(c->{
-			clientModel.sayGoodBye("ExitGame");
-		});
+		
 		lobbyview.getLeaveLobbyButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby1");
 			clientView.getLobbyStage().hide();
 		});
+		
 		lobbyview.getLeaveGameButton().setOnAction(c->{
 			clientModel.sayGoodBye("Lobby2");
 			ObservableList<String> selectedGame = FXCollections.observableArrayList();
@@ -72,8 +75,10 @@ ServiceLocator_JC serviceLocator;
 		});
 		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());
 		
-
-	
+		//Game
+		clientView.getGameStage().setOnCloseRequest(c->{
+			clientModel.sayGoodBye("ExitGame");
+		});
 		
 		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override

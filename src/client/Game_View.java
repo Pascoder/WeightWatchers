@@ -233,7 +233,7 @@ public class Game_View extends BorderPane{
 		this.ourPointsBox = new HBox();
 		this.ourPointsLabel = new Label(t.getString("game.lblPoints"));
 		this.ourPointsLabel.setId("ourPointsLabel");
-		this.ourPlbl = new Label("..."); // Wie setzen wir die Punkte hier? 
+		this.ourPlbl = new Label("--"); // Wie setzen wir die Punkte hier? 
 		this.ourPointsBox.getChildren().addAll(this.ourPointsLabel, this.ourPlbl);
 		
 		//Punkte Gegner
@@ -247,8 +247,9 @@ public class Game_View extends BorderPane{
 		this.pointsBox.getChildren().addAll(ourPointsBox,opponentsPointsBox);
 		this.pointsBox.setPadding(new Insets(20,20,20,20));
 		this.pointsBox.setSpacing(30);
+		this.pointsBox.setId("pointsBox");
 		
-		this.centerPane.add(pointsBox, 3, 0,2,2);
+		this.centerPane.add(pointsBox, 4, 0,4,1);
 		
 //	root.getStyleClass().add("root"); // Class for styling
 	
@@ -393,7 +394,31 @@ public void placeCardtoTable(int num, Image img) {
 		this.stage.setTitle(title);
 	}
 	
+	//Hier anpassen Leon
 	public void setTrumpf(String trumpf) {
+		/*
+		switch(trumpf) {
+		case "C":
+	
+		break;
+		
+		case "S":
+			
+		break;
+		
+		case "D":
+		
+		break;
+		
+		case "H":
+			
+		break;
+		
+		
+		
+		
+		}
+		*/
 		this.trumpf.setText(trumpf);
 	}
 	
@@ -402,7 +427,7 @@ public void placeCardtoTable(int num, Image img) {
 	}
 	
 	public void setPoints(String points) {
-		this.points.setText("Punkte: "+points);
+		this.ourPlbl.setText(points);
 	}
     
    
