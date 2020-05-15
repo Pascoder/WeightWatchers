@@ -479,6 +479,7 @@ public static void showDialog() {
 					                public void run() {
 					                   
 					                    clientView.switchView(2);
+					                    //Damit Dialog automatisch schliesst
 					                    dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
 					                    dialog.hide();
 					                }

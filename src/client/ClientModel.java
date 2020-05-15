@@ -218,10 +218,15 @@ public class ClientModel {
 		case GOODBYE:
 			Message_GOODBYE msg_bye = (Message_GOODBYE) msgIn;
 			msgOut = new Message_GOODBYE();
+			Message_LOBBYUPDATE msg_lbu = new Message_LOBBYUPDATE();
+			
+			msg_lbu.setClient(this.clientName);
 			if(msg_bye.getCiaoSource().equals("LEAVEGAME")) {
 				ClientController.showDialog();
+				msg_lbu.send(socket);
 				//TODO Ausgewähltes Game aus Liste in Lobby ausblenden
 			}
+			
 				
 			break;
 			

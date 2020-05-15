@@ -243,7 +243,6 @@ public class ServerModel {
 	Game game = null;
 	for (Game g : Lobby.getLobby().getGames()) {
 	    if (g.getGameID() == Integer.parseInt(game_id))
-		
 	    game = g;
 	}
 	return (game);
@@ -294,6 +293,7 @@ public class ServerModel {
 	}
 	//Sucht das richtige Spiel und die übrigen Spieler noch im Spiel
 	public static void kickPlayers(String client) {
+		
 		String GameID = Lobby.getLobby().getGameIDofPlayersGame(client);
 		for(Game g : Lobby.getLobby().getGames()) {
 			if(GameID.equals(g.getGameID()+"")) {
@@ -301,12 +301,13 @@ public class ServerModel {
 					if(p.getName().equals(client)) {
 						
 					} else { sendGoodbyeMsg(p.getName());
-						
+					
 					}
 					
 				}
 			}
 		}
+		
 		
 		
 	}
