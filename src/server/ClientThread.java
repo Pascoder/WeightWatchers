@@ -104,6 +104,7 @@ public class ClientThread extends Thread {
 					
 				} else {
 					msgOut= new Message_CREATEUSER();
+					
 				}
 				break;
 			
@@ -186,7 +187,12 @@ public class ClientThread extends Thread {
 				msgOut = new Message_ERROR();
 				
 		}
-		msgOut.setClient(this.clientName);
+		 
+		    	msgOut.setClient(this.clientName);	
+		    
+			
+			
+		
 		return msgOut;
 	}
 

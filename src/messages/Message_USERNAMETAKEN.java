@@ -6,6 +6,7 @@ public class Message_USERNAMETAKEN extends Message{
 	
 	public Message_USERNAMETAKEN() {
 		super();
+		
 	}
 
 	@Override

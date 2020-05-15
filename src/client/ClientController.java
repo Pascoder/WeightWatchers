@@ -39,9 +39,19 @@ ServiceLocator_JC serviceLocator;
 		Lobby_View lobbyview = clientView.getLobbyView();
 		Game_View gameview = clientView.getGameView();
 		
+		//Login
+		view.getLoginButton().disableProperty().bind(view.getPasswordField().textProperty().isEmpty().or(view.getUsernameField().textProperty().isEmpty()));
+		view.getRegisterButton().disableProperty().bind(view.getUsernameField().textProperty().isEmpty().or(view.getPasswordField().textProperty().isEmpty()));
 		
-		view.getLoginButton().setOnAction(e -> clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText()));
-		view.getRegisterButton().setOnAction(e -> clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText()));
+		
+		view.getLoginButton().setOnAction(e ->{ clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText());
+		view.getPasswordField().clear();
+		view.getUsernameField().clear();
+		});
+		view.getRegisterButton().setOnAction(e ->{ clientModel.sayRegister(view.getUsernameField().getText(),view.getPasswordField().getText());
+		view.getPasswordField().clear();
+		view.getUsernameField().clear();
+		});
 		lobbyview.getCreateGameButton().setOnAction((e) -> {clientModel.sayCreateGame(lobbyview.getTextField().getText());
 		lobbyview.getTextField().clear();
 		});
@@ -61,6 +71,8 @@ ServiceLocator_JC serviceLocator;
 			lobbyview.setSelectedGame(selectedGame);
 		});
 		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());
+		
+
 	
 		
 		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {

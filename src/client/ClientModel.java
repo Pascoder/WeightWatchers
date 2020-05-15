@@ -121,14 +121,14 @@ public class ClientModel {
 			
 		case CREATEUSER:
 			msgOut= new Message_CREATEUSER();
-			logger.info(msgIn.getClient() + "User erfolgreich registriert");
+			logger.info("User erfolgreich registriert");
 			ClientController.updateLoginInfoLabel("User erfolgreich registriert");
 			break;
 			
 		case USERNAMETAKEN:
 			msgOut = new Message_USERNAMETAKEN();
 			logger.info("Username vergeben");
-			ClientController.updateLoginInfoLabel("Der Username: *" + msgIn.getClient() + "* ist bereits vergeben");
+			ClientController.updateLoginInfoLabel("Der Username ist bereits vergeben");
 			break;
 			
 		case LOBBYUPDATE:
