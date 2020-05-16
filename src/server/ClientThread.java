@@ -12,6 +12,7 @@ import client.ClientModel;
 import client.ServiceLocator_JC;
 import messages.Message;
 import messages.MessageType;
+import messages.Message_CHAT;
 import messages.Message_CREATEGAME;
 import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
@@ -182,6 +183,14 @@ public class ClientThread extends Thread {
 				Message_GAMEUPDATE gu_msg = (Message_GAMEUPDATE) msgIn;
 				gu_msg.setClient(clientName);
 				ServerModel.updateClients(2, clientName);//2 = Game Update
+				msgOut = new Message_HELLO();
+				
+				break;
+			case CHAT:
+				Message_CHAT chat_msg = (Message_CHAT) msgIn;
+				chat_msg.setClient(clientName);
+				ServerModel.addnewChat(clientName+": "+chat_msg.getChatMessage());
+				ServerModel.updateClients(1, clientName);//1 = Lobby Update
 				msgOut = new Message_HELLO();
 				
 				break;

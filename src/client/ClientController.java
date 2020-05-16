@@ -58,9 +58,17 @@ ServiceLocator_JC serviceLocator;
 		lobbyview.getCreateGameButton().setOnAction((e) -> {clientModel.sayCreateGame(lobbyview.getTextField().getText());
 		lobbyview.getTextField().clear();
 		});
+		lobbyview.getLobbyControllBar().btnSend.disableProperty().bind(lobbyview.getLobbyControllBar().getTextField().textProperty().isEmpty());
 		lobbyview.getLeaveGameButton().disableProperty().bind(lobbyview.selectedGameList.getSelectionModel().selectedItemProperty().isNull());
 		clientView.getLobbyStage().setOnCloseRequest(c->{
 			clientModel.sayGoodBye("Lobby1");
+		});
+		
+		lobbyview.getLobbyControllBar().getSendButton().setOnAction(c -> {
+			String message = lobbyview.getLobbyControllBar().getTextField().getText();
+			lobbyview.getLobbyControllBar().getTextField().clear();
+			
+			clientModel.saynewChat(message);
 		});
 		
 		lobbyview.getLeaveLobbyButton().setOnAction(c -> {
@@ -497,6 +505,25 @@ public static void showDialog() {
 	
 	
 		}
+
+public static void loadChat(String chat) {
+	Platform.runLater(new Runnable(){
+
+		@Override
+		public void run() {
+		String [] chatmsg = chat.split("\\|");
+		clientView.getLobbyView().getChatList().clear();
+		for(String s: chatmsg) {
+			clientView.getLobbyView().getChatList().appendText(s+"\n");
+		}
+			
+}
+
+		
+	});
+		
+	
+}
 
 
 

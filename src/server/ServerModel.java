@@ -22,6 +22,7 @@ public class ServerModel {
     private static ArrayList<String> accounts = new ArrayList<>();
     private static boolean accountsloaded = false;
     private static ArrayList<ClientThread> clientList;
+    private static String chatHistory ="";
 
     public ServerModel() {
 	clientList = new ArrayList<ClientThread>();
@@ -145,6 +146,7 @@ public class ServerModel {
 	    msgOutLobby.setClient(clientName);
 	    msgOutLobby.setPlayersonline(Lobby.getLobby().OnlinePlayersAsString());
 	    msgOutLobby.setGames(Lobby.getLobby().GamesAsString());
+	    msgOutLobby.setChat(ServerModel.chatHistory);
 
 	    for (ClientThread cT : clientList) {
 		msgOutLobby.send(cT.getClientSocket());
@@ -333,6 +335,11 @@ public class ServerModel {
 				bye_msg.send(ct.getClientSocket());	
 			}
 		}
+		
+	}
+
+	public static void addnewChat(String chatMessage) {
+		ServerModel.chatHistory += "|" + chatMessage;
 		
 	}
 
