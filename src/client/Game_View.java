@@ -273,6 +273,7 @@ public class Game_View extends BorderPane{
 	Scene scene = new Scene(this);
 	stage.setMaximized(true);
 	stage.setScene(scene);
+	stage.setResizable(true);
 
 	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setTitle("Game");
