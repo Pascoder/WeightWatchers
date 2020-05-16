@@ -146,7 +146,8 @@ public class ClientThread extends Thread {
 			case NEXTSTAPLE:
 				Message_NEXTSTAPLE ns_msg = (Message_NEXTSTAPLE) msgIn;
 				Lobby.getLobby().nextStaple(ns_msg.getGamename(), ns_msg.getClient());
-				msgOut = new Message_NEXTSTAPLE();
+				
+				msgOut = new Message_HELLO();
 				break;	
 				
 			case GOODBYE:

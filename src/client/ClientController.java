@@ -447,13 +447,17 @@ public static void showStapelWinner(String winnerTeam, String points) {
 	alert.setTitle("Stapel fertig!");
 	alert.setContentText("Stapelsieger: Team " + winnerTeam + "mit " + points + " Punkten!" + "/n"
 			+ "Weiterspielen? -> OK / Beenden? -> Cancel");
-	alert.showAndWait();
+//	alert.showAndWait();
 	Optional<ButtonType> result = alert.showAndWait();
 	if (result.get() == ButtonType.OK){
 		clientModel.sayNextStaple();
+		
+		alert.close();
 	    
 	} else if(result.get() == ButtonType.CANCEL){
 	    clientModel.sayExitGame();
+	   
+	    alert.close();
 	}
 		}
 
@@ -472,35 +476,45 @@ public static void showDialog() {
 			dialog.setTitle("Spiel wird beendet");
 			dialog.setContentText("Ein Spieler hat das Spiel verlassen. Spiel wird beendet in 5 Sekunden");
 			dialog.show();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			clientView.switchView(2);
+			dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
+            dialog.hide();
 
-				Thread newThread = new Thread(new Runnable() {
-					    @Override
-					    public void run() {
-					    	try {
-					                Thread.sleep(5000);
-					            } catch (InterruptedException ex) {
-					                Thread.currentThread().interrupt();
-					            }
-
-					            Platform.runLater(new Runnable() {
-					                @Override
-					                public void run() {
-					                   
-					                    clientView.switchView(2);
-					                    //Damit Dialog automatisch schliesst
-					                    dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
-					                    dialog.hide();
-					                }
-					                });
-					            
-					            }
-					    });
-					    newThread.start();
-					    
-			
-		}
+//				Thread newThread = new Thread(new Runnable() {
+//					    @Override
+//					    public void run() {
+//					    	try {
+//					                Thread.sleep(5000);
+//					            } catch (InterruptedException ex) {
+//					                Thread.currentThread().interrupt();
+//					            }
+//
+//					            Platform.runLater(new Runnable() {
+//					                @Override
+//					                public void run() {
+//					                   
+//					                    clientView.switchView(2);
+//					                    //Damit Dialog automatisch schliesst
+//					                    dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
+//					                    dialog.hide();
+//					                }
+//					                });
+//					            
+//					            }
+//					    });
+//					    newThread.start();
+//					    
+//			
+//		}
 		
-	});
+		}
+		});
 	
 	
 	
