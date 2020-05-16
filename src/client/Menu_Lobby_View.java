@@ -7,6 +7,8 @@ import javafx.scene.control.MenuItem;
 
 
 
+	//Leon
+
 
 public class Menu_Lobby_View extends Menu_Basic_View {
     
@@ -14,23 +16,19 @@ public class Menu_Lobby_View extends Menu_Basic_View {
     Menu menu1;
     Menu menu2;
 
-
-    // MenuItems menu2
-    MenuItem menuItem11 = new MenuItem("item11");
-    MenuItem menuItem12 = new MenuItem("item12");
-    MenuItem menuItem13 = new MenuItem("item13");
-
+   
+    
+    // MenuItem menu1
+    MenuItem menuItem11 = new MenuItem(t.getString("lobby.menuBarVersion"));
+    
     public Menu_Lobby_View() {
 	super();
 	
-	menu1 = new Menu("Edit");
-	menu2 = new Menu("Help");
-	
+	menu1 = new Menu(t.getString("lobby.menuBarInfo"));
 
+	menu1.getItems().add(menuItem11);
 
-	menu1.getItems().addAll(menuItem11, menuItem12, menuItem13);
-
-	this.getMenus().addAll(menu1, menu2);
+	this.getMenus().add(menu1);
 
 	this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 

@@ -1,7 +1,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 .root{
-	-fx-background-color: #BA7F01;
+	-fx-background-color: lightgrey;
 	-fx-font-size: 11pt;
 }
 
@@ -26,6 +26,10 @@
 
 .button:hover {
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#tableBox{
+	-fx-background-color: #04941E;
 }
 
 #Registerbutton {

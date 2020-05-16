@@ -41,7 +41,7 @@ public class Game_View extends BorderPane{
     
     //Gehört nachher ins CSS --> Sicher?
 
-    protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("Poker-fuenf-verdeckte-karten.jpg"));
+    protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("KartenHaltend.jpg"));
     protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen_Under.jpg"));
     
 
@@ -116,6 +116,7 @@ public class Game_View extends BorderPane{
 			cardOnTable3.setFitWidth(60);
 			cardOnTable4.setFitHeight(80);
 			cardOnTable4.setFitWidth(60);
+			this.tablebox.setId("tableBox");
 			
 			this.centerPane.add(tablebox, 1, 1);
 			
