@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.stream.*;
 
-import messages.Message_GAMEUPDATE;
-import messages.Message_NEXTROUND;
 
 public class Game {
     private ServiceLocator sl;

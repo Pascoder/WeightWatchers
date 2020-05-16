@@ -151,9 +151,10 @@ public class Lobby {
 					System.out.println("NextRound() aufgerufen");
 					g.nextRound();
 					g.setWishForNewStaple(0);
+					ServerModel.updateClients(2, client);
 				} else {
-					int num = g.getWishForNewStaple();
-					g.setWishForNewStaple(num++);
+					int num = g.getWishForNewStaple() +1;
+					g.setWishForNewStaple(num);
 				}
 				
 				

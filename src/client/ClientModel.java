@@ -42,7 +42,7 @@ public class ClientModel {
 		private String clientName;
 		private ArrayList<Player> players = new ArrayList<Player>();
 		private String actualGame;
-		private boolean showAlert = false;
+		
 
 
 		
@@ -162,18 +162,20 @@ public class ClientModel {
 				}
 					ClientController.emptyTable();
 					
-					if(gu_msg.getGamefinish().equals("true") && !showAlert) {
+					if(gu_msg.getGamefinish().equals("true")) {
 						ClientController.showWinnerTeam(gu_msg.getWinnerteamid());
-						showAlert = true;
 						
-						} else if(gu_msg.getStapelfinish().equals("true") && !showAlert) {
-							ClientController.showStapelWinner(gu_msg.getWinnerteamid(), gu_msg.getTeamScore());
-							showAlert = true;
 						} else {
-							showAlert = false;
-							Message_NEXTROUND msg_nr = new Message_NEXTROUND();
-							msg_nr.setGamename(gu_msg.getGameid());
-							msg_nr.send(socket);
+							if(gu_msg.getStapelfinish().equals("true")) {
+								ClientController.showStapelWinner(gu_msg.getWinnerteamid(), gu_msg.getTeamScore());
+							} else {
+								Message_NEXTROUND msg_nr = new Message_NEXTROUND();
+								msg_nr.setGamename(gu_msg.getGameid());
+								msg_nr.send(socket);
+						}
+							
+						
+							
 						
 						}
 			}
