@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import messages.Message;
 import messages.MessageType;
+import messages.Message_CHAT;
 import messages.Message_CREATEGAME;
 import messages.Message_CREATEUSER;
 import messages.Message_ERROR;
@@ -139,6 +140,7 @@ public class ClientModel {
 			logger.info("Lobby Update erhalten:" + lu_msg);
 			ClientController.loadPlayersOnline(findPlayers(lu_msg.getPlayersonline()));
 			ClientController.loadGames(findGames(lu_msg.getGames()));
+			ClientController.loadChat(lu_msg.getChat());
 			break;
 			
 		case GAMEUPDATE: 
@@ -516,6 +518,15 @@ public class ClientModel {
 
 	public void setActualGame(String actualGame) {
 		this.actualGame = actualGame;
+	}
+
+
+	public void saynewChat(String message) {
+		Message_CHAT msgOut = new Message_CHAT();
+		msgOut.setChatMessage(message);
+		msgOut.setClient(clientName);
+		msgOut.send(socket);
+		
 	}
 
 

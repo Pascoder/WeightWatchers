@@ -25,5 +25,13 @@ public class ControlBar_Lobby_View extends ControlBar_Basic_View{
 	
 	
     }
+    
+    public Button getSendButton() {
+    	return this.btnSend;
+    }
+    
+    public TextField getTextField() {
+    	return this.txtMsg;
+    }
 
 }

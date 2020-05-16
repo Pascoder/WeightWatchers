@@ -7,9 +7,11 @@ import messages.Message.NameValue;
 public class Message_LOBBYUPDATE extends Message{
 	private static final String ELEMENT_PLAYERSONLINE = "playersonline";
 	private static final String ELEMENT_GAMES = "games";
+	private static final String ELEMENT_CHAT = "chat";
 	
 	private String playersonline;
 	private String games;
+	private String chat;
 	
 	public Message_LOBBYUPDATE() {
 		super();
@@ -20,6 +22,7 @@ public class Message_LOBBYUPDATE extends Message{
 	protected void receiveAttributes(ArrayList<NameValue> pairs) {
 		this.playersonline = findAttribute(pairs, ELEMENT_PLAYERSONLINE);
 		this.games = findAttribute(pairs, ELEMENT_GAMES);
+		this.chat = findAttribute(pairs, ELEMENT_CHAT);
 
 		
 	}
@@ -28,6 +31,7 @@ public class Message_LOBBYUPDATE extends Message{
 	protected void sendAttributes(ArrayList<NameValue> pairs) {
 		pairs.add(new NameValue(ELEMENT_PLAYERSONLINE, this.playersonline));
 		pairs.add(new NameValue(ELEMENT_GAMES, this.games));
+		pairs.add(new NameValue(ELEMENT_CHAT, this.chat));
 
 		
 		
@@ -51,6 +55,14 @@ public class Message_LOBBYUPDATE extends Message{
 
 	public void setGames(String games) {
 		this.games = games;
+	}
+	
+	public void setChat(String message) {
+		this.chat = message;
+	}
+	
+	public String getChat() {
+		return this.chat;
 	}
 
 }

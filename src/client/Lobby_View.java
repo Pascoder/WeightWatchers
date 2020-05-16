@@ -80,6 +80,7 @@ public class Lobby_View{
 		// LeftBottom: Chatroom
 		lblChat = new Label(t.getString("lobby.blbChat"));
 		chatList = new TextArea();
+		chatList.setEditable(false);
 		//chatList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
 		ScrollPane scrollChat = new ScrollPane();
@@ -209,6 +210,15 @@ public class Lobby_View{
     
     public Button getLeaveGameButton() {
     	return this.leaveBt;
+    }
+    
+    public ControlBar_Lobby_View getLobbyControllBar() {
+    	return this.controls;
+    }
+    
+  
+    public TextArea getChatList() {
+    	return this.chatList;
     }
 
 
