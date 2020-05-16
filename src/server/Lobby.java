@@ -21,9 +21,18 @@ public class Lobby {
     }
 
     public void createGame(String name) {
-	counterGames++;
-	Game game = new Game(counterGames, name);
-	actualgames.add(game);
+    	
+    boolean gameInList = false;
+    for(Game g : actualgames) {
+    if(g.getName().equals(name)) gameInList = true;
+    	
+    }
+    if(!gameInList) {
+    	 counterGames++;
+    		Game game = new Game(counterGames, name);
+    		actualgames.add(game);
+    }
+   
     }
 
     public void removeGame(int gameID) {
