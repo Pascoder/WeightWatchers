@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import messages.Message;
+
 import messages.Message_GAMEUPDATE;
 import messages.Message_GOODBYE;
 import messages.Message_LOBBYUPDATE;
@@ -28,31 +28,28 @@ public class ServerModel {
 	clientList = new ArrayList<ClientThread>();
     }
 
-//Methode um Loggin zu pr�fen, wenn ok Lobby wird Player als Online hinzugef�gt	
+    //Methode um Loggin zu pruefen, wenn ok Lobby wird Player als Online hinzugefuegt	
     public static boolean CheckLogin(String username, String password)
 	    throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 	if (accountsloaded == false) {
 	    loadaccounts();
 	}
-	
 	boolean loginOK = false;
-	String key = username + password;
-	
 	for (int i = 0; i < accounts.size(); i++) {
 		String [] logindata = accounts.get(i).split("\\|");
 		
 	    if (logindata[1].equals(password) && logindata[0].equals(username)) {
-	    if(isPlayerOffline(username)) {
-	    	Player player = new Player(player_id, username, password);
-			Lobby.getLobby().setPlayersOnline(player);
-			player_id++;
-			loginOK = true;
-	    }
+	    	if(isPlayerOffline(username)) {
+	    		Player player = new Player(player_id, username, password);
+	    		Lobby.getLobby().setPlayersOnline(player);
+	    		player_id++;
+	    		loginOK = true;
+	    	}
 		
 	    }
 	}
 
-	return loginOK;  //Muss loginOK sein
+	return loginOK;
 
 	// this.getClass().getClassLoader().getResourceAsStream("client/"+
 	// "Schweizer_Jasskarten.jpg")
@@ -104,11 +101,11 @@ public class ServerModel {
 	// (name,password,onMove,fk_team) VALUES
 	// ('"+username+"','"+password+"',0,null);");
 
-	// Pr�fen ob Accounts bereits geladen wurden
+	// Pruefen ob Accounts bereits geladen wurden
 	if (accountsloaded == false) {
 	    loadaccounts();
 	}
-	// Pr�fen ob User bereits existiert
+	// Pruefen ob User bereits existiert
 	boolean userNotExist = true;
 	for (int i = 0; i < accounts.size(); i++) {
 	    if (accounts.get(i).equals(username + "|" + password)) {
@@ -121,7 +118,6 @@ public class ServerModel {
 	    accounts.add(username + "|" + password);
 	    saveAccounts();
 	}
-
 	return !userNotExist;
     }
 
@@ -138,16 +134,13 @@ public class ServerModel {
     public static void updateClients(int option, String client) {
 	// option = 1 Update Lobby / option = 2 Update Game / option = 3 StichOver
 	String clientName = client;
-
 	switch (option) {
-
 	case 1:
 	    Message_LOBBYUPDATE msgOutLobby = new Message_LOBBYUPDATE();
 	    msgOutLobby.setClient(clientName);
 	    msgOutLobby.setPlayersonline(Lobby.getLobby().OnlinePlayersAsString());
 	    msgOutLobby.setGames(Lobby.getLobby().GamesAsString());
 	    msgOutLobby.setChat(ServerModel.chatHistory);
-
 	    for (ClientThread cT : clientList) {
 		msgOutLobby.send(cT.getClientSocket());
 	
@@ -155,13 +148,15 @@ public class ServerModel {
 	    break;
 
 	case 2:
+		//TODO In Methoden aufsplitten
 	    Message_GAMEUPDATE msgOutGame = new Message_GAMEUPDATE();
-	    String gameId = Lobby.getLobby().getGameIDofPlayersGame(client);
 	    
+	    String gameId = Lobby.getLobby().getGameIDofPlayersGame(client);
 	    ArrayList<String> playersInGame = new ArrayList<String>();
 	    String playersInGameString ="";
 	    Game game = null;
-
+	    
+	   
 	    // Fuellt Spielernamen in ArrayList
 	    for (Game g : Lobby.getLobby().getGames()) {
 	    	if (Integer.toString(g.getGameID()).equals(gameId)) {
@@ -169,17 +164,12 @@ public class ServerModel {
 	    		playersInGameString += g.GameAsString();
 	    			for (Player p : g.getPlayersOnGame()) {
 	    				playersInGame.add(p.getName());
-			
 	    			}
 	    	}
-		
 	    }
-	   
-	    String gameid = Lobby.getLobby().getGameIDofPlayersGame(client);
 	    
-	    msgOutGame.setGameid(gameid);
+	    msgOutGame.setGameid(gameId);
 	    msgOutGame.setPlayers(playersInGameString);
-	    
 	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());
 	    msgOutGame.setTrumpf(game.getTrumpf()+"");
 	    msgOutGame.setStichover(game.isStichFinish()+"");
@@ -204,7 +194,11 @@ public class ServerModel {
 
     }
 
-    // Sendet GameStart Message an den Client im Game
+   
+
+	
+
+	// Sendet GameStart Message an den Client im Game
     public static void sayGameStarted(String gamename, String client) {
 	Message_STARTGAME msgOutstart = new Message_STARTGAME();
 
