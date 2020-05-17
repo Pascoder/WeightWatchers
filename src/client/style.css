@@ -1,8 +1,6 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
-
 .root{
-	-fx-background-color: lightgrey;
-	-fx-font-size: 11pt;
+	-fx-background-color: #ffe4c4;
+	-fx-font-size: 12pt;
 }
 
 .label {
@@ -10,10 +8,18 @@
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-padding: 5;
 }
 
 .Login_View {
-	-fx-background-color: brown;
+	-fx-background-color: red;
+}
+
+#Game_View{
+	-fx-background-image: url("Tisch.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
 }
 
 .button {
@@ -29,18 +35,49 @@
     -fx-max-height: 80;
 }
 
-#gamePlayer4InfoBox {
-	fx-spacing: 30px;
-	fx-margin: 20px;
+#player4InfoBox{
+	-fx-spacing: 20;
+}
+
+#gamePlayer4CardBox {
+	-fx-spacing: 60;
+	-fx-margin: 20px;
+	-fx-background-color: lightbrown;
+	
 	
 }
 #gameRightBox{
-	fr-background: purple;
+
+	
 	
 }
 
-#gamePlayer4CardBox{
-	fx-spacing: 30;
+#gamePlayerBox{
+	-fx-text-fill: white;
+	
+}
+
+#gamePointsBox{
+	-fx-background-image: url("Schiefertafel.jpg");
+	-fx-background-position: left;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-text-padding: 10;
+    -fx-with: 70;
+    -fx-hight: 50;
+}
+
+#gameTableBox{
+	-fx-background-image: url("Tisch.jpg");
+}
+
+	
+
+#gamePlayerCards:hover{
+	-fx-translate-x: +20;
 }
 
 
@@ -52,7 +89,7 @@
 	-fx-background-image: url("teppich.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover;
+	-fx-background-size: cover, auto;
 	/*-fx-Spacing: 30px;
     -fx-padding: 10.0px;
     -fx-border-width: 2.0px;*/
@@ -61,16 +98,5 @@
 #Registerbutton {
 	-fx-background-color: red;
 }
-#opponentsPointsBox {
-	-fx-background-color:lightgrey;
-	-fx-font-weight: bold;
-	-fx-font-size: 12px;
-}
-#gemeOourPointsBox {
-	-fx-background-color:lightgrey;
-	-fx-font-weight: bold;
-	-fx-font-size: 12px;
-}
-#gamePointsBox{
-	-fx-background-color: white;
-}
+
+

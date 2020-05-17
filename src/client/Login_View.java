@@ -83,8 +83,8 @@ public class Login_View extends GridPane {
 		this.setVgap(10);
 		
 		Scene scene = new Scene(this,650,600);
-		this.stage.setScene(scene);
 		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		this.stage.setScene(scene);	
 		this.stage.show();
 	}
 
