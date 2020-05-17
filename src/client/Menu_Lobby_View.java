@@ -19,12 +19,12 @@ public class Menu_Lobby_View extends Menu_Basic_View {
    
     
     // MenuItem menu1
-    MenuItem menuItem11 = new MenuItem(t.getString("lobby.menuBarVersion"));
+    MenuItem menuItem11 = new MenuItem(t.getString("game.lblMenuBarV"));
     
     public Menu_Lobby_View() {
 	super();
 	
-	menu1 = new Menu(t.getString("lobby.menuBarInfo"));
+	menu1 = new Menu(t.getString("game.lblMenuBar"));
 
 	menu1.getItems().add(menuItem11);
 

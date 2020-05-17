@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,14 +26,13 @@ public class Game_View extends BorderPane{
     private Translator_JC t;
     private ServiceLocator_JC sl;
     //Layout
-    protected HBox menu, player4, bottomBox, ourPointsBox, opponentsPointsBox, roundBox, trumpfBox;
-    protected GridPane centerPane, tablebox;
-    protected VBox player1, player2, player3, pointsBox, P13, P24;
-    protected MenuBar menubar;
-    protected Menu menumain;
-    protected MenuItem info;
+    protected HBox menu, player4InfoBox, ourPointsBox, opponentsPointsBox, roundBox, trumpfBox;
+    protected TilePane player4CardBox;
+    protected GridPane tableBox, teppichBox;
+    protected VBox rightBox, buttomBox,player1, player2, player3, pointsBox, P13, P24;
+    protected Menu_Game_View menuGame;
     //Labels,Buttons...
-    protected Label round, roundNo, p1_name,p1name,p2_name,p2name,p3_name,p3name,p4_name,p4name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn, trumpf, selectedT, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
+    protected Label round, roundNo, p1_name,p1name,p2_name,p2name,p3_name,p3name,p4_name,p4name,trumpf, verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn, selectedT, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
     protected Button weis, nextRound;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     protected ArrayList <ToggleButton> playerButtons;
@@ -42,52 +42,48 @@ public class Game_View extends BorderPane{
     //Gehört nachher ins CSS --> Sicher?
 
     protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("KartenHaltend.jpg"));
-    protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen_Under.jpg"));
+    //protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen_Under.jpg"));
     
 
     protected ImageView imageverdeckt = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt2 = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt3 = new ImageView(imgverdeckt);
-    protected ImageView tableview = new ImageView(table);
-    protected ImageView cardOnTable1 = new ImageView();
-    
+    //protected ImageView tableview = new ImageView(table);
+    protected ImageView cardOnTable1 = new ImageView();   
     protected ImageView cardOnTable2 = new ImageView();
     protected ImageView cardOnTable3 = new ImageView();
     protected ImageView cardOnTable4 = new ImageView();
-    
+    protected ImageView trumpfColor = new ImageView();
    
     
     // Leon
     public Game_View(Stage stage, ClientModel model) { 
     	this.stage = stage;
 		this.model = model;
-		this.setPadding(new Insets(10,10,10,10));
+		//this.setPadding(new Insets(10,10,10,10));
 		
 		this.sl = ServiceLocator_JC.getServiceLocator();
 		this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
+
+		// Menu
+		this.menuGame = new Menu_Game_View();
+		this.setTop(menuGame);
 		
-		//Top MenuLeiste (sollte eine Menubar sein hier nur als Beispiel)
-		this.menu = new HBox();
-		this.menubar = new MenuBar();
-		this.menumain = new Menu(t.getString("game.lblMenuBar"));
-		this.menubar.getMenus().add(menumain);
-		this.info = new MenuItem(t.getString("game.lblMenuBarV"));
-		this.menumain.getItems().add(info);
-		this.menu.getChildren().add(menubar);
+
 		
+		
+		
+		
+		//Center: tableBox; Players 1-3 % teppichBox
 		playerButtons = new ArrayList<ToggleButton>();
 		
-		this.setTop(menu);
-		menu.setPadding(new Insets(40,40,40,40));
-		menu.setSpacing(30); //Abstand zwischen Label, Button...
-		
-		//Center Table and Players
-		this.centerPane = new GridPane();
-		this.setCenter(centerPane);
+		this.tableBox = new GridPane();
+		this.tableBox.setGridLinesVisible(true);
+		this.setCenter(tableBox);
 		
 		
 		
-			//Player1 Links
+			//Player1 Rechts
 			this.player1 = new VBox();
 			this.player1.setSpacing(30);
 			this.player1.setPadding(new Insets(10,60,60,60));
@@ -98,16 +94,23 @@ public class Game_View extends BorderPane{
 			this.imageverdeckt.setFitHeight(140);
 			this.imageverdeckt.setFitWidth(100);
 			player1.getChildren().add(imageverdeckt);
-			this.centerPane.add(player1, 0, 1);
+			this.tableBox.add(player1, 2, 1);
 			
-			//Table
-			this.tablebox = new GridPane();
+			//teppichBox
+			this.teppichBox = new GridPane();
+			this.teppichBox.setGridLinesVisible(true);
+			this.teppichBox.setId("gameTeppichBox");
 //			this.tablebox.setSpacing(30);
-			this.tablebox.setPadding(new Insets(10,60,60,60));
-			this.tablebox.add(cardOnTable1, 0, 0);
-			this.tablebox.add(cardOnTable2, 1, 0);
-			this.tablebox.add(cardOnTable3, 1, 1);
-			this.tablebox.add(cardOnTable4, 0, 1);
+			this.teppichBox.setPadding(new Insets(10,60,60,60));
+			this.teppichBox.add(cardOnTable1, 1, 2);
+			this.teppichBox.add(cardOnTable2, 2, 1);
+			this.teppichBox.add(cardOnTable3, 1, 0);
+			this.teppichBox.add(cardOnTable4, 0, 1);
+			this.cardOnTable1.setId("gameCardsOnTable");
+			this.cardOnTable2.setId("gameCardsOnTable");
+			this.cardOnTable3.setId("gameCardsOnTable");
+			this.cardOnTable4.setId("gameCardsOnTable");
+			
 			cardOnTable1.setFitHeight(80);
 			cardOnTable1.setFitWidth(60);
 			cardOnTable2.setFitHeight(80);
@@ -116,18 +119,18 @@ public class Game_View extends BorderPane{
 			cardOnTable3.setFitWidth(60);
 			cardOnTable4.setFitHeight(80);
 			cardOnTable4.setFitWidth(60);
-			this.tablebox.setId("tableBox");
+			this.teppichBox.setId("gameTeppichBox");
 			
-			this.centerPane.add(tablebox, 1, 1);
+			this.tableBox.add(teppichBox, 1, 1);
 			
 
-			//Player2 Seite? 
+			//Player2 oben 
 			this.player2 = new VBox();
 			this.player2.setSpacing(30);
 			this.player2.setPadding(new Insets(10,60,60,60));
 			this.p2_name = new Label("--");
 			this.player2.getChildren().add(p2_name);
-			this.centerPane.add(player2, 1, 0);
+			this.tableBox.add(player2, 1, 0);
 			
 			
 			this.imageverdeckt2.setFitHeight(140);
@@ -135,25 +138,26 @@ public class Game_View extends BorderPane{
 			player2.getChildren().add(imageverdeckt2);
 			
 			
-			//Player3
+			//Player3 links
 			this.player3 = new VBox();
 			this.player3.setSpacing(30);
 			this.player3.setPadding(new Insets(10,60,60,60));
 			this.p3_name = new Label("--");
 			this.player3.getChildren().add(p3_name);
-			this.centerPane.add(player3, 2, 1);
+			this.tableBox.add(player3, 0, 1);
 			
 			this.imageverdeckt3.setFitHeight(140);
 			this.imageverdeckt3.setFitWidth(100);
 			player3.getChildren().add(imageverdeckt3);
 			
-			//Player4
-			this.player4 = new HBox();
-			this.player4.setSpacing(30);
-			this.player4.setPadding(new Insets(10,10,10,10));
-			this.p4_name = new Label("--");
-			this.player4.getChildren().add(p4_name);
-			this.centerPane.add(player4, 0, 2,10,1);
+			
+	//Player4 unten (eigener Spieler)
+			this.player4CardBox = new TilePane();
+			this.player4CardBox.setId("gamePlayer4CardBox");
+			//this.player4CardBox.setSpacing(30);
+			//this.player4CardBox.setPadding(new Insets(10,10,10,10));
+			
+			//this.tablePane.add(player4, 0, 2,10,1);
 			
 				//Hier unten werden dann ImageViews verwendet die Image beinhalten
 			
@@ -161,67 +165,74 @@ public class Game_View extends BorderPane{
 			
 			this.karte1 = new ToggleButton();
 			this.karte1.setVisible(false);
-			player4.getChildren().add(karte1);
+			player4CardBox.getChildren().add(karte1);
 			playerButtons.add(karte1);
 			
 			this.karte2 = new ToggleButton();
-			player4.getChildren().add(karte2);
+			player4CardBox.getChildren().add(karte2);
 			playerButtons.add(karte2);
 			this.karte2.setVisible(false);
 
 			
 			this.karte3 = new ToggleButton();
-			player4.getChildren().add(karte3);
+			player4CardBox.getChildren().add(karte3);
 			playerButtons.add(karte3);
 			this.karte3.setVisible(false);
 			
 			this.karte4 = new ToggleButton();
-			player4.getChildren().add(karte4);
+			player4CardBox.getChildren().add(karte4);
 			playerButtons.add(karte4);
 			this.karte4.setVisible(false);
 
 
 			this.karte5 = new ToggleButton();
-			player4.getChildren().add(karte5);
+			player4CardBox.getChildren().add(karte5);
 			playerButtons.add(karte5);
 			this.karte5.setVisible(false);
 
 
 			this.karte6 = new ToggleButton();
-			player4.getChildren().add(karte6);
+			player4CardBox.getChildren().add(karte6);
 			playerButtons.add(karte6);
 			this.karte6.setVisible(false);
 
 
 			this.karte7 = new ToggleButton();
-			player4.getChildren().add(karte7);
+			player4CardBox.getChildren().add(karte7);
 			playerButtons.add(karte7);
 			this.karte7.setVisible(false);
 
 
 			this.karte8 = new ToggleButton();
-			player4.getChildren().add(karte8);
+			player4CardBox.getChildren().add(karte8);
 			playerButtons.add(karte8);
 			this.karte8.setVisible(false);
 
 
 			this.karte9 = new ToggleButton();
-			player4.getChildren().add(karte9);
+			player4CardBox.getChildren().add(karte9);
 			playerButtons.add(karte9);
 			this.karte9.setVisible(false);
 
 
 		//Bottom
-		this.bottomBox = new HBox();
-		this.setBottom(bottomBox);
-		this.onTurn = new Label("-");
-		this.bottomBox.getChildren().add(onTurn);
+		this.buttomBox = new VBox();
+		this.player4InfoBox = new HBox();
+		this.player4InfoBox.setId("player4InfoBox");
+		this.p4_name = new Label("--");
+		this.onTurn = new Label("-");	
 		this.weis = new Button ("Weis");
-		this.bottomBox.getChildren().add(weis);
-		this.bottomBox.setPadding(new Insets(10,10,10,10));
-		this.bottomBox.setSpacing(30);
 		
-		// PointBox (Our and opponent points)
+	
+		
+		this.player4InfoBox.getChildren().addAll(p4_name, onTurn, weis);
+		this.buttomBox.getChildren().addAll(this.player4InfoBox, this.player4CardBox);
+		
+		this.setBottom(buttomBox);
+		
+		// RightBox (Our and opponent points) -> RightPane
+		this.rightBox = new VBox();
+		this.rightBox.setId("gameRightBox");
 		
 		//Unsere Punkte
 		this.ourPointsBox = new HBox();
@@ -262,25 +273,27 @@ public class Game_View extends BorderPane{
 		this.trumpfBox = new HBox();
 		this.trumpf = new Label(t.getString("game.lblTrumpf"));
 		this.selectedT = new Label("-");
-		this.trumpfBox.getChildren().addAll(this.trumpf, this.selectedT);
+		this.trumpfBox.getChildren().addAll(this.trumpf, this.trumpfColor);
 		
 		
 		this.pointsBox = new VBox();
 		this.pointsBox.getChildren().addAll(roundBox, trumpfBox, ourPointsBox, P13, opponentsPointsBox, P24);
 		this.pointsBox.setPadding(new Insets(20,20,20,20));
 		this.pointsBox.setSpacing(30);
-		this.pointsBox.setId("pointsBox");
+		this.pointsBox.setId("gamePointsBox");
 		
-		this.centerPane.add(pointsBox, 4, 0, 4, 1);
+		this.rightBox.getChildren().addAll(trumpfBox, pointsBox);
+		this.setRight(rightBox);
 		
 //	root.getStyleClass().add("root"); // Class for styling
 	
 	Scene scene = new Scene(this);
-	stage.setMaximized(true);
+//	stage.setMaximized(true);
 	stage.setScene(scene);
 	stage.setResizable(true);
 
 	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+
 	stage.setTitle("Game");
     }
     
@@ -332,7 +345,7 @@ public void placeCardtoTable(int num, Image img) {
 	
 	switch(num) {
 	case 1:
-			this.cardOnTable1.setImage(img);
+		this.cardOnTable1.setImage(img);
 	break;
 	case 2: this.cardOnTable2.setImage(img);
 	break;
@@ -407,42 +420,32 @@ public void placeCardtoTable(int num, Image img) {
 	}
 
 	public void removeCardsonTable() {
-		this.cardOnTable1.setImage(imgverdeckt);//TODO Bilder werden noch nicht entfernt
-		this.cardOnTable2.setImage(imgverdeckt);
-		this.cardOnTable3.setImage(imgverdeckt);
-		this.cardOnTable4.setImage(imgverdeckt);
+		this.cardOnTable1.setImage(null);
+		this.cardOnTable2.setImage(null);
+		this.cardOnTable3.setImage(null);
+		this.cardOnTable4.setImage(null);
 	}
 	
 	public void setTitle(String title) {
 		this.stage.setTitle(title);
 	}
 	
-	//Hier anpassen Leon
+//	//Hier anpassen Leon
 	public void setTrumpf(String trumpf) {
-		/*
-		switch(trumpf) {
-		case "C":
-	
-		break;
+	    this.trumpf.setText(trumpf);
+	    setTrumpfColor(trumpf);
+	}
+	public void setTrumpfColor(String trumpf) {
 		
-		case "S":
-			
-		break;
-		
-		case "D":
-		
-		break;
-		
-		case "H":
-			
-		break;
-		
-		
-		
-		
-		}
-		*/
-		this.trumpf.setText(trumpf);
+		String lang = "_CH";
+		if(sl.getConfiguration().isFrenchCards()) {
+			lang = "_FR";
+			}
+		JassImage img = new JassImage();
+		img.getTrumpfImage(trumpf+lang);
+		this.trumpfColor.setImage(null);
+		 
+	    
 	}
 	
 	public Label getTrumpf() {

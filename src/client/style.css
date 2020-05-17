@@ -23,13 +23,39 @@
     -fx-background-color: linear-gradient(#61a2b1, #2A5058);
     -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
+#gameCardsOnTable{
+	-fx-padding: 4.0px;
+    -fx-max-width: 60;
+    -fx-max-height: 80;
+}
+
+#gamePlayer4InfoBox {
+	fx-spacing: 30px;
+	fx-margin: 20px;
+	
+}
+#gameRightBox{
+	fr-background: purple;
+	
+}
+
+#gamePlayer4CardBox{
+	fx-spacing: 30;
+}
+
 
 .button:hover {
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
 
-#tableBox{
-	-fx-background-color: #04941E;
+#gameTeppichBox{
+	-fx-background-image: url("teppich.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
+	/*-fx-Spacing: 30px;
+    -fx-padding: 10.0px;
+    -fx-border-width: 2.0px;*/
 }
 
 #Registerbutton {
@@ -40,11 +66,11 @@
 	-fx-font-weight: bold;
 	-fx-font-size: 12px;
 }
-#ourPointsBox {
+#gemeOourPointsBox {
 	-fx-background-color:lightgrey;
 	-fx-font-weight: bold;
 	-fx-font-size: 12px;
 }
-#pointsBox{
+#gamePointsBox{
 	-fx-background-color: white;
 }
