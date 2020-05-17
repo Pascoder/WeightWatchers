@@ -5,14 +5,14 @@ import java.util.Collections;
 
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class CardDeck {
+//Klasse von Frank Mauchle
 
+public class CardDeck {
 private final ArrayList <Card> cards = new ArrayList<>();
 
 
 public CardDeck() {
-	shuffle();
-	
+	shuffle();	
 }
 
 private void shuffle() {
@@ -25,7 +25,8 @@ private void shuffle() {
 	}
 	Collections.shuffle(cards);
 }
-//Kartendeck wird zur�ckgegeben mit Franz�sichen und Schweizer Karten
+
+//Kartendeck wird zurueckgegeben
 public ArrayList <Card> getDeck(){
 	return this.cards;
 }

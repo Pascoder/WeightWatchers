@@ -1,5 +1,9 @@
 package server;
 
+
+//Klasse von Frank Mauchle
+
+	//Spalte 1 = NormalRank, Spalte 2 = Trumpf, Spalte 3 = NormalScore, Spalte 4 = TrumpfScore
 public enum CardRank {
 Six(1,1,0,0,11),
 Seven(2,2,0,0,11),

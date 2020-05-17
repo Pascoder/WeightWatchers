@@ -1,6 +1,7 @@
 package server;
 
 import java.util.Comparator;
+//Klasse von Frank Mauchle
 
 public class Card implements Comparable<Card>{
 
@@ -17,8 +18,6 @@ public class Card implements Comparable<Card>{
 
     }
     
- 
-
     public CardColor getCardColor() {
 	return cardColor;
     }
@@ -56,11 +55,10 @@ public class Card implements Comparable<Card>{
     	int cf = 1;
     	if(this.getCardRank() == c.getCardRank() && this.getCardColor() == c.getCardColor())
     		cf=0;
-    	
-    	
     	return cf;
     }
 
+    //Vergleicht Karten wenn diese nicht Trumpf sind (enum CardRank)
     public static Comparator<Card> normalRankComparator = new Comparator<Card>() {
 	@Override
 	public int compare(Card c1, Card c2) {
@@ -68,7 +66,8 @@ public class Card implements Comparable<Card>{
 		    : (c2.getCardRank().getRank() == c1.getCardRank().getRank() ? 0 : 1));
 	}
     };
-
+    
+    //Vergleicht Trumpf Karten (haben höheren Wert Siehe enum CardRank)
     public static Comparator<Card> trumpfRankComparator = new Comparator<Card>() {
 	@Override
 	public int compare(Card c1, Card c2) {
