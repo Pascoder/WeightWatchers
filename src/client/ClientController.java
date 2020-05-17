@@ -109,18 +109,18 @@ public ClientController(ClientModel clientModel, ClientView clientView) {
 		});
 		
 		
-<<<<<<< HEAD
+
 		gameview.menuGame.menuItem21.setOnAction(event -> sl.getConfiguration().setFrenchCards(false));
 		gameview.menuGame.menuItem22.setOnAction(event -> sl.getConfiguration().setFrenchCards(true));
 		
-=======
+
 		
 		//GAME
 		clientView.getGameStage().setOnCloseRequest(c->{
 			clientModel.sayGoodBye("ExitGame");
 		});
 			//KARTEN PER KLICK SPIELEN
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
+
 		gameview.getToggleButton(1).setOnAction((c)-> { 
 			
 			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
@@ -226,7 +226,7 @@ public static void updateLoginInfoLabel(String info) {
 
 
 
-//Lobby (Spieler werden in LobbyView geladen die Online sind, durch Lobby Update das ClientModel empfängt)
+//Lobby (Spieler werden in LobbyView geladen die Online sind, durch Lobby Update das ClientModel empfï¿½ngt)
 public static void loadPlayersOnline (String [] players) {
 	
 	Platform.runLater(new Runnable(){
@@ -241,13 +241,13 @@ public static void loadPlayersOnline (String [] players) {
 	});
 }
 
-<<<<<<< HEAD
 
 
 
-=======
+
+
 //Lobby (die bereits erstellten Games werdnen in ListView geladen)
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
+
 public static void loadGames(String [] games) {
 	
 	Platform.runLater(new Runnable(){
@@ -279,7 +279,7 @@ public static void loadChat(String chat) {
 
 
 
-//Game (lädt die Empfangenen Spieler mit Karten... in die GameView)
+//Game (lï¿½dt die Empfangenen Spieler mit Karten... in die GameView)
 public static void loadPlayersonGame(Player [] playersOnGame, String client, String trumpf, String teamscore) {
 	Platform.runLater(new Runnable(){
 		public void run() {	
