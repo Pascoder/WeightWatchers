@@ -7,9 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.logging.Logger;
-
-import client.ClientModel;
-import client.ServiceLocator_JC;
 import messages.Message;
 import messages.MessageType;
 import messages.Message_CHAT;
@@ -29,15 +26,16 @@ import messages.Message_NEXTROUND;
 import messages.Message_NEXTSTAPLE;
 import messages.Message_USERNAMETAKEN;
 
-
-//aka Server Model
+/*
+ Copyright 2020, Pascal Wyser 
+ All rights reserved.
+ */
 public class ClientThread extends Thread {
 	
 
 	private Socket clientSocket;
 	private BufferedReader in;
 	private PrintWriter out;
-//	private final Logger logger = Logger.getLogger("");
 	private String clientName = null;
 	private String actualGameID = null;
 	
@@ -45,8 +43,8 @@ public class ClientThread extends Thread {
 	public ClientThread(Socket clientSocket) throws IOException {
 		
 		this.clientSocket = clientSocket;
-		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-		out = new PrintWriter(clientSocket.getOutputStream());
+		setIn(new BufferedReader(new InputStreamReader(clientSocket.getInputStream())));
+		setOut(new PrintWriter(clientSocket.getOutputStream()));
 		ServerModel.addClientThreadToList(this);
 	}
 	
@@ -58,9 +56,7 @@ public class ClientThread extends Thread {
 				try {
 					//Read Message from the Client
 					Message msgIn = Message.receive(clientSocket);
-		
 					Message msgOut = processMessage(msgIn);
-					
 					msgOut.send(clientSocket);
 				} catch (Exception e) {
 					Logger.getLogger(e.getLocalizedMessage());
@@ -69,7 +65,7 @@ public class ClientThread extends Thread {
 	
 	
 
-	Message processMessage(Message msgIn) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
+	protected Message processMessage(Message msgIn) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
 		
 		String clientName = msgIn.getClient();
 		Message msgOut = null;
@@ -83,13 +79,10 @@ public class ClientThread extends Thread {
 			case LOGIN:
 				//Ueberprueft ob Login korrekt ist und sendet dann die entsprechende Nachricht
 				Message_LOGIN lg_msg = (Message_LOGIN) msgIn;
-				
 				if(ServerModel.CheckLogin(lg_msg.getUsername(), lg_msg.getPassword())) {
 					msgOut = new Message_LOGINOK();
-					
 					this.clientName = lg_msg.getUsername();
 					lg_msg.setClient(clientName);
-//					ServerModel.updateClients(1, getClientName());//1 = Lobby Update TODO ENUM machen!
 				} else  { 
 					msgOut = new Message_LOGINNOTOK();
 				}
@@ -97,31 +90,24 @@ public class ClientThread extends Thread {
 				
 			case CREATEUSER:
 				Message_CREATEUSER cu_msg = (Message_CREATEUSER) msgIn;
-				//Wenn true, dann ist der Username vergeben, false ist er frei
-			
+				//wenn der return = true, dann ist der Username vergeben, false = Username noch frei
 				if (ServerModel.createUser(cu_msg.getUsername(), cu_msg.getPassword())) {
-					
 					msgOut = new Message_USERNAMETAKEN();
-					
 				} else {
 					msgOut= new Message_CREATEUSER();
-					
 				}
 				break;
 			
 			case MOVE:
 				Message_MOVE mo_msg = (Message_MOVE) msgIn;
-				
 				int Game_ID = Integer.parseInt(mo_msg.getGameid());
 				int Player_ID = Integer.parseInt(mo_msg.getPlayerid());
+			
 				String Card = mo_msg.getCard();
-				
 				for(Game g : Lobby.getLobby().getGames()) {
 					if(g.getGameID() == Game_ID) g.playedCardfromClient_2(Game_ID, Player_ID, Card);
-					
 				}
 				msgOut = new Message_MOVE();
-				
 				break;
 				
 			case CREATEGAME:
@@ -146,17 +132,20 @@ public class ClientThread extends Thread {
 			case NEXTSTAPLE:
 				Message_NEXTSTAPLE ns_msg = (Message_NEXTSTAPLE) msgIn;
 				Lobby.getLobby().nextStaple(ns_msg.getGamename(), ns_msg.getClient());
-				
 				msgOut = new Message_HELLO();
 				break;	
 				
 			case GOODBYE:
-				//Lobby1 = Lobby verlassen, Lobby2 = Ausgewähltes Spiel verlassen, ExitGame = Spiel, das bereits gestartet ist verlassen
+				/* CiaoSource, String
+				 * Lobby1 = Lobby verlassen, 
+				 * Lobby2 = Ausgewähltes Spiel verlassen, 
+				 * ExitGame = Spiel, das bereits gestartet ist verlassen
+				 */
 				Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;
 				if(ciao_msg.getCiaoSource().equals("Lobby1")) {
 					ServerModel.removePlayerFromLobby(clientName);
 					ServerModel.updateClients(1, clientName);
-				}
+					}
 				if(ciao_msg.getCiaoSource().equals("Lobby2")) {
 					System.out.println(clientName + " verlässt das Spiel");
 					ServerModel.leaveGame(clientName);
@@ -166,9 +155,7 @@ public class ClientThread extends Thread {
 				if(ciao_msg.getCiaoSource().equals("ExitGame")) {
 					ServerModel.kickPlayers(clientName);
 					ServerModel.removePlayerFromLobby(clientName);
-					
-					
-				}
+					}
 				
 				msgOut = new Message_HELLO();
 				break;
@@ -185,15 +172,14 @@ public class ClientThread extends Thread {
 				gu_msg.setClient(clientName);
 				ServerModel.updateClients(2, clientName);//2 = Game Update
 				msgOut = new Message_HELLO();
-				
 				break;
+				
 			case CHAT:
 				Message_CHAT chat_msg = (Message_CHAT) msgIn;
 				chat_msg.setClient(clientName);
 				ServerModel.addnewChat(clientName+": "+chat_msg.getChatMessage());
 				ServerModel.updateClients(1, clientName);//1 = Lobby Update
 				msgOut = new Message_HELLO();
-				
 				break;
 				
 			default:
@@ -202,12 +188,12 @@ public class ClientThread extends Thread {
 		}
 		 
 		    	msgOut.setClient(this.clientName);	
-		    
-			
-			
-		
+
 		return msgOut;
 	}
+	
+	
+	//Getters and Setters
 
 	public Socket getClientSocket() {
 		return clientSocket;
@@ -217,7 +203,29 @@ public class ClientThread extends Thread {
 		return this.clientName;
 	}
 
-	
-	
+	public BufferedReader getIn() {
+		return in;
+	}
+
+	public void setIn(BufferedReader in) {
+		this.in = in;
+	}
+
+	public PrintWriter getOut() {
+		return out;
+	}
+
+	public void setOut(PrintWriter out) {
+		this.out = out;
+	}
+
+	public String getActualGameID() {
+		return actualGameID;
+	}
+
+	public void setActualGameID(String actualGameID) {
+		this.actualGameID = actualGameID;
+	}
+
 
 }
