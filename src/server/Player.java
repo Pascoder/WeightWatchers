@@ -2,6 +2,7 @@ package server;
 
 import java.util.ArrayList;
 
+//Klasse von Frank Mauchle
 public class Player {
 
 private int player_id;

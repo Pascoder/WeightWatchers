@@ -1,5 +1,7 @@
 package server;
 
+//Klasse von Frank Mauchle wird nicht benötigt
+
 public enum Weis {
 Drei_Blatt,
 Vier_Blatt,

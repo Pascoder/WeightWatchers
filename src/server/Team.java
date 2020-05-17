@@ -2,6 +2,9 @@ package server;
 
 import java.util.ArrayList;
 
+
+//Klasse von Frank Mauchle
+
 public class Team {
 
 private int team_id = 0;

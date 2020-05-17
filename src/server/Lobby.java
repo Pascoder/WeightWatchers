@@ -2,39 +2,40 @@ package server;
 
 import java.util.ArrayList;
 
+
+//Klasse von Frank Mauchle
+
 public class Lobby {
 
     private static Lobby lobby;
 
     private static ArrayList<Game> actualgames = new ArrayList<>();
     private static ArrayList<Player> playersOnline = new ArrayList<>();
-//Hier kommt dann die Game id von der DB rein gibt kein Counter mehr
-    private static int counterGames = 0;
-    private static int counterPlayers = 0;
-    private static int wishForNextStaple = 0;
+    
 
+    private static int counterGames = 0;
+    
+    //Statische Lobby also wenn schon eine vorhanden keine weitere erstellen
     public static Lobby getLobby() {
 	if (lobby == null)
 	    lobby = new Lobby();
-//		lobby.createGame("game");//FÃ¼r Testklasse!! Pascal
 	return lobby;
     }
 
-    public void createGame(String name) {
-    	
+    //Spiel der Lobby hinzufügen
+    public void createGame(String name) {	
     boolean gameInList = false;
     for(Game g : actualgames) {
-    if(g.getName().equals(name)) gameInList = true;
-    	
+    if(g.getName().equals(name)) gameInList = true;	
     }
     if(!gameInList) {
     	 counterGames++;
     		Game game = new Game(counterGames, name);
     		actualgames.add(game);
     }
-   
     }
 
+    //Spiel aus der Lobby löschen
     public void removeGame(int gameID) {
 	for (int i = 0; i < actualgames.size(); i++) {
 	    if (actualgames.get(i).getGameID() == gameID) {
@@ -43,7 +44,7 @@ public class Lobby {
 	}
     }
 
-//
+    
     public ArrayList<Game> getGames() {
 	return Lobby.actualgames;
     }

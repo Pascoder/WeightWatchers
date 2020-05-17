@@ -22,7 +22,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import server.Player;
-
+//Klasse von Frank Mauchle
 public class ClientController {
 
 private static ClientModel clientModel;
@@ -33,7 +33,7 @@ private static Translator_JC t;
 
 	
 
-	public ClientController(ClientModel clientModel, ClientView clientView) {
+public ClientController(ClientModel clientModel, ClientView clientView) {
 		ClientController.clientModel = clientModel;
 		ClientController.clientView = clientView;
 		sl = ServiceLocator_JC.getServiceLocator();
@@ -44,7 +44,9 @@ private static Translator_JC t;
 		Lobby_View lobbyview = clientView.getLobbyView();
 		Game_View gameview = clientView.getGameView();
 		
-		//Login
+		
+		
+		//LOGIN
 		view.getLoginButton().disableProperty().bind(view.getPasswordField().textProperty().isEmpty().or(view.getUsernameField().textProperty().isEmpty()));
 		view.getRegisterButton().disableProperty().bind(view.getUsernameField().textProperty().isEmpty().or(view.getPasswordField().textProperty().isEmpty()));
 		
@@ -58,7 +60,9 @@ private static Translator_JC t;
 		view.getUsernameField().clear();
 		});
 		
-		//Lobby
+		
+		
+		//LOBBY
 		lobbyview.getCreateGameButton().setOnAction((e) -> {clientModel.sayCreateGame(lobbyview.getTextField().getText());
 		lobbyview.getTextField().clear();
 		});
@@ -87,11 +91,6 @@ private static Translator_JC t;
 		});
 		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());
 		
-		//Game
-		clientView.getGameStage().setOnCloseRequest(c->{
-			clientModel.sayGoodBye("ExitGame");
-		});
-		
 		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent e) {
@@ -101,21 +100,27 @@ private static Translator_JC t;
 			    clientModel.sayJoinGame(selectedItem.substring(2));
 			    ObservableList<String> selectedGame = FXCollections.observableArrayList();
 			    selectedGame.add(selectedItem);
-			    lobbyview.setSelectedGame(selectedGame);
-			    
-			    
+			    lobbyview.setSelectedGame(selectedGame);   
 			}}
 			catch (Exception b) {
 			    b.printStackTrace();
 				}
 		    }
 		});
-
 		
 		
+<<<<<<< HEAD
 		gameview.menuGame.menuItem21.setOnAction(event -> sl.getConfiguration().setFrenchCards(false));
 		gameview.menuGame.menuItem22.setOnAction(event -> sl.getConfiguration().setFrenchCards(true));
 		
+=======
+		
+		//GAME
+		clientView.getGameStage().setOnCloseRequest(c->{
+			clientModel.sayGoodBye("ExitGame");
+		});
+			//KARTEN PER KLICK SPIELEN
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 		gameview.getToggleButton(1).setOnAction((c)-> { 
 			
 			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame()+"";   
@@ -123,7 +128,6 @@ private static Translator_JC t;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(0).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			//gameview.getToggleButton(1).setVisible(false);
 		});
 		
 		gameview.getToggleButton(2).setOnAction((c)-> { 
@@ -132,7 +136,6 @@ private static Translator_JC t;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(1).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			//gameview.getToggleButton(2).setVisible(false);
 		});
 		
 		gameview.getToggleButton(3).setOnAction((c)-> { 
@@ -141,7 +144,6 @@ private static Translator_JC t;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(2).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			//gameview.getToggleButton(3).setVisible(false);
 		});
 		
 		gameview.getToggleButton(4).setOnAction((c)-> { 
@@ -150,7 +152,6 @@ private static Translator_JC t;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(3).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			//gameview.getToggleButton(4).setVisible(false);
 		});
 		
 		gameview.getToggleButton(5).setOnAction((c)-> { 
@@ -159,7 +160,6 @@ private static Translator_JC t;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(4).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			//gameview.getToggleButton(5).setVisible(false);
 		});
 		
 		gameview.getToggleButton(6).setOnAction((c)-> { 
@@ -168,7 +168,6 @@ private static Translator_JC t;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(5).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			//gameview.getToggleButton(6).setVisible(false);
 		});
 		
 		gameview.getToggleButton(7).setOnAction((c)-> { 
@@ -177,7 +176,6 @@ private static Translator_JC t;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(6).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			//gameview.getToggleButton(7).setVisible(false);
 		});
 		
 		gameview.getToggleButton(8).setOnAction((c)-> { 
@@ -186,7 +184,6 @@ private static Translator_JC t;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(7).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			//gameview.getToggleButton(8).setVisible(false);
 		});
 		
 		gameview.getToggleButton(9).setOnAction((c)-> { 
@@ -195,24 +192,14 @@ private static Translator_JC t;
 			ArrayList <String> hand = clientModel.getPlayer(gameview.getPlayerName()).getHandAsStrings();
 			 String [] card = hand.get(8).split("\\$");
 			clientModel.sayMove(gameID, playerID, card[0]);
-			//gameview.getToggleButton(9).setVisible(false);
-		});
-		
-		
-		
-	}
-	
-	public static void updateLoginInfoLabel(String info) {
-		Platform.runLater(new Runnable(){
-			@Override
-			public void run() {
-				clientView.getLoginView().getRegisterLabel().setText(info);
-			}
 		});
 	}
+
+
+
 	
-	
-	public static void switchview(int view) {
+//SwitchView (vom ClientModel aufgeruffen)
+public static void switchview(int view) {
 		Platform.runLater(new Runnable(){
 
 			@Override
@@ -223,10 +210,23 @@ private static Translator_JC t;
 		
 	}
 	
+
+
+
+//Login (Info Label)
+public static void updateLoginInfoLabel(String info) {
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				clientView.getLoginView().getRegisterLabel().setText(info);
+			}
+		});
+	}
 	
-	
-	
-	
+
+
+
+//Lobby (Spieler werden in LobbyView geladen die Online sind, durch Lobby Update das ClientModel empf‰ngt)
 public static void loadPlayersOnline (String [] players) {
 	
 	Platform.runLater(new Runnable(){
@@ -241,9 +241,13 @@ public static void loadPlayersOnline (String [] players) {
 	});
 }
 
+<<<<<<< HEAD
 
 
 
+=======
+//Lobby (die bereits erstellten Games werdnen in ListView geladen)
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 public static void loadGames(String [] games) {
 	
 	Platform.runLater(new Runnable(){
@@ -257,18 +261,30 @@ public static void loadGames(String [] games) {
 
 }
 
-
-
-public static void loadPlayersonGame(Player [] playersOnGame, String client, String trumpf, String teamscore) {
-	
+//Lobby (Empfangene Chat Nachricht durch ClientModel in LobbyView laden)
+public static void loadChat(String chat) {
 	Platform.runLater(new Runnable(){
-		
+
+		@Override
 		public void run() {
-	//l√§dt die Karten des aktuellen Spielers in eine ArrayList
-			
+		String [] chatmsg = chat.split("\\|");
+		clientView.getLobbyView().getChatList().clear();
+		for(String s: chatmsg) {
+			clientView.getLobbyView().getChatList().appendText(s+"\n");
+		}		
+}		
+	});
+}
+
+
+
+
+//Game (l‰dt die Empfangenen Spieler mit Karten... in die GameView)
+public static void loadPlayersonGame(Player [] playersOnGame, String client, String trumpf, String teamscore) {
+	Platform.runLater(new Runnable(){
+		public void run() {	
+		//Anzeigen von OnMove und Game of sowie Karten dem aktuellen Client zuweisen
 		ArrayList <String> cardList = new ArrayList <String>();
-		String [] teams = teamscore.split("\\$");
-		
 		for(Player p : playersOnGame) {
 			if(p.getName().equals(client)) {
 				cardList = p.getHandAsStrings(); 
@@ -280,26 +296,10 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 					}else {
 						clientView.getGameView().getOnTurn().setTextFill(Color.web("black"));
 					}
-			
 			}
-
 	}
-	//Set Team Points
-		
-		for(int i = 0; i< teams.length;i++) {
-			String spieler[] = teams[i].split("\\|");
-			for(int c = 0; c<spieler.length;c++) {
-				System.out.println("TEAMPOINTS: "+spieler[c]);
-				if(spieler[c].equals(client)) {
-					clientView.getGameView().setPoints(spieler[2]);
-					
-				}
-			}
-		}
-		
-			
-		
-	
+
+	//Anhand der cards aus der cardList 	
 	JassImage img = new JassImage();
 	String lang = "_CH";
 	if(sl.getConfiguration().isFrenchCards()) {
@@ -382,6 +382,27 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 					clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
 				}
 			}
+			
+			//Team Punkte in der GameView setzen
+			String [] teams = teamscore.split("\\$");
+			int myteam = 8;
+			for(int i = 0; i< teams.length;i++) {
+				String spieler[] = teams[i].split("\\|");
+				for(int c = 0; c<spieler.length;c++) {
+					if(spieler[c].equals(client)) {
+						myteam = i;
+						clientView.getGameView().setPoints(spieler[2]);	
+					}
+				}
+			}
+			//Wenn myTeam 0 dann ist gegner Team 1
+			if(myteam == 0) {
+				String spieler1[] = teams[1].split("\\|");
+				clientView.getGameView().setOtherTeamPoints(spieler1[2]);
+			}else {
+				String spieler1[] = teams[0].split("\\|");
+				clientView.getGameView().setOtherTeamPoints(spieler1[2]);	
+			}
 		}
 
 
@@ -391,7 +412,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 }
 
 
-
+//Game (Karten die bereits gepspielt wurden auf dem Tisch in der GameView zeigen)
 public static void loadCardsOnTable(String cardsontable) {
 	System.out.println("CLIENT CARDSONTABLE: "+cardsontable);
 	Platform.runLater(new Runnable(){
@@ -413,26 +434,13 @@ public static void loadCardsOnTable(String cardsontable) {
 			Image b = img.getCardImage(card[0]+lang).getImage();
 			clientView.getGameView().placeCardtoTable(i+1, b);
 			}
-		
-	}
-	
-	
-
-		
+	}	
 });
-	
-	
 	}
 	
 
-public static void showCards(String[] spreadCards, String client) {
-	// TODO Auto-generated method stub
-	for(String card : spreadCards) {
-		System.out.println(card);
-	}
-	
-}
 
+//Game (Tisch leeren in der GameView)
 public static void emptyTable() {
 	Platform.runLater(new Runnable(){
 
@@ -448,6 +456,7 @@ public static void emptyTable() {
 	
 }
 
+//Game (Gewinner anzeigen nach 1000 Punkten durch Message die in ClientModel empfangen wurde)
 public static void showWinnerTeam(String winnerteamid) {
 	Platform.runLater(new Runnable(){
 
@@ -467,6 +476,8 @@ public static void showWinnerTeam(String winnerteamid) {
 	});
 }
 
+
+//Game (Gewinner nach gespieltem Stapel anzeigen)
 public static void showStapelWinner(String winnerTeam, String points) {
 	Platform.runLater(new Runnable(){
 
@@ -496,6 +507,7 @@ public static void showStapelWinner(String winnerTeam, String points) {
 
 }
 
+//Game (Falls Spieler spiel abbricht Alert)
 public static void showDialog() {
 	Platform.runLater(new Runnable(){
 
@@ -515,33 +527,6 @@ public static void showDialog() {
 			clientView.switchView(2);
 			dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
             dialog.hide();
-
-//				Thread newThread = new Thread(new Runnable() {
-//					    @Override
-//					    public void run() {
-//					    	try {
-//					                Thread.sleep(5000);
-//					            } catch (InterruptedException ex) {
-//					                Thread.currentThread().interrupt();
-//					            }
-//
-//					            Platform.runLater(new Runnable() {
-//					                @Override
-//					                public void run() {
-//					                   
-//					                    clientView.switchView(2);
-//					                    //Damit Dialog automatisch schliesst
-//					                    dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
-//					                    dialog.hide();
-//					                }
-//					                });
-//					            
-//					            }
-//					    });
-//					    newThread.start();
-//					    
-//			
-//		}
 		
 		}
 		});
@@ -550,24 +535,7 @@ public static void showDialog() {
 	
 		}
 
-public static void loadChat(String chat) {
-	Platform.runLater(new Runnable(){
 
-		@Override
-		public void run() {
-		String [] chatmsg = chat.split("\\|");
-		clientView.getLobbyView().getChatList().clear();
-		for(String s: chatmsg) {
-			clientView.getLobbyView().getChatList().appendText(s+"\n");
-		}
-			
-}
-
-		
-	});
-		
-	
-}
 
 
 
