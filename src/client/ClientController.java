@@ -260,7 +260,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 	//lädt die Karten des aktuellen Spielers in eine ArrayList
 			
 		ArrayList <String> cardList = new ArrayList <String>();
-		String [] teams = teamscore.split("\\$");
+		
 		
 		for(Player p : playersOnGame) {
 			if(p.getName().equals(client)) {
@@ -278,17 +278,27 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 
 	}
 	//Set Team Points
-		
+		String [] teams = teamscore.split("\\$");
+		int myteam = 8;
 		for(int i = 0; i< teams.length;i++) {
 			String spieler[] = teams[i].split("\\|");
 			for(int c = 0; c<spieler.length;c++) {
-				System.out.println("TEAMPOINTS: "+spieler[c]);
 				if(spieler[c].equals(client)) {
+					myteam = i;
 					clientView.getGameView().setPoints(spieler[2]);
 					
 				}
 			}
 		}
+		//Wenn myTeam 0 dann ist gegner Team 1
+		if(myteam == 0) {
+			String spieler1[] = teams[1].split("\\|");
+			clientView.getGameView().setOtherTeamPoints(spieler1[2]);
+		}else {
+			String spieler1[] = teams[0].split("\\|");
+			clientView.getGameView().setOtherTeamPoints(spieler1[2]);	
+		}
+		
 		
 			
 		

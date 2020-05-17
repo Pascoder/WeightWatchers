@@ -454,7 +454,7 @@ public void placeCardtoTable(int num, Image img) {
 	}
 
 	public void setOtherTeamPoints(String points) {
-		this.opponentsPointsLabel.setText(points);
+		this.oppPlbl.setText(points);
 		
 	}
     
