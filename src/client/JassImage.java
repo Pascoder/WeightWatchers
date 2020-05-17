@@ -5,6 +5,14 @@ import javafx.scene.image.ImageView;
 
 public class JassImage {
 
+    	protected Image CFR = new Image(this.getClass().getClassLoader().getResourceAsStream("Kreuz.jpg"));
+    	protected Image CCH = new Image(this.getClass().getClassLoader().getResourceAsStream("Schilten.jpg"));
+    	protected Image DCH = new Image(this.getClass().getClassLoader().getResourceAsStream("Eichel.jpg"));
+    	protected Image DFR = new Image(this.getClass().getClassLoader().getResourceAsStream("Ecke.jpg"));
+    	protected Image HFR = new Image(this.getClass().getClassLoader().getResourceAsStream("Herz.jpg"));
+	protected Image HCH = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen.jpg"));
+	protected Image SCH = new Image(this.getClass().getClassLoader().getResourceAsStream("Rosen.jpg"));
+	protected Image SFR = new Image(this.getClass().getClassLoader().getResourceAsStream("Schaufel.jpg"));
 	protected Image C6FR = new Image(this.getClass().getClassLoader().getResourceAsStream("Kreuz_Sechs.jpg"));
 	protected Image C6CH = new Image(this.getClass().getClassLoader().getResourceAsStream("Schilten_Sechs.jpg"));
 	protected Image D6FR = new Image(this.getClass().getClassLoader().getResourceAsStream("Ecke_Sechs.jpg"));
@@ -78,7 +86,16 @@ public class JassImage {
 	protected Image SQueenCH = new Image(this.getClass().getClassLoader().getResourceAsStream("Rosen_Ober.jpg"));
 	protected Image SQueenFR = new Image(this.getClass().getClassLoader().getResourceAsStream("Schaufel_Dame.jpg"));
 	protected Image rueckseite = new Image(this.getClass().getClassLoader().getResourceAsStream("Rueckseite.jpg"));
-
+	
+	protected ImageView C_FR = new ImageView(CFR);
+	protected ImageView C_CH = new ImageView(CCH);
+	protected ImageView D_FR = new ImageView(HFR);
+	protected ImageView D_CH = new ImageView(HFR);
+	protected ImageView H_FR = new ImageView(HCH);
+	protected ImageView H_CH = new ImageView(HCH);
+	protected ImageView S_CH = new ImageView(SCH);
+	protected ImageView S_FR = new ImageView(SFR);
+	
 	protected ImageView C6_FR = new ImageView(C6FR);
 	protected ImageView C6_CH = new ImageView(C6CH);
 	protected ImageView D6_FR = new ImageView(D6FR);
@@ -160,6 +177,13 @@ public class JassImage {
     public JassImage () {
     	
     }
+    public ImageView getTrumpfImage(String trumpf, Boolean frenchCards) {
+	ImageView img = null;
+	//if (imageView.equals("C"))
+	
+	return img;
+    }
+    
     
     public ImageView getCardImage(String imageView) {
     	ImageView img = null;

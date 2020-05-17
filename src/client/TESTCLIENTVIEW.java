@@ -38,6 +38,7 @@ public class TESTCLIENTVIEW {
    public void switchView (int viewNumber) {
 	   if(viewNumber == 1) {
 		   //LoginView
+	       gameStage.show();
 		   loginStage.show();
 	   }else {
 		if(viewNumber == 0) {
