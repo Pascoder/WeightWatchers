@@ -194,9 +194,6 @@ public class ServerModel {
 
     }
 
-   
-
-	
 
 	// Sendet GameStart Message an den Client im Game
     public static void sayGameStarted(String gamename, String client) {
@@ -215,7 +212,6 @@ public class ServerModel {
 
     }
     
-    
 
     public static void addClientThreadToList(ClientThread clientThread) {
 	clientList.add(clientThread);
@@ -231,8 +227,6 @@ public class ServerModel {
     	}
     	return (player);
         }
-    
-    
     
     
     // Sucht den Spieler nach ID mittels String
