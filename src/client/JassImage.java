@@ -177,9 +177,16 @@ public class JassImage {
     public JassImage () {
     	
     }
-    public ImageView getTrumpfImage(String trumpf, Boolean frenchCards) {
+    public ImageView getTrumpfImage(String imageView) {
 	ImageView img = null;
-	//if (imageView.equals("C"))
+	if(imageView.equals("C_FR")){img=C_FR;}
+	if(imageView.equals("C_CH")){img=C_CH;}
+	if(imageView.equals("D_FR")){img=D_FR;}
+	if(imageView.equals("D_CH")){img=C_CH;}
+	if(imageView.equals("H_FR")){img=H_FR;}
+	if(imageView.equals("H_CH")){img=H_CH;}
+	if(imageView.equals("S_FR")){img=S_FR;}
+	if(imageView.equals("S_CH")){img=S_CH;}
 	
 	return img;
     }

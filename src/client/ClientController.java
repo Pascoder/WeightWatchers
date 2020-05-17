@@ -27,7 +27,8 @@ public class ClientController {
 
 private static ClientModel clientModel;
 private static ClientView clientView;
-ServiceLocator_JC serviceLocator;
+private static ServiceLocator_JC sl;
+private static Translator_JC t;
 
 
 	
@@ -35,6 +36,9 @@ ServiceLocator_JC serviceLocator;
 	public ClientController(ClientModel clientModel, ClientView clientView) {
 		ClientController.clientModel = clientModel;
 		ClientController.clientView = clientView;
+		sl = ServiceLocator_JC.getServiceLocator();
+		t = ServiceLocator_JC.getServiceLocator().getTranslator();
+		
 		
 		Login_View view = clientView.getLoginView();
 		Lobby_View lobbyview = clientView.getLobbyView();
@@ -109,7 +113,8 @@ ServiceLocator_JC serviceLocator;
 
 		
 		
-		
+		gameview.menuGame.menuItem21.setOnAction(event -> sl.getConfiguration().setFrenchCards(false));
+		gameview.menuGame.menuItem22.setOnAction(event -> sl.getConfiguration().setFrenchCards(true));
 		
 		gameview.getToggleButton(1).setOnAction((c)-> { 
 			
@@ -237,6 +242,8 @@ public static void loadPlayersOnline (String [] players) {
 }
 
 
+
+
 public static void loadGames(String [] games) {
 	
 	Platform.runLater(new Runnable(){
@@ -294,10 +301,14 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 		
 	
 	JassImage img = new JassImage();
-	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
+	String lang = "_CH";
+	if(sl.getConfiguration().isFrenchCards()) {
+		lang = "_FR";
+	}
 	String[] cards;
 	
 	clientView.getGameView().makeButtonsVisible(cardList.size());
+	
 	for(int i = 0; i < cardList.size();i++) {
 		cards = cardList.get(i).split("\\$");
 		
@@ -390,7 +401,10 @@ public static void loadCardsOnTable(String cardsontable) {
 			
 	
 	JassImage img = new JassImage();
-	String lang = "_CH";//TODO Zugriff auf Configuration herstellen CardLanguage holen
+	String lang = "_CH";
+	if(sl.getConfiguration().isFrenchCards()) {
+		lang = "_FR";
+	}
 	String [] cards = cardsontable.split("\\$");
 	
 	

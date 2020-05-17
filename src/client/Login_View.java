@@ -33,7 +33,7 @@ public class Login_View extends GridPane {
 	private Menu_Login_View MenuLgVi;
 	private Image image;
 	private Translator_JC t;
-    private ServiceLocator_JC sl;
+	private ServiceLocator_JC sl;
 	
 	public Login_View(Stage stage, ClientModel model ) {
 		this.stage = stage;
