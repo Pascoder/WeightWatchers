@@ -32,7 +32,7 @@ public class Game_View extends BorderPane{
     protected Menu menumain;
     protected MenuItem info;
     //Labels,Buttons...
-    protected Label round, roundNo, p1_name,p2_name,p3_name,p4_name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn, trumpf, selectedT, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
+    protected Label round, roundNo, p1_name,p1name,p2_name,p2name,p3_name,p3name,p4_name,p4name,verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn, trumpf, selectedT, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
     protected Button weis, nextRound;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     protected ArrayList <ToggleButton> playerButtons;
@@ -232,7 +232,9 @@ public class Game_View extends BorderPane{
 		
 		// Namen unser Team
 		this.P13 = new VBox();
-		this.P13.getChildren().addAll(p1_name, p3_name);
+		p1name = new Label("--");
+		p3name = new Label("--");
+		this.P13.getChildren().addAll(p1name, p3name);
 		this.P13.setSpacing(5);
 		
 		
@@ -245,7 +247,9 @@ public class Game_View extends BorderPane{
 		
 		//Namen Gegner
 		this.P24 = new VBox();
-		this.P24.getChildren().addAll(p2_name, p4_name);
+		p2name = new Label("--");
+		p4name = new Label("--");
+		this.P24.getChildren().addAll(p2name, p4name);
 		this.P24.setSpacing(5);
 		
 		//Round Displaying

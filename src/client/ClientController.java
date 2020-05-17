@@ -315,6 +315,10 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				clientView.getGameView().p1_name.setText(playersOnGame[1].getName());
 				clientView.getGameView().p2_name.setText(playersOnGame[2].getName());
 				clientView.getGameView().p3_name.setText(playersOnGame[3].getName());
+				clientView.getGameView().p4name.setText(playersOnGame[0].getName());
+				clientView.getGameView().p1name.setText(playersOnGame[1].getName());
+				clientView.getGameView().p2name.setText(playersOnGame[2].getName());
+				clientView.getGameView().p3name.setText(playersOnGame[3].getName());
 				
 				if(trumpf.equals("null")) {
 				clientView.getGameView().setTrumpf("Trumpf: Bitte Trumpf mit klick auf Karte W�hlen");
@@ -333,6 +337,10 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				clientView.getGameView().p1_name.setText(playersOnGame[2].getName());
 				clientView.getGameView().p2_name.setText(playersOnGame[3].getName());
 				clientView.getGameView().p3_name.setText(playersOnGame[0].getName());
+				clientView.getGameView().p4name.setText(playersOnGame[1].getName());
+				clientView.getGameView().p1name.setText(playersOnGame[2].getName());
+				clientView.getGameView().p2name.setText(playersOnGame[3].getName());
+				clientView.getGameView().p3name.setText(playersOnGame[0].getName());
 				if(!trumpf.equals("null")) {
 					clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
 				}
@@ -342,6 +350,10 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				clientView.getGameView().p1_name.setText(playersOnGame[3].getName());
 				clientView.getGameView().p2_name.setText(playersOnGame[0].getName());
 				clientView.getGameView().p3_name.setText(playersOnGame[1].getName());
+				clientView.getGameView().p4name.setText(playersOnGame[1].getName());
+				clientView.getGameView().p1name.setText(playersOnGame[2].getName());
+				clientView.getGameView().p2name.setText(playersOnGame[3].getName());
+				clientView.getGameView().p3name.setText(playersOnGame[0].getName());
 				if(!trumpf.equals("null")) {
 					clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
 				}
@@ -351,6 +363,10 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				clientView.getGameView().p1_name.setText(playersOnGame[0].getName());
 				clientView.getGameView().p2_name.setText(playersOnGame[1].getName());
 				clientView.getGameView().p3_name.setText(playersOnGame[2].getName());
+				clientView.getGameView().p4name.setText(playersOnGame[1].getName());
+				clientView.getGameView().p1name.setText(playersOnGame[2].getName());
+				clientView.getGameView().p2name.setText(playersOnGame[3].getName());
+				clientView.getGameView().p3name.setText(playersOnGame[0].getName());
 				if(!trumpf.equals("null")) {
 					clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
 				}
