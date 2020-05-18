@@ -162,7 +162,7 @@ public class ClientModel {
 			msg_nr.send(socket);
 		    }
 		    int i = 0;
-			while (i < 40000) {
+			while (i < 50000) {
 			    i++;
 			}
 		   ClientController.emptyTable();

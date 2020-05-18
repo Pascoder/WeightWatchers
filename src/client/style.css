@@ -72,6 +72,8 @@
 
 #gameTableBox{
 	-fx-background-image: url("Tisch.jpg");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
 }
 
 	
