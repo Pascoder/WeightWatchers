@@ -334,12 +334,13 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				if(trumpf.equals("null")) {
 				clientView.getGameView().setTrumpf("Trumpf: Bitte Trumpf mit klick auf Karte W�hlen");
 				clientView.getGameView().getTrumpf().setTextFill(Color.web("red"));
-				}
+				} 
 				}
 				
 			if(!trumpf.equals("null")) {
 				clientView.getGameView().setTrumpf("Trumpf: "+trumpf);
 				clientView.getGameView().getTrumpf().setTextFill(Color.web("black"));
+				clientView.getGameView().setTrumpfColor(trumpf);
 			}
 				
 			

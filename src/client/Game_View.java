@@ -2,6 +2,7 @@ package client;
 
 import java.util.ArrayList;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -437,17 +438,23 @@ public void placeCardtoTable(int num, Image img) {
 //	//Hier anpassen Leon
 	public void setTrumpf(String trumpf) {
 	    this.trumpf.setText(trumpf);
-	    setTrumpfColor(trumpf);
+	    
+	    
+	   
+		
+		
 	}
 	public void setTrumpfColor(String trumpf) {
 		
+		System.out.println("SET TRUMPF COLOR");
 		String lang = "_CH";
 		if(sl.getConfiguration().isFrenchCards()) {
 			lang = "_FR";
 			}
 		JassImage ji = new JassImage();
-		this.trumpfColor = ji.getTrumpfImage(trumpf+lang);
+		this.trumpfColor.setImage(ji.getTrumpfImage(trumpf+lang).getImage());
 
+		
 	    
 	}
 	
