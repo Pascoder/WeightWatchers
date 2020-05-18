@@ -332,7 +332,7 @@ public static void loadPlayersonGame(Player [] playersOnGame, String client, Str
 				clientView.getGameView().p3name.setText(playersOnGame[3].getName());
 				
 				if(trumpf.equals("null")) {
-				clientView.getGameView().setTrumpf("Trumpf: Bitte Trumpf mit klick auf Karte W�hlen");
+				clientView.getGameView().setTrumpf("Trumpf: Bitte Trumpf mit Klick auf Karte waehlen");
 				clientView.getGameView().getTrumpf().setTextFill(Color.web("red"));
 				} 
 				}
