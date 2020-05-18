@@ -140,6 +140,7 @@ public class ClientModel {
 	    logger.info("Game Update erhalten: " + "\n" + gu_msg);
 	    ClientController.loadPlayersonGame(findPlayersOnGame(gu_msg.getPlayers()), gu_msg.getClient(),
 		    gu_msg.getTrumpf(), gu_msg.getTeamScore());
+	    	//Wenn keine Karten auf dem Tisch liegen
 			if(gu_msg.getCardsontable().length()<4) {
 				break;
 		 	}
