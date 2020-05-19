@@ -429,16 +429,15 @@ public class ClientController {
 
 			@Override
 			public void run() {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
+				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Spiel vorbei!");
-				alert.setContentText("Winnerteam: " + winnerteamid + "/n" + "Neues Spiel?");
-				alert.showAndWait();
+				alert.setContentText("Winnerteam: " + winnerteamid);
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
-					System.out.println("User möchte spielen");
-				} else {
-					System.out.println("Nicht spielen");
-				}
+					clientModel.sayExitGame();
+					clientView.switchView(2);
+					alert.close();
+				} 
 			}
 		});
 	}
@@ -454,7 +453,7 @@ public class ClientController {
 				alert.setTitle("Stapel fertig!");
 				alert.setContentText("Stapelsieger: Team " + winnerTeam + "mit " + points + " Punkten!" + "/n"
 						+ "Weiterspielen? -> OK / Beenden? -> Cancel");
-//	alert.showAndWait();
+
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
 					clientModel.sayNextStaple();
@@ -463,6 +462,7 @@ public class ClientController {
 
 				} else if (result.get() == ButtonType.CANCEL) {
 					clientModel.sayExitGame();
+					clientView.switchView(2);
 
 					alert.close();
 				}
