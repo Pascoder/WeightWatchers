@@ -46,7 +46,7 @@ public class Game_View extends BorderPane{
     protected ImageView imageverdeckt = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt2 = new ImageView(imgverdeckt);
     protected ImageView imageverdeckt3 = new ImageView(imgverdeckt);
-     protected ImageView cardOnTable1 = new ImageView();   
+    protected ImageView cardOnTable1 = new ImageView();   
     protected ImageView cardOnTable2 = new ImageView();
     protected ImageView cardOnTable3 = new ImageView();
     protected ImageView cardOnTable4 = new ImageView();
@@ -229,11 +229,11 @@ public class Game_View extends BorderPane{
 		this.player4InfoBox.setId("player4InfoBox");
 		this.p4_name = new Label("--");
 		this.onTurn = new Label("-");	
-		this.weis = new Button ("Weis");
+		
 		
 	
 		
-		this.player4InfoBox.getChildren().addAll(p4_name, onTurn, weis);
+		this.player4InfoBox.getChildren().addAll(p4_name, onTurn);
 		this.buttomBox.getChildren().addAll(this.player4InfoBox, this.player4CardBox);
 		
 		this.setBottom(buttomBox);
