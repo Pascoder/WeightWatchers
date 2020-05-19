@@ -79,7 +79,7 @@
 	
 
 #gamePlayerCards:hover{
-	-fx-translate-x: +20;
+	-fx-translate-y: +20;
 }
 
 
