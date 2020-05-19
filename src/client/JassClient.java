@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 public class JassClient extends Application {
     private static JassClient mainProgram; // singleton
 	private ClientModel clientModel;
-	private static ClientView clientView;
-	private static ClientController clientController;
+	private ClientView clientView;
+	private ClientController clientController;
 	private static ServiceLocator_JC serviceLocator;
 
     // resources, after initializationff 
@@ -38,9 +38,9 @@ public class JassClient extends Application {
     public void start(Stage stage) {
         // Create and display the splash screen and model
     	initialize();
-		clientModel = new ClientModel();
-		JassClient.clientView = new ClientView(stage, clientModel);
-		JassClient.clientController = new ClientController(clientModel, clientView);
+		this.clientModel = new ClientModel();
+		this.clientView = new ClientView(stage, clientModel);
+		this.clientController = new ClientController(clientModel, clientView);
 		//nicht beachten, zu Testzwecken
 //		this.tc = new Test_Controller(clientModel, tv);
 		//Test fertig
@@ -101,14 +101,14 @@ public class JassClient extends Application {
         return mainProgram;
     }
     
-    public static  void changeLocales() {
-	clientView.stop();
-	initialize();
-	Stage stage = new Stage();
-	ClientModel clientModel = new ClientModel();
-	clientView = new ClientView(stage, clientModel);
-	clientController = new ClientController(clientModel, clientView);
-	clientView.start();
-
-    }
+//    public static  void changeLocales() {
+//	clientView.stop();
+//	initialize();
+//	Stage stage = new Stage();
+//	ClientModel clientModel = new ClientModel();
+//	clientView = new ClientView(stage, clientModel);
+//	clientController = new ClientController(clientModel, clientView);
+//	clientView.start();
+//
+//    }
 }

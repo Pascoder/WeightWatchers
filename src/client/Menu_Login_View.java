@@ -51,7 +51,7 @@ public class Menu_Login_View extends Menu_Basic_View {
 					sl.getConfiguration().setLocalOption("Language", locale.getLanguage());
 					sl.setTranslator(new Translator_JC(locale.getLanguage()));
 					sl.getConfiguration().save();
-					JassClient.changeLocales();
+//					JassClient.changeLocales();
 				}
 
 			});

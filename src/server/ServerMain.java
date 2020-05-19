@@ -10,8 +10,6 @@ import javafx.stage.Stage;
 public class ServerMain {
 	private static int client_id = 0;
 	private final static int port = 9998;
-	
-	private static Game game;
 	private static ServerModel model;
 	
 	//Diese Klasse wartet bis sich ein Client verbindet um dann einen Socket abzuspalten und diesen 

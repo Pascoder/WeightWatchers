@@ -182,7 +182,7 @@ public class JassImage {
 	if(imageView.equals("C_FR")){img=C_FR;}
 	if(imageView.equals("C_CH")){img=C_CH;}
 	if(imageView.equals("D_FR")){img=D_FR;}
-	if(imageView.equals("D_CH")){img=C_CH;}
+	if(imageView.equals("D_CH")){img=D_CH;}
 	if(imageView.equals("H_FR")){img=H_FR;}
 	if(imageView.equals("H_CH")){img=H_CH;}
 	if(imageView.equals("S_FR")){img=S_FR;}
