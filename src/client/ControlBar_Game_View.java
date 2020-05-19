@@ -15,12 +15,17 @@ public class ControlBar_Game_View extends ControlBar_Basic_View{
 	this.sl = ServiceLocator_JC.getServiceLocator();
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	
-	this.btnLeaveGame = new Button(t.getString("game.btnLeaveGame")); 
+	this.btnLeaveGame = new Button(); 
 	btnLeaveGame.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
 	
 	toolLeft.getItems().addAll(btnLeaveGame);
 	
 	
     }
+    protected void setTexts() {
+   	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
+   
+   	this.btnLeaveGame.setText(t.getString("program.menu.language"));
+       }
 
 }

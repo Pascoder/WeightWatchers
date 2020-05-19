@@ -1,6 +1,7 @@
 package client;
 
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -117,6 +118,16 @@ public class ClientView {
 	public void setGameStage(Stage gameStage) {
 		this.gameStage = gameStage;
 	}
+
+	public void changeLanguage() {
+	    loginView.setTexts();
+	    lobbyView.setTexts();
+	    gameView.setTexts();
+	    
+	}
+	    
+	    
+	
 
 	
 		   

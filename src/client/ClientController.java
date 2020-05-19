@@ -107,8 +107,8 @@ public class ClientController {
 			}
 		});
 
-		gameview.menuGame.menuItem21.setOnAction(event -> sl.getConfiguration().setFrenchCards(false));
-		gameview.menuGame.menuItem22.setOnAction(event -> sl.getConfiguration().setFrenchCards(true));
+		gameview.menuGame.gameMenuItem21.setOnAction(event -> sl.getConfiguration().setFrenchCards(false));
+		gameview.menuGame.gameMenuItem22.setOnAction(event -> sl.getConfiguration().setFrenchCards(true));
 
 		// GAME
 		clientView.getGameStage().setOnCloseRequest(c -> {
@@ -497,5 +497,13 @@ public class ClientController {
 		});
 
 	}
+	
+	
+
+	public static void changeLanguage() {
+    
+	   clientView.changeLanguage();
+	    
+		}
 
 }

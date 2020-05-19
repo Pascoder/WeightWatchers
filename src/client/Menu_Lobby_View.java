@@ -13,25 +13,33 @@ import javafx.scene.control.MenuItem;
 public class Menu_Lobby_View extends Menu_Basic_View {
     
     
-    Menu menu1;
-    Menu menu2;
+    Menu lobbyMenu2;
+    Menu lobbyMenu3;
 
    
     
-    // MenuItem menu1
-    MenuItem menuItem11 = new MenuItem(t.getString("game.lblMenuBarV"));
+    // MenuItem menu2
+    MenuItem lobbyMenuItem21 = new MenuItem();
     
     public Menu_Lobby_View() {
-	super();
+	super();	
+	lobbyMenu2 = new Menu();
+
+	lobbyMenu2.getItems().add(lobbyMenuItem21);
 	
-	menu1 = new Menu(t.getString("game.lblMenuBar"));
-
-	menu1.getItems().add(menuItem11);
-
-	this.getMenus().add(menu1);
+	this.getMenus().add(lobbyMenu2);
 
 	this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
+    }
+    
+    
+    protected void setTexts() {
+	setTextsBasic();
+	
+	this.lobbyMenu2.setText(t.getString("game.lblMenuBar"));
+	
+   	
     }
 
 

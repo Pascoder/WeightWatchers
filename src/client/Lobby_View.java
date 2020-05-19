@@ -54,7 +54,7 @@ public class Lobby_View{
 		
 		
 		// LeftTop: Actual Games	
-		lblGames = new Label(t.getString("lobby.lblGame"));
+		lblGames = new Label();
 		//gamesList = new TextArea();
 		
 		
@@ -65,7 +65,7 @@ public class Lobby_View{
 		//HBox scrollBox = new HBox();
 		//scrollBox.getChildren().add(gamesList);
 		
-		this.createBt = new Button(t.getString("lobby.btnCreate"));
+		this.createBt = new Button();
 		
 		this.txtGameName = new TextField();
 		VBox gamesBox = new VBox();
@@ -78,7 +78,7 @@ public class Lobby_View{
 
 
 		// LeftBottom: Chatroom
-		lblChat = new Label(t.getString("lobby.blbChat"));
+		lblChat = new Label();
 		chatList = new TextArea();
 		chatList.setEditable(false);
 		//chatList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -93,11 +93,11 @@ public class Lobby_View{
 		controls.setId("controls");
 		VBox footerBox = new VBox(); 
 		HBox labelBox = new HBox();
-		lblChatOptions = new Label(t.getString("lobby.lblChatOptions"));
+		lblChatOptions = new Label();
 		labelBox.getChildren().addAll(lblChatOptions);
 		footerBox.getChildren().addAll(labelBox, controls);
 		
-		this.leaveLobbyBt = new Button(t.getString("lobby.btnLeaveLobby"));
+		this.leaveLobbyBt = new Button();
 		
 		
 		VBox chatBox = new VBox();
@@ -111,7 +111,7 @@ public class Lobby_View{
 	    leftBox.setSpacing(10);
 		
 		// RightTop: Player online
-		lblPlayerOn = new Label(t.getString("lobby.blbPlayerOn"));
+		lblPlayerOn = new Label();
 		playerOnList = new ListView<String>();
 		//playerOnList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
@@ -127,7 +127,7 @@ public class Lobby_View{
 		
 		//RightBottom 
 		
-		lblSelectedGame = new Label(t.getString("lobby.blbSelectedGame"));
+		lblSelectedGame = new Label();
 		selectedGameList = new ListView<String>();
 		selectedGameList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
@@ -136,7 +136,7 @@ public class Lobby_View{
 		
 		scrollBox4.getChildren().add(selectedGameList);
 		
-		this.leaveBt = new Button(t.getString("lobby.btnLeaveGame"));
+		this.leaveBt = new Button();
 		
 				
 		VBox selectedGameBox = new VBox();
@@ -161,13 +161,33 @@ public class Lobby_View{
 		root.setLeft(leftBox);
 		root.setRight(rightBox);
 		
+		setTexts();
 		
 		Scene scene = new Scene(root, 1050, 650);
 		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		stage.setScene(scene);
-		this.stage.setTitle("Lobby Jass Game");
+		
 	    
     }
+    
+    protected void setTexts() {
+   	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
+   	this.stage.setTitle(t.getString("lobby.windowTitle"));
+   	this.lobbyMenu.setTexts();
+   	this.lblGames.setText(t.getString("lobby.lblGame"));
+   	this.stage.setTitle(t.getString("login.windowTitle"));
+   	this.createBt.setText(t.getString("lobby.btnCreate"));
+   	this.lblChat.setText(t.getString("lobby.blbChat"));
+   	this.lblChatOptions.setText(t.getString("lobby.lblChatOptions"));
+   	this.leaveLobbyBt.setText(t.getString("lobby.btnLeaveLobby"));
+   	this.lblPlayerOn.setText(t.getString("lobby.blbPlayerOn"));
+   	this.lblSelectedGame.setText(t.getString("lobby.blbSelectedGame"));
+   	this.leaveBt.setText(t.getString("lobby.btnLeaveGame"));
+       }
+    
+    
+    
+    
 
     public void setGames(ObservableList<String> games) {
   

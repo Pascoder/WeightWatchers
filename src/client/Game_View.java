@@ -27,13 +27,13 @@ public class Game_View extends BorderPane{
     private Translator_JC t;
     private ServiceLocator_JC sl;
     //Layout
-    protected HBox menu, player4InfoBox, ourPointsBox, opponentsPointsBox, roundBox, trumpfBox;
+    protected HBox menu, player4InfoBox, ourPointsBox, opponentsPointsBox, trumpfBox;
     protected TilePane player4CardBox;
     protected GridPane tableBox, teppichBox;
     protected VBox rightBox, buttomBox,player1, player2, player3, pointsBox, P13, P24;
     protected Menu_Game_View menuGame;
     //Labels,Buttons...
-    protected Label round, roundNo, p1_name,p1name,p2_name,p2name,p3_name,p3name,p4_name,p4name,trumpf, verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn, selectedT, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
+    protected Label p1_name,p1name,p2_name,p2name,p3_name,p3name,p4_name,p4name,trumpf, verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn, selectedT, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
     protected Button weis, nextRound;
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     protected ArrayList <ToggleButton> playerButtons;
@@ -244,7 +244,7 @@ public class Game_View extends BorderPane{
 		
 		//Unsere Punkte
 		this.ourPointsBox = new HBox();
-		this.ourPointsLabel = new Label(t.getString("game.lblPoints"));
+		this.ourPointsLabel = new Label();
 		this.ourPointsBox.setId("ourPointsBox");
 		this.ourPlbl = new Label("--"); // 
 		this.ourPointsBox.getChildren().addAll(this.ourPointsLabel, this.ourPlbl);
@@ -259,7 +259,7 @@ public class Game_View extends BorderPane{
 		
 		//Punkte Gegner
 		this.opponentsPointsBox = new HBox();
-		this.opponentsPointsLabel = new Label(t.getString("game.lblOpponentPoints"));
+		this.opponentsPointsLabel = new Label();
 		this.oppPlbl = new Label("0");
 		this.opponentsPointsBox.getChildren().addAll(this.opponentsPointsLabel,this.oppPlbl);
 		
@@ -270,15 +270,10 @@ public class Game_View extends BorderPane{
 		this.P24.getChildren().addAll(p2name, p4name);
 		//this.P24.setSpacing(5);
 		
-		//Round Displaying
-		this.roundBox = new HBox();
-		this.round = new Label(t.getString("game.lblRound")); 
-		this.roundNo = new Label("1");
-		this.roundBox.getChildren().addAll(round, roundNo);
 				
 		// Trumpf Displaying
 		this.trumpfBox = new HBox();
-		this.trumpf = new Label(t.getString("game.lblTrumpf"));
+		this.trumpf = new Label();
 		this.selectedT = new Label("-");
 		this.trumpfBox.getChildren().addAll(this.trumpf, this.trumpfColor);
 		
@@ -289,9 +284,10 @@ public class Game_View extends BorderPane{
 		//this.pointsBox.setSpacing(30);
 		this.pointsBox.setId("gamePointsBox");
 		
-		this.rightBox.getChildren().addAll(roundBox, trumpfBox, pointsBox);
+		this.rightBox.getChildren().addAll(trumpfBox, pointsBox);
 		this.setRight(rightBox);
 		
+		setTexts();	
 	
 	Scene scene = new Scene(this);
 	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -299,8 +295,18 @@ public class Game_View extends BorderPane{
 	stage.setHeight(900);
 	stage.setScene(scene);
 	stage.setResizable(true);
-	stage.setTitle("Game");
     }
+    
+    public void setTexts() {
+	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
+	this.stage.setTitle(t.getString("game.windowTitle"));
+	    this.menuGame.setTexts();
+	    this.ourPointsLabel.setText(t.getString("game.lblPoints"));
+	    this.opponentsPointsLabel.setText(t.getString("game.lblOpponentPoints"));
+	    this.trumpf.setText(t.getString("game.lblTrumpf"));
+	    
+	}
+
     
     public void setGraphic(int num, ImageView img, boolean b) {
     	switch(num) {
@@ -470,7 +476,8 @@ public void placeCardtoTable(int num, Image img) {
 		this.oppPlbl.setText(points);
 		
 	}
-    
+
+	
    
     
 	

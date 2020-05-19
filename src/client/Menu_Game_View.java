@@ -15,41 +15,53 @@ import javafx.scene.control.ToggleGroup;
 
 public class Menu_Game_View extends Menu_Basic_View {
     
-    
-    Menu menu1;
-    Menu menu2;
+    Menu gameMenu2;
+    Menu gameMenu3;
+   
 
    ToggleGroup tg1;
     
     // MenuItem menu1
-    RadioMenuItem menuItem21, menuItem22;
+    RadioMenuItem gameMenuItem21, gameMenuItem22;
 
     public Menu_Game_View() {
 	super();
+	gameMenu3 = new Menu();
+	gameMenu2 = new Menu();
 	
-	
-	 menuItem21 = new RadioMenuItem(t.getString("gameMenu.CH"));
-	 menuItem22 = new RadioMenuItem(t.getString("gameMenu.FR"));
+	 gameMenuItem21 = new RadioMenuItem();
+	 gameMenuItem22 = new RadioMenuItem();
 	    
 	
-	menu1 = new Menu(t.getString("program.menu.file"));
-	menu2 = new Menu(t.getString("gameMenu.Cards"));
+	
 
-	menu2.getItems().addAll(menuItem21, menuItem22);
+	gameMenu3.getItems().addAll(gameMenuItem21, gameMenuItem22);
 
 	tg1 = new ToggleGroup();
-	tg1.getToggles().addAll(menuItem21, menuItem22);
+	tg1.getToggles().addAll(gameMenuItem21, gameMenuItem22);
 	
 	if(sl.getConfiguration().isFrenchCards())
-	    menuItem22.setSelected(true);
+	    gameMenuItem22.setSelected(true);
 	else
-	    menuItem21.setSelected(true);
+	    gameMenuItem21.setSelected(true);
 	
-	this.getMenus().addAll(menu1, menu2);
+	//setTexts();
+	
+	this.getMenus().addAll(gameMenu2, gameMenu3);
 
 	this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
     }
-
+ 
+   
+    protected void setTexts() {
+	setTextsBasic();
+	
+	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
+ 	this.gameMenu3.setText(t.getString("program.menu.file"));
+  	this.gameMenuItem21.setText(t.getString("gameMenu.CH"));
+	 this.gameMenuItem22.setText(t.getString("gameMenu.FR"));
+   	
+    }
 
 }
