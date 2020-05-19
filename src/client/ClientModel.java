@@ -162,8 +162,15 @@ public class ClientModel {
 			msg_nr.send(socket);
 		    }
 		    int i = 0;
-			while (i < 50000) {
+			/*while (i < 100000) {
+			
 			    i++;
+			}*/
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		   ClientController.emptyTable();
 
