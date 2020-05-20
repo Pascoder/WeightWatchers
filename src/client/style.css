@@ -20,7 +20,7 @@
 	
 }
 
-#LoginPane.label {
+.label#loginPane {
     -fx-font-size: 36px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
@@ -53,6 +53,7 @@
 	-fx-padding: 4.0px;
     -fx-max-width: 60;
     -fx-max-height: 80;
+    -fx-setPosition: center;
 }
 
 #player4InfoBox{
@@ -79,9 +80,9 @@
 
 #gamePointsBox{
 	-fx-background-image: url("Schiefertafel.jpg");
-	-fx-background-position: left;
+	-fx-background-position: top;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: 187, 372;
 	-fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
@@ -98,8 +99,8 @@
 
 	
 
-#gamePlayerCards:hover{
-	-fx-translate-y: +20;
+.gamePlayerCards:hover{
+	-fx-translate-y: -20;
 }
 
 
@@ -112,6 +113,7 @@
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
+
 	/*-fx-Spacing: 30px;
     -fx-padding: 10.0px;
     -fx-border-width: 2.0px;*/

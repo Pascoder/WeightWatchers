@@ -214,11 +214,11 @@ public class ClientController {
 	}
 
 //Login (Info Label)
-	public static void updateLoginInfoLabel(String info) {
+	public static void updateLoginInfoLabel(String msg) {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				clientView.getLoginView().getRegisterLabel().setText(info);
+				clientView.getLoginView().getRegisterLabel().setText(t.getString(msg));
 			}
 		});
 	}
@@ -512,7 +512,7 @@ public class ClientController {
 	
 
 	public static void changeLanguage() {
-    
+	    t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	   clientView.changeLanguage();
 	    
 		}

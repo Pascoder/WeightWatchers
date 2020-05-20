@@ -3,10 +3,14 @@ package client;
 import java.util.ArrayList;
 
 import javafx.application.Platform;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -14,8 +18,10 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -29,7 +35,8 @@ public class Game_View extends BorderPane{
     //Layout
     protected HBox menu, player4InfoBox, ourPointsBox, opponentsPointsBox, trumpfBox;
     protected TilePane player4CardBox;
-    protected GridPane tableBox, teppichBox;
+    BorderPane tableBox;
+    protected GridPane teppichBox;
     protected VBox rightBox, buttomBox,player1, player2, player3, pointsBox, P13, P24;
     protected Menu_Game_View menuGame;
     protected ControlBar_Game_View controls;
@@ -76,7 +83,7 @@ public class Game_View extends BorderPane{
 		//Center: tableBox; Players 1-3 % teppichBox
 		playerButtons = new ArrayList<ToggleButton>();
 		
-		this.tableBox = new GridPane();
+		this.tableBox = new BorderPane();
 		tableBox.setId("gameTableBox");
 		//this.tableBox.setGridLinesVisible(true);
 		this.setCenter(tableBox);
@@ -95,14 +102,18 @@ public class Game_View extends BorderPane{
 			this.imageverdeckt.setFitHeight(140);
 			this.imageverdeckt.setFitWidth(100);
 			player1.getChildren().add(imageverdeckt);
-			this.tableBox.add(player1, 2, 1);
+			this.tableBox.setRight(player1);
+			this.player1.setAlignment(Pos.CENTER);
 			
 			//teppichBox
 			this.teppichBox = new GridPane();
-			//this.teppichBox.setGridLinesVisible(true);
+			this.teppichBox.setGridLinesVisible(true);
 			this.teppichBox.setId("gameTeppichBox");
+			this.teppichBox.getColumnConstraints().add(new ColumnConstraints(100));
+			this.teppichBox.getRowConstraints().add(new RowConstraints(105));
 
-			this.teppichBox.setPadding(new Insets(10,60,60,60));
+			//this.teppichBox.setPadding(new Insets(10,60,60,60));
+			this.teppichBox.setAlignment(Pos.CENTER);
 			this.teppichBox.add(cardOnTable1, 1, 2);
 			this.teppichBox.add(cardOnTable2, 2, 1);
 			this.teppichBox.add(cardOnTable3, 1, 0);
@@ -112,17 +123,17 @@ public class Game_View extends BorderPane{
 			this.cardOnTable3.setId("gameCardsOnTable");
 			this.cardOnTable4.setId("gameCardsOnTable");
 			
-			cardOnTable1.setFitHeight(80);
-			cardOnTable1.setFitWidth(60);
-			cardOnTable2.setFitHeight(80);
-			cardOnTable2.setFitWidth(60);
-			cardOnTable3.setFitHeight(80);
-			cardOnTable3.setFitWidth(60);
-			cardOnTable4.setFitHeight(80);
-			cardOnTable4.setFitWidth(60);
+			cardOnTable1.setFitHeight(100);
+			cardOnTable1.setFitWidth(80);
+			cardOnTable2.setFitHeight(100);
+			cardOnTable2.setFitWidth(80);
+			cardOnTable3.setFitHeight(100);
+			cardOnTable3.setFitWidth(80);
+			cardOnTable4.setFitHeight(100);
+			cardOnTable4.setFitWidth(80);
 			this.teppichBox.setId("gameTeppichBox");
 			
-			this.tableBox.add(teppichBox, 1, 1);
+			this.tableBox.setCenter(teppichBox);
 			
 
 			//Player2 oben 
@@ -131,7 +142,8 @@ public class Game_View extends BorderPane{
 			this.player2.setPadding(new Insets(10,60,60,60));
 			this.p2_name = new Label("--");
 			this.player2.getChildren().add(p2_name);
-			this.tableBox.add(player2, 1, 0);
+			this.tableBox.setTop(player2);
+			this.player2.setAlignment(Pos.CENTER);
 			
 			
 			this.imageverdeckt2.setFitHeight(140);
@@ -145,7 +157,8 @@ public class Game_View extends BorderPane{
 			this.player3.setPadding(new Insets(10,60,60,60));
 			this.p3_name = new Label("--");
 			this.player3.getChildren().add(p3_name);
-			this.tableBox.add(player3, 0, 1);
+			this.tableBox.setLeft(player3);
+			this.player3.setAlignment(Pos.CENTER);
 			
 			this.imageverdeckt3.setFitHeight(140);
 			this.imageverdeckt3.setFitWidth(100);
@@ -248,6 +261,7 @@ public class Game_View extends BorderPane{
 		
 		//Unsere Punkte
 		this.ourPointsBox = new HBox();
+		this.ourPointsBox.setId("gamePointsBox");
 		this.ourPointsLabel = new Label();
 		this.ourPointsBox.setId("ourPointsBox");
 		this.ourPlbl = new Label("--"); // 

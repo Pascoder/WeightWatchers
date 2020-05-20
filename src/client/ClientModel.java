@@ -108,19 +108,19 @@ public class ClientModel {
 	    msgOut = new Message_LOGINNOTOK();
 	    msgOut.setClient(this.clientName);
 	    logger.info(msgIn.getClient() + " Login Daten nicht korrekt");
-	    ClientController.updateLoginInfoLabel("Login Daten nicht korrekt"); // Translator setzen
+	    ClientController.updateLoginInfoLabel("login.alertPasswordWrong");
 	    break;
 
 	case CREATEUSER:
 	    msgOut = new Message_CREATEUSER();
 	    logger.info("User erfolgreich registriert");
-	    ClientController.updateLoginInfoLabel("User erfolgreich registriert");
+	    ClientController.updateLoginInfoLabel("login.alertLoginCreated");
 	    break;
 
 	case USERNAMETAKEN:
 	    msgOut = new Message_USERNAMETAKEN();
 	    logger.info("Username vergeben");
-	    ClientController.updateLoginInfoLabel("Der Username ist bereits vergeben");
+	    ClientController.updateLoginInfoLabel("login.alertLoginFail");
 	    break;
 
 	case LOBBYUPDATE:
