@@ -47,6 +47,7 @@ public class Login_View extends BorderPane {
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	
 	this.centerPane = new GridPane();
+	this.centerPane.setId("LoginPane");
 	this.lblTitle = new Label();
 	this.centerPane.add(this.lblTitle, 3, 0);
 
