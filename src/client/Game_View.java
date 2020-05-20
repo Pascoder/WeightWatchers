@@ -32,6 +32,7 @@ public class Game_View extends BorderPane{
     protected GridPane tableBox, teppichBox;
     protected VBox rightBox, buttomBox,player1, player2, player3, pointsBox, P13, P24;
     protected Menu_Game_View menuGame;
+    protected ControlBar_Game_View controls;
     //Labels,Buttons...
     protected Label p1_name,p1name,p2_name,p2name,p3_name,p3name,p4_name,p4name,trumpf, verdecktekarten1,verdecktekarten2,verdecktekarten3,onTurn, selectedT, ourPointsLabel, ourPlbl, opponentsPointsLabel, oppPlbl;
     protected Button weis, nextRound;
@@ -230,11 +231,14 @@ public class Game_View extends BorderPane{
 		this.p4_name = new Label("--");
 		this.onTurn = new Label("-");	
 		
-		
+		this.controls = new ControlBar_Game_View();
 	
 		
 		this.player4InfoBox.getChildren().addAll(p4_name, onTurn);
-		this.buttomBox.getChildren().addAll(this.player4InfoBox, this.player4CardBox);
+		this.buttomBox.getChildren().addAll(this.player4InfoBox, this.player4CardBox, this.controls);
+		
+		
+		
 		
 		this.setBottom(buttomBox);
 		

@@ -23,9 +23,9 @@ public class ControlBar_Game_View extends ControlBar_Basic_View{
 	
     }
     protected void setTexts() {
-   	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
+   	setTextsBasic();
    
-   	this.btnLeaveGame.setText(t.getString("program.menu.language"));
+   	this.btnLeaveGame.setText(t.getString("game.btnLeaveGame"));
        }
 
 }

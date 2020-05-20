@@ -11,8 +11,15 @@
     -fx-padding: 5;
 }
 
-.Login_View {
+#Login_View {
 	-fx-background-color: red;
+}
+#controlBar{
+	-fx-background-color: lightblue;
+}
+
+#menuBar{
+	-fx-background-color: lightblue;
 }
 
 #Game_View{

@@ -56,30 +56,41 @@ public class ClientController {
 			view.getPasswordField().clear();
 			view.getUsernameField().clear();
 		});
+		
+		view.getControls().getQuitButton().setOnAction(c -> {
+			clientView.getLobbyStage().hide();
+			Platform.exit();
+		});
 
 		// LOBBY
 		lobbyview.getCreateGameButton().setOnAction((e) -> {
 			clientModel.sayCreateGame(lobbyview.getTextField().getText());
 			lobbyview.getTextField().clear();
 		});
-		lobbyview.getLobbyControllBar().btnSend.disableProperty()
-				.bind(lobbyview.getLobbyControllBar().getTextField().textProperty().isEmpty());
+		lobbyview.getSendButton().disableProperty()
+				.bind(lobbyview.getTextChat().textProperty().isEmpty());
 		lobbyview.getLeaveGameButton().disableProperty()
 				.bind(lobbyview.selectedGameList.getSelectionModel().selectedItemProperty().isNull());
 		clientView.getLobbyStage().setOnCloseRequest(c -> {
 			clientModel.sayGoodBye("Lobby1");
 		});
 
-		lobbyview.getLobbyControllBar().getSendButton().setOnAction(c -> {
-			String message = lobbyview.getLobbyControllBar().getTextField().getText();
-			lobbyview.getLobbyControllBar().getTextField().clear();
+		lobbyview.getSendButton().setOnAction(c -> {
+			String message = lobbyview.getTextChat().getText();
+			lobbyview.getTextChat().clear();
 
 			clientModel.saynewChat(message);
 		});
 
-		lobbyview.getLeaveLobbyButton().setOnAction(c -> {
+		lobbyview.getLobbyControllBar().getLeaveLobbyButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby1");
 			clientView.getLobbyStage().hide();
+			clientView.switchView(1);
+		});
+		lobbyview.getLobbyControllBar().getQuitButton().setOnAction(c -> {
+			clientModel.sayGoodBye("Lobby1");
+			clientView.getLobbyStage().hide();
+			Platform.exit();
 		});
 
 		lobbyview.getLeaveGameButton().setOnAction(c -> {

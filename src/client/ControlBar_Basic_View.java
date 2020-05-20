@@ -1,7 +1,5 @@
 package client;
 
-import client.ServiceLocator_JC;
-import client.Translator_JC;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
@@ -20,16 +18,13 @@ public class ControlBar_Basic_View extends HBox {
 
     final int SPACING = 2;
 
-    public Button btnQuit;
+    private Button btnQuit;
 
     protected ControlBar_Basic_View() {
 	super();
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
-	btnQuit = new Button(t.getString("basic.btnQuit"));
-
-	this.getStyleClass().add("controlArea");
-	this.setId("controlArea");
-
+	btnQuit = new Button();
+	
 	this.setSpacing(SPACING);
 	HBox.setHgrow(spacer, Priority.ALWAYS);
 
@@ -38,10 +33,25 @@ public class ControlBar_Basic_View extends HBox {
 	toolLeft = new ToolBar();
 	toolRight = new ToolBar();
 
-//	toolRight.getItems().add(btnQuit);
+	toolRight.getItems().add(btnQuit);
 
-	this.getChildren().addAll(toolLeft, spacer);
+	this.getChildren().addAll(toolLeft, spacer, toolRight);
+	this.toolLeft.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+	this.toolLeft.setId("controlBar");
+	this.toolRight.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+	this.toolRight.setId("controlBar");
+	this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+	this.setId("controlBar");
 
     }
+    protected void setTextsBasic() {
+	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
+	btnQuit.setText(t.getString("basic.btnQuit"));
+    }
+    
+    public Button getQuitButton() {
+   	return btnQuit;
+       }
+       
 
 }

@@ -1,37 +1,35 @@
 package client;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+
 
 public class ControlBar_Lobby_View extends ControlBar_Basic_View{
     
-    public Button btnCancel;
-    public Button btnSend;
-    public TextField txtMsg;
-    
-    public Button btnLeave;
+   
+    private Button btnLeave;
     
     
     public ControlBar_Lobby_View() {
 	super();
 	
-//	btnCancel = new Button(t.getString("start.btnCancel"));
-	btnSend = new Button(t.getString("lobby.btnSend"));
-	txtMsg = new TextField();
-//	btnLeave = new Button(t.getString("lobby.btnLeave"));
-//	btnCancel.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
+
+	btnLeave = new Button(t.getString("lobby.btnLeave"));
+
 	
-	toolLeft.getItems().addAll(txtMsg, btnSend);
+	toolLeft.getItems().addAll(btnLeave);
 	
 	
     }
     
-    public Button getSendButton() {
-    	return this.btnSend;
+    protected void setTexts() {
+   	setTextsBasic();
+   	
+   	this.btnLeave.setText(t.getString("lobby.btnLeaveLobby"));
+
+    }
+    public Button getLeaveLobbyButton() {
+	return btnLeave;
     }
     
-    public TextField getTextField() {
-    	return this.txtMsg;
-    }
 
 }

@@ -34,7 +34,9 @@ public class Login_View extends BorderPane {
     private ClientModel model;
     private Label registerLabel, usernameLabel, passwordLabel, lblTitle;
     private Menu_Login_View MenuLgVi;
-    private Image image;
+    private ControlBar_Login_View controls;
+    
+
     private Translator_JC t;
     private ServiceLocator_JC sl;
 
@@ -45,7 +47,7 @@ public class Login_View extends BorderPane {
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	
 	this.centerPane = new GridPane();
-	this.lblTitle = new Label(t.getString("login.lblTitle"));
+	this.lblTitle = new Label();
 	this.centerPane.add(this.lblTitle, 3, 0);
 
 	this.MenuLgVi = new Menu_Login_View();
@@ -68,21 +70,18 @@ public class Login_View extends BorderPane {
 	this.centerPane.add(registerLabel, 3, 11);
 
 	this.registerButton = new Button();
-//		this.registerButton.setId("Registerbutton"); // Wenn ein button anders aussehen soll --> CSS Stylesheet schauen
 	this.centerPane.add(registerButton, 3, 12);
 
-//		_olmo: Auskommentiert, weil Fehler beim Laden Image
-//		this.image = new Image(this.getClass().getClassLoader().getResourceAsStream("client/"+ "Schweizer_Jasskarten.jpg"));
-
-	ImageView imageView = new ImageView(image);
-	imageView.setFitHeight(250);
-	imageView.setFitWidth(250);
-	this.centerPane.add(imageView, 3, 15);
 
 	this.centerPane.setAlignment(Pos.CENTER);
 	this.centerPane.setHgap(20);
 	this.centerPane.setVgap(10);
 	this.setCenter(centerPane);
+	
+	this.controls = new ControlBar_Login_View();
+	this.setBottom(controls);
+	
+	
 	setTexts();
 
 	Scene scene = new Scene(this, 650, 600);
@@ -96,6 +95,7 @@ public class Login_View extends BorderPane {
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	this.stage.setTitle(t.getString("login.windowTitle"));
 	this.MenuLgVi.setTexts();
+	this.controls.setTexts();
 	System.out.println("updateLabels in LoginView auferufen");
 	this.lblTitle.setText(t.getString("login.lblTitle"));
 	this.usernameLabel.setText(t.getString("login.lblUsername"));
@@ -105,6 +105,10 @@ public class Login_View extends BorderPane {
 	this.registerButton.setText(t.getString("login.btnRegister"));
     }
 
+    public ControlBar_Login_View getControls() {
+        return controls;
+    }
+    
     public TextField getUsernameField() {
 	return usernameField;
     }
