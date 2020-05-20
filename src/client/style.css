@@ -20,7 +20,7 @@
 	
 }
 
-#LoginPane#label {
+#LoginPane.label {
     -fx-font-size: 36px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
@@ -86,8 +86,8 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-text-padding: 10;
-    -fx-with: 70;
-    -fx-hight: 50;
+    -fx-width: 70;
+    -fx-height: 50;
 }
 
 #gameTableBox{
@@ -108,7 +108,7 @@
 }
 
 #gameTeppichBox{
-	-fx-background-image: url("teppich.jpg");
+	-fx-background-image: url("teppich.png");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
