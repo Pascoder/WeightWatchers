@@ -1,5 +1,6 @@
 package client;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Logger;
 import client.Translator_JC;
@@ -18,8 +19,8 @@ public class Menu_Basic_View extends MenuBar {
     ServiceLocator_JC sl;
     Translator_JC t;
     Logger logger;
-    Menu menu1, menu6;
-    MenuItem infoMenu;
+    Menu menu1, menu6, infoMenu; 
+    MenuItem infoInhalt;
 
     ToggleGroup tg1;
 
@@ -69,8 +70,10 @@ public class Menu_Basic_View extends MenuBar {
 	icon1.setFitWidth(40);
 	menu1.setGraphic(icon1);
 
-	infoMenu = new MenuItem();
+	infoMenu = new Menu();
+	infoInhalt = new MenuItem();
 	menu6.getItems().add(infoMenu);
+	infoMenu.getItems().add(infoInhalt);
 	
 	this.getMenus().addAll(menu1, menu6);
 
@@ -81,6 +84,8 @@ public class Menu_Basic_View extends MenuBar {
 	menu1.setText(t.getString("program.menu.language"));
 	menu6.setText(t.getString("menu.Info"));
 	infoMenu.setText(t.getString("menu.Info1"));
+	infoInhalt.setText(t.getString("menu.InfoInhalt"));
+
     }
 
 }

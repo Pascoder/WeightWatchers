@@ -135,11 +135,7 @@
 	
 
 .gameRightBox{	
-	-fx-font-size: 24pt;
-    -fx-font-family: Gill Sans;
-    -fx-text-fill: black;
-    -fx-text-weight: bold;
-    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
+	
 }
 
 
@@ -147,6 +143,7 @@
 	-fx-background-image: url("Schiefertafel.jpg");
 	-fx-background-position: top;
 	-fx-background-repeat: no-repeat;
+	-fx-background-min-width: 200;
 	-fx-background-size: contain, auto;
 
 
@@ -162,6 +159,14 @@
 	
 }
 
+
+#label_game_view{
+	-fx-font-size: 24pt;
+    -fx-font-family: Gill Sans;
+    -fx-text-fill: black;
+    -fx-text-weight: bold;
+    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
+}
 
 #gameTeppichBox{
 	-fx-background-image: url("teppich.png");

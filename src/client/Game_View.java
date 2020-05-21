@@ -295,7 +295,7 @@ public class Game_View extends BorderPane{
 		// Trumpf Displaying
 		this.trumpfBox = new VBox();
 		this.trumpf = new Label();
-		//this.selectedT = new Label("-");
+		this.trumpf.setId("label_game_view");
 		this.trumpfBox.getChildren().addAll(this.trumpf, this.trumpfColor);
 		
 		
