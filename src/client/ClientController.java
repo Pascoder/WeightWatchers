@@ -471,16 +471,19 @@ public class ClientController {
 	}
 
 //Game (Gewinner nach gespieltem Stapel anzeigen)
-	public static void showStapelWinner(String winnerTeam, String points) {
+	public static void showStapelWinner(String winnerTeamID, String client) {
+		
+		
+		
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
+				
 
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Stapel fertig!");
-				alert.setContentText("Stapelsieger: Team " + winnerTeam + "mit " + points + " Punkten!" + "/n"
-						+ "Weiterspielen? -> OK / Beenden? -> Cancel");
+				alert.setContentText("Stapelsieger: Gewonnen hat Team " + winnerTeamID + " ! " +" Weiterspielen? ");
 
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {

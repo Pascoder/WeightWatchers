@@ -158,7 +158,7 @@ public class ClientModel {
 
 		} else {
 		    if (gu_msg.getStapelfinish().equals("true")) {
-			ClientController.showStapelWinner(gu_msg.getWinnerteamid(), gu_msg.getTeamScore());
+			ClientController.showStapelWinner(gu_msg.getWinnerteamid(), gu_msg.getClient());
 		    } else {
 			Message_NEXTROUND msg_nr = new Message_NEXTROUND();
 			msg_nr.setGamename(gu_msg.getGameid());
@@ -170,7 +170,7 @@ public class ClientModel {
 			    i++;
 			}*/
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
