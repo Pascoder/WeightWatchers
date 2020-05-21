@@ -293,12 +293,13 @@ public class ClientController {
 				for (Player p : playersOnGame) {
 					if (p.getName().equals(client)) {
 						cardList = p.getHandAsStrings();
-						clientView.getGameView().getOnTurn().setText("On move: " + p.getonMove());
-						clientView.getGameView().setTitle("Game of " + p.getName());
+						clientView.getGameView().setTitle(t.getString("game.windowTitle")+" "+ p.getName());
 						if (p.getonMove() == true) {
 							// Trumpf ausw�hlen aber nur wenn 1. Runde
+						    	clientView.getGameView().getOnTurn().setText(t.getString("game.lblAmZug"));
 							clientView.getGameView().getOnTurn().setTextFill(Color.web("red"));
 						} else {
+						    clientView.getGameView().getOnTurn().setText(t.getString("game.lblNichtAmZug"));
 							clientView.getGameView().getOnTurn().setTextFill(Color.web("black"));
 						}
 					}
@@ -336,13 +337,12 @@ public class ClientController {
 					clientView.getGameView().p3name.setText(playersOnGame[3].getName());
 
 					if (trumpf.equals("null")) {
-						clientView.getGameView().setTrumpf("Trumpf: Bitte Trumpf mit Klick auf Karte waehlen");
-						clientView.getGameView().getTrumpf().setTextFill(Color.web("red"));
+						clientView.getGameView().setTrumpf(t.getString("game.lblTrumpfKein"));
 					}
 				}
 
 				if (!trumpf.equals("null")) {
-					clientView.getGameView().setTrumpf("Trumpf: " + trumpf);
+					clientView.getGameView().setTrumpf(t.getString("game.lblTrumpfJa"));
 					clientView.getGameView().getTrumpf().setTextFill(Color.web("black"));
 					clientView.getGameView().setTrumpfColor(trumpf);
 				}
@@ -357,7 +357,7 @@ public class ClientController {
 					clientView.getGameView().p2name.setText(playersOnGame[3].getName());
 					clientView.getGameView().p3name.setText(playersOnGame[0].getName());
 					if (!trumpf.equals("null")) {
-						clientView.getGameView().setTrumpf("Trumpf: " + trumpf);
+						clientView.getGameView().setTrumpf(t.getString("game.lblTrumpfJa"));
 					}
 				}
 				if (playersOnGame[2].getName().equals(client)) {
@@ -370,7 +370,7 @@ public class ClientController {
 					clientView.getGameView().p2name.setText(playersOnGame[3].getName());
 					clientView.getGameView().p3name.setText(playersOnGame[0].getName());
 					if (!trumpf.equals("null")) {
-						clientView.getGameView().setTrumpf("Trumpf: " + trumpf);
+						clientView.getGameView().setTrumpf(t.getString("game.lblTrumpfJa"));
 					}
 				}
 				if (playersOnGame[3].getName().equals(client)) {
@@ -383,7 +383,7 @@ public class ClientController {
 					clientView.getGameView().p2name.setText(playersOnGame[3].getName());
 					clientView.getGameView().p3name.setText(playersOnGame[0].getName());
 					if (!trumpf.equals("null")) {
-						clientView.getGameView().setTrumpf("Trumpf: " + trumpf);
+						clientView.getGameView().setTrumpf(t.getString("game.lblTrumpfJa"));
 					}
 				}
 

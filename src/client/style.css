@@ -108,6 +108,14 @@
 	
 	}
 	
+.gamePlayer4CardBox .label {
+	-fx-font-size: 24pt;
+    -fx-font-family: Gill Sans;
+    -fx-text-fill: green;
+    -fx-text-weight: bold;
+    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
+}
+	
 .gamePlayer4CardBox .Button:hover {
 	-fx-translate-y: -20;
 }
