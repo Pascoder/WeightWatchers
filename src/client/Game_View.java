@@ -48,7 +48,6 @@ public class Game_View extends BorderPane{
    
  
     protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("KartenHaltend.jpg"));
-    //protected Image table = new Image(this.getClass().getClassLoader().getResourceAsStream("Schellen_Under.jpg"));
     
 
     protected ImageView imageverdeckt = new ImageView(imgverdeckt);
@@ -243,7 +242,7 @@ public class Game_View extends BorderPane{
 		//Bottom
 		this.buttomBox = new VBox();
 		this.player4InfoBox = new HBox();
-		this.player4InfoBox.getStyleClass().add("player4InfoBox");
+		this.player4InfoBox.getStyleClass().add("gamePlayer4InfoBox");
 		this.p4_name = new Label("--");
 		this.onTurn = new Label("-");	
 		
@@ -264,9 +263,7 @@ public class Game_View extends BorderPane{
 		
 		//Unsere Punkte
 		this.ourPointsBox = new HBox();
-		//this.ourPointsBox.setId("gamePointsBox");
 		this.ourPointsLabel = new Label();
-		//this.ourPointsBox.setId("ourPointsBox");
 		this.ourPlbl = new Label("--"); // 
 		this.ourPointsBox.getChildren().addAll(this.ourPointsLabel, this.ourPlbl);
 		
@@ -275,7 +272,6 @@ public class Game_View extends BorderPane{
 		p1name = new Label("--");
 		p3name = new Label("--");
 		this.P13.getChildren().addAll(p1name, p3name);
-		//this.P13.setSpacing(5);
 		
 		
 		//Punkte Gegner
@@ -289,8 +285,7 @@ public class Game_View extends BorderPane{
 		p2name = new Label("--");
 		p4name = new Label("--");
 		this.P24.getChildren().addAll(p2name, p4name);
-		//this.P24.setSpacing(5);
-		
+
 				
 		// Trumpf Displaying
 		this.trumpfBox = new VBox();
@@ -301,8 +296,6 @@ public class Game_View extends BorderPane{
 		
 		this.pointsBox = new VBox();
 		this.pointsBox.getChildren().addAll(ourPointsBox, P13, opponentsPointsBox, P24);
-		//this.pointsBox.setPadding(new Insets(20,20,20,20));
-		//this.pointsBox.setSpacing(30);
 		this.pointsBox.getStyleClass().add("gamePointsBox");
 		
 		this.rightBox.getChildren().addAll(trumpfBox, pointsBox);
@@ -313,7 +306,7 @@ public class Game_View extends BorderPane{
 	Scene scene = new Scene(this);
 	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setWidth(1100);
-	stage.setHeight(900);
+	stage.setHeight(1100);
 	stage.setScene(scene);
 	stage.setResizable(true);
     }
@@ -463,18 +456,11 @@ public void placeCardtoTable(int num, Image img) {
 		this.stage.setTitle(title);
 	}
 	
-//	//Hier anpassen Leon
 	public void setTrumpf(String trumpf) {
 	    this.trumpf.setText(trumpf);
-	    
-	    
-	   
-		
 		
 	}
 	public void setTrumpfColor(String trumpf) {
-		
-		System.out.println("SET TRUMPF COLOR");
 		String lang = "_CH";
 		if(sl.getConfiguration().isFrenchCards()) {
 			lang = "_FR";

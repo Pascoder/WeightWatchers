@@ -13,7 +13,6 @@ import javafx.scene.control.ToggleGroup;
 public class Menu_Game_View extends Menu_Basic_View {
 
     Menu gameMenu2;
-    Menu gameMenu3;
 
     ToggleGroup tg1;
 
@@ -22,13 +21,13 @@ public class Menu_Game_View extends Menu_Basic_View {
 
     public Menu_Game_View() {
 	super();
-	gameMenu3 = new Menu();
+
 	gameMenu2 = new Menu();
 
 	gameMenuItem21 = new RadioMenuItem();
 	gameMenuItem22 = new RadioMenuItem();
 
-	gameMenu3.getItems().addAll(gameMenuItem21, gameMenuItem22);
+	gameMenu2.getItems().addAll(gameMenuItem21, gameMenuItem22);
 
 	tg1 = new ToggleGroup();
 	tg1.getToggles().addAll(gameMenuItem21, gameMenuItem22);
@@ -38,7 +37,7 @@ public class Menu_Game_View extends Menu_Basic_View {
 	else
 	    gameMenuItem21.setSelected(true);
 
-	this.getMenus().addAll(gameMenu2, gameMenu3);
+	this.getMenus().addAll(gameMenu2);
 
 	this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
@@ -48,7 +47,7 @@ public class Menu_Game_View extends Menu_Basic_View {
 	setTextsBasic();
 
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
-	this.gameMenu3.setText(t.getString("program.menu.file"));
+	this.gameMenu2.setText(t.getString("gameMenu.Cards"));
 	this.gameMenuItem21.setText(t.getString("gameMenu.CH"));
 	this.gameMenuItem22.setText(t.getString("gameMenu.FR"));
 

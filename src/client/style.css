@@ -45,7 +45,6 @@
     -fx-font-size: 10pt;
     -fx-font-family: Gill Sans;
     -fx-text-fill: black;
-    -fx-text-weight: bold;
     -fx-opacity: 1;
 }
 
@@ -111,7 +110,7 @@
 }
 	
 .gamePlayer4InfoBox .label {
-	-fx-font-size: 24pt;
+	-fx-font-size: 20pt;
     -fx-font-family: Gill Sans;
     -fx-text-fill: green;
     -fx-text-weight: bold;
@@ -130,7 +129,7 @@
 }
 
 .gamePlayerCards:hover{
-	
+	-fx-translate-y: -20;
 }
 	
 
@@ -141,18 +140,18 @@
 
 .gamePointsBox{
 	-fx-background-image: url("Schiefertafel.jpg");
-	-fx-background-position: top;
+	-fx-background-position: left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-min-width: 200;
+	-fx-min-hight: 900;
 	-fx-background-size: contain, auto;
 
 
 }
 .gamePointsBox .label{
 	-fx-text-fill: white;
-	-fx-text-padding: 20;
-	 -fx-margin-left: 3em;
-	-fx-font-size: 22;
+	-fx-padding: 20;
+	-fx-margin-left: 28;
+	-fx-font-size: 16;
 }
 
 .gameTableBox{
@@ -161,7 +160,7 @@
 
 
 #label_game_view{
-	-fx-font-size: 24pt;
+	-fx-font-size: 20pt;
     -fx-font-family: Gill Sans;
     -fx-text-fill: black;
     -fx-text-weight: bold;

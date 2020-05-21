@@ -1,10 +1,11 @@
 package server;
 
+// 2020, Oliver Mosimann
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.stream.*;
-
 
 public class Game {
     private ServiceLocator sl;
@@ -255,11 +256,6 @@ public class Game {
 	    evaluateStichWinner();
 	    this.stichColor = null;
 	    countRound();
-
-//	    //Nachricht an Clients---> darf nicht hier sein, sondern Teil vom GameUpdate
-//	    for(Player p : playersOnGame) {
-//	    	ServerModel.informClients(p.getName(), name);
-//	    }	   
 	}
 
     }
@@ -287,7 +283,7 @@ public class Game {
     private void evaluateStichWinner() {
 	int[] winnerScore = JassModel.evaluateStichWinner(this.cardsOnTable, this.gametype, this.trumpftype, this.round,
 		this.trumpf, this.stichColor);
-	if (this.round == 8) {	//letzter Stich zusätzlich 5 Punkte
+	if (this.round == 8) { // letzter Stich zusätzlich 5 Punkte
 	    winnerScore[1] += 5;
 	}
 

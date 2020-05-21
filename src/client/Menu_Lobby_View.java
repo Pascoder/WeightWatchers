@@ -14,7 +14,7 @@ public class Menu_Lobby_View extends Menu_Basic_View {
     
     
     Menu lobbyMenu2;
-    Menu lobbyMenu3;
+    //Menu lobbyMenu3;
 
    
     
