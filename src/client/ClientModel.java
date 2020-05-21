@@ -1,6 +1,7 @@
 package client;
 
 import java.net.Socket;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -29,6 +30,8 @@ import messages.Message_USERNAMETAKEN;
 import server.Card;
 import server.Player;
 import server.Weis;
+
+//Pascal Wyser
 
 public class ClientModel {
     protected SimpleStringProperty newestMessage = new SimpleStringProperty();

@@ -1,6 +1,6 @@
 package server;
 
-// 2020, Oliver Mosimann
+// Pascal Wyser, Oliver Mosimann
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
