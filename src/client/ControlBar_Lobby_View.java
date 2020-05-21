@@ -13,7 +13,7 @@ public class ControlBar_Lobby_View extends ControlBar_Basic_View{
 	super();
 	
 
-	btnLeave = new Button(t.getString("lobby.btnLeave"));
+	btnLeave = new Button();
 
 	
 	toolLeft.getItems().addAll(btnLeave);

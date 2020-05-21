@@ -79,6 +79,7 @@ public class Lobby_View {
 	
 	// Left Box
 		VBox leftBox = new VBox(gamesBox, chatBox);
+		leftBox.getStyleClass().add("lobby_view");
 		leftBox.setPadding(new Insets(15, 12, 15, 12));
 		leftBox.setSpacing(10);	
 	
@@ -121,6 +122,7 @@ public class Lobby_View {
 
 	// Right Box
 	VBox rightBox = new VBox(playerOnBox, selectedGameBox);
+	rightBox.getStyleClass().add("lobby_view");
 	rightBox.setPadding(new Insets(15, 12, 15, 12));
 	rightBox.setSpacing(10);
 	;
@@ -130,11 +132,11 @@ public class Lobby_View {
 
 	// BorderPane
 	BorderPane root = new BorderPane();
-	root.getStyleClass().add("root"); // Class for styling
 	root.setTop(this.lobbyMenu);
 	root.setLeft(leftBox);
 	root.setRight(rightBox);
 	root.setBottom(controls);
+
 
 	setTexts();
 
@@ -202,7 +204,7 @@ public class Lobby_View {
     	return this.txtMsg;
     }
 
-    public ControlBar_Lobby_View getLobbyControllBar() {
+    public ControlBar_Lobby_View getControls() {
 	return this.controls;
     }
 

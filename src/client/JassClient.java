@@ -41,6 +41,9 @@ public class JassClient extends Application {
 		this.clientModel = new ClientModel();
 		this.clientView = new ClientView(stage, clientModel);
 		this.clientController = new ClientController(clientModel, clientView);
+		
+		
+		
 		//nicht beachten, zu Testzwecken
 //		this.tc = new Test_Controller(clientModel, tv);
 		//Test fertig

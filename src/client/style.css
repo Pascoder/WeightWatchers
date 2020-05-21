@@ -1,6 +1,8 @@
-.root{
+.root {
 	-fx-background-color: #ffe4c4;
 	-fx-font-size: 12pt;
+	-fx-font-family: Gill Sans;
+	-fx-text-color: brown;
 }
 
 .label {
@@ -11,37 +13,6 @@
     -fx-padding: 5;
 }
 
-#LoginPane {
-	-fx-background-image: url("jass.png");
-	-fx-background-position: center;
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 600, 600;
-	
-	
-}
-
-.label#loginPane {
-    -fx-font-size: 36px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333333;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-    -fx-padding: 5;
-}
-#controlBar{
-	-fx-background-color: lightblue;
-}
-
-#menuBar{
-	-fx-background-color: lightblue;
-}
-
-#Game_View{
-	-fx-background-image: url("Tisch.jpg");
-	-fx-background-position: center;
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover;
-}
-
 .button {
     -fx-text-fill: white;
     -fx-font-family: "Arial Narrow";
@@ -49,6 +20,84 @@
     -fx-background-color: linear-gradient(#61a2b1, #2A5058);
     -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
+
+
+
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+.button:disabled {
+    -fx-opacity: 0.75;
+    -fx-text-fill: black;
+}
+
+.button:pressed{
+	-fx-text-fill: red;
+}
+
+
+.menu-bar {
+	-fx-background-color: lightblue;
+}
+
+.menu-bar .label {
+    -fx-font-size: 10pt;
+    -fx-font-family: Gill Sans;
+    -fx-text-fill: black;
+    -fx-text-weight: bold;
+    -fx-opacity: 1;
+}
+
+.menu-bar .label:hover{
+	-fx-border: 5px 5px 3px 5px;
+}
+
+.control_bar {
+	-fx-background-color: lightblue;
+
+}
+
+
+
+.login_view {
+	-fx-background-image: url("jass.png");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: contain;
+
+}
+.login_view .label {
+	 -fx-font-size: 20pt;
+    -fx-font-family: Gill Sans;
+    -fx-text-fill: grey;
+    -fx-text-weight: bold;
+    -fx-text-border-color: black;
+}
+
+
+.lobby_view {
+	
+}
+
+.lobby_view .label {
+	
+}
+
+
+
+
+
+
+
+.game_view{
+	-fx-background-image: url("Tisch.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
+}
+
+
 #gameCardsOnTable{
 	-fx-padding: 4.0px;
     -fx-max-width: 60;
@@ -56,63 +105,77 @@
     -fx-setPosition: center;
 }
 
-#player4InfoBox{
+.player4InfoBox{
 	-fx-spacing: 20;
 }
 
-#gamePlayer4CardBox {
+.gamePlayer4CardBox {
 	-fx-spacing: 60;
 	-fx-margin: 20px;
 	-fx-background-color: lightbrown;
 	
+	}
 	
+.gamePlayer4CardBox .toggleButton:hover {
+	-fx-translate-y: -20;
 }
-#gameRightBox{
+	
+	
+
+.gameRightBox{
 
 	
 	
 }
 
-#gamePlayerBox{
+.gamePlayerBox{
 	-fx-text-fill: white;
 	
 }
+.gamePlayerBox .label{
+	-fx-font-size: 24pt;
+    -fx-font-family: Gill Sans;
+    -fx-text-fill: grey;
+    -fx-text-weight: bold;
+}
 
-#gamePointsBox{
+.gamePointsBox{
 	-fx-background-image: url("Schiefertafel.jpg");
 	-fx-background-position: top;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: 187, 372;
+	-fx-background-size: contain;
 	-fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-text-padding: 10;
     -fx-width: 70;
     -fx-height: 50;
+    -fx-margin-left: 3em;
+}
+.gamePointsBox .label{
+	-fx-text-fill: white;
+	-fx-text-padding: 20;
+	-fx-font-size: 14;
 }
 
-#gameTableBox{
-	-fx-background-image: url("Tisch.jpg");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+.gameTableBox{
+	
 }
 
 	
 
 .gamePlayerCards:hover{
-	-fx-translate-y: -20;
+	
 }
 
 
-.button:hover {
-    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
-}
+
 
 #gameTeppichBox{
 	-fx-background-image: url("teppich.png");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: contain, auto;
 
 	/*-fx-Spacing: 30px;
     -fx-padding: 10.0px;

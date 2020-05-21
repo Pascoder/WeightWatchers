@@ -82,12 +82,12 @@ public class ClientController {
 			clientModel.saynewChat(message);
 		});
 
-		lobbyview.getLobbyControllBar().getLeaveLobbyButton().setOnAction(c -> {
+		lobbyview.getControls().getLeaveLobbyButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby1");
 			clientView.getLobbyStage().hide();
 			clientView.switchView(1);
 		});
-		lobbyview.getLobbyControllBar().getQuitButton().setOnAction(c -> {
+		lobbyview.getControls().getQuitButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby1");
 			clientView.getLobbyStage().hide();
 			Platform.exit();
@@ -125,6 +125,23 @@ public class ClientController {
 		clientView.getGameStage().setOnCloseRequest(c -> {
 			clientModel.sayGoodBye("ExitGame");
 		});
+		
+		gameview.getControls().getLeaveGameButton().setOnAction(c -> {
+		    	clientModel.sayGoodBye("ExitGame"); 	
+		    	clientView.switchView(2);
+		});
+		
+		
+		gameview.getControls().getQuitButton().setOnAction(c -> {
+		    	clientModel.sayGoodBye("Lobby1");
+		    	clientModel.sayGoodBye("ExitGame"); 	
+			clientView.getGameStage().hide();
+			Platform.exit();
+		});
+		
+		
+		
+		
 		// KARTEN PER KLICK SPIELEN
 
 		gameview.getToggleButton(1).setOnAction((c) -> {

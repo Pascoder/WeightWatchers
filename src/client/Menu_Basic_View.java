@@ -70,9 +70,7 @@ menu1 = new Menu();
 
 
 	this.getMenus().addAll(menu1);
-	this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-	this.setId("menuBar");
-	
+
 	
     }
     

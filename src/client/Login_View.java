@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import server.ServiceLocator;
@@ -46,8 +47,9 @@ public class Login_View extends BorderPane {
 	this.sl = ServiceLocator_JC.getServiceLocator();
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	
+	
 	this.centerPane = new GridPane();
-	this.centerPane.setId("LoginPane");
+	this.centerPane.getStyleClass().add("login_view");
 	this.lblTitle = new Label();
 	this.centerPane.add(this.lblTitle, 3, 0);
 

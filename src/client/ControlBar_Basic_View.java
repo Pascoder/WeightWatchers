@@ -37,11 +37,11 @@ public class ControlBar_Basic_View extends HBox {
 
 	this.getChildren().addAll(toolLeft, spacer, toolRight);
 	this.toolLeft.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-	this.toolLeft.setId("controlBar");
+	this.toolLeft.getStyleClass().add("control_bar");
 	this.toolRight.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-	this.toolRight.setId("controlBar");
+	this.toolRight.getStyleClass().add("control_bar");
 	this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-	this.setId("controlBar");
+	this.getStyleClass().add("control_bar");
 
     }
     protected void setTextsBasic() {
