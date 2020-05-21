@@ -8,20 +8,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
-	 * A simple example showing how to encapsulate messages in a class. This class sends and receives
-	 * some simple data via sockets. The data is formatted in plain text, with our own protocol:
-	 * 
-	 * - A message ends with an empty line (just like HTTP)
-	 * - Each attribute is a line encoded as name=value
-	 * - First attribute must be the message type
-	 * - Attributes are separated by new-lines
-	 * 
-	 * This is implemented for synchronous communication, i.e., the socket is closed after each
-	 * communication. However, this protocol would work fine for synchronous communication, leaving
-	 * the socket open for many messages in both directions.
-	 * 
-	 * Each message is uniquely identified with an ID and a timestamp. This can be useful, for example,
-	 * if you want to keep a log of messages.
+	Pascal Wyser
+	
+	Written by Bradley Richards
 	 */
 	public abstract class Message {
 	    // Static names of elements and attributes that we use in

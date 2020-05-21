@@ -104,14 +104,5 @@ public class JassClient extends Application {
         return mainProgram;
     }
     
-//    public static  void changeLocales() {
-//	clientView.stop();
-//	initialize();
-//	Stage stage = new Stage();
-//	ClientModel clientModel = new ClientModel();
-//	clientView = new ClientView(stage, clientModel);
-//	clientController = new ClientController(clientModel, clientView);
-//	clientView.start();
-//
-//    }
+
 }
