@@ -49,16 +49,11 @@
     -fx-opacity: 1;
 }
 
-.menu-bar .label:hover{
-	-fx-border: 5px 5px 3px 5px;
-}
 
 .control_bar {
 	-fx-background-color: lightblue;
 
 }
-
-
 
 .login_view {
 	-fx-background-image: url("jass.png");
@@ -70,11 +65,11 @@
 .login_view .label {
 	 -fx-font-size: 20pt;
     -fx-font-family: Gill Sans;
-    -fx-text-fill: grey;
+    -fx-text-fill: black;
     -fx-text-weight: bold;
-    -fx-text-border-color: black;
+    -fx-text-border-color: blue;
+    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
 }
-
 
 .lobby_view {
 	
@@ -83,10 +78,6 @@
 .lobby_view .label {
 	
 }
-
-
-
-
 
 
 
@@ -113,30 +104,31 @@
 	-fx-spacing: 60;
 	-fx-margin: 20px;
 	-fx-background-color: lightbrown;
+
 	
 	}
 	
-.gamePlayer4CardBox .toggleButton:hover {
+.gamePlayer4CardBox .Button:hover {
 	-fx-translate-y: -20;
 }
-	
-	
-
-.gameRightBox{
-
-	
+.gamePlayerCards:hover{
 	
 }
-
-.gamePlayerBox{
-	-fx-text-fill: white;
 	
+	
+
+.gameRightBox{	
 }
+
+.gamePlayerBox{	
+}
+
 .gamePlayerBox .label{
 	-fx-font-size: 24pt;
     -fx-font-family: Gill Sans;
-    -fx-text-fill: grey;
+    -fx-text-fill: green;
     -fx-text-weight: bold;
+     -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
 }
 
 .gamePointsBox{
@@ -144,31 +136,19 @@
 	-fx-background-position: top;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: contain;
-	-fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-text-padding: 10;
-    -fx-width: 70;
-    -fx-height: 50;
-    -fx-margin-left: 3em;
+
+
 }
 .gamePointsBox .label{
 	-fx-text-fill: white;
 	-fx-text-padding: 20;
-	-fx-font-size: 14;
+	 -fx-margin-left: 3em;
+	-fx-font-size: 16;
 }
 
 .gameTableBox{
 	
 }
-
-	
-
-.gamePlayerCards:hover{
-	
-}
-
-
 
 
 #gameTeppichBox{
@@ -181,9 +161,4 @@
     -fx-padding: 10.0px;
     -fx-border-width: 2.0px;*/
 }
-
-#Registerbutton {
-	-fx-background-color: red;
-}
-
 

@@ -33,11 +33,11 @@ public class Game_View extends BorderPane{
     private Translator_JC t;
     private ServiceLocator_JC sl;
     //Layout
-    protected HBox menu, player4InfoBox, ourPointsBox, opponentsPointsBox, trumpfBox;
+    protected HBox menu, player4InfoBox, ourPointsBox, opponentsPointsBox;
     protected TilePane player4CardBox;
     BorderPane tableBox;
     protected GridPane teppichBox;
-    protected VBox rightBox, buttomBox,player1, player2, player3, pointsBox, P13, P24;
+    protected VBox rightBox, buttomBox,player1, player2, player3, pointsBox, P13, P24, trumpfBox;
     protected Menu_Game_View menuGame;
     protected ControlBar_Game_View controls;
     //Labels,Buttons...
@@ -293,9 +293,9 @@ public class Game_View extends BorderPane{
 		
 				
 		// Trumpf Displaying
-		this.trumpfBox = new HBox();
+		this.trumpfBox = new VBox();
 		this.trumpf = new Label();
-		this.selectedT = new Label("-");
+		//this.selectedT = new Label("-");
 		this.trumpfBox.getChildren().addAll(this.trumpf, this.trumpfColor);
 		
 		

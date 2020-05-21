@@ -89,9 +89,9 @@ public class JassImage {
 	
 	protected ImageView C_FR = new ImageView(CFR);
 	protected ImageView C_CH = new ImageView(CCH);
-	protected ImageView D_FR = new ImageView(HFR);
-	protected ImageView D_CH = new ImageView(HFR);
-	protected ImageView H_FR = new ImageView(HCH);
+	protected ImageView D_FR = new ImageView(DFR);
+	protected ImageView D_CH = new ImageView(DCH);
+	protected ImageView H_FR = new ImageView(HFR);
 	protected ImageView H_CH = new ImageView(HCH);
 	protected ImageView S_CH = new ImageView(SCH);
 	protected ImageView S_FR = new ImageView(SFR);
