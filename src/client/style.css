@@ -81,7 +81,7 @@
 
 
 
-.game_view{
+.game_view {
 	-fx-background-image: url("Tisch.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
@@ -94,6 +94,16 @@
     -fx-max-width: 60;
     -fx-max-height: 80;
     -fx-setPosition: center;
+}
+
+
+
+.gamePlayerBox .label {
+	-fx-font-size: 24pt;
+    -fx-font-family: Gill Sans;
+    -fx-text-fill: green;
+    -fx-text-weight: bold;
+    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
 }
 
 .player4InfoBox{
@@ -125,9 +135,11 @@
 	
 
 .gameRightBox{	
-}
-
-.gamePlayerBox{	
+	-fx-font-size: 24pt;
+    -fx-font-family: Gill Sans;
+    -fx-text-fill: black;
+    -fx-text-weight: bold;
+    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
 }
 
 
@@ -143,7 +155,7 @@
 	-fx-text-fill: white;
 	-fx-text-padding: 20;
 	 -fx-margin-left: 3em;
-	-fx-font-size: 18;
+	-fx-font-size: 22;
 }
 
 .gameTableBox{

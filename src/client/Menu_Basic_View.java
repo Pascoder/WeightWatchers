@@ -7,6 +7,7 @@ import client.ServiceLocator_JC;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -17,7 +18,8 @@ public class Menu_Basic_View extends MenuBar {
     ServiceLocator_JC sl;
     Translator_JC t;
     Logger logger;
-    Menu menu1;
+    Menu menu1, menu6;
+    MenuItem infoMenu;
 
     ToggleGroup tg1;
 
@@ -27,11 +29,11 @@ public class Menu_Basic_View extends MenuBar {
 	t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	sl.getLogger();
 
-	
-menu1 = new Menu();
-	
+	menu1 = new Menu();
+	menu6 = new Menu();
+
 	tg1 = new ToggleGroup();
-	
+
 	for (Locale locale : sl.getLocales()) {
 	    RadioMenuItem itemLang = new RadioMenuItem(locale.getLanguage());
 
@@ -48,16 +50,16 @@ menu1 = new Menu();
 	    }
 
 	    itemLang.setOnAction(event -> {
-	    	Platform.runLater(new Runnable(){
-				@Override
-				public void run() {
-					sl.getConfiguration().setLocalOption("Language", locale.getLanguage());
-					sl.setTranslator(new Translator_JC(locale.getLanguage()));
-					sl.getConfiguration().save();
-					ClientController.changeLanguage();
-				}
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+			sl.getConfiguration().setLocalOption("Language", locale.getLanguage());
+			sl.setTranslator(new Translator_JC(locale.getLanguage()));
+			sl.getConfiguration().save();
+			ClientController.changeLanguage();
+		    }
 
-			});
+		});
 	    });
 
 	}
@@ -66,17 +68,19 @@ menu1 = new Menu();
 	icon1.setFitHeight(20);
 	icon1.setFitWidth(40);
 	menu1.setGraphic(icon1);
+
+	infoMenu = new MenuItem();
+	menu6.getItems().add(infoMenu);
 	
+	this.getMenus().addAll(menu1, menu6);
 
-
-	this.getMenus().addAll(menu1);
-
-	
     }
-    
+
     protected void setTextsBasic() {
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	menu1.setText(t.getString("program.menu.language"));
+	menu6.setText(t.getString("menu.Info"));
+	infoMenu.setText(t.getString("menu.Info1"));
     }
 
 }
