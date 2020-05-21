@@ -58,7 +58,7 @@
 	-fx-background-image: url("jass.png");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: contain;
+	-fx-background-size: contain, auto;
 
 }
 .login_view .label {
@@ -95,10 +95,19 @@
     -fx-setPosition: center;
 }
 
-
+.gamePlayerBox {
+	-fx-background-image: url("KartenHaltend.jpg");
+	-fx-background-insets: 5;
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: contain, auto;
+	-fx-border-insets: 5;
+	
+	}
 
 .gamePlayerBox .label {
 	-fx-font-size: 24pt;
+	-fx-font-position: center;
     -fx-font-family: Gill Sans;
     -fx-text-fill: green;
     -fx-text-weight: bold;
@@ -140,21 +149,25 @@
 
 .gamePointsBox{
 	-fx-background-image: url("Schiefertafel.jpg");
-	-fx-background-position: left;
+	-fx-background-position: left, top;
 	-fx-background-repeat: no-repeat;
-	-fx-min-hight: 900;
-	-fx-background-size: contain, auto;
+	-fx-background-size: cover, auto;
+	-fx-fill-height: true;
 
 
 }
 .gamePointsBox .label{
 	-fx-text-fill: white;
-	-fx-padding: 20;
-	-fx-margin-left: 28;
+	-fx-margin: 30;
 	-fx-font-size: 16;
 }
 
 .gameTableBox{
+	
+}
+
+#game_trupfIcon {
+	-fx-allign: center;
 	
 }
 

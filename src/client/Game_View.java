@@ -47,12 +47,12 @@ public class Game_View extends BorderPane{
     protected ArrayList <ToggleButton> playerButtons;
    
  
-    protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("KartenHaltend.jpg"));
+    //protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("KartenHaltend.jpg"));
     
 
-    protected ImageView imageverdeckt = new ImageView(imgverdeckt);
-    protected ImageView imageverdeckt2 = new ImageView(imgverdeckt);
-    protected ImageView imageverdeckt3 = new ImageView(imgverdeckt);
+    //protected ImageView imageverdeckt = new ImageView(imgverdeckt);
+    //protected ImageView imageverdeckt2 = new ImageView(imgverdeckt);
+    //protected ImageView imageverdeckt3 = new ImageView(imgverdeckt);
     protected ImageView cardOnTable1 = new ImageView();   
     protected ImageView cardOnTable2 = new ImageView();
     protected ImageView cardOnTable3 = new ImageView();
@@ -93,15 +93,15 @@ public class Game_View extends BorderPane{
 			//Player1 Rechts
 			this.player1 = new VBox();
 			this.player1.getStyleClass().add("gamePlayerBox");
-			this.player1.setSpacing(30);
-			this.player1.setPadding(new Insets(10,60,60,60));
+			//this.player1.setSpacing(30);
+			//this.player1.setPadding(new Insets(10,60,60,60));
 			this.p1_name = new Label("--");
 			this.player1.getChildren().add(p1_name);
 			
 			
-			this.imageverdeckt.setFitHeight(140);
-			this.imageverdeckt.setFitWidth(100);
-			player1.getChildren().add(imageverdeckt);
+			//this.imageverdeckt.setFitHeight(140);
+			//this.imageverdeckt.setFitWidth(100);
+			//player1.getChildren().add(imageverdeckt);
 			this.tableBox.setRight(player1);
 			this.player1.setAlignment(Pos.CENTER);
 			
@@ -109,8 +109,8 @@ public class Game_View extends BorderPane{
 			this.teppichBox = new GridPane();
 			this.teppichBox.setGridLinesVisible(true);
 			this.teppichBox.setId("gameTeppichBox");
-			this.teppichBox.getColumnConstraints().add(new ColumnConstraints(100));
-			this.teppichBox.getRowConstraints().add(new RowConstraints(105));
+			//this.teppichBox.getColumnConstraints().add(new ColumnConstraints(100));
+			//this.teppichBox.getRowConstraints().add(new RowConstraints(105));
 
 			//this.teppichBox.setPadding(new Insets(10,60,60,60));
 			this.teppichBox.setAlignment(Pos.CENTER);
@@ -139,32 +139,32 @@ public class Game_View extends BorderPane{
 			//Player2 oben 
 			this.player2 = new VBox();
 			this.player2.getStyleClass().add("gamePlayerBox");
-			this.player2.setSpacing(30);
-			this.player2.setPadding(new Insets(10,60,60,60));
+			//this.player2.setSpacing(30);
+			//this.player2.setPadding(new Insets(10,60,60,60));
 			this.p2_name = new Label("--");
 			this.player2.getChildren().add(p2_name);
 			this.tableBox.setTop(player2);
-			this.player2.setAlignment(Pos.CENTER);
+			//this.player2.setAlignment(Pos.CENTER);
 			
 			
-			this.imageverdeckt2.setFitHeight(140);
-			this.imageverdeckt2.setFitWidth(100);
-			player2.getChildren().add(imageverdeckt2);
+			//this.imageverdeckt2.setFitHeight(140);
+			//this.imageverdeckt2.setFitWidth(100);
+			//player2.getChildren().add(imageverdeckt2);
 			
 			
 			//Player3 links
 			this.player3 = new VBox();
 			this.player3.getStyleClass().add("gamePlayerBox");
-			this.player3.setSpacing(30);
-			this.player3.setPadding(new Insets(10,60,60,60));
+			//this.player3.setSpacing(30);
+			//this.player3.setPadding(new Insets(10,60,60,60));
 			this.p3_name = new Label("--");
 			this.player3.getChildren().add(p3_name);
 			this.tableBox.setLeft(player3);
-			this.player3.setAlignment(Pos.CENTER);
+			//this.player3.setAlignment(Pos.CENTER);
 			
-			this.imageverdeckt3.setFitHeight(140);
-			this.imageverdeckt3.setFitWidth(100);
-			player3.getChildren().add(imageverdeckt3);
+			//this.imageverdeckt3.setFitHeight(140);
+			//this.imageverdeckt3.setFitWidth(100);
+			//player3.getChildren().add(imageverdeckt3);
 			
 			
 	//Player4 unten (eigener Spieler)
@@ -291,6 +291,7 @@ public class Game_View extends BorderPane{
 		this.trumpfBox = new VBox();
 		this.trumpf = new Label();
 		this.trumpf.setId("label_game_view");
+		this.trumpf.setId("game_trumpfIcon");
 		this.trumpfBox.getChildren().addAll(this.trumpf, this.trumpfColor);
 		
 		
@@ -306,7 +307,7 @@ public class Game_View extends BorderPane{
 	Scene scene = new Scene(this);
 	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setWidth(1100);
-	stage.setHeight(1100);
+	stage.setHeight(800);
 	stage.setScene(scene);
 	stage.setResizable(true);
     }
