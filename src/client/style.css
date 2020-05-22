@@ -59,6 +59,7 @@
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: contain, auto;
+	-fx-opacity: 0.5;
 
 }
 .login_view .label {
