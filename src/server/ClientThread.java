@@ -136,10 +136,8 @@ public class ClientThread extends Thread {
 
 		case GOODBYE:
 			/*
-			 * CiaoSource
-			 * String Lobby1 = Lobby verlassen
-			 * Lobby2 = Ausgewähltes Spiel verlassen
-			 * ExitGame = Spiel, das bereits gestartet ist verlassen
+			 * CiaoSource String Lobby1 = Lobby verlassen Lobby2 = Ausgewähltes Spiel
+			 * verlassen ExitGame = Spiel, das bereits gestartet ist verlassen
 			 */
 			Message_GOODBYE ciao_msg = (Message_GOODBYE) msgIn;
 			if (ciao_msg.getCiaoSource().equals("Lobby1")) {
