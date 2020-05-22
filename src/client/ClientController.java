@@ -32,7 +32,7 @@ public class ClientController {
 
 	public ClientController(ClientModel clientModel, ClientView clientView) {
 		ClientController.clientModel = clientModel;
-		ClientController.clientView = clientView;
+		this.clientView = clientView;
 		sl = ServiceLocator_JC.getServiceLocator();
 		t = ServiceLocator_JC.getServiceLocator().getTranslator();
 

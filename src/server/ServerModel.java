@@ -316,4 +316,10 @@ public class ServerModel {
 
     }
 
+	public static void deleteGame(String client) {
+		String GameID = Lobby.getLobby().getGameIDofPlayersGame(client);
+		Lobby.getLobby().removeGame(Integer.parseInt(GameID));
+		
+	}
+
 }
