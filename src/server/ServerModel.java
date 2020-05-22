@@ -150,7 +150,7 @@ public class ServerModel {
 		    }
 		}
 	    }
-
+	    msgOutGame.setWinnernames(game.getWinnerNames());
 	    msgOutGame.setGameid(gameId);
 	    msgOutGame.setPlayers(playersInGameString);
 	    msgOutGame.setCardsontable(game.getCardsOnTableAsString());

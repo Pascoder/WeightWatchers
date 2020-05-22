@@ -16,6 +16,8 @@ public class Message_GAMEUPDATE extends Message{
 	private static final String ELEMENT_WINNERTEAMID = "winnerteamid";
 	private static final String ELEMENT_STAPELFINISH = "stapelfinish";
 	private static final String ELEMENT_TEAMSCORE = "teamscore";
+	private static final String ELEMENT_WINNERNAMES = "winnernames";
+
 
 
 
@@ -28,6 +30,7 @@ public class Message_GAMEUPDATE extends Message{
 	private String winnerteamid;
 	private String stapelfinish;
 	private String teamscore;
+	private String winnernames;
 
 
 	@Override
@@ -41,6 +44,7 @@ public class Message_GAMEUPDATE extends Message{
 		this.winnerteamid = findAttribute(pairs, ELEMENT_WINNERTEAMID);
 		this.stapelfinish = findAttribute(pairs, ELEMENT_STAPELFINISH);
 		this.teamscore = findAttribute(pairs, ELEMENT_TEAMSCORE);
+		this.winnernames = findAttribute(pairs, ELEMENT_WINNERNAMES);
 
 	}
 
@@ -55,7 +59,7 @@ public class Message_GAMEUPDATE extends Message{
 		pairs.add(new NameValue(ELEMENT_WINNERTEAMID, this.winnerteamid));
 		pairs.add(new NameValue(ELEMENT_STAPELFINISH, this.stapelfinish));
 		pairs.add(new NameValue(ELEMENT_TEAMSCORE, this.teamscore));
-
+		pairs.add(new NameValue(ELEMENT_WINNERNAMES, this.winnernames));
 
 
 
@@ -131,6 +135,14 @@ public class Message_GAMEUPDATE extends Message{
 	
 	public String getTeamScore() {
 		return this.teamscore;
+	}
+
+	public String getWinnernames() {
+		return winnernames;
+	}
+
+	public void setWinnernames(String winnernames) {
+		this.winnernames = winnernames;
 	}
 
 	
