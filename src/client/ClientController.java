@@ -41,65 +41,73 @@ public class ClientController {
 		Game_View gameview = clientView.getGameView();
 
 		// LOGIN
+			//Login Button ausgeblendet wenn TextFeld username, passwort leer
 		view.getLoginButton().disableProperty().bind(
 				view.getPasswordField().textProperty().isEmpty().or(view.getUsernameField().textProperty().isEmpty()));
+			//Create(Register) Button ausgeblendet wenn TextFeld username, passwort leer
 		view.getRegisterButton().disableProperty().bind(
 				view.getUsernameField().textProperty().isEmpty().or(view.getPasswordField().textProperty().isEmpty()));
-
+			//Login wird mit klick in ClientModel ausgelöst
 		view.getLoginButton().setOnAction(e -> {
 			clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText());
 			view.getPasswordField().clear();
 			view.getUsernameField().clear();
 		});
+			//sayRegister in ClientModel wird mit klick ausgelöst
 		view.getRegisterButton().setOnAction(e -> {
 			clientModel.sayRegister(view.getUsernameField().getText(), view.getPasswordField().getText());
 			view.getPasswordField().clear();
 			view.getUsernameField().clear();
 		});
 		
+
+		// LOBBY
+			//Wenn Chat leer ist kann der SendButton nicht geklickt werden
+		lobbyview.getSendButton().disableProperty().bind(lobbyview.getTextChat().textProperty().isEmpty());
+			//Wenn kein Spiel selektiert ist kann auch nicht der LeaveGameButton geklickt werden
+		lobbyview.getLeaveGameButton().disableProperty().bind(lobbyview.selectedGameList.getSelectionModel().selectedItemProperty().isNull());
+			//Wenn kein Game getippt wurde im TextFeld kann CreatGameButton nicht geklickt werden
+		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());	
+		//Spieler klickt Quit in Lobby und verlässt das komplette Spiel
 		view.getControls().getQuitButton().setOnAction(c -> {
 			clientView.getLobbyStage().hide();
 			Platform.exit();
 		});
-
-		// LOBBY
+			//Spiel erstellen mit klick auf CreateGame Button
 		lobbyview.getCreateGameButton().setOnAction((e) -> {
 			clientModel.sayCreateGame(lobbyview.getTextField().getText());
 			lobbyview.getTextField().clear();
 		});
-		lobbyview.getSendButton().disableProperty()
-				.bind(lobbyview.getTextChat().textProperty().isEmpty());
-		lobbyview.getLeaveGameButton().disableProperty()
-				.bind(lobbyview.selectedGameList.getSelectionModel().selectedItemProperty().isNull());
+			//Klick auf das rote krezu in Windows verlassen der Lobby
 		clientView.getLobbyStage().setOnCloseRequest(c -> {
 			clientModel.sayGoodBye("Lobby1");
 		});
-
+			//Beim klick auf Senden wird saynewChat im ClientModel aufgeruffen
 		lobbyview.getSendButton().setOnAction(c -> {
 			String message = lobbyview.getTextChat().getText();
 			lobbyview.getTextChat().clear();
 
 			clientModel.saynewChat(message);
 		});
-
+			//klick auf LeaveLobbyButton in Lobby
 		lobbyview.getControls().getLeaveLobbyButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby1");
 			clientView.getLobbyStage().hide();
 			clientView.switchView(1);
 		});
+			//klick auf Quit Button
 		lobbyview.getControls().getQuitButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby1");
 			clientView.getLobbyStage().hide();
 			Platform.exit();
 		});
-
+			//Bereits selektiertes Game wird aus SelectedGames gelöscht
 		lobbyview.getLeaveGameButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby2");
 			ObservableList<String> selectedGame = FXCollections.observableArrayList();
 			lobbyview.setSelectedGame(selectedGame);
 		});
-		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());
-
+			//Game wird mit doppelklick in ListView geJoint und zu Selectedgames hinzugefügt
 		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
@@ -118,32 +126,29 @@ public class ClientController {
 			}
 		});
 
-		gameview.menuGame.gameMenuItem21.setOnAction(event -> sl.getConfiguration().setFrenchCards(false));
-		gameview.menuGame.gameMenuItem22.setOnAction(event -> sl.getConfiguration().setFrenchCards(true));
+		
 
 		// GAME
+		gameview.menuGame.gameMenuItem21.setOnAction(event -> sl.getConfiguration().setFrenchCards(false));
+		gameview.menuGame.gameMenuItem22.setOnAction(event -> sl.getConfiguration().setFrenchCards(true));
+		
+			//Rotes Windows kreuz wird geklickt in Game
 		clientView.getGameStage().setOnCloseRequest(c -> {
 			clientModel.sayGoodBye("ExitGame");
 		});
-		
+			//Leave Game Button wird in Game gedrückt
 		gameview.getControls().getLeaveGameButton().setOnAction(c -> {
 		    	clientModel.sayGoodBye("ExitGame"); 	
 		    	clientView.switchView(2);
 		});
-		
-		
+			//Quit Button wird in Game gedrückt
 		gameview.getControls().getQuitButton().setOnAction(c -> {
 		    	clientModel.sayGoodBye("Lobby1");
 		    	clientModel.sayGoodBye("ExitGame"); 	
 			clientView.getGameStage().hide();
 			Platform.exit();
 		});
-		
-		
-		
-		
-		// KARTEN PER KLICK SPIELEN
-
+			// KARTEN PER KLICK SPIELEN
 		gameview.getToggleButton(1).setOnAction((c) -> {
 
 			String gameID = clientModel.getPlayer(gameview.getPlayerName()).getActualGame() + "";
@@ -240,7 +245,7 @@ public class ClientController {
 		});
 	}
 
-//Lobby (Spieler werden in LobbyView geladen die Online sind, durch Lobby Update das ClientModel empfï¿½ngt)
+//Lobby (Spieler werden in LobbyView geladen die Online sind, durch Lobby Update das ClientModel empfaengt)
 	public static void loadPlayersOnline(String[] players) {
 
 		Platform.runLater(new Runnable() {
@@ -284,7 +289,7 @@ public class ClientController {
 		});
 	}
 
-//Game (lï¿½dt die Empfangenen Spieler mit Karten... in die GameView)
+//Game (laedt die Empfangenen Spieler mit Karten... in die GameView)
 	public static void loadPlayersonGame(Player[] playersOnGame, String client, String trumpf, String teamscore) {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -295,7 +300,7 @@ public class ClientController {
 						cardList = p.getHandAsStrings();
 						clientView.getGameView().setTitle(t.getString("game.windowTitle")+" "+ p.getName());
 						if (p.getonMove() == true) {
-							// Trumpf auswï¿½hlen aber nur wenn 1. Runde
+							// Trumpf auswaehlen aber nur wenn 1. Runde
 						    	clientView.getGameView().getOnTurn().setText(t.getString("game.lblAmZug"));
 							clientView.getGameView().getOnTurn().setTextFill(Color.web("red"));
 						} else {
