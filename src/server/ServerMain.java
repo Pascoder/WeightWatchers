@@ -21,7 +21,6 @@ public class ServerMain {
 	public static void main(String[] args) throws IOException {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		model = new ServerModel();
-		System.out.println("Server started and listening on port 9998");
 
 		try (ServerSocket serverSocket = new ServerSocket(port, 10, null)) {
 
