@@ -14,7 +14,7 @@ public class ServiceLocator_JC {
     // Application-global constants
     final private Class<?> APP_CLASS = JassClient.class;
     final private String APP_NAME = "JassClient";
-    
+
     // Supported locales (for translations)
     final private Locale[] locales = new Locale[] { new Locale("en"), new Locale("de") };
 
@@ -25,57 +25,53 @@ public class ServiceLocator_JC {
 
     private Locale locale;
 
- 
-  
-    
     public static ServiceLocator_JC getServiceLocator() {
-        if (serviceLocator == null)
-            serviceLocator = new ServiceLocator_JC();
-        return serviceLocator;
+	if (serviceLocator == null)
+	    serviceLocator = new ServiceLocator_JC();
+	return serviceLocator;
     }
+
     private ServiceLocator_JC() {
-	
+
     }
-   
-    
 
     public Class<?> getAPP_CLASS() {
-        return APP_CLASS;
+	return APP_CLASS;
     }
-    
+
     public String getAPP_NAME() {
-        return APP_NAME;
+	return APP_NAME;
     }
 
     public Logger getLogger() {
-        return logger;
+	return logger;
     }
 
     public void setLogger(Logger logger) {
-        this.logger = logger;
+	this.logger = logger;
     }
 
     public Configuration_JC getConfiguration() {
-        return configuration;
+	return configuration;
     }
 
     public void setConfiguration(Configuration_JC configuration) {
-        this.configuration = configuration;
+	this.configuration = configuration;
     }
 
     public Locale[] getLocales() {
-        return locales;
+	return locales;
     }
-    
+
     public void setLocales(Locale locale) {
 	this.locale = locale;
     }
 
     public Translator_JC getTranslator() {
-        return translator;
+	return translator;
     }
-    
+
     public void setTranslator(Translator_JC translator) {
-        this.translator = translator;
+	this.translator = translator;
     }
 }

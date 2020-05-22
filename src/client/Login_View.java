@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 import server.ServiceLocator;
 
 public class Login_View extends BorderPane {
-    
+
     private GridPane centerPane;
     private TextField usernameField, registerField;
     private PasswordField passwordField;
@@ -36,7 +36,6 @@ public class Login_View extends BorderPane {
     private Label registerLabel, usernameLabel, passwordLabel, lblTitle;
     private Menu_Login_View MenuLgVi;
     private ControlBar_Login_View controls;
-    
 
     private Translator_JC t;
     private ServiceLocator_JC sl;
@@ -46,8 +45,7 @@ public class Login_View extends BorderPane {
 	this.model = model;
 	this.sl = ServiceLocator_JC.getServiceLocator();
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
-	
-	
+
 	this.centerPane = new GridPane();
 	this.centerPane.getStyleClass().add("login_view");
 	this.lblTitle = new Label();
@@ -75,16 +73,14 @@ public class Login_View extends BorderPane {
 	this.registerButton = new Button();
 	this.centerPane.add(registerButton, 3, 12);
 
-
 	this.centerPane.setAlignment(Pos.CENTER);
 	this.centerPane.setHgap(20);
 	this.centerPane.setVgap(10);
 	this.setCenter(centerPane);
-	
+
 	this.controls = new ControlBar_Login_View();
 	this.setBottom(controls);
-	
-	
+
 	setTexts();
 
 	Scene scene = new Scene(this, 850, 600);
@@ -92,7 +88,6 @@ public class Login_View extends BorderPane {
 	this.stage.setScene(scene);
 	this.stage.show();
     }
-
 
     protected void setTexts() {
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
@@ -108,9 +103,9 @@ public class Login_View extends BorderPane {
     }
 
     public ControlBar_Login_View getControls() {
-        return controls;
+	return controls;
     }
-    
+
     public TextField getUsernameField() {
 	return usernameField;
     }

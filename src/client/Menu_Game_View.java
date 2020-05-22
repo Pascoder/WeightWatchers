@@ -45,7 +45,6 @@ public class Menu_Game_View extends Menu_Basic_View {
 
     protected void setTexts() {
 	setTextsBasic();
-
 	this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
 	this.gameMenu2.setText(t.getString("gameMenu.Cards"));
 	this.gameMenuItem21.setText(t.getString("gameMenu.CH"));

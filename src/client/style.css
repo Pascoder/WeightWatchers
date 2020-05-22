@@ -100,8 +100,8 @@
 	-fx-background-image: url("KartenHaltend.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: 95, 60, contain;
-	-fx-background-padding: 20;
+	-fx-background-size: 95.0, 60.0, contain;
+	-fx-background-padding: 20.0;
 
 	}
 
@@ -143,15 +143,14 @@
 	-fx-background-image: url("Schiefertafel.jpg");
 	-fx-background-position: left, top;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: contain, auto;
-	-fx-fill-height: true;
+	-fx-background-size: stretch;
 
 
 }
 .gamePointsBox .label{
 	-fx-text-fill: white;
 	-fx-padding: 10.0;
-	-fx-margin: 20;
+	-fx-margin-left: 30.0;
 	-fx-font-size: 16.0;
 }
 
@@ -166,7 +165,7 @@
 
 
 #label_game_view{
-	-fx-font-size: 20.0pt;
+	-fx-font-size: 16.0pt;
     -fx-font-family: Gill Sans;
     -fx-text-fill: black;
     -fx-text-weight: bold;
@@ -175,8 +174,8 @@
 
 #gameTeppichBox{
 	-fx-background-image: url("teppich.png");
-	-fx-hgap:	2;	 	
-	-fx-vgap:	2; 	
+	-fx-hgap:	2.0;	 	
+	-fx-vgap:	2.0; 	
 	-fx-alignment:	center;	 	
 	-fx-grid-lines-visible:	false;
 	-fx-background-position: center;

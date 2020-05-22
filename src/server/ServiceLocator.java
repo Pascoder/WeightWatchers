@@ -20,12 +20,7 @@ public class ServiceLocator {
     }
 
     private ServiceLocator() {
-    }
-
-    //
-    
-    
-    
+    }  
     
     public Logger getLogger() {
 	return logger;

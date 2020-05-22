@@ -3,18 +3,19 @@ package server;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// 2020 Oliver Mosimann
+
 public class JassModel {
 
     public static ArrayList<Card> evalHand = new ArrayList<Card>();
 
     public JassModel() {
-
     }
 
+    // Prüft, welche Karten eines Spielers spielbar sind
     public static ArrayList<Card> checkPlayableCards(ArrayList<Card> hand, CardColor trumpf, CardColor stichColor) {
 	boolean stichCard = false;
 	boolean trumpfCard = false;
-
 	for (Card c : hand) {
 	    c.setPlayable(false);
 	}
@@ -24,97 +25,74 @@ public class JassModel {
 		stichCard = true;
 	    }
 	}
-
 	for (Card c : hand) {
 	    if (c.getCardColor() == trumpf) {
 		c.setPlayable(true);
 	    }
 	}
-
 	for (Card c : hand) {
 	    if (!stichCard && !trumpfCard) {
 		c.setPlayable(true);
 	    }
 	}
-
 	return hand;
     }
 
+    // Ermittelt den Gewinner und Punkte anhand der Karten auf dem Tisch
     public static int[] evaluateStichWinner(ArrayList<Card> cardsOnTable, GameType gameType, TrumpfType trumpfType,
 	    int round, CardColor trumpf, CardColor stich) {
 	int points = evaluateScore(cardsOnTable, gameType, trumpfType, trumpf);
 	Card winnerCard = evluateWinnerCard(cardsOnTable, trumpfType, trumpf, stich);
-	
-
 	int[] winnerScore = new int[2];
-
 	winnerScore[0] = winnerCard.getPlayer_ID();
 	winnerScore[1] = points;
 	return winnerScore;
     }
 
-    private static Card evluateWinnerCard(ArrayList<Card> cardsOnTable, TrumpfType trumpfType, CardColor trumpf, CardColor stich) {	
-    ArrayList<Card> trumpfCards = new ArrayList<>();
+    // Ermittelt die Gewinnerkarte auf dem Tisch
+    private static Card evluateWinnerCard(ArrayList<Card> cardsOnTable, TrumpfType trumpfType, CardColor trumpf,
+	    CardColor stich) {
+	ArrayList<Card> trumpfCards = new ArrayList<>();
 	ArrayList<Card> stichCards = new ArrayList<>();
 	ArrayList<Card> otherCards = new ArrayList<>();
-	Card winnerCard = null;	
-	for(Card c : cardsOnTable) {
-	    if(c.getCardColor() == trumpf) {
+	Card winnerCard = null;
+	for (Card c : cardsOnTable) {
+	    if (c.getCardColor() == trumpf) {
 		trumpfCards.add(c);
-	    }else {
-	    if(c.getCardColor() == stich) {
-	    stichCards.add(c);
-	    }else {
-	    otherCards.add(c);
+	    } else {
+		if (c.getCardColor() == stich) {
+		    stichCards.add(c);
+		} else {
+		    otherCards.add(c);
+		}
 	    }
-	    }
-	    }
-	System.out.println("CARDS ON TABLE: "+cardsOnTable);
-	System.out.println("TRUMPF CARDS: "+trumpfCards);
-	System.out.println("STICH CARDS: "+stichCards);
-	System.out.println("OTHER CARDS: "+otherCards);
-	
-	if(trumpfCards.size()>0) {
+	}
+	if (trumpfCards.size() > 0) {
 	    Collections.sort(trumpfCards, Card.trumpfRankComparator);
 	    winnerCard = trumpfCards.get(0);
-	}else {
-	    
-	    if(stichCards.size()>0) {
-	    Collections.sort(stichCards, Card.normalRankComparator);
+	} else {
+	    if (stichCards.size() > 0) {
+		Collections.sort(stichCards, Card.normalRankComparator);
 		winnerCard = stichCards.get(0);
-	    }else {
-	    Collections.sort(otherCards, Card.normalRankComparator);
+	    } else {
+		Collections.sort(otherCards, Card.normalRankComparator);
 		winnerCard = otherCards.get(0);
 	    }
 	}
-	
 	return winnerCard;
-	
     }
 
-    
-
+    // Zählt die erreichten Punkte der Karten auf dem Tisch zusammen
     static int evaluateScore(ArrayList<Card> cardsOnTable, GameType gameType, TrumpfType trumpfType, CardColor trumpf) {
 	int score = 0;
 	if (gameType == GameType.Schieber)
 	    for (Card c : cardsOnTable) {
 		if (c.getCardColor() == trumpf) {
 		    score += c.getCardRank().getTrumpfScore();
-		}else {
-			score += c.getCardRank().getScore();
+		} else {
+		    score += c.getCardRank().getScore();
 		}
-		
 	    }
-	
 	return score;
     }
-
-    static int evaluateWinner(ArrayList<Card> cardsOnTable, GameType gameType) {
-	int player_ID = -1;
-
-	return player_ID;
-    }
-
-    
-    
 }

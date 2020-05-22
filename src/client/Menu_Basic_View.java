@@ -16,10 +16,12 @@ import javafx.scene.image.ImageView;
 
 public class Menu_Basic_View extends MenuBar {
 
+    // 2020 Oliver Mosimann
+
     ServiceLocator_JC sl;
     Translator_JC t;
     Logger logger;
-    Menu menu1, menu6, infoMenu; 
+    Menu menu1, menu6, infoMenu;
     MenuItem infoInhalt;
 
     ToggleGroup tg1;
@@ -74,7 +76,7 @@ public class Menu_Basic_View extends MenuBar {
 	infoInhalt = new MenuItem();
 	menu6.getItems().add(infoMenu);
 	infoMenu.getItems().add(infoInhalt);
-	
+
 	this.getMenus().addAll(menu1, menu6);
 
     }
