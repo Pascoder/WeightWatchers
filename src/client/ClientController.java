@@ -420,7 +420,6 @@ public class ClientController {
 
 //Game (Karten die bereits gepspielt wurden auf dem Tisch in der GameView zeigen)
 	public static void loadCardsOnTable(String cardsontable) {
-		System.out.println("CLIENT CARDSONTABLE: " + cardsontable);
 		Platform.runLater(new Runnable() {
 
 			@Override
