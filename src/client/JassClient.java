@@ -8,9 +8,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-import javafx.application.Application;
+import javafx.application.Application; 
 import javafx.application.Platform;
 import javafx.stage.Stage;
+
+//Klasse von Frank Mauchle
 
 public class JassClient extends Application {
     private static JassClient mainProgram; // singleton
