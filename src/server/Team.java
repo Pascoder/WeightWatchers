@@ -69,6 +69,10 @@ public void addTeamMember(Player p1) {
 	}
 }
 
+public String getTeamNames() {
+	return members.get(0).getName() + " & " + members.get(1).getName();
+}
+
 public String toString() {
 	String members = "";
 	for(int i = 0; i< this.members.size();i++) {

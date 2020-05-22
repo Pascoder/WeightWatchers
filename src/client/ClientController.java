@@ -460,14 +460,14 @@ public class ClientController {
 	}
 
 //Game (Gewinner anzeigen nach 1000 Punkten durch Message die in ClientModel empfangen wurde)
-	public static void showWinnerTeam(String winnerteamid) {
+	public static void showWinnerTeam(String winners) {
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Spiel vorbei!");
-				alert.setContentText("Winnerteam: " + winnerteamid);
+				alert.setTitle(t.getString("alert.spielFertig"));
+				alert.setContentText(t.getString("alert.stapleWinnerWinners") + winners);
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
 					clientModel.sayExitGame();
@@ -479,7 +479,7 @@ public class ClientController {
 	}
 
 //Game (Gewinner nach gespieltem Stapel anzeigen)
-	public static void showStapelWinner(String winnerTeamID, String client) {
+	public static void showStapelWinner(String winners) {
 		
 		
 		
@@ -490,8 +490,8 @@ public class ClientController {
 				
 
 				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Stapel fertig!");
-				alert.setContentText("Stapelsieger: Gewonnen hat Team " + winnerTeamID + " ! " +" Weiterspielen? ");
+				alert.setTitle(t.getString("alert.stapleWinnerTitle"));
+				alert.setContentText(t.getString("alert.stapleWinnerWinners") + winners +  t.getString("alert.stapleWinnerWeiter"));
 
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
@@ -519,8 +519,8 @@ public class ClientController {
 			public void run() {
 				Dialog<Object> dialog = new Dialog<>();
 
-				dialog.setTitle("Spiel wird beendet");
-				dialog.setContentText("Ein Spieler hat das Spiel verlassen. Spiel wird beendet in 5 Sekunden");
+				dialog.setTitle(t.getString("alert.spielBeenden"));
+				dialog.setContentText(t.getString("alert.spielBeendenText"));
 				dialog.show();
 				try {
 					Thread.sleep(5000);

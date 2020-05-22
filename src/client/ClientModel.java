@@ -145,11 +145,11 @@ public class ClientModel {
 			if (gu_msg.getStichover().equals("true")) {
 
 				if (gu_msg.getGamefinish().equals("true")) {
-					ClientController.showWinnerTeam(gu_msg.getWinnerteamid());
+					ClientController.showWinnerTeam(gu_msg.getWinnernames());
 
 				} else {
 					if (gu_msg.getStapelfinish().equals("true")) {
-						ClientController.showStapelWinner(gu_msg.getWinnerteamid(), gu_msg.getClient());
+						ClientController.showStapelWinner(gu_msg.getWinnernames());
 					} else {
 						Message_NEXTROUND msg_nr = new Message_NEXTROUND();
 						msg_nr.setGamename(gu_msg.getGameid());
@@ -227,6 +227,11 @@ public class ClientModel {
 		}
 		msgOut.setClient(this.clientName);
 		return msgOut;
+	}
+
+	private static String getWinnerNames(String teamScore) {
+		System.out.println(teamScore);
+		return null;
 	}
 
 	private Player[] findPlayersOnGame(String players) {
