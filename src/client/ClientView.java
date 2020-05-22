@@ -45,7 +45,6 @@ public class ClientView {
 		} else {
 			if (viewNumber == 2) {
 				// LobbyView
-				System.out.println("Lobby View öffnet sich jetzt!");
 				lobbyStage.show();
 				loginStage.hide();
 				if (gameStage != null)
@@ -54,7 +53,6 @@ public class ClientView {
 			} else {
 				// GameView
 				if (viewNumber == 3) {
-					this.gameView = new Game_View(gameStage, clientModel);
 					gameStage.show();
 					lobbyStage.hide();
 				}
