@@ -25,6 +25,8 @@ import server.Player;
 //Klasse von Frank Mauchle
 public class ClientController {
 
+	//TODO model, view wÃ¤re besser nicht statisch 
+
 	private static ClientModel clientModel;
 	private static ClientView clientView;
 	private static ServiceLocator_JC sl;
@@ -47,13 +49,13 @@ public class ClientController {
 			//Create(Register) Button ausgeblendet wenn TextFeld username, passwort leer
 		view.getRegisterButton().disableProperty().bind(
 				view.getUsernameField().textProperty().isEmpty().or(view.getPasswordField().textProperty().isEmpty()));
-			//Login wird mit klick in ClientModel ausgelöst
+			//Login wird mit klick in ClientModel ausgelï¿½st
 		view.getLoginButton().setOnAction(e -> {
 			clientModel.sayLogin(view.getUsernameField().getText(), view.getPasswordField().getText());
 			view.getPasswordField().clear();
 			view.getUsernameField().clear();
 		});
-			//sayRegister in ClientModel wird mit klick ausgelöst
+			//sayRegister in ClientModel wird mit klick ausgelï¿½st
 		view.getRegisterButton().setOnAction(e -> {
 			clientModel.sayRegister(view.getUsernameField().getText(), view.getPasswordField().getText());
 			view.getPasswordField().clear();
@@ -68,7 +70,7 @@ public class ClientController {
 		lobbyview.getLeaveGameButton().disableProperty().bind(lobbyview.selectedGameList.getSelectionModel().selectedItemProperty().isNull());
 			//Wenn kein Game getippt wurde im TextFeld kann CreatGameButton nicht geklickt werden
 		lobbyview.getCreateGameButton().disableProperty().bind(lobbyview.getTextField().textProperty().isEmpty());	
-		//Spieler klickt Quit in Lobby und verlässt das komplette Spiel
+		//Spieler klickt Quit in Lobby und verlï¿½sst das komplette Spiel
 		view.getControls().getQuitButton().setOnAction(c -> {
 			clientView.getLobbyStage().hide();
 			Platform.exit();
@@ -101,13 +103,13 @@ public class ClientController {
 			clientView.getLobbyStage().hide();
 			Platform.exit();
 		});
-			//Bereits selektiertes Game wird aus SelectedGames gelöscht
+			//Bereits selektiertes Game wird aus SelectedGames gelï¿½scht
 		lobbyview.getLeaveGameButton().setOnAction(c -> {
 			clientModel.sayGoodBye("Lobby2");
 			ObservableList<String> selectedGame = FXCollections.observableArrayList();
 			lobbyview.setSelectedGame(selectedGame);
 		});
-			//Game wird mit doppelklick in ListView geJoint und zu Selectedgames hinzugefügt
+			//Game wird mit doppelklick in ListView geJoint und zu Selectedgames hinzugefï¿½gt
 		clientView.getLobbyView().gamesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
@@ -136,12 +138,14 @@ public class ClientController {
 		clientView.getGameStage().setOnCloseRequest(c -> {
 			clientModel.sayGoodBye("ExitGame");
 		});
-			//Leave Game Button wird in Game gedrückt
+			//Leave Game Button wird in Game gedrï¿½ckt
 		gameview.getControls().getLeaveGameButton().setOnAction(c -> {
-		    	clientModel.sayGoodBye("ExitGame"); 	
+		    	clientModel.sayGoodBye("ExitGame1"); 	
 		    	clientView.switchView(2);
+		    	ObservableList<String> selectedGameList = FXCollections.observableArrayList();
+				clientView.getLobbyView().setSelectedGame(selectedGameList);
 		});
-			//Quit Button wird in Game gedrückt
+			//Quit Button wird in Game gedrï¿½ckt
 		gameview.getControls().getQuitButton().setOnAction(c -> {
 		    	clientModel.sayGoodBye("ExitGame"); 		    	
 			clientView.getGameStage().hide();
@@ -420,7 +424,6 @@ public class ClientController {
 
 //Game (Karten die bereits gepspielt wurden auf dem Tisch in der GameView zeigen)
 	public static void loadCardsOnTable(String cardsontable) {
-		System.out.println("CLIENT CARDSONTABLE: " + cardsontable);
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -431,7 +434,7 @@ public class ClientController {
 				if (sl.getConfiguration().isFrenchCards()) {
 					lang = "_FR";
 				}
-				String[] cards = cardsontable.split("\\$");
+				String[] cards = cardsontable.split("\\$"); 
 
 				for (int i = 0; i < cards.length; i++) {
 					String[] card = cards[i].split("\\|");
@@ -522,10 +525,11 @@ public class ClientController {
 				try {
 					Thread.sleep(5000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				clientView.switchView(2);
+				ObservableList<String> selectedGameList = FXCollections.observableArrayList();
+				clientView.getLobbyView().setSelectedGame(selectedGameList);
 				dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL);
 				dialog.hide();
 

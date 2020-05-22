@@ -75,7 +75,6 @@ public class ServerModel {
 		s = in.readLine();
 	    }
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	accountsloaded = true;
@@ -133,7 +132,7 @@ public class ServerModel {
 	    break;
 
 	case 2:
-	    // TODO In Methoden aufsplitten
+	    // In Methoden aufsplitten
 	    Message_GAMEUPDATE msgOutGame = new Message_GAMEUPDATE();
 
 	    String gameId = Lobby.getLobby().getGameIDofPlayersGame(client);
@@ -315,5 +314,11 @@ public class ServerModel {
 	ServerModel.chatHistory += "|" + chatMessage;
 
     }
+
+	public static void deleteGame(String client) {
+		String GameID = Lobby.getLobby().getGameIDofPlayersGame(client);
+		Lobby.getLobby().removeGame(Integer.parseInt(GameID));
+		
+	}
 
 }
