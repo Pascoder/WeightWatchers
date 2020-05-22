@@ -1,16 +1,16 @@
 .root {
 	-fx-background-color: #ffe4c4;
-	-fx-font-size: 12pt;
+	-fx-font-size: 12.0pt;
 	-fx-font-family: Gill Sans;
 	-fx-text-color: brown;
 }
 
 .label {
-    -fx-font-size: 12px;
+    -fx-font-size: 12.0px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-    -fx-padding: 5;
+    -fx-effect: dropshadow( gaussian , rgba(255.0,255.0,255.0,0.5) , 0.0,0.0,0.0,1.0 );
+    -fx-padding: 5.0;
 }
 
 .button {
@@ -18,7 +18,7 @@
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;
     -fx-background-color: linear-gradient(#61a2b1, #2A5058);
-    -fx-effect: dropshadow(three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow(three-pass-box , rgba(0.0,0.0,0.0,0.6) , 5.0, 0.0 , 0.0 , 1.0 );
 }
 
 
@@ -42,10 +42,10 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 10pt;
+    -fx-font-size: 10.0pt;
     -fx-font-family: Gill Sans;
     -fx-text-fill: black;
-    -fx-opacity: 1;
+    -fx-opacity: 1.0;
 }
 
 
@@ -63,12 +63,12 @@
 
 }
 .login_view .label {
-	 -fx-font-size: 20pt;
+	 -fx-font-size: 20.0pt;
     -fx-font-family: Gill Sans;
     -fx-text-fill: black;
     -fx-text-weight: bold;
     -fx-text-border-color: blue;
-    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
+    -fx-effect: dropshadow( gaussian , lightgrey , 2.0,3.0,3.0,3.0,1.0,5.0 );
 }
 
 .lobby_view {
@@ -91,56 +91,49 @@
 
 #gameCardsOnTable{
 	-fx-padding: 4.0px;
-    -fx-max-width: 60;
-    -fx-max-height: 80;
+    -fx-max-width: 60.0;
+    -fx-max-height: 80.0;
     -fx-setPosition: center;
 }
 
 .gamePlayerBox {
 	-fx-background-image: url("KartenHaltend.jpg");
-	-fx-background-insets: 5;
+	-fx-background-insets: 20.0;
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: contain, auto;
-	-fx-border-insets: 5;
+	 -fx-background-width: 75.0;
+    -fx-background-hight: 105.0;
+	-fx-border-insets: 20.0;
 	
 	}
 
 .gamePlayerBox .label {
-	-fx-font-size: 24pt;
-	-fx-font-position: center;
+	-fx-font-size: 24.0pt;
+	-fx-text-position: center;
     -fx-font-family: Gill Sans;
     -fx-text-fill: green;
     -fx-text-weight: bold;
-    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
+    -fx-effect: dropshadow( gaussian , lightgrey , 2.0,3.0,3.0,3.0,1.0,5.0 );
 }
 
 .player4InfoBox{
-	-fx-spacing: 20;
+	-fx-spacing: 20.0;
 }
 	
 .gamePlayer4InfoBox .label {
-	-fx-font-size: 20pt;
+	-fx-font-size: 20.0pt;
     -fx-font-family: Gill Sans;
     -fx-text-fill: green;
     -fx-text-weight: bold;
-    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
+    -fx-effect: dropshadow( gaussian , lightgrey , 2.0,3.0,3.0,3.0,1.0,5.0 );
 }
 
 .gamePlayer4CardBox {
-	-fx-spacing: 60;
-	-fx-margin: 20px;
-	-fx-background-color: lightbrown;
+	-fx-spacing: 60.0;
+	-fx-margin: 20.0px;
 	
 	}
 	
-.gamePlayer4CardBox .Button:hover {
-	-fx-translate-y: -20;
-}
-
-.gamePlayerCards:hover{
-	-fx-translate-y: -20;
-}
 	
 
 .gameRightBox{	
@@ -159,8 +152,8 @@
 }
 .gamePointsBox .label{
 	-fx-text-fill: white;
-	-fx-margin: 30;
-	-fx-font-size: 16;
+	-fx-margin: 30.0;
+	-fx-font-size: 16.0;
 }
 
 .gameTableBox{
@@ -174,11 +167,11 @@
 
 
 #label_game_view{
-	-fx-font-size: 20pt;
+	-fx-font-size: 20.0pt;
     -fx-font-family: Gill Sans;
     -fx-text-fill: black;
     -fx-text-weight: bold;
-    -fx-effect: dropshadow( gaussian , lightgrey , 2,3.0,3.0,3,1,5 );
+    -fx-effect: dropshadow( gaussian , lightgrey , 2.0,3.0,3.0,3.0,1.0,5.0 );
 }
 
 #gameTeppichBox{

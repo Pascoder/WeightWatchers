@@ -422,7 +422,6 @@ public class ClientController {
 
 //Game (Karten die bereits gepspielt wurden auf dem Tisch in der GameView zeigen)
 	public static void loadCardsOnTable(String cardsontable) {
-		System.out.println("CLIENT CARDSONTABLE: " + cardsontable);
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -433,7 +432,7 @@ public class ClientController {
 				if (sl.getConfiguration().isFrenchCards()) {
 					lang = "_FR";
 				}
-				String[] cards = cardsontable.split("\\$");
+				String[] cards = cardsontable.split("\\$"); 
 
 				for (int i = 0; i < cards.length; i++) {
 					String[] card = cards[i].split("\\|");
