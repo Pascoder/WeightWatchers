@@ -89,22 +89,20 @@
 }
 
 
-#gameCardsOnTable{
-	-fx-padding: 4.0px;
-    -fx-max-width: 60.0;
+.gameCardsOnTable{
+	-fx-max-width: 60.0;
     -fx-max-height: 80.0;
     -fx-setPosition: center;
+    -fx-size: cover;
 }
 
 .gamePlayerBox {
 	-fx-background-image: url("KartenHaltend.jpg");
-	-fx-background-insets: 20.0;
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
-	 -fx-background-width: 75.0;
-    -fx-background-hight: 105.0;
-	-fx-border-insets: 20.0;
-	
+	-fx-background-size: 95, 60, contain;
+	-fx-background-padding: 20;
+
 	}
 
 .gamePlayerBox .label {
@@ -176,12 +174,11 @@
 
 #gameTeppichBox{
 	-fx-background-image: url("teppich.png");
+	-fx-hgap:	2;	 	
+	-fx-vgap:	2; 	
+	-fx-alignment:	center;	 	
+	-fx-grid-lines-visible:	false;
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: contain, auto;
-
-	/*-fx-Spacing: 30px;
-    -fx-padding: 10.0px;
-    -fx-border-width: 2.0px;*/
 }
-

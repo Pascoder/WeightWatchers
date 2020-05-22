@@ -87,7 +87,7 @@ public class Login_View extends BorderPane {
 	
 	setTexts();
 
-	Scene scene = new Scene(this, 650, 600);
+	Scene scene = new Scene(this, 850, 600);
 	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	this.stage.setScene(scene);
 	this.stage.show();

@@ -46,13 +46,7 @@ public class Game_View extends BorderPane{
     protected ToggleButton karte1, karte2, karte3,karte4,karte5,karte6,karte7,karte8,karte9;
     protected ArrayList <ToggleButton> playerButtons;
    
- 
-    //protected Image imgverdeckt = new Image(this.getClass().getClassLoader().getResourceAsStream("KartenHaltend.jpg"));
-    
 
-    //protected ImageView imageverdeckt = new ImageView(imgverdeckt);
-    //protected ImageView imageverdeckt2 = new ImageView(imgverdeckt);
-    //protected ImageView imageverdeckt3 = new ImageView(imgverdeckt);
     protected ImageView cardOnTable1 = new ImageView();   
     protected ImageView cardOnTable2 = new ImageView();
     protected ImageView cardOnTable3 = new ImageView();
@@ -65,8 +59,7 @@ public class Game_View extends BorderPane{
     	this.stage = stage;
     	this.setId("GameView");
 		this.model = model;
-		//this.setPadding(new Insets(10,10,10,10));
-		
+				
 		this.sl = ServiceLocator_JC.getServiceLocator();
 		this.t = ServiceLocator_JC.getServiceLocator().getTranslator();
 		this.getStyleClass().add("game_view");
@@ -76,9 +69,6 @@ public class Game_View extends BorderPane{
 		this.setTop(menuGame);
 		
 
-		
-		
-		
 		
 		//Center: tableBox; Players 1-3 % teppichBox
 		playerButtons = new ArrayList<ToggleButton>();
@@ -92,35 +82,28 @@ public class Game_View extends BorderPane{
 			//Player1 Rechts
 			this.player1 = new VBox();
 			this.player1.getStyleClass().add("gamePlayerBox");
+			this.player1.setPrefSize(120, 120);
 			//this.player1.setSpacing(30);
 			//this.player1.setPadding(new Insets(10,60,60,60));
 			this.p1_name = new Label("--");
 			this.player1.getChildren().add(p1_name);
 			
 			
-			//this.imageverdeckt.setFitHeight(140);
-			//this.imageverdeckt.setFitWidth(100);
-			//player1.getChildren().add(imageverdeckt);
-			this.tableBox.setRight(player1);
-			this.player1.setAlignment(Pos.CENTER);
+						this.tableBox.setRight(player1);
+			this.player1.setAlignment(Pos.CENTER_LEFT);
 			
 			//teppichBox
 			this.teppichBox = new GridPane();
-			this.teppichBox.setGridLinesVisible(true);
 			this.teppichBox.setId("gameTeppichBox");
-			//this.teppichBox.getColumnConstraints().add(new ColumnConstraints(100));
-			//this.teppichBox.getRowConstraints().add(new RowConstraints(105));
-
-			//this.teppichBox.setPadding(new Insets(10,60,60,60));
 			this.teppichBox.setAlignment(Pos.CENTER);
 			this.teppichBox.add(cardOnTable1, 1, 2);
 			this.teppichBox.add(cardOnTable2, 2, 1);
 			this.teppichBox.add(cardOnTable3, 1, 0);
 			this.teppichBox.add(cardOnTable4, 0, 1);
-			this.cardOnTable1.setId("gameCardsOnTable");
-			this.cardOnTable2.setId("gameCardsOnTable");
-			this.cardOnTable3.setId("gameCardsOnTable");
-			this.cardOnTable4.setId("gameCardsOnTable");
+			this.cardOnTable1.getStyleClass().add("gameCardsOnTable");
+			this.cardOnTable2.getStyleClass().add("gameCardsOnTable");
+			this.cardOnTable3.getStyleClass().add("gameCardsOnTable");
+			this.cardOnTable4.getStyleClass().add("gameCardsOnTable");
 			
 			cardOnTable1.setFitHeight(100);
 			cardOnTable1.setFitWidth(80);
@@ -138,44 +121,29 @@ public class Game_View extends BorderPane{
 			//Player2 oben 
 			this.player2 = new VBox();
 			this.player2.getStyleClass().add("gamePlayerBox");
-			//this.player2.setSpacing(30);
-			//this.player2.setPadding(new Insets(10,60,60,60));
+			this.player2.setPrefSize(120, 120);
 			this.p2_name = new Label("--");
 			this.player2.getChildren().add(p2_name);
 			this.tableBox.setTop(player2);
-			this.player2.setAlignment(Pos.CENTER);
+			this.player2.setAlignment(Pos.BOTTOM_CENTER);
 			
 			
-			//this.imageverdeckt2.setFitHeight(140);
-			//this.imageverdeckt2.setFitWidth(100);
-			//player2.getChildren().add(imageverdeckt2);
-			
-			
+						
 			//Player3 links
 			this.player3 = new VBox();
 			this.player3.getStyleClass().add("gamePlayerBox");
-			//this.player3.setSpacing(30);
-			//this.player3.setPadding(new Insets(10,60,60,60));
+			this.player3.setPrefSize(120, 120);
 			this.p3_name = new Label("--");
 			this.player3.getChildren().add(p3_name);
 			this.tableBox.setLeft(player3);
-			this.player3.setAlignment(Pos.CENTER);
-			
-			//this.imageverdeckt3.setFitHeight(140);
-			//this.imageverdeckt3.setFitWidth(100);
-			//player3.getChildren().add(imageverdeckt3);
+			this.player3.setAlignment(Pos.CENTER_RIGHT);
 			
 			
 	//Player4 unten (eigener Spieler)
 			this.player4CardBox = new TilePane();
 			this.player4CardBox.getStyleClass().add("gamePlayer4CardBox");
-			//this.player4CardBox.setPadding(new Insets(10,10,10,10));
 			
-			//this.tablePane.add(player4, 0, 2,10,1);
-			
-				//Hier unten werden dann ImageViews verwendet die Image beinhalten
-			
-			//TODO kann mit for schleife gelöst werden
+			//Hier unten werden dann ImageViews verwendet die Image beinhalten
 			
 			this.karte1 = new ToggleButton();
 			this.karte1.getStyleClass().add("gamePlayerCards");
@@ -297,9 +265,11 @@ public class Game_View extends BorderPane{
 		this.pointsBox = new VBox();
 		this.pointsBox.getChildren().addAll(ourPointsBox, P13, opponentsPointsBox, P24);
 		this.pointsBox.getStyleClass().add("gamePointsBox");
+		this.pointsBox.setMinHeight(400);
 		
 		this.rightBox.getChildren().addAll(trumpfBox, pointsBox);
 		this.setRight(rightBox);
+		this.rightBox.setAlignment(Pos.CENTER);
 		
 		setTexts();	
 	
@@ -380,7 +350,7 @@ public void placeCardtoTable(int num, Image img) {
 	case 4: this.cardOnTable4.setImage(img);
 	break;
 	default:
-		System.out.println("Zu viele Karten auf dem Tisch!! max: 4!");
+		
 	
 	}
     	
