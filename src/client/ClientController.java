@@ -430,7 +430,7 @@ public class ClientController {
 				if (sl.getConfiguration().isFrenchCards()) {
 					lang = "_FR";
 				}
-				String[] cards = cardsontable.split("\\$");
+				String[] cards = cardsontable.split("\\$"); 
 
 				for (int i = 0; i < cards.length; i++) {
 					String[] card = cards[i].split("\\|");
