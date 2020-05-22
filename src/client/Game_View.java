@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 public class Game_View extends BorderPane{
  
     private Stage stage;
-  	private ClientModel model;
+    private ClientModel model;
     private Translator_JC t;
     private ServiceLocator_JC sl;
     //Layout
@@ -83,8 +83,6 @@ public class Game_View extends BorderPane{
 			this.player1 = new VBox();
 			this.player1.getStyleClass().add("gamePlayerBox");
 			this.player1.setPrefSize(120, 120);
-			//this.player1.setSpacing(30);
-			//this.player1.setPadding(new Insets(10,60,60,60));
 			this.p1_name = new Label("--");
 			this.player1.getChildren().add(p1_name);
 			
@@ -258,25 +256,23 @@ public class Game_View extends BorderPane{
 		this.trumpfBox = new VBox();
 		this.trumpf = new Label();
 		this.trumpf.setId("label_game_view");
-		this.trumpf.setId("game_trumpfIcon");
 		this.trumpfBox.getChildren().addAll(this.trumpf, this.trumpfColor);
 		
 		
 		this.pointsBox = new VBox();
 		this.pointsBox.getChildren().addAll(ourPointsBox, P13, opponentsPointsBox, P24);
 		this.pointsBox.getStyleClass().add("gamePointsBox");
-		this.pointsBox.setMinHeight(400);
+		this.pointsBox.setMinHeight(600);
 		
 		this.rightBox.getChildren().addAll(trumpfBox, pointsBox);
 		this.setRight(rightBox);
-		this.rightBox.setAlignment(Pos.CENTER);
 		
 		setTexts();	
 	
 	Scene scene = new Scene(this);
 	scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 	stage.setWidth(1100);
-	stage.setHeight(800);
+	stage.setHeight(840);
 	stage.setScene(scene);
 	stage.setResizable(true);
     }
