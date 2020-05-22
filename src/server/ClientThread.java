@@ -57,7 +57,7 @@ public class ClientThread extends Thread {
 		Message msgOut = processMessage(msgIn);
 		msgOut.send(clientSocket);
 	    } catch (Exception e) {
-		Logger.getLogger(e.getLocalizedMessage());
+		//Logger.getLogger(e.getLocalizedMessage());
 	    }
     }
 

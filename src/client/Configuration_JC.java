@@ -18,9 +18,8 @@ import java.util.logging.Logger;
 
 
 public class Configuration_JC {
-    ServiceLocator_JC sl = ServiceLocator_JC.getServiceLocator(); // for easy reference
-    Logger logger = sl.getLogger(); // for easy reference
-
+    ServiceLocator_JC sl = ServiceLocator_JC.getServiceLocator();
+    Logger logger = sl.getLogger();
     private Properties defaultOptions;
     private Properties localOptions;
 

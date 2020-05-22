@@ -5,11 +5,10 @@ package server;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
-import java.util.stream.*;
 
 public class Game {
     private ServiceLocator sl;
-    private Logger l;
+    private Logger log;
 
     private ArrayList<Card> cardsOnTable;
     private ArrayList<Player> playersOnGame;
@@ -34,7 +33,7 @@ public class Game {
     // Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
     Game(int gameID, String name) {
 	this.sl = ServiceLocator.getServiceLocator();
-	this.l = sl.getLogger();
+	this.log = sl.getLogger();
 	this.playersOnGame = new ArrayList<>();
 	this.cardsOnTable = new ArrayList<>();
 	this.moveOrder = new int[4];
@@ -49,8 +48,7 @@ public class Game {
 	this.gameFinish = false;
 	this.stichFinish = false;
 	this.wishForNewStaple = 0;
-	// sl.getLogger().info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name:
-	// "+this.name);
+	//log.info("neues Game erzeugt|Game_ID: "+this.gameID+"|Name:"+this.name);
     }
 
     // Wählt ein Spieler in der Lobby ein Spiel aus, wird er dem Game hinzugefügt.
@@ -60,9 +58,8 @@ public class Game {
 	    player.setActualGame(this.gameID);
 	    if (playersOnGame.size() == 4) { // bei 4 Spielern wird das Game gestartet
 		startGame();
-		// sl.getLogger().info(
-		// "4 Spieler vorhanden, game wird gestartet|Game_ID: " + this.gameID + "|Name:
-		// " + this.name);
+		
+		log.info("4 Spieler vorhanden, game wird gestartet|Game_ID: " + this.gameID + "|Name: " + this.name);
 	    }
 	}
     }
