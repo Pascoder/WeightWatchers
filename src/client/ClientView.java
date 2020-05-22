@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+// Klasse von Leon Xhinovci & Frank Mauchle 
+
 public class ClientView {
 
 	protected Scene scene;
