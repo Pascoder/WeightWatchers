@@ -152,7 +152,10 @@ public class ClientThread extends Thread {
 			}
 			if (ciao_msg.getCiaoSource().equals("ExitGame")) {
 				ServerModel.kickPlayers(clientName);
-				ServerModel.removePlayerFromLobby(clientName);
+//				ServerModel.removePlayerFromLobby(clientName);
+				ServerModel.deleteGame(ciao_msg.getClient());
+				ServerModel.updateClients(1, clientName);
+
 			}
 			
 			if (ciao_msg.getCiaoSource().equals("ExitGame1")) {

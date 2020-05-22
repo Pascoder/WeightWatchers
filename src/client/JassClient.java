@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 //Klasse von Frank Mauchle
 
-public class JassClient extends Application {
+public class JassClient extends Application { 
     private static JassClient mainProgram; // singleton
 	private ClientModel clientModel;
 	private ClientView clientView;
