@@ -85,7 +85,6 @@ public class Game_View extends BorderPane{
 		
 		this.tableBox = new BorderPane();
 		this.tableBox.getStyleClass().add("gameTableBox");
-		//this.tableBox.setGridLinesVisible(true);
 		this.setCenter(tableBox);
 		
 		
@@ -144,7 +143,7 @@ public class Game_View extends BorderPane{
 			this.p2_name = new Label("--");
 			this.player2.getChildren().add(p2_name);
 			this.tableBox.setTop(player2);
-			//this.player2.setAlignment(Pos.CENTER);
+			this.player2.setAlignment(Pos.CENTER);
 			
 			
 			//this.imageverdeckt2.setFitHeight(140);
@@ -160,7 +159,7 @@ public class Game_View extends BorderPane{
 			this.p3_name = new Label("--");
 			this.player3.getChildren().add(p3_name);
 			this.tableBox.setLeft(player3);
-			//this.player3.setAlignment(Pos.CENTER);
+			this.player3.setAlignment(Pos.CENTER);
 			
 			//this.imageverdeckt3.setFitHeight(140);
 			//this.imageverdeckt3.setFitWidth(100);
