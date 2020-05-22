@@ -143,9 +143,11 @@ public class ClientController {
 		});
 			//Quit Button wird in Game gedrückt
 		gameview.getControls().getQuitButton().setOnAction(c -> {
-		    	clientModel.sayGoodBye("Lobby1");
 		    	clientModel.sayGoodBye("ExitGame"); 	
+		    	clientModel.sayGoodBye("Lobby1");
+		    	
 			clientView.getGameStage().hide();
+			clientView.switchView(2);
 			Platform.exit();
 		});
 			// KARTEN PER KLICK SPIELEN
