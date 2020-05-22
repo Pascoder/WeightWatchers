@@ -310,12 +310,11 @@ public class Game {
 	this.stapelFinish = true;
 	if (team1.getTeamPoints() > team2.getTeamPoints()) {
 	    this.lastWinnerTeam_ID = team1.getTeam_id();
+	    
 	} else {
 
 	    this.lastWinnerTeam_ID = team2.getTeam_id();
 	}
-
-	System.out.println("Stapelgewinner: Team " + this.lastWinnerTeam_ID);
 
     }
 

@@ -99,7 +99,6 @@ public class Login_View extends BorderPane {
 	this.stage.setTitle(t.getString("login.windowTitle"));
 	this.MenuLgVi.setTexts();
 	this.controls.setTexts();
-	System.out.println("updateLabels in LoginView auferufen");
 	this.lblTitle.setText(t.getString("login.lblTitle"));
 	this.usernameLabel.setText(t.getString("login.lblUsername"));
 	this.passwordLabel.setText(t.getString("login.lblPassword"));

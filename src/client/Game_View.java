@@ -262,7 +262,8 @@ public class Game_View extends BorderPane{
 		this.pointsBox = new VBox();
 		this.pointsBox.getChildren().addAll(ourPointsBox, P13, opponentsPointsBox, P24);
 		this.pointsBox.getStyleClass().add("gamePointsBox");
-		this.pointsBox.setMinHeight(600);
+		this.pointsBox.setAlignment(Pos.TOP_LEFT);
+		this.pointsBox.setMinHeight(400);
 		
 		this.rightBox.getChildren().addAll(trumpfBox, pointsBox);
 		this.setRight(rightBox);
