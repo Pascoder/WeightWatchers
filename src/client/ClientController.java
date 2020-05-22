@@ -300,7 +300,7 @@ public class ClientController {
 						cardList = p.getHandAsStrings();
 						clientView.getGameView().setTitle(t.getString("game.windowTitle")+" "+ p.getName());
 						if (p.getonMove() == true) {
-							// Trumpf auswaehlen aber nur wenn 1. Runde
+							// Trumpf auswaehlen aber nur wenn 1. Runde 
 						    	clientView.getGameView().getOnTurn().setText(t.getString("game.lblAmZug"));
 							clientView.getGameView().getOnTurn().setTextFill(Color.web("red"));
 						} else {
