@@ -24,7 +24,7 @@ import server.Player;
 
 //Klasse von Frank Mauchle
 public class ClientController {
-
+	//Statisch weil ClientModel Messages empfängt und somit auf View zugreiffen muss
 	private static ClientModel clientModel;
 	private static ClientView clientView;
 	private static ServiceLocator_JC sl;
@@ -138,7 +138,7 @@ public class ClientController {
 		});
 			//Leave Game Button wird in Game gedrückt
 		gameview.getControls().getLeaveGameButton().setOnAction(c -> {
-		    	clientModel.sayGoodBye("ExitGame"); 	
+		    	clientModel.sayGoodBye("ExitGame1"); 	
 		    	clientView.switchView(2);
 		});
 			//Quit Button wird in Game gedrückt
