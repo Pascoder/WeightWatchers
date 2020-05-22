@@ -24,7 +24,7 @@ import server.Player;
 
 //Klasse von Frank Mauchle
 public class ClientController {
-
+	//TODO model, view wäre besser nicht statisch 
 	private static ClientModel clientModel;
 	private static ClientView clientView;
 	private static ServiceLocator_JC sl;
