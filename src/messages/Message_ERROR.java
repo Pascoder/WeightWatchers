@@ -1,6 +1,7 @@
 package messages;
 
 import java.util.ArrayList;
+//Pascal Wyser
 
 public class Message_ERROR extends Message{
 	private static final String ELEMENT_INFO = "info";

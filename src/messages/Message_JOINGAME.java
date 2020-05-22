@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import messages.Message.NameValue;
 
 public class Message_JOINGAME extends Message{
-	
+	//Pascal Wyser
+
 	private static final String ELEMENT_GAMENAME = "gamename";
 	
 	private String gamename;

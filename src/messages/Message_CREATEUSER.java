@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import messages.Message.NameValue;
 
+//Pascal Wyser
 
 public class Message_CREATEUSER extends Message{
 	private static final String ELEMENT_USERNAME = "username";

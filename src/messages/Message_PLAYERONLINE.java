@@ -2,7 +2,8 @@ package messages;
 
 import java.util.ArrayList;
 
-import messages.Message.NameValue;
+
+//Pascal Wyser
 
 public class Message_PLAYERONLINE extends Message{
 	private static final String ELEMENT_NAME = "name";

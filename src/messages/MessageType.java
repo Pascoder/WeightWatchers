@@ -1,5 +1,8 @@
 package messages;
 
+//Pascal Wyser
+
+
 public enum MessageType {
 	HELLO,
 	CREATEUSER,

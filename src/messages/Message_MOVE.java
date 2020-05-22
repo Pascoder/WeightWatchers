@@ -2,7 +2,9 @@ package messages;
 
 import java.util.ArrayList;
 
-import messages.Message.NameValue;
+
+
+//Pascal Wyser
 
 public class Message_MOVE extends Message{
 	

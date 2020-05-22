@@ -53,22 +53,7 @@ public class ServerModel {
 
 	return loginOK;
 
-	// this.getClass().getClassLoader().getResourceAsStream("client/"+
-	// "Schweizer_Jasskarten.jpg")
-	// Hier wird methode newPlayer erstellt und somit Login erstellt
-
-	// Erweiterung DB
-
-	/*
-	 * String result = DataBase.getDataBase().
-	 * executeQuery("SELECT * FROM it_db1.player WHERE name ='"
-	 * +username+"'AND password ='"+password+"';"); if(result.length()>0) { loginOK
-	 * = true; String id = DataBase.getDataBase().
-	 * executeQuery("SELECT player_id FROM it_db1.player WHERE name ='"
-	 * +username+"'AND password ='"+password+"';"); Player player = new
-	 * Player(Integer.parseInt(id),username);
-	 * Lobby.getLobby().setPlayersOnline(player); }
-	 */
+	
     }
 
     private static boolean isPlayerOffline(String username) {
@@ -99,9 +84,7 @@ public class ServerModel {
 
     public static boolean createUser(String username, String password)
 	    throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
-	// DataBase.getDataBase().executeUpdate("INSERT INTO it_db1.player
-	// (name,password,onMove,fk_team) VALUES
-	// ('"+username+"','"+password+"',0,null);");
+	
 
 	// Pruefen ob Accounts bereits geladen wurden
 	if (accountsloaded == false) {

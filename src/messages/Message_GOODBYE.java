@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import messages.Message.NameValue;
 
 public class Message_GOODBYE extends Message {
-	
+	//Pascal Wyser
+
 private static final String ELEMENT_PLAYERNAME = "playername";
 private static final String ELEMENT_CIAOSOURCE = "ciaosource";
 	

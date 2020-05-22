@@ -2,7 +2,10 @@ package messages;
 
 import java.util.ArrayList;
 
-import messages.Message.NameValue;
+
+
+//Pascal Wyser
+
 
 public class Message_LOBBYUPDATE extends Message{
 	private static final String ELEMENT_PLAYERSONLINE = "playersonline";
