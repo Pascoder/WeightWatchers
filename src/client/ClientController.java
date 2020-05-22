@@ -24,11 +24,9 @@ import server.Player;
 
 //Klasse von Frank Mauchle
 public class ClientController {
-<<<<<<< HEAD
-	//Statisch weil ClientModel Messages empfängt und somit auf View zugreiffen muss
-=======
+
 	//TODO model, view wÃ¤re besser nicht statisch 
->>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers
+
 	private static ClientModel clientModel;
 	private static ClientView clientView;
 	private static ServiceLocator_JC sl;
