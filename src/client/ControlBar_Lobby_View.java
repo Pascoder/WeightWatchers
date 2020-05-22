@@ -2,34 +2,30 @@ package client;
 
 import javafx.scene.control.Button;
 
+// Klasse von Leon Xhinovci
 
-public class ControlBar_Lobby_View extends ControlBar_Basic_View{
-    
-   
-    private Button btnLeave;
-    
-    
-    public ControlBar_Lobby_View() {
-	super();
-	
+public class ControlBar_Lobby_View extends ControlBar_Basic_View {
 
-	btnLeave = new Button();
+	private Button btnLeave;
 
-	
-	toolLeft.getItems().addAll(btnLeave);
-	
-	
-    }
-    
-    protected void setTexts() {
-   	setTextsBasic();
-   	
-   	this.btnLeave.setText(t.getString("lobby.btnLeaveLobby"));
+	public ControlBar_Lobby_View() {
+		super();
 
-    }
-    public Button getLeaveLobbyButton() {
-	return btnLeave;
-    }
-    
+		btnLeave = new Button();
+
+		toolLeft.getItems().addAll(btnLeave);
+
+	}
+
+	protected void setTexts() {
+		setTextsBasic();
+
+		this.btnLeave.setText(t.getString("lobby.btnLeaveLobby"));
+
+	}
+
+	public Button getLeaveLobbyButton() {
+		return btnLeave;
+	}
 
 }
