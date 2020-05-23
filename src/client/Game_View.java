@@ -38,7 +38,9 @@ public class Game_View extends BorderPane {
     protected Label p1_name, p1name, p2_name, p2name, p3_name, p3name, p4_name, p4name, trumpf, verdecktekarten1,
 	    verdecktekarten2, verdecktekarten3, onTurn, selectedT, ourPointsLabel, ourPlbl, opponentsPointsLabel,
 	    oppPlbl;
-    protected Button weis, nextRound;
+    
+
+	protected Button weis, nextRound;
     protected ToggleButton karte1, karte2, karte3, karte4, karte5, karte6, karte7, karte8, karte9;
     protected ArrayList<ToggleButton> playerButtons;
 
@@ -441,5 +443,19 @@ public class Game_View extends BorderPane {
     public ControlBar_Game_View getControls() {
 	return this.controls;
     }
+    public String getOurPointsLabel() {
+		return ourPointsLabel.getText();
+	}
 
+	public String getOurPlbl() {
+		return ourPlbl.getText();
+	}
+
+	public String getOpponentsPointsLabel() {
+		return opponentsPointsLabel.getText();
+	}
+
+	public String getOppPlbl() {
+		return oppPlbl.getText();
+	}
 }

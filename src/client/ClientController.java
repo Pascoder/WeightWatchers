@@ -468,6 +468,7 @@ public class ClientController {
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle(t.getString("alert.spielFertig"));
+				
 				alert.setContentText(t.getString("alert.stapleWinnerWinners") + " " + winners);
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
@@ -476,6 +477,8 @@ public class ClientController {
 					alert.close();
 				}
 			}
+
+		
 		});
 	}
 
@@ -489,8 +492,9 @@ public class ClientController {
 
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle(t.getString("alert.stapleWinnerTitle"));
-				alert.setContentText(t.getString("alert.stapleWinnerWinners") + " " + winners + " "
-						+ t.getString("alert.stapleWinnerWeiter"));
+				alert.setContentText(wonOrLose());
+//				alert.setContentText(t.getString("alert.stapleWinnerWinners") + " " + winners + " "
+//						+ t.getString("alert.stapleWinnerWeiter"));
 
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
@@ -519,6 +523,7 @@ public class ClientController {
 				Dialog<Object> dialog = new Dialog<>();
 
 				dialog.setTitle(t.getString("alert.spielBeenden"));
+				
 				dialog.setContentText(t.getString("alert.spielBeendenText"));
 				dialog.show();
 				try {
@@ -535,6 +540,14 @@ public class ClientController {
 			}
 		});
 
+	}
+	
+	
+	private static String wonOrLose() {
+		if(Integer.parseInt(clientView.getGameView().getOppPlbl())> Integer.parseInt(clientView.getGameView().getOurPlbl())) {
+			return "Verloren!";
+		}else
+		return "Gewonnen!";
 	}
 
 	public static void changeLanguage() {
