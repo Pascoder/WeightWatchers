@@ -5,7 +5,7 @@ import java.util.Locale;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
-// Klasse von Leon Xhinovci
+// Klasse von Leon Xhinovci & Oliver Mosimann
 
 public class Menu_Lobby_View extends Menu_Basic_View {
 

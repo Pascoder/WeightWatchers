@@ -6,6 +6,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 
+//Klasse von Leon Xhinovci
+
 public class ControlBar_Basic_View extends HBox {
     protected ServiceLocator_JC sl;
     protected Translator_JC t;

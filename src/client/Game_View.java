@@ -31,7 +31,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-// Klasse von Leon Xhinovci
+// Klasse von Leon Xhinovci & Oliver Mosimann
 
 public class Game_View extends BorderPane {
     

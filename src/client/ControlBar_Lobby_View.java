@@ -2,7 +2,7 @@ package client;
 
 import javafx.scene.control.Button;
 
-// Klasse von Leon Xhinovci
+// Klasse von Leon Xhinovci & Oliver Mosimann
 
 public class ControlBar_Lobby_View extends ControlBar_Basic_View {
 

@@ -8,7 +8,7 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
-// Klasse von Leon Xhinovci
+// Klasse von Leon Xhinovci & Oliver Mosimann
 
 public class Menu_Game_View extends Menu_Basic_View {
 

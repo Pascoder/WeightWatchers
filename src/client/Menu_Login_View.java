@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import server.ServiceLocator;
 
-// Klasse von Leon Xhinovci
+// Klasse von Leon Xhinovci & Oliver Mosimann
 
 public class Menu_Login_View extends Menu_Basic_View {
 

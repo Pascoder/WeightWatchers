@@ -3,7 +3,7 @@ package client;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-// Klasse von Leon Xhinovci
+// Klasse von Leon Xhinovci & Oliver Mosimann
 
 public class ControlBar_Game_View extends ControlBar_Basic_View {
 

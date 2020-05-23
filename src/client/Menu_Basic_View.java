@@ -16,7 +16,7 @@ import javafx.scene.image.ImageView;
 
 public class Menu_Basic_View extends MenuBar {
 
-    // 2020 Oliver Mosimann
+    // 2020 Oliver Mosimann & Leon Xhinovci
 
     ServiceLocator_JC sl;
     Translator_JC t;
