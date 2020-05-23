@@ -18,13 +18,14 @@ public class JassClient extends Application {
     private ClientController clientController;
     private static ServiceLocator_JC serviceLocator;
 
-    // resources, after initializationff
+   
 
     public static void main(String[] args) {
 	launch(args);
     }
 
     @Override
+    //MainProgram als Singleton festlegen
     public void init() {
 	if (mainProgram == null) {
 	    mainProgram = this;
@@ -35,22 +36,15 @@ public class JassClient extends Application {
 
     @Override
     public void start(Stage stage) {
-	// Create and display the splash screen and model
+	// Initlialize
 	initialize();
 	this.clientModel = new ClientModel();
 	this.clientView = new ClientView(stage, clientModel);
 	this.clientController = new ClientController(clientModel, clientView);
 
-	// nicht beachten, zu Testzwecken
-//		this.tc = new Test_Controller(clientModel, tv);
-	// Test fertig
-
 	clientView.start();
-
-	// Display the splash screen and begin the initialization
-
     }
-
+    //SL, Translator erstellen durch Configuration (JassClient.cfg) Datei
     public static void initialize() {
 	serviceLocator = ServiceLocator_JC.getServiceLocator();
 	serviceLocator.setLogger(configureLogger());
@@ -58,43 +52,31 @@ public class JassClient extends Application {
 	String language = serviceLocator.getConfiguration().getOption("Language");
 	serviceLocator.setTranslator(new Translator_JC(language));
 
-	// Hier fehlt noch Verbindung zu Server herstellen
     }
-
+    //Logger konfigurieren
     private static Logger configureLogger() {
 	Logger rootLogger = Logger.getLogger("");
 	rootLogger.setLevel(Level.FINEST);
-	// By default there is one handler: the console
+	
 	Handler[] defaultHandlers = Logger.getLogger("").getHandlers();
 	defaultHandlers[0].setLevel(Level.INFO);
-	// Add our logger
+
 	Logger ourLogger = Logger.getLogger(serviceLocator.getAPP_NAME());
 	ourLogger.setLevel(Level.FINEST);
-	// Add a file handler, putting the rotating files in the tmp directory
-	try {
-	    Handler logHandler = new FileHandler("%t/" + serviceLocator.getAPP_NAME() + "_%u" + "_%g" + ".log", 1000000,
-		    9);
-	    logHandler.setLevel(Level.FINEST);
-	    ourLogger.addHandler(logHandler);
-	} catch (Exception e) { // If we are unable to create log files
-	    throw new RuntimeException("Unable to initialize log files: " + e.toString());
-	}
+
 	return ourLogger;
     }
 
-    @Override
+    //Beim Aufruffen von dieser Methode wird Konfiguration gespeichert
     public void stop() {
 	serviceLocator.getConfiguration().save();
 	if (clientView != null) {
-	    // Make the view invisible
 	    clientView.stop();
 	}
-
-	// More cleanup code as needed
 	serviceLocator.getLogger().info("Application terminated");
     }
 
-    // Static getter for a reference to the main program object
+    // Getter für den JassClient
     protected static JassClient getMainProgram() {
 	return mainProgram;
     }
