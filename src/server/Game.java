@@ -289,10 +289,12 @@ public class Game {
 	this.stapelFinish = true;
 	if (team1.getTeamPoints() > team2.getTeamPoints()) {
 	    this.lastWinnerTeam_ID = team1.getTeam_id();
+	    logger.info("StapelGewinner: Team 1" + this.team1.getTeamNames());
 	} else {
 	    this.lastWinnerTeam_ID = team2.getTeam_id();
+	    logger.info("StapelGewinner: Team 2" + this.team2.getTeamNames());
 	}
-	logger.info("StapelGewinner: Team " + this.lastWinnerTeam_ID);
+	
     }
 
     // Spielbare Karten für Spieler definieren

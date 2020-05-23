@@ -205,7 +205,7 @@ public class Game_View extends BorderPane {
 	this.ourPlbl = new Label("--"); //
 	this.ourPointsBox.getChildren().addAll(this.ourPointsLabel, this.ourPlbl);
 
-	// Namen unser Team
+	// Namen Gegner Team
 	this.P13 = new VBox();
 	p1name = new Label("--");
 	p3name = new Label("--");
@@ -218,7 +218,7 @@ public class Game_View extends BorderPane {
 	this.oppPlbl.setPadding(getPadding());
 	this.opponentsPointsBox.getChildren().addAll(this.opponentsPointsLabel, this.oppPlbl);
 
-	// Namen Gegner
+	// Namen unser Team
 	this.P24 = new VBox();
 	p2name = new Label("--");
 	p4name = new Label("--");
@@ -234,7 +234,7 @@ public class Game_View extends BorderPane {
 	this.trumpfColor.setFitHeight(USE_COMPUTED_SIZE);
 	this.trumpfBox.getChildren().addAll(this.trumpf, this.trumpfColor);
 	this.pointsBox = new VBox();
-	this.pointsBox.getChildren().addAll(ourPointsBox, P13, opponentsPointsBox, P24);
+	this.pointsBox.getChildren().addAll(ourPointsBox, P24, opponentsPointsBox, P13);
 	this.pointsBox.getStyleClass().add("gamePointsBox");
 	this.pointsBox.setAlignment(Pos.TOP_LEFT);
 	this.pointsBox.setMinHeight(300);

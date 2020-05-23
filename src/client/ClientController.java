@@ -375,10 +375,10 @@ public class ClientController {
 					clientView.getGameView().p1_name.setText(playersOnGame[3].getName());
 					clientView.getGameView().p2_name.setText(playersOnGame[0].getName());
 					clientView.getGameView().p3_name.setText(playersOnGame[1].getName());
-					clientView.getGameView().p4name.setText(playersOnGame[1].getName());
-					clientView.getGameView().p1name.setText(playersOnGame[2].getName());
-					clientView.getGameView().p2name.setText(playersOnGame[3].getName());
-					clientView.getGameView().p3name.setText(playersOnGame[0].getName());
+					clientView.getGameView().p4name.setText(playersOnGame[2].getName());
+					clientView.getGameView().p1name.setText(playersOnGame[3].getName());
+					clientView.getGameView().p2name.setText(playersOnGame[0].getName());
+					clientView.getGameView().p3name.setText(playersOnGame[1].getName());
 					if (!trumpf.equals("null")) {
 						clientView.getGameView().setTrumpf(t.getString("game.lblTrumpfJa"));
 					}
@@ -388,10 +388,10 @@ public class ClientController {
 					clientView.getGameView().p1_name.setText(playersOnGame[0].getName());
 					clientView.getGameView().p2_name.setText(playersOnGame[1].getName());
 					clientView.getGameView().p3_name.setText(playersOnGame[2].getName());
-					clientView.getGameView().p4name.setText(playersOnGame[1].getName());
-					clientView.getGameView().p1name.setText(playersOnGame[2].getName());
-					clientView.getGameView().p2name.setText(playersOnGame[3].getName());
-					clientView.getGameView().p3name.setText(playersOnGame[0].getName());
+					clientView.getGameView().p4name.setText(playersOnGame[3].getName());
+					clientView.getGameView().p1name.setText(playersOnGame[0].getName());
+					clientView.getGameView().p2name.setText(playersOnGame[1].getName());
+					clientView.getGameView().p3name.setText(playersOnGame[2].getName());
 					if (!trumpf.equals("null")) {
 						clientView.getGameView().setTrumpf(t.getString("game.lblTrumpfJa"));
 					}
