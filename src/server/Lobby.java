@@ -1,11 +1,104 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 //Klasse von Frank Mauchle
 
+<<<<<<< HEAD
 public class Lobby { 
+=======
+public class Lobby {
+    private ServiceLocator sl = ServiceLocator.getServiceLocator();
+    private Logger logger = sl.getLogger();
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers
 
+<<<<<<< HEAD
+    private static Lobby lobby;
+    private static ArrayList<Game> actualgames = new ArrayList<>();
+    private static ArrayList<Player> playersOnline = new ArrayList<>();
+    
+
+    private static int counterGames = 0;
+    
+    //Statische Lobby also wenn schon eine vorhanden keine weitere erstellen
+    public static Lobby getLobby() {
+	if (lobby == null)
+	    lobby = new Lobby();
+	return lobby;
+    }
+
+    //Spiel der Lobby hinzufï¿½gen
+    public void createGame(String name) {	
+    boolean gameInList = false;
+    for(Game g : actualgames) {
+    if(g.getName().equals(name)) gameInList = true;	
+    }
+    if(!gameInList) {
+    	 counterGames++;
+    		Game game = new Game(counterGames, name);
+    		actualgames.add(game);
+    }
+    }
+
+    //Spiel aus der Lobby lï¿½schen
+    public void removeGame(int gameID) {
+	for (int i = 0; i < actualgames.size(); i++) {
+	    if (actualgames.get(i).getGameID() == gameID) {
+		actualgames.remove(i);
+	    }
+	}
+    }
+
+    
+    public ArrayList<Game> getGames() {
+	return Lobby.actualgames;
+    }
+
+    public static ArrayList<Player> getPlayersOnline() {
+	return Lobby.playersOnline;
+    }
+
+//Nach dem Login muss diese Methode aufgeruffen werden um den erstellten Player in die Online Liste zu setzen
+    public void setPlayersOnline(Player player) {
+
+	boolean playerExists = false;
+
+	for (Player p : playersOnline) {
+	    if (p.equals(player)) {
+		playerExists = true;
+	    }
+	}
+	if (!playerExists) {
+	    Lobby.playersOnline.add(player);
+	}
+    }
+
+//In Spieler aktuelles Spiel schreiben sobald er einem Spiel in der Lobby beitretet
+    public void JoinGame(String game_id, Player player) {
+	player.setActualGame(Integer.parseInt(game_id));
+	for (int i = 0; i < actualgames.size(); i++) {
+	    if (actualgames.get(i).getGameID() == Integer.parseInt(game_id)) {
+		actualgames.get(i).addPlayer(player);
+	    }
+	}
+    }
+
+    public void startNextRound(String id) {
+	for (Game g : actualgames) {
+	    if (id.equals(g.getGameID()+"")) {
+		g.nextRound();
+	    }
+	}
+    }
+
+    public String OnlinePlayersAsString() {
+
+	String result = "";
+
+	for (Player p : playersOnline) {
+	    result += p.getName() + "|";
+=======
 	private static Lobby lobby;
 	private static ArrayList<Game> actualgames = new ArrayList<>();
 	private static ArrayList<Player> playersOnline = new ArrayList<>();
@@ -17,6 +110,7 @@ public class Lobby {
 		if (lobby == null)
 			lobby = new Lobby();
 		return lobby;
+>>>>>>> branch 'master' of https://github.com/Pascoder/WeightWatchers.git
 	}
 
 	// Spiel erstellen und der Lobby hinzufügen wenn noch nicht vorhanden
