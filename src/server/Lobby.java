@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 //Klasse von Frank Mauchle
 
-public class Lobby {
+public class Lobby { 
 
 	private static Lobby lobby;
 	private static ArrayList<Game> actualgames = new ArrayList<>();
