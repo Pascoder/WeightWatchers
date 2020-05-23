@@ -15,8 +15,6 @@ public class Translator_JC {
     private ResourceBundle resourceBundle;
 
     public Translator_JC(String localeString) {
-	// Can we find the language in our supported locales?
-	// If not, use VM default locale
 	Locale locale = Locale.getDefault();
 	if (localeString != null) {
 	    Locale[] availableLocales = sl.getLocales();

@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class Game {
     private ServiceLocator sl;
-    private Logger log;
+    private Logger logger;
 
     private ArrayList<Card> cardsOnTable;
     private ArrayList<Player> playersOnGame;
@@ -33,7 +33,7 @@ public class Game {
     // Wird aufgerufen, wenn ein User in der Lobby ein neues Spiel erzeugt.
     Game(int gameID, String name) {
 	this.sl = ServiceLocator.getServiceLocator();
-	this.log = sl.getLogger();
+	this.logger = sl.getLogger();
 	this.playersOnGame = new ArrayList<>();
 	this.cardsOnTable = new ArrayList<>();
 	this.moveOrder = new int[4];
@@ -56,10 +56,11 @@ public class Game {
 	if (playersOnGame.size() < 4) {
 	    this.playersOnGame.add(player);
 	    player.setActualGame(this.gameID);
+	    logger.info("Spieler "+player.getName()+" Spiel hinzugefügt|Game_ID: " + this.gameID + "|Name: " + this.name);
 	    if (playersOnGame.size() == 4) { // bei 4 Spielern wird das Game gestartet
 		startGame();
 		
-		log.info("4 Spieler vorhanden, game wird gestartet|Game_ID: " + this.gameID + "|Name: " + this.name);
+		logger.info("4 Spieler vorhanden, game wird gestartet|Game_ID: " + this.gameID + "|Name: " + this.name);
 	    }
 	}
     }
@@ -215,7 +216,7 @@ public class Game {
     }
     // Nomrmaler Spielzug (nach Setzung Trumpf)
     private void normalMove(int game_ID, int player_ID, Card card) {
-	System.out.println("NORMAL MOVE: " + "Player= " + searchPlayer(player_ID).getName() + " " + card.toString());
+	logger.info("NORMAL MOVE: " + "Player= " + searchPlayer(player_ID).getName() + " " + card.toString());
 	card.setPlayable(true);
 	searchPlayer(player_ID).removeCardFromHand(card);
 	card.setPlayer_ID(player_ID);
@@ -228,7 +229,7 @@ public class Game {
 
     // Zählt die Züge einer Runde
     private void countMove() {
-	System.out.println("MOVE NUMBER: " + move);
+	logger.info("MOVE NUMBER: " + move);
 	if (this.move < 3) {
 	    this.stichFinish = false;
 	    this.move++;
@@ -280,7 +281,7 @@ public class Game {
 	this.lastWinner_ID = winnerScore[0];
 	searchPlayer(this.lastWinner_ID).addStichCards(cardsOnTable);
 	shiftMoveOrder();
-	System.out.println("Stichgewinner: " + winnerScore[0] + " Punkte: " + winnerScore[1]);
+	logger.info("Stichgewinner: " + winnerScore[0] + " Punkte: " + winnerScore[1]);
     }
 
     // Ermittlung Gewinner eines Stapels/Trumpf
@@ -291,7 +292,7 @@ public class Game {
 	} else {
 	    this.lastWinnerTeam_ID = team2.getTeam_id();
 	}
-	System.out.println("Stapelgewinner: Team " + this.lastWinnerTeam_ID);
+	logger.info("StapelGewinner: Team " + this.lastWinnerTeam_ID);
     }
 
     // Spielbare Karten für Spieler definieren
@@ -345,7 +346,6 @@ public class Game {
 	for (Card c : cardsOnTable) {
 	    result += c.toString() + "$";
 	}
-	System.out.println("GETCARDSONTABLE: " + result);
 	return result;
     }
 

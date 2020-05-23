@@ -144,12 +144,12 @@
 	-fx-background-position: left, top;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
+	-fx-margin-right: 10;
 
 
 }
 .gamePointsBox .label{
 	-fx-text-fill: white;
-	-fx-padding: 10.0;
 	-fx-margin-left: 30.0;
 	-fx-font-size: 16.0;
 }

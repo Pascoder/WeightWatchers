@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 public class Configuration {
-    ServiceLocator sl = ServiceLocator.getServiceLocator();
+    static ServiceLocator sl = ServiceLocator.getServiceLocator();
     Logger logger = sl.getLogger();
 
     private Properties defaultOptions;
@@ -22,9 +22,9 @@ public class Configuration {
 	try {
 	    inStream = new FileInputStream("ServerDefaults.cfg");
 	    defaultOptions.load(inStream);
-	} catch (FileNotFoundException e) { // from opening the properties file
+	} catch (FileNotFoundException e) {
 	    logger.config("No default configuration file found");
-	} catch (IOException e) { // from loading the properties
+	} catch (IOException e) {
 	    logger.warning("Error reading default options file: " + e.toString());
 	} finally {
 	    try {
@@ -38,7 +38,8 @@ public class Configuration {
 	    logger.config("Option: " + key + " = " + defaultOptions.getProperty(key));
 	}
     }
-
+    
+    // nmomentan nicht verwendet, keine Änderungen im Programm vorgesehen
     public void save() {
 	FileOutputStream propFile = null;
 	try {
@@ -56,4 +57,6 @@ public class Configuration {
 	    }
 	}
     }
+    
+  
 }

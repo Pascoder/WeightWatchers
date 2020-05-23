@@ -4,7 +4,6 @@ package server;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,6 +23,8 @@ public class ServerModel {
     private static boolean accountsloaded = false;
     private static ArrayList<ClientThread> clientList;
     private static String chatHistory = "";
+    static ServiceLocator sl = ServiceLocator.getServiceLocator();
+    static Logger logger = sl.getLogger();
 
     public ServerModel() {
 	clientList = new ArrayList<ClientThread>();
@@ -78,7 +79,7 @@ public class ServerModel {
 	    e.printStackTrace();
 	}
 	accountsloaded = true;
-
+	logger.info("loadAccounts");
     }
 
     public static boolean createUser(String username, String password)

@@ -1,17 +1,16 @@
 package server;
 
-import java.util.logging.FileHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class ServiceLocator {
-    private static ServiceLocator serviceLocator; // singleton
 
-    // Resources
-    private Logger logger;
+public class ServiceLocator {
+    private static ServiceLocator serviceLocator;
+    final private Class<?> APP_CLASS = ServerMain.class;
+    private static Logger logger = null;
     private Configuration configuration;
+    final private String APP_NAME = "JassServer1";
+    
 
     public static ServiceLocator getServiceLocator() {
 	if (serviceLocator == null)
@@ -27,7 +26,7 @@ public class ServiceLocator {
     }
 
     public void setLogger(Logger logger) {
-	this.logger = logger;
+	ServiceLocator.logger = logger;
     }
 
     public Configuration getConfiguration() {
@@ -37,5 +36,12 @@ public class ServiceLocator {
     public void setConfiguration(Configuration configuration) {
 	this.configuration = configuration;
     }
+
+    public String getAPP_NAME() {
+	return APP_NAME;
+    }
+    public Class<?> getAPP_CLASS() {
+   	return APP_CLASS;
+       }
 
 }

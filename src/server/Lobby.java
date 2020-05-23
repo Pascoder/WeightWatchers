@@ -1,14 +1,16 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 
 //Klasse von Frank Mauchle
 
 public class Lobby {
+    private ServiceLocator sl = ServiceLocator.getServiceLocator();
+    private Logger logger = sl.getLogger();
 
     private static Lobby lobby;
-
     private static ArrayList<Game> actualgames = new ArrayList<>();
     private static ArrayList<Player> playersOnline = new ArrayList<>();
     
@@ -22,7 +24,7 @@ public class Lobby {
 	return lobby;
     }
 
-    //Spiel der Lobby hinzufügen
+    //Spiel der Lobby hinzufï¿½gen
     public void createGame(String name) {	
     boolean gameInList = false;
     for(Game g : actualgames) {
@@ -35,7 +37,7 @@ public class Lobby {
     }
     }
 
-    //Spiel aus der Lobby löschen
+    //Spiel aus der Lobby lï¿½schen
     public void removeGame(int gameID) {
 	for (int i = 0; i < actualgames.size(); i++) {
 	    if (actualgames.get(i).getGameID() == gameID) {
