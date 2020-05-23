@@ -281,7 +281,7 @@ public class Game {
 	this.lastWinner_ID = winnerScore[0];
 	searchPlayer(this.lastWinner_ID).addStichCards(cardsOnTable);
 	shiftMoveOrder();
-	logger.info("Stichgewinner: " + winnerScore[0] + " Punkte: " + winnerScore[1]);
+	logger.info("Stichgewinner: " +searchPlayer(this.lastWinner_ID).getName() + " Punkte: " + winnerScore[1]);
     }
 
     // Ermittlung Gewinner eines Stapels/Trumpf
@@ -289,10 +289,10 @@ public class Game {
 	this.stapelFinish = true;
 	if (team1.getTeamPoints() > team2.getTeamPoints()) {
 	    this.lastWinnerTeam_ID = team1.getTeam_id();
-	    logger.info("StapelGewinner: Team 1" + this.team1.getTeamNames());
+	    logger.info("StapelGewinner: Team 1" +" Team_ID:"+this.team1.getTeam_id()+ this.team1.getTeamNames());
 	} else {
 	    this.lastWinnerTeam_ID = team2.getTeam_id();
-	    logger.info("StapelGewinner: Team 2" + this.team2.getTeamNames());
+	    logger.info("StapelGewinner: Team 2" +" Team_ID:"+this.team2.getTeam_id()+ this.team2.getTeamNames());
 	}
 	
     }
