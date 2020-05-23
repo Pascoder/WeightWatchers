@@ -1,9 +1,9 @@
 package server;
 
+//2020 Oliver Mosimann
+
 import java.util.ArrayList;
 import java.util.Collections;
-
-// 2020 Oliver Mosimann
 
 public class JassModel {
 

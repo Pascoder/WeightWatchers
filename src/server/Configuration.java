@@ -1,5 +1,7 @@
 package server;
 
+// 2020 Oliver Mosimann
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

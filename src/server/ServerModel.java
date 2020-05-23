@@ -54,7 +54,6 @@ public class ServerModel {
 
 	return loginOK;
 
-	
     }
 
     private static boolean isPlayerOffline(String username) {
@@ -84,7 +83,6 @@ public class ServerModel {
 
     public static boolean createUser(String username, String password)
 	    throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException {
-	
 
 	// Pruefen ob Accounts bereits geladen wurden
 	if (accountsloaded == false) {
@@ -316,10 +314,10 @@ public class ServerModel {
 
     }
 
-	public static void deleteGame(String client) {
-		String GameID = Lobby.getLobby().getGameIDofPlayersGame(client);
-		Lobby.getLobby().removeGame(Integer.parseInt(GameID));
-		
-	}
+    public static void deleteGame(String client) {
+	String GameID = Lobby.getLobby().getGameIDofPlayersGame(client);
+	Lobby.getLobby().removeGame(Integer.parseInt(GameID));
+
+    }
 
 }

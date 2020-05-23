@@ -1,5 +1,8 @@
 package server;
 
-public enum GameType { Differenzler, Schieber, Coiffeur
+// Oliver Mosimann
+
+public enum GameType {
+    Differenzler, Schieber, Coiffeur
 
 }
