@@ -2,6 +2,10 @@ package client;
 
 import java.util.ArrayList;
 
+import javafx.animation.Animation;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -25,11 +29,14 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 // Klasse von Leon Xhinovci
 
 public class Game_View extends BorderPane {
-
+    
+    
+  
 	private Stage stage;
 	private ClientModel model;
 	private Translator_JC t;
@@ -318,23 +325,54 @@ public class Game_View extends BorderPane {
 	}
 
 	public void placeCardtoTable(int num, Image img) {
-
+	    
 		switch (num) {
 		case 1:
-			this.cardOnTable1.setImage(img);
+						
+			if(this.cardOnTable1.getImage()== null) {
+			 this.cardOnTable1.setImage(img);
+			 cardAction(this.cardOnTable1);
+			
+			}
+			
 			break;
 		case 2:
-			this.cardOnTable2.setImage(img);
+		    if(this.cardOnTable2.getImage()== null) {
+			 this.cardOnTable2.setImage(img);
+			 cardAction(this.cardOnTable2);
+		
+		    	}
 			break;
 		case 3:
-			this.cardOnTable3.setImage(img);
+		    if(this.cardOnTable3.getImage()== null) {
+			 this.cardOnTable3.setImage(img);
+			 cardAction(this.cardOnTable3);
+	
+		    	}
 			break;
 		case 4:
-			this.cardOnTable4.setImage(img);
+		    if(this.cardOnTable4.getImage()== null) {
+			 this.cardOnTable4.setImage(img);
+			 cardAction(this.cardOnTable4);
+	
+		    	}
 			break;
 		default:
 		}
 	}
+	
+	protected void cardAction(ImageView image) {
+	    RotateTransition rt = new RotateTransition();
+	      rt.setNode(image);
+	      rt.setFromAngle(0);
+	      rt.setToAngle(360);
+	      rt.setCycleCount(1);
+	      rt.setDuration(new Duration(800));
+
+                 rt.play();
+
+
+	    }
 
 	public ToggleButton getToggleButton(int button) {
 		ToggleButton b = null;
