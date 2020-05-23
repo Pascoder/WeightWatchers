@@ -224,6 +224,7 @@ public class Game_View extends BorderPane {
 		this.opponentsPointsBox = new HBox();
 		this.opponentsPointsLabel = new Label();
 		this.oppPlbl = new Label("0");
+		this.oppPlbl.setPadding(getPadding());
 		this.opponentsPointsBox.getChildren().addAll(this.opponentsPointsLabel, this.oppPlbl);
 
 		// Namen Gegner
