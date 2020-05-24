@@ -492,9 +492,7 @@ public class ClientController {
 
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle(t.getString("alert.stapleWinnerTitle"));
-				alert.setContentText(wonOrLose());
-//				alert.setContentText(t.getString("alert.stapleWinnerWinners") + " " + winners + " "
-//						+ t.getString("alert.stapleWinnerWeiter"));
+				alert.setContentText(t.getString("alert.stapleWinnerWeiter"));
 
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
@@ -543,12 +541,6 @@ public class ClientController {
 	}
 	
 	
-	private static String wonOrLose() {
-		if(Integer.parseInt(clientView.getGameView().getOppPlbl())> Integer.parseInt(clientView.getGameView().getOurPlbl())) {
-			return "Verloren!";
-		}else
-		return "Gewonnen!";
-	}
 
 	public static void changeLanguage() {
 		t = ServiceLocator_JC.getServiceLocator().getTranslator();
