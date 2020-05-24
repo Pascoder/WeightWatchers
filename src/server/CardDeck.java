@@ -3,8 +3,6 @@ package server;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javafx.beans.property.SimpleIntegerProperty;
-
 //Klasse von Frank Mauchle
 
 public class CardDeck {
