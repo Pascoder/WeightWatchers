@@ -2,11 +2,10 @@ package messages;
 
 import java.util.ArrayList;
 
-
 //Pascal Wyser
 
-public class Message_GAMEUPDATE extends Message{
-	
+public class Message_GAMEUPDATE extends Message {
+
 	private static final String ELEMENT_GAMEID = "gameid";
 	private static final String ELEMENT_PLAYERS = "players";
 	private static final String ELEMENT_CARDSONTABLE = "cardsontable";
@@ -18,9 +17,6 @@ public class Message_GAMEUPDATE extends Message{
 	private static final String ELEMENT_TEAMSCORE = "teamscore";
 	private static final String ELEMENT_WINNERNAMES = "winnernames";
 
-
-
-
 	private String gameid;
 	private String players;
 	private String cardsontable;
@@ -31,7 +27,6 @@ public class Message_GAMEUPDATE extends Message{
 	private String stapelfinish;
 	private String teamscore;
 	private String winnernames;
-
 
 	@Override
 	protected void receiveAttributes(ArrayList<NameValue> pairs) {
@@ -61,9 +56,6 @@ public class Message_GAMEUPDATE extends Message{
 		pairs.add(new NameValue(ELEMENT_TEAMSCORE, this.teamscore));
 		pairs.add(new NameValue(ELEMENT_WINNERNAMES, this.winnernames));
 
-
-
-		
 	}
 
 	public String getGameid() {
@@ -89,10 +81,11 @@ public class Message_GAMEUPDATE extends Message{
 	public void setCardsontable(String cardsontable) {
 		this.cardsontable = cardsontable;
 	}
-	
+
 	public void setTrumpf(String trumpf) {
 		this.trumpf = trumpf;
 	}
+
 	public String getTrumpf() {
 		return this.trumpf;
 	}
@@ -128,11 +121,11 @@ public class Message_GAMEUPDATE extends Message{
 	public void setStapelfinish(String stapelfinish) {
 		this.stapelfinish = stapelfinish;
 	}
-	
+
 	public void setTeamScore(String score) {
 		this.teamscore = score;
 	}
-	
+
 	public String getTeamScore() {
 		return this.teamscore;
 	}
@@ -144,7 +137,5 @@ public class Message_GAMEUPDATE extends Message{
 	public void setWinnernames(String winnernames) {
 		this.winnernames = winnernames;
 	}
-
-	
 
 }

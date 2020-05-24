@@ -155,7 +155,7 @@ public class ClientModel {
 			msg_nr.setGamename(gu_msg.getGameid());
 			msg_nr.send(socket);
 		    }
-
+		    //Karten zeigen
 		    try {
 			Thread.sleep(5000);
 		    } catch (InterruptedException e) {
@@ -227,11 +227,6 @@ public class ClientModel {
 	}
 	msgOut.setClient(this.clientName);
 	return msgOut;
-    }
-
-    private static String getWinnerNames(String teamScore) {
-	System.out.println(teamScore);
-	return null;
     }
 
     private Player[] findPlayersOnGame(String players) {

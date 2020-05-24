@@ -2,22 +2,18 @@ package messages;
 
 import java.util.ArrayList;
 
-
-
 //Pascal Wyser
 
-public class Message_MOVE extends Message{
-	
+public class Message_MOVE extends Message {
+
 	private static final String ELEMENT_GAMEID = "gameid";
 	private static final String ELEMENT_PLAYERID = "playerid";
 	private static final String ELEMENT_CARD = "card";
 
-	
 	private String gameid;
 	private String playerid;
 	private String card;
 
-	
 	public Message_MOVE() {
 		super();
 	}
@@ -28,7 +24,6 @@ public class Message_MOVE extends Message{
 		this.playerid = findAttribute(pairs, ELEMENT_PLAYERID);
 		this.card = findAttribute(pairs, ELEMENT_CARD);
 
-		
 	}
 
 	@Override

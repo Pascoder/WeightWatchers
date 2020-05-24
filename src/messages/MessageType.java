@@ -32,10 +32,7 @@ public enum MessageType {
     	}
     	return type;
     }
-	
-    /**
-     * Determine the message type from the actual class of this object
-     */
+
     public static MessageType getType(Message msg) {
     	MessageType type = MessageType.ERROR;
     	if (msg instanceof Message_HELLO) type = 				HELLO;

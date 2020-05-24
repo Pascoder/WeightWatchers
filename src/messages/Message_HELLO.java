@@ -3,11 +3,11 @@ package messages;
 import java.util.ArrayList;
 
 public class Message_HELLO extends Message {
-	//Pascal Wyser
+	// Pascal Wyser
 
 	public Message_HELLO() {
 		super();
-		
+
 	}
 
 	@Override
