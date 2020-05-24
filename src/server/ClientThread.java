@@ -142,7 +142,6 @@ public class ClientThread extends Thread {
 				ServerModel.updateClients(1, clientName);
 			}
 			if (ciao_msg.getCiaoSource().equals("Lobby2")) {
-				System.out.println(clientName + " verlässt das Spiel");
 				ServerModel.leaveGame(clientName);
 				ServerModel.updateClients(1, clientName);
 

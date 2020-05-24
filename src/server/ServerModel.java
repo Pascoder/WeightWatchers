@@ -167,7 +167,6 @@ public class ServerModel {
 			for (ClientThread cT : clientList) {
 				for (String player : playersInGame) {
 					if (cT.getClientName().equals(player)) {
-						System.out.println("SERVER sendet:" + cT.getClientName() + " " + playersInGameString);
 						msgOutGame.setClient(player);
 						msgOutGame.send(cT.getClientSocket());
 
@@ -268,9 +267,7 @@ public class ServerModel {
 				if (Lobby.getLobby().getGames().get(i).getPlayersOnGame().get(b).getName().equals(playername)) {
 
 					Lobby.getLobby().getGames().get(i).getPlayersOnGame().remove(b);
-					System.out.println("Spieler :"
-							+ Lobby.getLobby().getGames().get(i).getPlayersOnGame().get(b).getName()
-							+ " hat das Spiel: " + Lobby.getLobby().getGames().get(i).getName() + " verlassen.");
+
 				}
 			}
 		}
